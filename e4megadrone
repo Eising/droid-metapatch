@@ -1,0 +1,200 @@
+#!/usr/bin/python3
+
+from typing import Iterator, List
+
+
+#from .patchgenerator import DroidPatch, Section, PatchGenerator
+
+import metapatch
+
+# Some global assumptions:
+RUN_BUTTON = "1.2"
+GATE_BUTTON = "1.1"
+# Assume C minor
+ROOT = "0"
+DEGREE = "7"
+
+default_preset = {"voices": 8, "midi": True, "channel": 11, "encoder1": 5, "encoder2": 4, "encoder3": 3, "encoder4": 2}
+
+class MegaDroneMeta(metapatch.PatchMeta):
+    """Megadrone patch."""
+    title = "Megadrone"
+    description = "E4 based drone generator."
+    voices = metapatch.option("Number of voices", choices=[("4", "4 voices"), ("8", "8 voices")])
+    midi = metapatch.option("Enable midi")
+    channel = metapatch.option("Midi channel", minimum=1, maximum=16)
+    encoder1 = metapatch.option("Module number for first E4 module", minimum=2, maximum=5)
+    encoder2 = metapatch.option("Module number for second E4 module", minimum=2, maximum=5)
+    encoder3 = metapatch.option("Module number for third E4 module", minimum=2, maximum=5)
+    encoder4 = metapatch.option("Module number for fourth encoder", minimum=2, maximum=5)
+    default = metapatch.preset("My own defaults", default_preset)
+
+
+class MegaDrone(metapatch.PatchGenerator):
+    """Megadrone generator."""
+
+    def generate(self) -> None:
+        """Generate megadrone."""
+        self.add_controller("p4b2", 1)
+        self.add_controller("e4", int(self.parameters["encoder1"]))
+        self.add_controller("e4", int(self.parameters["encoder2"]))
+        if self.voice_num == 8:
+            self.add_controller("e4", self.parameters["encoder3"])
+            self.add_controller("e4", self.parameters["encoder4"])
+        self.add_default_placeholders()
+        self.add_pitch_encoder()
+        self.add_pitch_base_encoder()
+        self.add_togglebutton()
+        self.add_minifon()
+        self.add_mixer()
+        self.add_gate_button()
+        if self.parameters["midi"]:
+            self.add_midiout()
+        else:
+            self.add_euro_out()
+
+    @property
+    def encoders(self) -> List[int]:
+        """Return encoder positions."""
+        encoders = [self.parameters["encoder1"], self.parameters["encoder2"]]
+        if self.parameters["voices"] == 8:
+            encoders.append(self.parameters["encoder3"])
+            encoders.append(self.parameters["encoder4"])
+
+        return [int(encoder) for encoder in encoders]
+
+    @property
+    def voices(self) -> Iterator[tuple[int, str]]:
+        """Iterate over voices and encoders."""
+        encoders = []
+        voice_num = int(self.parameters["voices"])
+        for module in self.encoders:
+            for pos in range(1, 5):
+                encoders.append(f"E{module}.{pos}")
+        for num in range(1, voice_num + 1):
+            encoder = encoders.pop(0)
+            yield (num, encoder)
+
+    @property
+    def voice_num(self) -> int:
+        """Return the number of voices."""
+        return int(self.parameters["voices"])
+
+    def add_default_placeholders(self) -> None:
+        """Add some default placeholders."""
+        self.add_circuit(
+            "button",
+            {
+                "button": f"B{RUN_BUTTON}",
+                "led": f"L{RUN_BUTTON}",
+                "output": "_RUNNING",
+                "negated": "_NOT_RUNNING",
+            },
+        )
+        self.add_circuit("copy", {"input": ROOT, "output": "_ROOT"})
+        self.add_circuit("copy", {"input": DEGREE, "output": "_DEGREE"})
+
+    def add_pitch_encoder(self) -> None:
+        """Add encoder for pitch/cv."""
+        for voice, encoder in self.voices:
+            vbase = f"_DRONE_VOICE_{voice}"
+            pitch_encoder_params = {
+                "led": f"{vbase}_ON",
+                "encoder": encoder,
+                "outputscale": "1V",
+                "discrete": "12",
+                "valuechanged": f"{vbase}_PITCH_CHANGED",
+                "output": f"{vbase}_PITCH",
+                "button": f"{vbase}_TOGGLE",
+            }
+            self.add_circuit("encoder", pitch_encoder_params)
+
+    def add_pitch_base_encoder(self) -> None:
+        """Add encoder for base pitch."""
+        for voice, encoder in self.voices:
+            vbase = f"_DRONE_VOICE_{voice}_BASE"
+            encoder_params = {
+                "encoder": encoder,
+                "outputscale": "1V",
+                "discrete": "7",
+                "startvalue": "0",
+                "output": f"{vbase}_TRANSPOSE",
+                "valuechanged": f"{vbase}_CHANGED",
+            }
+            self.add_circuit("encoder", encoder_params)
+
+    def add_togglebutton(self) -> None:
+        """Add the toggle button."""
+        for voice in range(1, self.voice_num + 1):
+            self.add_circuit(
+                "button",
+                {
+                    "button": f"_DRONE_VOICE_{voice}_TOGGLE",
+                    "output": f"_DRONE_VOICE_{voice}_ON",
+                },
+            )
+
+    def add_minifon(self) -> None:
+        """Add minifon."""
+        for voice in range(1, self.voice_num + 1):
+            self.add_circuit(
+                "minifonion",
+                {
+                    "input": f"_DRONE_VOICE_{voice}_PITCH_1",
+                    "root": "_ROOT",
+                    "degree": "_DEGREE",
+                    "transpose": f"_DRONE_VOICE_{voice}_TRANSPOSE",
+                    "output": f"_DRONE_VOICE_{voice}_CV",
+                },
+            )
+
+    def add_mixer(self) -> None:
+        """This mixer correctly turns off the gates when needed."""
+        for voice in range(1, self.voice_num + 1):
+            vbase = f"_DRONE_VOICE_{voice}"
+            self.add_circuit(
+                "mixer",
+                {
+                    "input1": f"{vbase}_ON",
+                    "input2": "_RUNNING",
+                    "input3": f"-1 * {vbase}_BASE_CHANGED + 1",
+                    "input4": f"-1 * {vbase}_PITCH_CHANGED + 1",
+                    "minimum": f"{vbase}_ENABLED",
+                },
+            )
+
+    def add_gate_button(self) -> None:
+        """Add button to trigger or toggle the drone."""
+        self.add_circuit(
+            "button",
+            {
+                "doubleclickmode": "1",
+                "button": f"B{GATE_BUTTON}",
+                "led": f"L{GATE_BUTTON}",
+                "output": "_DRONE_GATE",
+            },
+        )
+
+    def add_midiout(self) -> None:
+        """Add midiout."""
+        params = {"channel": str(self.parameters["channel"])}
+
+        for voice in range(1, self.voice_num + 1):
+            vbase = f"_DRONE_VOICE_{voice}"
+            params[f"pitch{voice}"] = f"{vbase}_CV"
+            params[f"gate{voice}"] = f"_DRONE_GATE * {vbase}_ENABLED"
+
+        self.add_circuit("midiout", params)
+
+    def add_euro_out(self) -> None:
+        """Add outputs via standard eurorack."""
+        for voice in range(1, self.voice_num + 1):
+            vbase = f"_DRONE_VOICE_{voice}"
+            self.add_circuit("copy", {"input": f"{vbase}_CV", "output": "O{voice}"})
+            self.add_circuit("copy", {"input": f"_DRONE_GATE * {vbase}_ENABLED", "output": "G1.{voice}"})
+
+
+
+
+# Remember this part!
+MegaDrone.setup(MegaDroneMeta)

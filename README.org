@@ -1,0 +1,107 @@
+#+title: DROID metapatch
+
+* Introduction
+This is an work in progress of creating a more pythonic patch generator for the DROID system.
+
+The goal is to create an intuitive patch generator while using modern python features.
+
+* Reference
+The patch generator is defined with two objects. A goal is to have a single dataclass-inspired class, but currently two is used.
+
+** Meta class
+The =PatchMeta= class defines the properties of the patch, such as title, description, parameters and their sections, and presets.
+
+This sets up all the information needed by the Droid Forge software to generate your patch:
+
+Example:
+
+#+begin_src python
+class MegaDroneMeta(metapatch.PatchMeta):
+    """Megadrone patch."""
+    title = "Megadrone"
+    description = "E4 based drone generator."
+    voices = metapatch.option("Number of voices", choices=[("4", "4 voices"), ("8", "8 voices")])
+    midi = metapatch.option("Enable midi")
+    channel = metapatch.option("Midi channel", minimum=1, maximum=16)
+    encoder1 = metapatch.option("Module number for first E4 module", minimum=2, maximum=5)
+    encoder2 = metapatch.option("Module number for second E4 module", minimum=2, maximum=5)
+    encoder3 = metapatch.option("Module number for third E4 module", minimum=2, maximum=5)
+    encoder4 = metapatch.option("Module number for fourth encoder", minimum=2, maximum=5)
+    default = metapatch.preset("My own defaults", default_preset)
+#+end_src
+
+** Options
+Any class variable defined as an =option()= will automatically be exposed in the configuration wizard.
+
+The option function is defined as follows:
+#+begin_src python
+def option(description: str, section: str = "Options", *, choices: Optional[List[Tuple[str, str]]] = None, minimum: Optional[int] = None, maximum: Optional[int] = None) -> Option:
+    """Define a configurable variable.
+
+    Args:
+        description: Description of the variable
+        section: The name of the configuration pane where this option should be shown.
+
+    A number of different option types can be generated. Without any further
+    options, the option will be a boolean true/false.
+
+    Number Option:
+        minimum: integer
+        maximum: integer
+
+    Enumeration Option:
+        choices: List of tuples. The Tuples define (value, description)
+    """
+#+end_src
+** Presets
+
+Presets are defined with the =preset(name, parameters)= function.
+
+#+begin_src python
+def preset(title: str, parameters: Dict[str, Any]) -> Preset:
+    """Define a preset.
+
+    Args:
+        title: The name of the preset.
+        parameter: A dictionary containing parameter to value mappings.
+    """
+#+end_src
+
+** The patch generator class
+
+The patch generator class must be subclassed, and the main logic must be defined under the function =generate()=.
+The parameters for the patch are available in a dictionary called =self.parameters=.
+
+It has two handy helper functions: =add_controller()= and =add_circuit=.
+
+These are the main functions to manipulate the final patch.
+
+Example:
+
+#+begin_src python
+class MyPatch(metapatch.PatchGenerator):
+    """My patch generator."""
+
+    def generator(self) -> None:
+        """Generate Patch"""
+        self.add_controller("B32", 1)
+        for num in range(1, self.parameters["number_of_buttons"] + 1):
+            self.add_circuit("button", {"button": f"B1.{num}", "led": f"L1.{num}"})
+
+#+end_src
+
+At the end of your patch generator, you must run the =setup()= class method.
+This ensures that commmand line arguments are collected.
+
+#+begin_src python
+class MyPatchMeta(metapatch.PatchMeta):
+    ...
+
+class MyPatch(metapatch.PatchGenerator):
+    ...
+
+MyPatch.setup(MyPatchMeta)
+#+end_src
+
+* Examples
+Please see the e4megadrone example for a complete implementation.
