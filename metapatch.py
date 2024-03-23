@@ -31,8 +31,6 @@ def _split_params(params: List[str]) -> Dict[str, Union[str, int, bool]]:
     return patch_params
 
 
-
-
 @dataclass
 class Option:
     """Base option class."""
@@ -54,7 +52,6 @@ class EnumOption(Option):
 
     enum: List[Tuple[str, str]]
 
-
     def asdict(self, varname: str) -> Dict[str, Any]:
         """Return as dictionary."""
         base = super().asdict(varname)
@@ -75,8 +72,14 @@ class NumberOption(Option):
         return base
 
 
-
-def option(description: str, section: str = "Options", *, choices: Optional[List[Tuple[str, str]]] = None, minimum: Optional[int] = None, maximum: Optional[int] = None) -> Option:
+def option(
+    description: str,
+    section: str = "Options",
+    *,
+    choices: Optional[List[Tuple[str, str]]] = None,
+    minimum: Optional[int] = None,
+    maximum: Optional[int] = None,
+) -> Option:
     """Define a configurable variable.
 
     Args:
@@ -111,11 +114,7 @@ class Preset:
 
     def asdict(self, name: str) -> Dict[str, Any]:
         """Construct preset dictionary."""
-        return {
-            "name": name,
-            "title": self.title,
-            "parameters": self.parameters
-        }
+        return {"name": name, "title": self.title, "parameters": self.parameters}
 
 
 def preset(title: str, parameters: Dict[str, Any]) -> Preset:
@@ -127,6 +126,7 @@ def preset(title: str, parameters: Dict[str, Any]) -> Preset:
     """
     return Preset(title, parameters)
 
+
 class PatchMeta:
     """Base patch meta class.
 
@@ -135,7 +135,6 @@ class PatchMeta:
 
     title: str
     description: str
-
 
     def __init__(self) -> None:
         """Instantiate patch."""
@@ -149,7 +148,6 @@ class PatchMeta:
                 sections[opt.section][param] = opt
             elif isinstance(opt, Preset):
                 presets.append(opt.asdict(param))
-
 
         # Convert section dictionary into a list of dictionaries
         self.sections = []
@@ -203,18 +201,36 @@ class PatchMeta:
         }
         return {"synopsis": synopsis}
 
-
-
     @classmethod
     def run_cli(cls) -> Dict[str, Any]:
         """Process parameters given via command line arguments."""
-        parser = argparse.ArgumentParser(f"DROID patch generator \"{cls.title}\"", formatter_class=argparse.RawDescriptionHelpFormatter)
+        parser = argparse.ArgumentParser(
+            f'DROID patch generator "{cls.title}"',
+            formatter_class=argparse.RawDescriptionHelpFormatter,
+        )
         parser.description = cls.description
-        parser.add_argument("parameters", nargs="*", help="Patch generator parameters.", metavar="param=value ...")
-        parser.add_argument("--synopsis", "-s", action="store_true", help="Output possible parameters as JSON")
-        parser.add_argument("-p", "--preset", metavar="P", help="Use settings from preset P")
+        parser.add_argument(
+            "parameters",
+            nargs="*",
+            help="Patch generator parameters.",
+            metavar="param=value ...",
+        )
+        parser.add_argument(
+            "--synopsis",
+            "-s",
+            action="store_true",
+            help="Output possible parameters as JSON",
+        )
+        parser.add_argument(
+            "-p", "--preset", metavar="P", help="Use settings from preset P"
+        )
         presets = cls.get_presets()
-        presets_str = "\n".join([f"{presetname:<12} {presettitle:<12}" for presetname, presettitle in presets])
+        presets_str = "\n".join(
+            [
+                f"{presetname:<12} {presettitle:<12}"
+                for presetname, presettitle in presets
+            ]
+        )
         epilog = f"Available Presets:\n{presets_str}\n\n"
         params = "Parameters:\n"
         for key, value in cls.__dict__.items():
@@ -246,7 +262,9 @@ class PatchMeta:
         parameters = _split_params(patch_parameters)
         for var in cls.get_vars():
             if var not in parameters:
-                raise ValueError(f"Cannot extract patch parameters: Missing parameter {var}")
+                raise ValueError(
+                    f"Cannot extract patch parameters: Missing parameter {var}"
+                )
 
         return parameters
 
@@ -279,7 +297,6 @@ class Controller:
     def __str__(self) -> str:
         """Generate controller string."""
         return f"[{self.type}]"
-
 
 
 class PatchGenerator(ABC):

@@ -2,9 +2,6 @@
 
 from typing import Iterator, List
 
-
-#from .patchgenerator import DroidPatch, Section, PatchGenerator
-
 import metapatch
 
 # Some global assumptions:
@@ -14,19 +11,39 @@ GATE_BUTTON = "1.1"
 ROOT = "0"
 DEGREE = "7"
 
-default_preset = {"voices": 8, "midi": True, "channel": 11, "encoder1": 5, "encoder2": 4, "encoder3": 3, "encoder4": 2}
+default_preset = {
+    "voices": 8,
+    "midi": True,
+    "channel": 11,
+    "encoder1": 5,
+    "encoder2": 4,
+    "encoder3": 3,
+    "encoder4": 2,
+}
+
 
 class MegaDroneMeta(metapatch.PatchMeta):
     """Megadrone patch."""
+
     title = "Megadrone"
     description = "E4 based drone generator."
-    voices = metapatch.option("Number of voices", choices=[("4", "4 voices"), ("8", "8 voices")])
+    voices = metapatch.option(
+        "Number of voices", choices=[("4", "4 voices"), ("8", "8 voices")]
+    )
     midi = metapatch.option("Enable midi")
     channel = metapatch.option("Midi channel", minimum=1, maximum=16)
-    encoder1 = metapatch.option("Module number for first E4 module", minimum=2, maximum=5)
-    encoder2 = metapatch.option("Module number for second E4 module", minimum=2, maximum=5)
-    encoder3 = metapatch.option("Module number for third E4 module", minimum=2, maximum=5)
-    encoder4 = metapatch.option("Module number for fourth encoder", minimum=2, maximum=5)
+    encoder1 = metapatch.option(
+        "Module number for first E4 module", minimum=2, maximum=5
+    )
+    encoder2 = metapatch.option(
+        "Module number for second E4 module", minimum=2, maximum=5
+    )
+    encoder3 = metapatch.option(
+        "Module number for third E4 module", minimum=2, maximum=5
+    )
+    encoder4 = metapatch.option(
+        "Module number for fourth encoder", minimum=2, maximum=5
+    )
     default = metapatch.preset("My own defaults", default_preset)
 
 
@@ -191,9 +208,10 @@ class MegaDrone(metapatch.PatchGenerator):
         for voice in range(1, self.voice_num + 1):
             vbase = f"_DRONE_VOICE_{voice}"
             self.add_circuit("copy", {"input": f"{vbase}_CV", "output": "O{voice}"})
-            self.add_circuit("copy", {"input": f"_DRONE_GATE * {vbase}_ENABLED", "output": "G1.{voice}"})
-
-
+            self.add_circuit(
+                "copy",
+                {"input": f"_DRONE_GATE * {vbase}_ENABLED", "output": "G1.{voice}"},
+            )
 
 
 # Remember this part!
