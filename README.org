@@ -72,7 +72,7 @@ Example:
 class MyPatch(metapatch.PatchGenerator):
     """My patch generator."""
 
-    number_of_buttons = option("Number of buttons", minimum=8, maximum=32)
+    number_of_buttons = metapatch.option("Number of buttons", minimum=8, maximum=32)
 
     def generator(self) -> None:
         """Generate Patch"""
