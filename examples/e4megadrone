@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from typing import Iterator, List
+from typing import Iterator, List, Tuple
 
 import metapatch
 
@@ -22,7 +22,7 @@ default_preset = {
 }
 
 
-class MegaDroneMeta(metapatch.PatchMeta):
+class MegaDrone(metapatch.PatchGenerator):
     """Megadrone patch."""
 
     title = "Megadrone"
@@ -30,11 +30,12 @@ class MegaDroneMeta(metapatch.PatchMeta):
     voices = metapatch.option(
         "Number of voices", choices=[("4", "4 voices"), ("8", "8 voices")]
     )
-    midi = metapatch.option("Enable midi")
+    midi: bool = metapatch.option("Enable midi")
     channel = metapatch.option("Midi channel", minimum=1, maximum=16)
     encoder1 = metapatch.option(
         "Module number for first E4 module", minimum=2, maximum=5
     )
+
     encoder2 = metapatch.option(
         "Module number for second E4 module", minimum=2, maximum=5
     )
@@ -46,18 +47,15 @@ class MegaDroneMeta(metapatch.PatchMeta):
     )
     default = metapatch.preset("My own defaults", default_preset)
 
-
-class MegaDrone(metapatch.PatchGenerator):
-    """Megadrone generator."""
-
     def generate(self) -> None:
         """Generate megadrone."""
         self.add_controller("p4b2", 1)
-        self.add_controller("e4", int(self.parameters["encoder1"]))
-        self.add_controller("e4", int(self.parameters["encoder2"]))
-        if self.voice_num == 8:
-            self.add_controller("e4", self.parameters["encoder3"])
-            self.add_controller("e4", self.parameters["encoder4"])
+        self.add_controller("e4", self.encoder1)
+
+        self.add_controller("e4", self.encoder2)
+        if self.voices == 8:
+            self.add_controller("e4", self.encoder3)
+            self.add_controller("e4", self.encoder4)
         self.add_default_placeholders()
         self.add_pitch_encoder()
         self.add_pitch_base_encoder()
@@ -65,7 +63,7 @@ class MegaDrone(metapatch.PatchGenerator):
         self.add_minifon()
         self.add_mixer()
         self.add_gate_button()
-        if self.parameters["midi"]:
+        if self.midi:
             self.add_midiout()
         else:
             self.add_euro_out()
@@ -73,29 +71,24 @@ class MegaDrone(metapatch.PatchGenerator):
     @property
     def encoders(self) -> List[int]:
         """Return encoder positions."""
-        encoders = [self.parameters["encoder1"], self.parameters["encoder2"]]
-        if self.parameters["voices"] == 8:
-            encoders.append(self.parameters["encoder3"])
-            encoders.append(self.parameters["encoder4"])
+        encoders = [self.encoder1, self.encoder2]
+        if self.voices == 8:
+            encoders.append(self.encoder3)
+            encoders.append(self.encoder4)
 
         return [int(encoder) for encoder in encoders]
 
     @property
-    def voices(self) -> Iterator[tuple[int, str]]:
+    def voicemodules(self) -> Iterator[Tuple[int, str]]:
         """Iterate over voices and encoders."""
         encoders = []
-        voice_num = int(self.parameters["voices"])
+        voice_num = int(self.voices)
         for module in self.encoders:
             for pos in range(1, 5):
                 encoders.append(f"E{module}.{pos}")
         for num in range(1, voice_num + 1):
             encoder = encoders.pop(0)
             yield (num, encoder)
-
-    @property
-    def voice_num(self) -> int:
-        """Return the number of voices."""
-        return int(self.parameters["voices"])
 
     def add_default_placeholders(self) -> None:
         """Add some default placeholders."""
@@ -113,7 +106,7 @@ class MegaDrone(metapatch.PatchGenerator):
 
     def add_pitch_encoder(self) -> None:
         """Add encoder for pitch/cv."""
-        for voice, encoder in self.voices:
+        for voice, encoder in self.voicemodules:
             vbase = f"_DRONE_VOICE_{voice}"
             pitch_encoder_params = {
                 "led": f"{vbase}_ON",
@@ -128,7 +121,7 @@ class MegaDrone(metapatch.PatchGenerator):
 
     def add_pitch_base_encoder(self) -> None:
         """Add encoder for base pitch."""
-        for voice, encoder in self.voices:
+        for voice, encoder in self.voicemodules:
             vbase = f"_DRONE_VOICE_{voice}_BASE"
             encoder_params = {
                 "encoder": encoder,
@@ -142,7 +135,7 @@ class MegaDrone(metapatch.PatchGenerator):
 
     def add_togglebutton(self) -> None:
         """Add the toggle button."""
-        for voice in range(1, self.voice_num + 1):
+        for voice in range(1, int(self.voices) + 1):
             self.add_circuit(
                 "button",
                 {
@@ -153,7 +146,7 @@ class MegaDrone(metapatch.PatchGenerator):
 
     def add_minifon(self) -> None:
         """Add minifon."""
-        for voice in range(1, self.voice_num + 1):
+        for voice in range(1, int(self.voices) + 1):
             self.add_circuit(
                 "minifonion",
                 {
@@ -167,7 +160,7 @@ class MegaDrone(metapatch.PatchGenerator):
 
     def add_mixer(self) -> None:
         """This mixer correctly turns off the gates when needed."""
-        for voice in range(1, self.voice_num + 1):
+        for voice in range(1, int(self.voices) + 1):
             vbase = f"_DRONE_VOICE_{voice}"
             self.add_circuit(
                 "mixer",
@@ -194,9 +187,9 @@ class MegaDrone(metapatch.PatchGenerator):
 
     def add_midiout(self) -> None:
         """Add midiout."""
-        params = {"channel": str(self.parameters["channel"])}
+        params = {"channel": str(self.channel)}
 
-        for voice in range(1, self.voice_num + 1):
+        for voice in range(1, int(self.voices) + 1):
             vbase = f"_DRONE_VOICE_{voice}"
             params[f"pitch{voice}"] = f"{vbase}_CV"
             params[f"gate{voice}"] = f"_DRONE_GATE * {vbase}_ENABLED"
@@ -205,7 +198,7 @@ class MegaDrone(metapatch.PatchGenerator):
 
     def add_euro_out(self) -> None:
         """Add outputs via standard eurorack."""
-        for voice in range(1, self.voice_num + 1):
+        for voice in range(1, int(self.voices) + 1):
             vbase = f"_DRONE_VOICE_{voice}"
             self.add_circuit("copy", {"input": f"{vbase}_CV", "output": "O{voice}"})
             self.add_circuit(
@@ -215,4 +208,5 @@ class MegaDrone(metapatch.PatchGenerator):
 
 
 # Remember this part!
-MegaDrone.setup(MegaDroneMeta)
+if __name__ == "__main__":
+    MegaDrone.run()
