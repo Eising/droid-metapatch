@@ -1,0 +1,166 @@
+#!/usr/bin/env python
+"""This is a adaptation of the arpeggio1 example patch into the patch generator."""
+
+import metapatch
+
+
+class Arpeggio1(metapatch.PatchGenerator):
+    """Apreggiator with one P2B8.
+
+    The arpeggiator is an algorithmic melody generator. Usually there is no
+    randomization but several algorithms, which can be combined in order to
+    create complex and interesting patterns. This version just needs one P2B8
+    but still allows to select and combine all of the arpeggiator circuit's
+    algorithms. It can be clocked externally or internally.
+    """
+
+    title = "Arpeggio example"
+    description = "Generates an arpeggio similar to the bundled example."
+    clock_source: str = metapatch.option(
+        "Clock source, i.e., internal or external",
+        choices=[
+            ("internal", "Use internal clock"),
+            ("external", "Use external clock"),
+        ],
+    )
+    add_envelope: bool = metapatch.option("Add a contour matching the clock.")
+    root: int = metapatch.option("Set the root note", minimum=0, maximum=11)
+
+    def generate(self) -> None:
+        """Generate patch."""
+        self.add_controller("P2B8", position=1)
+        if self.clock_source == "internal":
+            self.add_section(
+                "Master clock",
+                "This section contains an LFO that acts as the master clock",
+            )
+            self.add_circuit(
+                "lfo",
+                params={"hz": "40 * P1.1", "square": "N1"},
+                comment=(
+                    "Send the clock to the normalization of input 1. In the rest of the"
+                    " patch, I1 will be used as input, and you can override the "
+                    "internal clock by patching an external in."
+                ),
+            )
+            self.add_circuit(
+                "copy",
+                params={"input": "N1", "output": "O1"},
+                comment="Make the clock also available on O1",
+            )
+
+        # self.section = "Buttons"
+        self.add_section("Buttons", "All the buttons")
+
+        self.add_circuit(
+            "button", {"button": "B1.1", "led": "L1.1", "output": "_DIRECTION"}
+        )
+        self.add_circuit(
+            "button", {"button": "B1.2", "led": "L1.2", "output": "_PINGPONG"}
+        )
+        self.add_circuit(
+            "button", {"button": "B1.3", "led": "L1.3", "output": "_BUTTERFLY"}
+        )
+        self.add_circuit(
+            "button",
+            {
+                "button": "B1.4",
+                "led": "L1.4",
+                "value1": "0",
+                "value2": "1",
+                "value3": "2",
+                "output": "_OCTAVES",
+            },
+        )
+
+        self.add_circuit(
+            "button",
+            {
+                "button": "B1.5",
+                "led": "L1.5",
+                "value1": "0",
+                "value2": "1",
+                "value3": "2",
+                "value4": "3",
+                "output": "_DROP",
+            },
+        )
+        self.add_circuit(
+            "button",
+            {
+                "button": "B1.6",
+                "led": "L1.6",
+                "value1": "0",
+                "value2": "3",
+                "value3": "5",
+                "value4": "7",
+                "output": "_STARTNOTE",
+            },
+        )
+
+        self.add_circuit(
+            "button",
+            {
+                "button": "B1.7",
+                "led": "L1.7",
+                "onvalue": "0",
+                "offvalue": "1",
+                "output": "_SCALE",
+            },
+        )
+
+        self.add_circuit(
+            "button",
+            {
+                "button": "B1.8",
+                "led": "L1.8",
+                "onvalue": "1",
+                "offvalue": "7",
+                "output": "_DEGREE",
+            },
+        )
+
+        self.section = "Apreggiator"
+
+        self.add_circuit(
+            "arpeggio",
+            {
+                "clock": "I1",
+                "direction": "_DIRECTION",
+                "pingpong": "_PINGPONG",
+                "butterfly": "_BUTTERFLY",
+                "octaves": "_OCTAVES",
+                "drop": "_DROP",
+                "startnote": "_STARTNOTE",
+                "pattern": "P1.2 * 6",
+                "pitch": "1V",
+                "range": "2V",
+                "root": str(self.root),
+                "degree": "_DEGREE",
+                "select1": "1",
+                "select3": "1",
+                "select5": "1",
+                "select7": "_SCALE",
+                "select9": "_SCALE",
+                "select11": "_SCALE",
+                "select13": "_SCALE",
+                "output": "O4",
+            },
+        )
+
+        if self.add_envelope:
+            self.add_circuit(
+                "contour",
+                {
+                    "gate": "I1",
+                    "attack": "0.1",
+                    "sustain": "0.7",
+                    "output": "O3",
+                },
+            )
+        else:
+            self.add_circuit("copy", params={"input": "I1", "output": "O3"})
+
+
+if __name__ == "__main__":
+    Arpeggio1.run()
