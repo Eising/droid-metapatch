@@ -1,140 +1,225 @@
 #+title: DROID metapatch
+#+options: toc:nil
 
 * Introduction
-This is an work in progress of creating a more pythonic patch generator for the DROID system.
+The DROID metapatch library aims to create an easier and more pythonic way of creating DROID patch generators.
+DROID patch generators are a recent feature added to the the DROID Forge application that allows you to define python scripts that generate full-fledges patches.
 
-The goal is to create an intuitive patch generator while using modern python features.
-
-I am not expecting this library to be included in DROID, instead I suggest
-installing it as a python module, and importing it. It should be compatible with
-how the Forge expects these scripts to behave.
+DROID is a series of eurorack controllers and CV processors made by [[https://shop.dermannmitdermaschine.de/][Der Mann mit der Maschine]].
 
 * Getting started
+A few examples have been distributed with the source code of this library that you may look at to see full implementations.
 
+Before you can write a patch generator, please install this library to your system python environment.
+Forge does not support virtual environments, so you must install this library
+somewhere where your default python library can find it.
 
-* Reference
-The patch generator is implemented as a single "dynamic" class. There's a lot
-going on in the background to set up typing and so on, but the end result is a
-simple userfriendly python superclass, that should be easy to extend to generate
-patches.
- gg
-It should work in a way where modern text editors should be able to assist.
+** Defining your patch generator class
 
-** Defining your patch class
+To start, you must define a python =class= that is a subclass of =metapatch.PatchGenerator=.
+
+Inside this class, you must at least define a =title= and a =description=, as well as a method called =generate=.
+
+This method should contain all the logic needed to create your patch.
+To actually define the patch, the class instance provides functions that allow you to add circuits, controllers and even sections.
 
 #+begin_src python
 import metapatch
 
-class MegaDroneMeta(metapatch.PatchGenerator):
-    """Megadrone patch."""
-    title = "Megadrone"
-    description = "E4 based drone generator."
-    voices: str = metapatch.option("Number of voices", choices=[("4", "4 voices"), ("8", "8 voices")])
-    midi: bool = metapatch.option("Enable midi")
-    channel: str = metapatch.option("Midi channel", minimum=1, maximum=16)
-    encoder1: int = metapatch.option("Module number for first E4 module", minimum=2, maximum=5)
-    encoder2: int = metapatch.option("Module number for second E4 module", minimum=2, maximum=5)
-    encoder3: int = metapatch.option("Module number for third E4 module", minimum=2, maximum=5)
-    encoder4: int = metapatch.option("Module number for fourth encoder", minimum=2, maximum=5)
-    default = metapatch.preset("My own defaults", default_preset)
+
+class MyPatchGenerator(metapatch.PatchGenerator):
+    """My Patch Generator."""
+
+    title = "My patch generator."
+    description = "This is an example patch generator."
+
+    def generate(self) -> None:
+        """Generate a patch."""
+
 #+end_src
 
-** Options
-Any class variable defined as an =option()= will automatically be exposed in the configuration wizard.
+** Capturing parameters
+The patch generator framework supports three types of options:
++ Boolean (on/off)
++ A range of numbers
++ Choosing string values from a drop-down list (enumerations)
 
-If the =minimum= and =maximum= parameters are selected, the variable will be cast as an integer, if choices are provided, it will be cast as a string.
-
-If none of these options are defined, it's a boolean option.
-
-You should use the type hints when defining your instance variables. This makes it easier for your editor to provide proper completion.
-
-** Presets
-
-Presets are defined with the =preset(name, parameters)= function.
+These are quite essential to make your patch generator dynamic, and can be defined in the class with the =option= function.
 
 #+begin_src python
-def preset(title: str, parameters: Dict[str, Any]) -> Preset:
-    """Define a preset.
+class MyPatchGenerator(metapatch.PatchGenerator):
+    """My Patch Generator."""
 
-    Args:
-        title: The name of the preset.
-        parameter: A dictionary containing parameter to value mappings.
-    """
+    title = "My patch generator."
+    description = "This is an example patch generator."
+    # Parameters
+    midi_channel: int = metapatch.option("MIDI channel to use", minimum=1, maximum=16)
+    clock_source: str = metapatch.option(
+        "Clock source, internal or external",
+        choices=[
+            ("internal", "Generate a clock with a DROID circuit"),
+            ("external", "Receive clock via CV"),
+            ("midi", "Receive a clock via MIDI")
+        ]
+    )
+    copy_clock: bool = metapatch.option("Copy clock to an output")
+
+    def generate(self) -> None:
+        """Generate a patch."""
+        if self.clock_source == "external":
+            # Do something here
+
+
+
+#+end_src
+  
+  
+In this example, we see all three option types. To make your text editor be able to help you, we use =type hints= on our parameters.
+
+We can now access those parameters from inside our =generate()= function like shown before.
+
+You can also specify default values for parameters, by adding =default=defaultvalue=. If no default value is specified, we use the following logic:
++ The first provided choice for enumerations
++ True for booleans
++ The lowest number for number ranges.
+
+** Capturing presets
+I've defined presets as a defined set of parameters with a title.
+
+You define your presets in much the same way as your parameters:
+
+#+begin_src python
+class MyPatchGenerator(metapatch.PatchGenerator):
+    """My Patch Generator."""
+
+    title = "My patch generator."
+    description = "This is an example patch generator."
+    # Parameters
+    midi_channel: int = metapatch.option("MIDI channel to use", minimum=1, maximum=16)
+    clock_source: str = metapatch.option(
+        "Clock source, internal or external",
+        choices=[
+            ("internal", "Generate a clock with a DROID circuit"),
+            ("external", "Receive clock via CV"),
+            ("midi", "Receive a clock via MIDI")
+        ]
+    )
+    copy_clock: bool = metapatch.option("Copy clock to an output")
+
+    default = metapatch.preset(
+        "The default preset",
+        {
+            "midi_channel": 11,
+            "clock_source": "internal",
+            "copy_clock": False,
+        }
+    )
+
+
 #+end_src
 
-** The patch generator main function.
+Any value provided to the =preset()= function dictionary will be passed to the patch generator if that particular preset is loaded.
 
-The main logic must be defined with the function =generate()=.
-The parameters for the patch can be used as instance variables directly, so if you provided an option called =use_midi=, that will be available as =self.use_midi= with the right type.
+** Writing patches
+The following actions are currently supported:
 
-It has two handy helper functions: =add_controller()= and =add_circuit=.
++ Adding controllers
++ Adding circuits
++ Adding sections
 
-These are the main functions to manipulate the final patch.
+*** Adding controllers
+#+begin_src python
+    def add_controller(self, type: str, position: int) -> None:
+        """Add a controller at a given position.
 
-Example:
+        Args:
+            type: Type of controller, e.g. B32
+            position: controller position, e.g. 1
+        """
+#+end_src
+
+Controllers must be added with a position parameter. So if you want to add a =P2B8= module in the first position, you can can write as follows:
+#+begin_src python
+self.add_controller("P2B8", 1)
+#+end_src
+
+*** Adding circuits
+#+begin_src python
+    def add_circuit(
+        self,
+        name: str,
+        params: Mapping[str, str],
+        comment: Optional[str] = None,
+    ) -> None:
+        """Add a circuit.
+
+        Args:
+            name: Circuit name, e.g. copy for a [copy] circuit
+            params: Dictionary of circuit parameters.
+            comment: Optional comment for the circuit.
+        """
+#+end_src
+
+To add a simple =copy= circuit:
+
+#+begin_src python
+self.add_circuit("copy", {"input": "I1", "output": "O1"}, "This circuit copies from I1 to O1")
+#+end_src
+
+The comment is optional.
+
+*** Splitting your patch into sections
+Sections are a great way to split up a patch into smaller chunks that may be easier to read.
+
+You can define sections as you write your patch:
 
 #+begin_src python
 class MyPatch(metapatch.PatchGenerator):
-    """My patch generator."""
 
-    number_of_buttons: int = metapatch.option("Number of buttons", minimum=8, maximum=32)
+    title = "Example"
+    description = "Example"
 
-    def generator(self) -> None:
-        """Generate Patch"""
-        self.add_controller("B32", 1)
-        for num in range(1, self.number_of_buttons + 1):
-            self.add_circuit("button", {"button": f"B1.{num}", "led": f"L1.{num}"})
+    voices: int = metapatch.option("Number of voices", minimum=1, maximum=4)
+    def generate(self) -> None:
+        """Generate patch."""
+        # Section with a comment
+        self.add_section("Master Clock", "This section contains the master clock configuration.")
+        # Add your circuits to this section.
+        self.add_circuit("lfo", {...})
 
+        # Iterate over voices that were defined
+        for voicenum in range(1, self.voices + 1):
+            self.add_section(f"Voice {voicenum}")
+            # Add circuits here.
 #+end_src
 
-At the end of your patch generator, you must run the =run()= class method.
-This ensures that commmand line arguments are collected.
+** Finishing your patch
+Once you are done writing your code, you just need to make sure that the patch generator is loaded when executing the module.
+
+This can be done by simply calling =run()= on your class.
 
 #+begin_src python
 class MyPatch(metapatch.PatchGenerator):
-    ...
 
-if __name__ == "__main__":
-        MyPatch.run()
-#+end_src
+    title = "Example"
+    description = "Example"
 
-** Sections
-
-There are two ways to add sections to your patches.
-The first way is simple, and does not support comments in the section, and that is done by simply setting which section you work on:
-
-#+begin_src python
     def generate(self) -> None:
-        """Generate patch."""
-        self.add_controller("P2B8", position=1)
-        if self.clock_source == "internal":
-            self.section = "Master Clock"
-            self.add_circuit(
-                "lfo",
-                params={"hz": "40 * P1.1", "square": "N1"},
-                comment=(
-                    "Send the clock to the normalization of input 1. In the rest of the"
-                    " patch, I1 will be used as input, and you can override the "
-                    "internal clock by patching an external in."
-                ),
-            )
+        """Patch generator function."""
+        # Patch generator logic here
+
+
+MyPatch.run()
 #+end_src
 
-If you want a comment in your section, you can use the =add_section()= function instead:
-#+begin_src python
-    def generate(self) -> None:
-        """Generate patch."""
-        self.add_controller("P2B8", position=1)
-        self.add_section("Master clock", "This section contains an LFO that acts as the master clock")
+This automatically sets up processing of command line arguments, correct argument passing and so on.
 
-#+end_src
+* Missing features
+Currently there is no way to define the labels of jacks and pots. This will come soon.
 
-* Examples
-Two examples are included:
+* Getting help
+If you have any problems with the library, let me know on the DROID discord server. I'm known as eising on that server.
 
-+ examples/e4megadrone
-+ examples/arpeggio1
+Please note that any support will be on a best effort basis, if I have the time an energy.
 
-The arpeggio1 is adapted from the =arpeggio1.ini= example bundled with DROID, while the megadrone is an example made by me.
-
-The arpeggio1 is probably simplest example to use, if you are just getting started.
+If you have found a bug, please create an issue here on github.
