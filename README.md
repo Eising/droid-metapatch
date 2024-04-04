@@ -11,6 +11,8 @@ A few examples have been distributed with the source code of this library that y
 
 Before you can write a patch generator, please install this library to your system python environment. Forge does not support virtual environments, so you must install this library somewhere where your default python library can find it.
 
+This library is available from pypi, use `pip install droid-metapatch` to install it.
+
 
 ## Defining your patch generator class
 
