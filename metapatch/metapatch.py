@@ -2,20 +2,23 @@
 
 import argparse
 import json
+import textwrap
 
 from abc import abstractmethod
-from dataclasses import dataclass, field
 from typing import (
     Any,
     Dict,
-    Generic,
     List,
     Mapping,
     Optional,
     Tuple,
-    TypeVar,
-    Union,
 )
+
+from .base import Circuit, Controller, Section
+from .options import Option, BoolOption, NumberOption, EnumOption, Preset
+from .utils import write_patch_section
+
+DEFAULT_SECTION_NAME = "Generated Patch"
 
 
 def _split_params(params: List[str]) -> Dict[str, str]:
@@ -33,190 +36,11 @@ def _split_params(params: List[str]) -> Dict[str, str]:
     return patch_params
 
 
-T = TypeVar("T")
-
-
-class Option(Generic[T]):
-    """Base option class."""
-
-    title: str
-    section: str
-    _ispatchoption = True
-
-    def __init__(self, value: Union[str, int, bool]) -> None:
-        """Initialize option with value."""
-        self.value: Union[str, int, bool] = value
-
-    def __str__(self) -> str:
-        """Return string."""
-        return str(self.value)
-
-    def __eq__(self, lvalue: Any) -> bool:
-        """Compare like a string."""
-        return self.value == lvalue
-
-    @classmethod
-    def asdict(cls, varname: str) -> Dict[str, Any]:
-        """Return as dictionary."""
-        return {
-            "name": varname,
-            "title": cls.title,
-        }
-
-
-class BoolOption(Option):
-    """Boolean option."""
-
-    def get_value(self) -> bool:
-        """Return value."""
-        return bool(self.value)
-
-
-class EnumOption(Option):
-    """Enumeration option."""
-
-    enum: List[Tuple[str, str]]
-
-    def __init__(self, value: Union[str, int, bool]) -> None:
-        """Validate input."""
-        choices = [choice[0] for choice in self.enum]
-        if str(value) not in choices:
-            raise ValueError(f"Unsupported choice: {value}")
-        super().__init__(value)
-
-    def get_value(self) -> str:
-        """Return value."""
-        return str(self.value)
-
-    @classmethod
-    def asdict(cls, varname: str) -> Dict[str, Any]:
-        """Return as dictionary."""
-        base = super().asdict(varname)
-        base["enum"] = cls.enum
-        return base
-
-
-class NumberOption(Option):
-    """NUmber option."""
-
-    number: Tuple[int, int]
-
-    def __init__(self, value: Union[str, int, bool]) -> None:
-        """Validate input."""
-        if isinstance(value, str):
-            if not value.isdecimal():
-                raise ValueError(f"Expected a decimal number, but got {value}.")
-
-        super().__init__(value)
-
-    def get_value(self) -> int:
-        """Return value."""
-        return int(self.value)
-
-    @classmethod
-    def asdict(cls, varname: str) -> Dict[str, Any]:
-        """Return as dictionary."""
-        base = super().asdict(varname)
-        base["number"] = cls.number
-        return base
-
-
-def option(
-    description: str,
-    section: str = "Options",
-    *,
-    choices: Optional[List[Tuple[T, T]]] = None,
-    minimum: Optional[T] = None,
-    maximum: Optional[T] = None,
-) -> T:
-    """Define a configurable variable.
-
-    Args:
-        description: Description of the variable
-        section: The name of the configuration pane where this option should be shown.
-
-    A number of different option types can be generated. Without any further
-    options, the option will be a boolean true/false.
-
-    Number Option:
-        minimum: integer
-        maximum: integer
-
-    Enumeration Option:
-        choices: List of tuples. The Tuples define (value, description)
-
-    Note that all options will be instantiated as strings in your patch
-    generator.
-
-    """
-    params: Dict[str, Any] = {
-        "title": description,
-        "section": section,
-    }
-    bases: Tuple[type, ...]
-
-    if choices:
-        # Slightly hacky. We construct a dynamic child class that sets the given
-        # title and section. This allows us to use it as a string.
-        params["enum"] = choices
-        bases = (EnumOption, Option)
-        return type("LocalEnumOption", bases, params)  # type: ignore
-    elif minimum and maximum:
-        params["number"] = (minimum, maximum)
-        bases = (NumberOption, Option)
-
-        return type("LocalNumberOption", bases, params)  # type: ignore
-    else:
-        bases = (BoolOption, Option)
-        return type("LocalBoolOption", bases, params)  # type: ignore
-
-
-@dataclass
-class Preset:
-    """Preset class."""
-
-    title: str
-    parameters: Dict[str, Any]
-
-    def asdict(self, name: str) -> Dict[str, Any]:
-        """Construct preset dictionary."""
-        return {"name": name, "title": self.title, "parameters": self.parameters}
-
-
-def preset(title: str, parameters: Dict[str, Any]) -> Preset:
-    """Define a preset.
-
-    Args:
-        title: The name of the preset.
-        parameter: A dictionary containing parameter to value mappings.
-    """
-    return Preset(title, parameters)
-
-
 class MetaMetaPatch(type):
     """Metaclass for metapatches."""
 
     title: str
     description: str
-
-    def __new__(
-        mcs, name: str, bases: Tuple[type, ...], params: Dict[str, Any], **kwargs: Any
-    ) -> "MetaMetaPatch":
-        """Construct metaclass."""
-        if "__annotations__" not in params:
-            params["__annotations__"] = {}
-        for key, value in params.items():
-            if hasattr(value, "_ispatchoption"):
-                if issubclass(value, BoolOption):
-                    params["__annotations__"][key] = bool
-                elif issubclass(value, EnumOption):
-                    params["__annotations__"][key] = str
-                elif issubclass(value, NumberOption):
-                    params["__annotations__"][key] = int
-                else:
-                    raise ValueError(f"Unknown option type: {value!r}")
-
-        return super().__new__(mcs, name, bases, params)
 
     @property
     def synopsis(cls) -> Dict[str, Any]:
@@ -256,13 +80,6 @@ class MetaMetaPatch(type):
 
         return presets
 
-    @property
-    def vars(cls) -> List[str]:
-        """Return variables."""
-        return [
-            name for name, opt in cls.__dict__.items() if hasattr(opt, "_ispatchoption")
-        ]
-
 
 class PatchGenerator(metaclass=MetaMetaPatch):
     """Patch Generator."""
@@ -271,7 +88,7 @@ class PatchGenerator(metaclass=MetaMetaPatch):
     description: str
     __patchvars__: List[str]
 
-    def __new__(cls, **args: Any) -> "PatchGenerator":
+    def __new__(cls, **_: Any) -> "PatchGenerator":
         """Build class."""
         cls.__patchvars__ = []
         for param, opt in cls.__dict__.items():
@@ -282,6 +99,13 @@ class PatchGenerator(metaclass=MetaMetaPatch):
 
     def __init__(self, **kwargs: str) -> None:
         """Initialize class."""
+        # Set all options not defined in the input to their defaults.
+        for opt in self.__patchvars__:
+            if opt not in kwargs:
+                var = getattr(self, opt)
+                assert issubclass(var, (BoolOption, EnumOption, NumberOption))
+                setattr(self, opt, var.from_default().get_value())
+
         for key, value in kwargs.items():
             if key in self.__patchvars__:
                 var = getattr(self, key)
@@ -292,6 +116,10 @@ class PatchGenerator(metaclass=MetaMetaPatch):
 
         self.circuits: List[Circuit] = []
         self.controllers: List[Controller] = []
+        self.labels: Dict[str, Tuple[str, str]] = {}
+        self._section: Optional[str] = None
+        # This dictionary stores comments for sections.
+        self.sections: Dict[str, Optional[str]] = {}
 
     @classmethod
     def load_preset(cls, preset_name: str) -> "PatchGenerator":
@@ -326,32 +154,36 @@ class PatchGenerator(metaclass=MetaMetaPatch):
         )
         presets = cls.presets
         presets_str = "\n".join(
-            [
-                f"{presetname:<12} {presettitle:<12}"
-                for presetname, presettitle in presets
-            ]
+            [f"{preset['name']:<12} {preset['title']:<12}" for preset in presets]
         )
         epilog = f"Available Presets:\n{presets_str}\n\n"
-        params = "Parameters:\n"
+        params = "parameters (defaults are marked with *):\n\n"
+        all_param_help = {}
         for key, value in cls.__dict__.items():
-            if not issubclass(value, Option):
+            if not hasattr(value, "_ispatchoption"):
                 continue
-            if issubclass(value, EnumOption):
-                usage = "|".join(choice[0] for choice in value.enum)
-            elif issubclass(value, NumberOption):
-                usage = f"{value.number[0]}..{value.number[1]}"
-            else:
-                usage = "True/False"
+            if issubclass(value, (BoolOption, EnumOption, NumberOption)):
+                all_param_help[value.title] = value.help(key)
 
-            keyusage = f"{key}={usage}"
+        longest = max(
+            [
+                len(varname[0])
+                for param in list(all_param_help.values())
+                for varname in param
+            ]
+        )
+        for title, opthelp in all_param_help.items():
+            params += textwrap.indent(title, "  ") + "\n"
+            for opt, descr in opthelp:
+                params += textwrap.indent(f"{opt:<{longest}}  {descr}", "    ")
+                params += "\n"
 
-            params += f"{'':<4}{keyusage:<16} {'-':^4} {value.title:<16}\n"
+            params += "\n"
+
         epilog += params
         parser.epilog = epilog
 
         args = parser.parse_args()
-        if not args.parameters:
-            parser.print_help()
 
         return args
 
@@ -369,11 +201,6 @@ class PatchGenerator(metaclass=MetaMetaPatch):
 
         patch_parameters: List[str] = args.parameters
         parameters = _split_params(patch_parameters)
-        for var in cls.vars:
-            if var not in parameters:
-                raise ValueError(
-                    f"Cannot extract patch parameters: Missing parameter {var}"
-                )
 
         patch = cls(**parameters)
         print(str(patch))
@@ -391,7 +218,9 @@ class PatchGenerator(metaclass=MetaMetaPatch):
             params: Dictionary of circuit parameters.
             comment: Optional comment for the circuit.
         """
-        self.circuits.append(Circuit(name=name, parameters=params, comment=comment))
+        self.circuits.append(
+            Circuit(name=name, parameters=params, comment=comment, section=self.section)
+        )
 
     def add_controller(self, type: str, position: int) -> None:
         """Add a controller at a given position.
@@ -402,13 +231,69 @@ class PatchGenerator(metaclass=MetaMetaPatch):
         """
         self.controllers.append(Controller(type, position))
 
+    def set_labels(self, labels: Mapping[str, Tuple[str, str]]) -> None:
+        """Set labels of jacks."""
+        self.labels = {**self.labels, **labels}
+
+    @property
+    def section(self) -> Optional[str]:
+        """Get section."""
+        return self._section
+
+    @section.setter
+    def section(self, name: str) -> None:
+        """Set the section."""
+        if not isinstance(name, str):
+            raise ValueError("Section name must be a string.")
+        self._section = name
+
+    def add_section(self, name: str, comment: Optional[str] = None) -> None:
+        """Add a section with an optional comment."""
+        if name in self.sections:
+            return
+        self.sections[name] = comment
+        self._section = name
+
+    @property
+    def _has_sections(self) -> bool:
+        """Check if sections are defined."""
+        sections = [circuit.section for circuit in self.circuits]
+        return any(sections)
+
+    def _get_circuits_as_strings(self) -> str:
+        """Get circuits as a string."""
+        circuits = []
+        current_section: Optional[str] = None
+
+        if self._has_sections:
+            if not self.circuits[0].section:
+                # If circuits were added before a section was defined, then we
+                # use a default name for this section.
+                current_section = DEFAULT_SECTION_NAME
+            else:
+                current_section = self.circuits[0].section
+
+            comment = self.sections.get(current_section)
+            circuits.append(write_patch_section(current_section, comment))
+
+        for circuit in self.circuits:
+            if current_section and circuit.section != current_section:
+                assert circuit.section is not None
+                comment = self.sections.get(circuit.section)
+                circuits.append(write_patch_section(circuit.section, comment))
+                current_section = circuit.section
+            circuits.append(str(circuit))
+
+        return "\n".join(circuits)
+
     def __str__(self) -> str:
         """Output patch as string."""
         self._generate()
+
         sorted_controllers = sorted(self.controllers, key=lambda x: x.position)
         controllers = "\n".join([str(controller) for controller in sorted_controllers])
+        circuits = self._get_circuits_as_strings()
 
-        circuits = "\n".join([str(circuit) for circuit in self.circuits])
         return f"{controllers}\n\n{circuits}"
 
     def _generate(self) -> None:
@@ -425,34 +310,3 @@ class PatchGenerator(metaclass=MetaMetaPatch):
 
         Define this in your subclass, and use it to add circuits and controllers.
         """
-
-
-@dataclass
-class Circuit:
-    """Circuit container class."""
-
-    name: str
-    parameters: Mapping[str, str] = field(default_factory=dict)
-    comment: Optional[str] = None
-
-    def __str__(self) -> str:
-        """Output circuit as patch."""
-        indent = 4 * " "
-        comment = f"# {self.comment}\n" if self.comment else ""
-        params = "\n".join(
-            [f"{indent}{key} = {value}" for key, value in self.parameters.items()]
-        )
-        patch = f"[{comment}{self.name}]\n{params}\n"
-        return patch
-
-
-@dataclass
-class Controller:
-    """Droid controller container class."""
-
-    type: str
-    position: int
-
-    def __str__(self) -> str:
-        """Generate controller string."""
-        return f"[{self.type}]"
