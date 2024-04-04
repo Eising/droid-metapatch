@@ -277,8 +277,11 @@ class PatchGenerator(metaclass=MetaMetaPatch):
             circuits.append(write_patch_section(current_section, comment))
 
         for circuit in self.circuits:
-            if current_section and circuit.section != current_section:
-                assert circuit.section is not None
+            if (
+                current_section
+                and circuit.section is not None
+                and circuit.section != current_section
+            ):
                 comment = self.sections.get(circuit.section)
                 circuits.append(write_patch_section(circuit.section, comment))
                 current_section = circuit.section
