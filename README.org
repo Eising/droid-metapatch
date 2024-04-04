@@ -9,12 +9,15 @@ I am not expecting this library to be included in DROID, instead I suggest
 installing it as a python module, and importing it. It should be compatible with
 how the Forge expects these scripts to behave.
 
+* Getting started
+
+
 * Reference
 The patch generator is implemented as a single "dynamic" class. There's a lot
 going on in the background to set up typing and so on, but the end result is a
 simple userfriendly python superclass, that should be easy to extend to generate
 patches.
-
+ gg
 It should work in a way where modern text editors should be able to assist.
 
 ** Defining your patch class
@@ -28,7 +31,7 @@ class MegaDroneMeta(metapatch.PatchGenerator):
     description = "E4 based drone generator."
     voices: str = metapatch.option("Number of voices", choices=[("4", "4 voices"), ("8", "8 voices")])
     midi: bool = metapatch.option("Enable midi")
-    channel = metapatch.option("Midi channel", minimum=1, maximum=16)
+    channel: str = metapatch.option("Midi channel", minimum=1, maximum=16)
     encoder1: int = metapatch.option("Module number for first E4 module", minimum=2, maximum=5)
     encoder2: int = metapatch.option("Module number for second E4 module", minimum=2, maximum=5)
     encoder3: int = metapatch.option("Module number for third E4 module", minimum=2, maximum=5)
@@ -41,7 +44,9 @@ Any class variable defined as an =option()= will automatically be exposed in the
 
 If the =minimum= and =maximum= parameters are selected, the variable will be cast as an integer, if choices are provided, it will be cast as a string.
 
-If none of these options are defined, it's a boolean option, but your editor will not pick it up automatically, so if you provice a =: bool= type hint, it will work nicely.
+If none of these options are defined, it's a boolean option.
+
+You should use the type hints when defining your instance variables. This makes it easier for your editor to provide proper completion.
 
 ** Presets
 
@@ -72,7 +77,7 @@ Example:
 class MyPatch(metapatch.PatchGenerator):
     """My patch generator."""
 
-    number_of_buttons = metapatch.option("Number of buttons", minimum=8, maximum=32)
+    number_of_buttons: int = metapatch.option("Number of buttons", minimum=8, maximum=32)
 
     def generator(self) -> None:
         """Generate Patch"""
@@ -93,5 +98,43 @@ if __name__ == "__main__":
         MyPatch.run()
 #+end_src
 
+** Sections
+
+There are two ways to add sections to your patches.
+The first way is simple, and does not support comments in the section, and that is done by simply setting which section you work on:
+
+#+begin_src python
+    def generate(self) -> None:
+        """Generate patch."""
+        self.add_controller("P2B8", position=1)
+        if self.clock_source == "internal":
+            self.section = "Master Clock"
+            self.add_circuit(
+                "lfo",
+                params={"hz": "40 * P1.1", "square": "N1"},
+                comment=(
+                    "Send the clock to the normalization of input 1. In the rest of the"
+                    " patch, I1 will be used as input, and you can override the "
+                    "internal clock by patching an external in."
+                ),
+            )
+#+end_src
+
+If you want a comment in your section, you can use the =add_section()= function instead:
+#+begin_src python
+    def generate(self) -> None:
+        """Generate patch."""
+        self.add_controller("P2B8", position=1)
+        self.add_section("Master clock", "This section contains an LFO that acts as the master clock")
+
+#+end_src
+
 * Examples
-Please see the e4megadrone example for a complete implementation.
+Two examples are included:
+
++ examples/e4megadrone
++ examples/arpeggio1
+
+The arpeggio1 is adapted from the =arpeggio1.ini= example bundled with DROID, while the megadrone is an example made by me.
+
+The arpeggio1 is probably simplest example to use, if you are just getting started.
