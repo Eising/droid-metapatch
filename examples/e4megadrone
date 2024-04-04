@@ -31,18 +31,18 @@ class MegaDrone(metapatch.PatchGenerator):
         "Number of voices", choices=[("4", "4 voices"), ("8", "8 voices")]
     )
     midi: bool = metapatch.option("Enable midi")
-    channel = metapatch.option("Midi channel", minimum=1, maximum=16)
-    encoder1 = metapatch.option(
+    channel: int = metapatch.option("Midi channel", minimum=1, maximum=16)
+    encoder1: int = metapatch.option(
         "Module number for first E4 module", minimum=2, maximum=5
     )
 
-    encoder2 = metapatch.option(
+    encoder2: int = metapatch.option(
         "Module number for second E4 module", minimum=2, maximum=5
     )
-    encoder3 = metapatch.option(
+    encoder3: int = metapatch.option(
         "Module number for third E4 module", minimum=2, maximum=5
     )
-    encoder4 = metapatch.option(
+    encoder4: int = metapatch.option(
         "Module number for fourth encoder", minimum=2, maximum=5
     )
     default = metapatch.preset("My own defaults", default_preset)
