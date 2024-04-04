@@ -11,10 +11,9 @@ from typing import (
     List,
     Mapping,
     Optional,
-    Tuple,
 )
 
-from .base import Circuit, Controller, Section
+from .base import Circuit, Controller, Label
 from .options import Option, BoolOption, NumberOption, EnumOption, Preset
 from .utils import write_patch_section
 
@@ -116,7 +115,7 @@ class PatchGenerator(metaclass=MetaMetaPatch):
 
         self.circuits: List[Circuit] = []
         self.controllers: List[Controller] = []
-        self.labels: Dict[str, Tuple[str, str]] = {}
+        self.labels: List[Label] = []
         self._section: Optional[str] = None
         # This dictionary stores comments for sections.
         self.sections: Dict[str, Optional[str]] = {}
@@ -222,6 +221,35 @@ class PatchGenerator(metaclass=MetaMetaPatch):
             Circuit(name=name, parameters=params, comment=comment, section=self.section)
         )
 
+    def add_label(
+        self, item: str, short_label: str, long_label: Optional[str] = None
+    ) -> None:
+        """Add a label.
+
+        Args:
+            item: string of the thing you want to label, e.g. O1 or G1.2
+            short_label: The short label
+            long_label: Optional longer label
+        """
+        self.labels.append(Label.from_item(item, short_label, long_label))
+
+    def _generate_labels(self) -> str:
+        """Generate label strings."""
+        sorted_labels = {}
+        for label in self.labels:
+            if label.heading not in sorted_labels:
+                sorted_labels[label.heading] = []
+            sorted_labels[label.heading].append(label)
+
+        labels = ""
+        for heading, list_labels in sorted_labels.items():
+            labels += f"# {heading.upper()}:\n"
+            for label in list_labels:
+                labels += str(label)
+            labels += "\n"
+
+        return labels
+
     def add_controller(self, type: str, position: int) -> None:
         """Add a controller at a given position.
 
@@ -230,10 +258,6 @@ class PatchGenerator(metaclass=MetaMetaPatch):
             position: controller position, e.g. 1
         """
         self.controllers.append(Controller(type, position))
-
-    def set_labels(self, labels: Mapping[str, Tuple[str, str]]) -> None:
-        """Set labels of jacks."""
-        self.labels = {**self.labels, **labels}
 
     @property
     def section(self) -> Optional[str]:
@@ -293,11 +317,12 @@ class PatchGenerator(metaclass=MetaMetaPatch):
         """Output patch as string."""
         self._generate()
 
+        labels = self._generate_labels()
         sorted_controllers = sorted(self.controllers, key=lambda x: x.position)
         controllers = "\n".join([str(controller) for controller in sorted_controllers])
         circuits = self._get_circuits_as_strings()
 
-        return f"{controllers}\n\n{circuits}"
+        return f"{labels}{controllers}\n\n{circuits}"
 
     def _generate(self) -> None:
         """Generate patch.
