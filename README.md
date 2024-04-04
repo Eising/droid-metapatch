@@ -132,6 +132,7 @@ The following actions are currently supported:
 -   Adding controllers
 -   Adding circuits
 -   Adding sections
+-   Adding labels to jacks, buttons and pots
 
 
 ### Adding controllers
