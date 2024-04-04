@@ -207,6 +207,63 @@ class MyPatch(metapatch.PatchGenerator):
 ```
 
 
+### Adding labels to jacks, buttons and pots
+
+You can add labels to jacks, buttons and pots with the `add_label` function:
+
+```python
+    def add_label(
+        self, item: str, short_label: str, long_label: Optional[str] = None
+    ) -> None:
+        """Add a label.
+
+        Args:
+            item: string of the thing you want to label, e.g. O1 or G1.2
+            short_label: The short label
+            long_label: Optional longer label
+        """
+```
+
+The item is the item you want to label, and can be anything that supports a label. The short label is mandatory, but the long one can be optional.
+
+For example:
+
+```python
+        def generate(self) -> None:
+            """Generate patch."""
+            self.add_controller("P2B8", 1)
+            self.add_controller("P2B8", 2)
+            self.add_controller("P2B8", 3)
+            self.add_controller("E4", 4)
+            self.add_label("I1", "Input 1", "This is input 1")
+            self.add_label("O1", "Output 1")
+            self.add_label("G2.7", "Gate 7", "Gate jack number 7")
+            self.add_label("E4.3", "Encoder", "Encoder 3 on module 4")
+```
+
+This will generate the following:
+
+```
+#  I1: [Input 1] This is input 1
+
+# OUTPUTS:
+#  O1: [Output 1]
+
+# GATES ON MODULE 2:
+#  G2.7: [Gate 7] Gate jack number 7
+
+# CONTROLLER 4:
+#  E4.3: [Encoder] Encoder 3 on module 4
+
+[P2B8]
+[P2B8]
+[P2B8]
+[E4]
+
+
+```
+
+
 ## Finishing your patch
 
 Once you are done writing your code, you just need to make sure that the patch generator is loaded when executing the module.
@@ -228,11 +285,6 @@ MyPatch.run()
 ```
 
 This automatically sets up processing of command line arguments, correct argument passing and so on.
-
-
-# Missing features
-
-Currently there is no way to define the labels of jacks and pots. This will come soon.
 
 
 # Getting help
