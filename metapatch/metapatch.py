@@ -67,7 +67,7 @@ class MetaMetaPatch(type):
             "sections": section_list,
             "presets": presets,
         }
-        return {"synopsis": synopsis}
+        return synopsis
 
     @property
     def presets(cls) -> List[Dict[str, Any]]:
@@ -164,23 +164,24 @@ class PatchGenerator(metaclass=MetaMetaPatch):
             if issubclass(value, (BoolOption, EnumOption, NumberOption)):
                 all_param_help[value.title] = value.help(key)
 
-        longest = max(
-            [
-                len(varname[0])
-                for param in list(all_param_help.values())
-                for varname in param
-            ]
-        )
-        for title, opthelp in all_param_help.items():
-            params += textwrap.indent(title, "  ") + "\n"
-            for opt, descr in opthelp:
-                params += textwrap.indent(f"{opt:<{longest}}  {descr}", "    ")
+        if all_param_help:
+            longest = max(
+                [
+                    len(varname[0])
+                    for param in list(all_param_help.values())
+                    for varname in param
+                ]
+            )
+            for title, opthelp in all_param_help.items():
+                params += textwrap.indent(title, "  ") + "\n"
+                for opt, descr in opthelp:
+                    params += textwrap.indent(f"{opt:<{longest}}  {descr}", "    ")
+                    params += "\n"
+
                 params += "\n"
 
-            params += "\n"
-
-        epilog += params
-        parser.epilog = epilog
+            epilog += params
+            parser.epilog = epilog
 
         args = parser.parse_args()
 
@@ -269,14 +270,15 @@ class PatchGenerator(metaclass=MetaMetaPatch):
         """Set the section."""
         if not isinstance(name, str):
             raise ValueError("Section name must be a string.")
+        if name not in self.sections:
+            self.sections[name] = None
         self._section = name
 
     def add_section(self, name: str, comment: Optional[str] = None) -> None:
         """Add a section with an optional comment."""
-        if name in self.sections:
-            return
-        self.sections[name] = comment
         self._section = name
+        if name not in self.sections:
+            self.sections[name] = comment
 
     @property
     def _has_sections(self) -> bool:

@@ -150,7 +150,7 @@ class MegaDrone(metapatch.PatchGenerator):
             self.add_circuit(
                 "minifonion",
                 {
-                    "input": f"_DRONE_VOICE_{voice}_PITCH_1",
+                    "input": f"_DRONE_VOICE_{voice}_PITCH",
                     "root": "_ROOT",
                     "degree": "_DEGREE",
                     "transpose": f"_DRONE_VOICE_{voice}_TRANSPOSE",
