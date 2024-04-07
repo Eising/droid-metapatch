@@ -5,13 +5,132 @@ The DROID metapatch library aims to create an easier and more pythonic way of cr
 DROID is a series of eurorack controllers and CV processors made by [Der Mann mit der Maschine](https://shop.dermannmitdermaschine.de/).
 
 
-# Getting started
+# Installation
 
-A few examples have been distributed with the source code of this library that you may look at to see full implementations.
+
+## Installing the library
 
 Before you can write a patch generator, please install this library to your system python environment. Forge does not support virtual environments, so you must install this library somewhere where your default python library can find it.
 
 This library is available from pypi, use `pip install droid-metapatch` to install it.
+
+
+## Installation on MacOS
+
+DROID Forge uses the version of python that is bundled with MacOS. If you have installed python via homebrew or any other way, you may have multiple different python versions available.
+
+There are several ways to solve this:
+
+
+### Install the library with the system Python
+
+To ensure install this library to the one bundled with MacOS, run the following command:
+
+```
+$ /usr/bin/python3 -m pip install droid-metapatch
+```
+
+Note that this may result in a situation where the Forge has this library available, but your editor or shell does not. In that case, you can run the `pip install droid-metapatch` also. You will then have two copies installed, one for each environment.
+
+
+### Installing the metapatch library by hand
+
+You could also clone or download this repository, and place the `metapatch` folder into your Generators folder (located in your home directory under the `DROID Patches` folder.)
+
+This should work, but note that the `droid-metapatch` CLI utility will not be available then.
+
+
+# Getting started
+
+A few examples have been distributed with the source code of this library that you may look at to see full implementations.
+
+
+## Using droid-metapatch to convert an existing patch to a patch generator
+
+To get started really quickly, there&rsquo;s a helpful CLI script bundled with this library.
+
+```
+$ droid-metapatch --help
+usage: droid-metapatch [-h] [--boilerplate] [infile] [outfile]
+
+Metapatch helper script.
+
+positional arguments:
+  infile         Input file. Defaults to stdin.
+  outfile        Output file. Defaults to stdout.
+
+options:
+  -h, --help     show this help message and exit
+  --boilerplate  Generate a full example patch generator.
+
+If called without any arguments, you may input one or more droid circuits, and get the corresponding
+python code back.
+```
+
+If you run it without any arguments, you can paste one or more circuits, and get just the python code back that you can use within an ongoing patchgenerator project.
+
+However, if you provide a full patch as input, and use the `--boilerplate` option, it will output a full patch generator you can continue.
+
+
+### Example
+
+Here I&rsquo;m using one of the bundled patches from the blue4 DROID release:
+
+```
+$ droid-metapatch ~/p/droid/releases/droid-blue-4/patches/motoquencer_minimal.ini --boilerplate
+
+import metapatch
+
+class PatchGenerator(metapatch.PatchGenerator):
+    """Patch Generator boilerplate.
+
+    Change this to something more meaningful.
+    Also remember to add parameters and presets.
+    """
+    title = "Title of your patch generator"  # CHANGEME
+    description = "Description of your patch generator"  # CHANGEME
+
+    def generate(self) -> None:
+        """Patch generator function.
+
+        Modify this function to create your patch generator.
+        """
+        self.add_controller("p2b8", 1)
+        self.add_controller("m4", 2)
+
+        self.add_section("LFO and Sequencer")
+
+        self.add_circuit(
+            "lfo",
+            {
+                "hz": "20 * P1.1",
+                "square": "_CLOCK",
+            },
+            "Master clock"
+        )
+
+        self.add_circuit(
+            "motoquencer",
+            {
+                "clock": "_CLOCK",
+                "cv": "O1",
+                "gate": "O5",
+            },
+            "This motoquencer has as many steps as you have M4 faders"
+        )
+if __name__ == "__main__":
+    PatchGenerator.run()
+
+```
+
+If you specify an additional filename, the output will be written to that file instead of your terminal.
+
+
+### Continuing
+
+After this, you need to continue on your own. You should add presets and input parameters, and make the patch generator do something with those input parameters.
+
+See the next section for more details.
 
 
 ## Defining your patch generator class
