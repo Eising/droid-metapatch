@@ -1,41 +1,14 @@
 """Metapatch tests."""
 
+from pathlib import Path
 import pytest
-import metapatch
 
 
 @pytest.fixture
-def testpatch():
-    class TestMetaPatch(metapatch.PatchGenerator):
-        """Test metapatch."""
-
-        title = "Test"
-        description = "A test patch."
-
-        testbool = metapatch.option("Boolean")
-        testnumber = metapatch.option("Number", minimum=1, maximum=10)
-        testchoice = metapatch.option(
-            "Choice", choices=[("first", "First choice"), ("second", "Second choice")]
-        )
-        default = metapatch.preset(
-            "My Default",
-            parameters={"testbool": "True", "testnumber": "8", "testchoice": "first"},
-        )
-
-        def testfun(self) -> None:
-            """Test function."""
-            assert self.testbool is False
-            assert self.testnumber == 7
-            assert self.testchoice == "first"
-
-        def generate(self) -> None:
-            """Generate patch."""
-            input_name = f"{self.testchoice.upper()}"
-            self.add_controller("B32", 1)
-            self.add_controller("E4", 2)
-            self.add_circuit("copy", {"input": f"_{input_name}", "output": "_OUTPUT"})
-
-    return TestMetaPatch
+def testpatch(helper):
+    """Load testpatch."""
+    pg = helper("simple_metapatch.py", "TestMetaPatch")
+    return pg.patch_generator
 
 
 def test_opts(testpatch):
@@ -60,6 +33,12 @@ def test_opts(testpatch):
     assert "testbool" in preset_params
 
 
+@pytest.mark.parametrize("name", ["sections", "disjoint_sections", "labels"])
+def test_patch(helper, name):
+    """Generic test function."""
+    helper.test(f"{name}.py", f"{name}.ini")
+
+
 def test_preset(testpatch):
     """Test preset loading."""
     mypatch = testpatch.load_preset("default")
@@ -71,3 +50,20 @@ def test_generate(testpatch):
     mytest = testpatch.load_preset("default")
     patch = str(mytest)
     assert patch == "[B32]\n[E4]\n\n[copy]\n    input = _FIRST\n    output = _OUTPUT\n"
+
+
+def test_megadrone(helper):
+    """Test megadrone from the example library."""
+    megadrone_mod = Path(__file__).parent / ".." / "examples" / "e4megadrone"
+    helper.test(
+        megadrone_mod,
+        "e4megadrone.ini",
+        "MegaDrone",
+        voices="8",
+        midi="True",
+        channel="11",
+        encoder1="5",
+        encoder2="4",
+        encoder3="3",
+        encoder4="2",
+    )
