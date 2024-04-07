@@ -5,6 +5,7 @@ import json
 import textwrap
 
 from abc import abstractmethod
+from itertools import groupby
 from typing import (
     Any,
     Dict,
@@ -289,29 +290,16 @@ class PatchGenerator(metaclass=MetaMetaPatch):
     def _get_circuits_as_strings(self) -> str:
         """Get circuits as a string."""
         circuits = []
-        current_section: Optional[str] = None
 
-        if self._has_sections:
-            if not self.circuits[0].section:
-                # If circuits were added before a section was defined, then we
-                # use a default name for this section.
-                current_section = DEFAULT_SECTION_NAME
+        for section, grouped_circuits in groupby(self.circuits, lambda x: x.section):
+            if section is None:
+                if self._has_sections:
+                    circuits.append(write_patch_section(DEFAULT_SECTION_NAME))
             else:
-                current_section = self.circuits[0].section
-
-            comment = self.sections.get(current_section)
-            circuits.append(write_patch_section(current_section, comment))
-
-        for circuit in self.circuits:
-            if (
-                current_section
-                and circuit.section is not None
-                and circuit.section != current_section
-            ):
-                comment = self.sections.get(circuit.section)
-                circuits.append(write_patch_section(circuit.section, comment))
-                current_section = circuit.section
-            circuits.append(str(circuit))
+                comment = self.sections.get(section)
+                circuits.append(write_patch_section(section, comment))
+            for circuit in grouped_circuits:
+                circuits.append(str(circuit))
 
         return "\n".join(circuits)
 
