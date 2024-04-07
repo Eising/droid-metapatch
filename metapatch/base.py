@@ -93,7 +93,10 @@ class Label:
             module_num = res.group(2)
             controller_type = res.group(1)
             if controller_type == "G":
-                section = f"gates on module {module_num}"
+                if "." in item:
+                    section = f"gates on module {module_num}"
+                else:
+                    section = "gates on x7"
             else:
                 section = f"controller {module_num}"
 
