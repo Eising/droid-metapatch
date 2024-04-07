@@ -278,7 +278,7 @@ class PatchGenerator(metaclass=MetaMetaPatch):
     def add_section(self, name: str, comment: Optional[str] = None) -> None:
         """Add a section with an optional comment."""
         self._section = name
-        if name not in self.sections:
+        if name not in self.sections or self.sections.get(name) != comment:
             self.sections[name] = comment
 
     @property
@@ -288,16 +288,34 @@ class PatchGenerator(metaclass=MetaMetaPatch):
         return any(sections)
 
     def _get_circuits_as_strings(self) -> str:
-        """Get circuits as a string."""
+        """Get circuits as a string.
+
+        This is for circuits when there are no sections at all.
+        """
+        circuits = [str(circuit) for circuit in self.circuits]
+        return "\n".join(circuits)
+
+    def _get_circuits_with_sections(self) -> str:
+        """Get circuits as a string with sections."""
         circuits = []
 
+        groups = {}
         for section, grouped_circuits in groupby(self.circuits, lambda x: x.section):
             if section is None:
-                if self._has_sections:
-                    circuits.append(write_patch_section(DEFAULT_SECTION_NAME))
+                section_name = DEFAULT_SECTION_NAME
             else:
-                comment = self.sections.get(section)
-                circuits.append(write_patch_section(section, comment))
+                section_name = section
+            if section_name not in groups:
+                groups[section_name] = []
+            groups[section_name].extend(grouped_circuits)
+
+        for section_name, grouped_circuits in groups.items():
+            if section_name == DEFAULT_SECTION_NAME:
+                circuits.append(write_patch_section(DEFAULT_SECTION_NAME))
+            else:
+                comment = self.sections.get(section_name)
+                circuits.append(write_patch_section(section_name, comment))
+
             for circuit in grouped_circuits:
                 circuits.append(str(circuit))
 
@@ -310,7 +328,10 @@ class PatchGenerator(metaclass=MetaMetaPatch):
         labels = self._generate_labels()
         sorted_controllers = sorted(self.controllers, key=lambda x: x.position)
         controllers = "\n".join([str(controller) for controller in sorted_controllers])
-        circuits = self._get_circuits_as_strings()
+        if self._has_sections:
+            circuits = self._get_circuits_with_sections()
+        else:
+            circuits = self._get_circuits_as_strings()
 
         return f"{labels}{controllers}\n\n{circuits}"
 
