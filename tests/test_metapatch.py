@@ -45,18 +45,18 @@ def test_opts(testpatch):
     # test metaclass function
     synopsis = testpatch.synopsis
     assert isinstance(synopsis, dict)
-    assert synopsis["synopsis"]["title"] == "Test"
-    assert isinstance(synopsis["synopsis"]["sections"], list)
-    options = synopsis["synopsis"]["sections"][0]
+    assert synopsis["title"] == "Test"
+    assert isinstance(synopsis["sections"], list)
+    options = synopsis["sections"][0]
     assert options["title"] == "Options"
     assert isinstance(options["options"], list)
     assert len(options["options"]) == 3
-    assert isinstance(synopsis["synopsis"]["presets"], list)
-    assert synopsis["synopsis"]["presets"][0]["name"] == "default"
-    assert synopsis["synopsis"]["presets"][0]["title"] == "My Default"
-    preset = synopsis["synopsis"]["presets"][0]
+    assert isinstance(synopsis["presets"], list)
+    assert synopsis["presets"][0]["name"] == "default"
+    assert synopsis["presets"][0]["title"] == "My Default"
+    preset = synopsis["presets"][0]
     assert isinstance(preset["parameters"], dict)
-    preset_params = synopsis["synopsis"]["presets"][0]["parameters"]
+    preset_params = synopsis["presets"][0]["parameters"]
     assert "testbool" in preset_params
 
 
