@@ -1,0 +1,14 @@
+# Workflow for building and testing
+
+name: Build and Test package
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    name: Build and Test
+    uses: ./.github/workflows/build-and-test.yml
