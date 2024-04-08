@@ -52,9 +52,8 @@ class MetaMetaPatch(type):
                 if opt.section not in sections:
                     sections[opt.section] = {}
                 sections[opt.section][name] = opt
-            elif isinstance(opt, Preset):
-                presets.append(opt.asdict(name))
 
+        presets = cls.presets
         section_list: List[Dict[str, Any]] = []
         for section_name, options in sections.items():
             subsection: Dict[str, Any] = {"title": section_name, "options": []}
@@ -78,7 +77,21 @@ class MetaMetaPatch(type):
             if isinstance(opt, Preset):
                 presets.append(opt.asdict(name))
 
-        return presets
+        if presets:
+            return presets
+        # No presets defined.
+        # We make a default preset.
+
+        params = {}
+        for name, opt in cls.__dict__.items():
+            if hasattr(opt, "_ispatchoption"):
+                params[name] = opt.default
+        default_preset = {
+            "name": "default",
+            "title": "Default Preset",
+            "parameters": params,
+        }
+        return [default_preset]
 
 
 class PatchGenerator(metaclass=MetaMetaPatch):

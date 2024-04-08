@@ -67,3 +67,20 @@ def test_megadrone(helper):
         encoder3="3",
         encoder4="2",
     )
+
+
+def test_auto_preset(helper):
+    """Test auto-generated preset."""
+    pg = helper("auto_preset.py")
+    synopsis = pg.patch_generator.synopsis
+    assert "presets" in synopsis
+    assert len(synopsis["presets"]) == 1
+    preset = synopsis["presets"][0]
+    assert preset["name"] == "default"
+    assert preset["title"] == "Default Preset"
+    testbool = preset["parameters"].get("testbool")
+    testnumber = preset["parameters"].get("testnumber")
+    testchoice = preset["parameters"].get("testchoice")
+    assert testbool is True
+    assert testnumber == 1
+    assert testchoice == "first"
