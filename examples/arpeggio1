@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """This is a adaptation of the arpeggio1 example patch into the patch generator."""
 
 import metapatch
