@@ -5,6 +5,7 @@ import json
 import textwrap
 
 from abc import abstractmethod
+from dataclasses import is_dataclass
 from itertools import groupby
 from typing import (
     Any,
@@ -17,6 +18,7 @@ from typing import (
 from .base import Circuit, Controller, Label
 from .options import Option, BoolOption, NumberOption, EnumOption, Preset
 from .utils import write_patch_section
+from .circuits.base import dataclass_to_circuit
 
 DEFAULT_SECTION_NAME = "Generated Patch"
 
@@ -218,6 +220,20 @@ class PatchGenerator(metaclass=MetaMetaPatch):
 
         patch = cls(**parameters)
         print(str(patch))
+
+    def add(self, circuit: Any, comment: Optional[str] = None) -> None:
+        """Add a defined circuit.
+
+        This is used when adding one of the circuit classes.
+        Args:
+            circuit: The circuit class instance
+            comment: Optional comment.
+        """
+        if not is_dataclass(circuit):
+            raise ValueError("Unknown circuit type.")
+        self.circuits.append(
+            dataclass_to_circuit(circuit, self.section, comment=comment)
+        )
 
     def add_circuit(
         self,

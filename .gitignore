@@ -207,3 +207,6 @@ poetry.toml
 pyrightconfig.json
 
 # End of https://www.toptal.com/developers/gitignore/api/python,macos
+
+# Ignore circuits.json as I might not have license to distribute it.
+contrib/circuits.json

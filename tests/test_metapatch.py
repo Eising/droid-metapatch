@@ -33,7 +33,9 @@ def test_opts(testpatch):
     assert "testbool" in preset_params
 
 
-@pytest.mark.parametrize("name", ["sections", "disjoint_sections", "labels"])
+@pytest.mark.parametrize(
+    "name", ["sections", "disjoint_sections", "labels", "with_circuits"]
+)
 def test_patch(helper, name):
     """Generic test function."""
     helper.test(f"{name}.py", f"{name}.ini")
