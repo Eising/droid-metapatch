@@ -115,6 +115,8 @@ class Adc:
     bit11: Optional[str] = None
     bit12: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Algoquencer:
@@ -944,6 +946,8 @@ class Algoquencer:
     branch: Optional[str] = None
     lengthoutput: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Arpeggio:
@@ -1274,6 +1278,8 @@ class Arpeggio:
     transpose: Optional[str] = None
     output: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Bernoulli:
@@ -1305,6 +1311,8 @@ class Bernoulli:
     distribution: Optional[str] = None
     output1: Optional[str] = None
     output2: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -1361,6 +1369,8 @@ class Burst:
     count: Optional[str] = None
     skip: Optional[str] = None
     output: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -1561,6 +1571,8 @@ class Button:
     negated: Optional[str] = None
     longpress: Optional[str] = None
     shortpress: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -2837,6 +2849,8 @@ class Buttongroup:
     longpress: Optional[str] = None
     selectionchanged: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Calibrator:
@@ -3037,6 +3051,8 @@ class Calibrator:
     leddown: Optional[str] = None
     correction: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Case:
@@ -3218,6 +3234,8 @@ class Case:
     value16: Optional[str] = None
     else_: Optional[str] = None
     output: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -3457,6 +3475,8 @@ class Chord:
     output3: Optional[str] = None
     output4: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Clocktool:
@@ -3539,6 +3559,8 @@ class Clocktool:
     inputpitch: Optional[str] = None
     outputpitch: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Compare:
@@ -3587,6 +3609,8 @@ class Compare:
     else_: Optional[str] = None
     precision: Optional[str] = None
     output: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -3842,6 +3866,8 @@ class Contour:
     endofdecay: Optional[str] = None
     endofrelease: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Copy:
@@ -3862,6 +3888,8 @@ class Copy:
 
     input: Optional[str] = None
     output: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -3934,6 +3962,8 @@ class Crossfader:
     input8: Optional[str] = None
     fade: Optional[str] = None
     output: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -4027,6 +4057,8 @@ class Cvlooper:
     bypass: Optional[str] = None
     cvout: Optional[str] = None
     gateout: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -4126,6 +4158,8 @@ class Dac:
     minimum: Optional[str] = None
     maximum: Optional[str] = None
     output: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -4288,6 +4322,8 @@ class Delay:
     gateout8: Optional[str] = None
     overflow: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Detune:
@@ -4362,6 +4398,8 @@ class Detune:
     output6: Optional[str] = None
     output7: Optional[str] = None
     output8: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -4737,6 +4775,8 @@ class Droid:
     clear: Optional[str] = None
     clearall: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Encoderbank:
@@ -5109,6 +5149,8 @@ class Encoderbank:
     button7: Optional[str] = None
     button8: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Encoder:
@@ -5413,6 +5455,8 @@ class Encoder:
     moveddown: Optional[str] = None
     movedup: Optional[str] = None
     valuechanged: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -6409,6 +6453,8 @@ class Encoquencer:
     currentpage: Optional[str] = None
     accumulator: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Euklid:
@@ -6472,6 +6518,8 @@ class Euklid:
     output: Optional[str] = None
     offbeats: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Explin:
@@ -6513,6 +6561,8 @@ class Explin:
     endvalue: Optional[str] = None
     mix: Optional[str] = None
     output: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -6880,6 +6930,8 @@ class Faderbank:
     button14: Optional[str] = None
     button15: Optional[str] = None
     button16: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -7342,6 +7394,8 @@ class Fadermatrix:
     button42: Optional[str] = None
     button43: Optional[str] = None
     button44: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -8353,6 +8407,8 @@ class Firefacecontrol:
     select: Optional[str] = None
     selectat: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Flipflop:
@@ -8400,6 +8456,8 @@ class Flipflop:
     loadvalue: Optional[str] = None
     output: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Fold:
@@ -8436,6 +8494,8 @@ class Fold:
     minimum: Optional[str] = None
     maximum: Optional[str] = None
     output: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -8494,6 +8554,8 @@ class Fourstatebutton:
     startvalue: Optional[str] = None
     output: Optional[str] = None
     led: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -8562,6 +8624,8 @@ class Gatetool:
     outputgate: Optional[str] = None
     outputtrigger: Optional[str] = None
     outputedge: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -8721,6 +8785,8 @@ class Lfo:
     sine: Optional[str] = None
     cosine: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Logic:
@@ -8840,6 +8906,8 @@ class Logic:
     negated: Optional[str] = None
     count: Optional[str] = None
     countlow: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -8977,6 +9045,8 @@ class Math:
     round: Optional[str] = None
     floor: Optional[str] = None
     ceil: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -9270,6 +9340,8 @@ class Matrixmixer:
     led42: Optional[str] = None
     led43: Optional[str] = None
     led44: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -10264,6 +10336,8 @@ class Midifileplayer:
     volume: Optional[str] = None
     portamento: Optional[str] = None
     soft: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -11279,6 +11353,8 @@ class Midiin:
     volume: Optional[str] = None
     portamento: Optional[str] = None
     soft: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -12503,6 +12579,8 @@ class Midiout:
     select: Optional[str] = None
     selectat: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Midithrough:
@@ -12540,6 +12618,8 @@ class Midithrough:
     fromusb: Optional[str] = None
     totrs: Optional[str] = None
     tousb: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -12763,6 +12843,8 @@ class Minifonion:
     output: Optional[str] = None
     notechange: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Mixer:
@@ -12825,6 +12907,8 @@ class Mixer:
     maximum: Optional[str] = None
     minimum: Optional[str] = None
     average: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -13781,6 +13865,8 @@ class Motoquencer:
     currentpage: Optional[str] = None
     accumulator: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Motorfader:
@@ -13899,6 +13985,8 @@ class Motorfader:
     output: Optional[str] = None
     button: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Multicompare:
@@ -13997,6 +14085,8 @@ class Multicompare:
     else_: Optional[str] = None
     output: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Notchedpot:
@@ -14056,6 +14146,8 @@ class Notchedpot:
     righthalf: Optional[str] = None
     lefthalfinv: Optional[str] = None
     righthalfinv: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -14250,6 +14342,8 @@ class Notebuttons:
     semitone: Optional[str] = None
     gate: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Nudge:
@@ -14366,6 +14460,8 @@ class Nudge:
     leddown: Optional[str] = None
     output: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Octave:
@@ -14426,6 +14522,8 @@ class Octave:
     output2: Optional[str] = None
     output3: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Once:
@@ -14456,6 +14554,8 @@ class Once:
     delay: Optional[str] = None
     onlycoldstart: Optional[str] = None
     trigger: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -14521,6 +14621,8 @@ class Outputcalibrator:
     dirty: Optional[str] = None
     calibration: Optional[str] = None
     uncalibrated: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -14830,6 +14932,8 @@ class Polytool:
     gateoutput15: Optional[str] = None
     gateoutput16: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Pot:
@@ -15041,6 +15145,8 @@ class Pot:
     righthalfinv: Optional[str] = None
     onchange: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Quantizer:
@@ -15100,6 +15206,8 @@ class Quantizer:
     direction: Optional[str] = None
     output: Optional[str] = None
     changed: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -15237,6 +15345,8 @@ class Queue:
     output7: Optional[str] = None
     output8: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Random:
@@ -15276,6 +15386,8 @@ class Random:
     maximum: Optional[str] = None
     steps: Optional[str] = None
     output: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -15532,6 +15644,8 @@ class Recorder:
     gateout8: Optional[str] = None
     overflow: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Sample:
@@ -15593,6 +15707,8 @@ class Sample:
     bypass: Optional[str] = None
     output: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Select:
@@ -15635,6 +15751,8 @@ class Select:
     select: Optional[str] = None
     selectat: Optional[str] = None
     output: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -15971,6 +16089,8 @@ class Sequencer:
     cvoutput: Optional[str] = None
     gateoutput: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Sinfonionlink:
@@ -16042,6 +16162,8 @@ class Sinfonionlink:
     step: Optional[str] = None
     beat: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Slew:
@@ -16098,6 +16220,8 @@ class Slew:
     exponential: Optional[str] = None
     linear: Optional[str] = None
     scurve: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -16179,6 +16303,8 @@ class Spring:
     startposition: Optional[str] = None
     velocity: Optional[str] = None
     position: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -16279,6 +16405,8 @@ class Superjust:
     output6: Optional[str] = None
     output7: Optional[str] = None
     output8: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -16483,6 +16611,8 @@ class Switch:
     output15: Optional[str] = None
     output16: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Switchedpot:
@@ -16587,6 +16717,8 @@ class Switchedpot:
     output7: Optional[str] = None
     output8: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Timing:
@@ -16677,6 +16809,8 @@ class Timing:
     timing8: Optional[str] = None
     output: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Togglebutton:
@@ -16755,6 +16889,8 @@ class Togglebutton:
     inverted: Optional[str] = None
     negated: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Transient:
@@ -16827,6 +16963,8 @@ class Transient:
     phase: Optional[str] = None
     endoftransient: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Triggerdelay:
@@ -16888,6 +17026,8 @@ class Triggerdelay:
     output: Optional[str] = None
     overflow: Optional[str] = None
 
+    comment: Optional[str] = None
+
 
 @dataclass
 class Unusedfaders:
@@ -16930,6 +17070,8 @@ class Unusedfaders:
     numfaders: Optional[str] = None
     select: Optional[str] = None
     selectat: Optional[str] = None
+
+    comment: Optional[str] = None
 
 
 @dataclass
@@ -17066,3 +17208,5 @@ class Vcotuner:
     pitch: Optional[str] = None
     referencepitch: Optional[str] = None
     vcofound: Optional[str] = None
+
+    comment: Optional[str] = None

@@ -36,6 +36,8 @@ from typing import Optional
 """
 
 PARAM_TEMPLATE = "    {param}: Optional[str] = None"
+COMMENT_TEMPLATE = "    comment: Optional[str] = None"
+
 
 PYTHON_PROTECTED_WORDS = [
     "and",
@@ -150,6 +152,7 @@ class Circuit:
                 if parameter.direction == "output"
             ]
         )
+
         circuit = CIRCUIT_TEMPLATE.format(
             circuitname=self.name.capitalize(),
             internalname=self.name,
@@ -157,7 +160,8 @@ class Circuit:
             inputs=input_params,
             outputs=output_params,
         )
-        return "\n\n".join([circuit, props])
+
+        return "\n\n".join([circuit, props, COMMENT_TEMPLATE])
 
 
 class DroidControllerJSON(TypedDict):

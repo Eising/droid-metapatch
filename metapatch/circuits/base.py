@@ -24,10 +24,14 @@ def dataclass_to_circuit(
     for field in fields(circuit):
         value = getattr(circuit, field.name)
         field_name = field.name
+        if not value:
+            continue
+        if field.name == "comment" and comment is None:
+            comment = value
+            continue
         if field.name.endswith("_"):
             field_name = field.name[:-1]
-        if value:
-            parameters[field_name] = value
+        parameters[field_name] = value
 
     circuit_name = type(circuit).__name__.lower()
     return Circuit(circuit_name, parameters, comment, section)

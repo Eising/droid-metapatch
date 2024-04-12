@@ -31,4 +31,12 @@ class TestMetaPatch(metapatch.PatchGenerator):
             comment="Another algoquencer",
         )
         self.add_section("Logic")
-        self.add(circuits.Compare(input="I1", compare="1", ifequal="1", else_="0"))
+        self.add(
+            circuits.Compare(
+                input="I1",
+                compare="1",
+                ifequal="1",
+                else_="0",
+                comment="In-circuit comment",
+            )
+        )
