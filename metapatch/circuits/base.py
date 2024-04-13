@@ -40,8 +40,15 @@ def dataclass_to_circuit(
 
 def transform(
     circuits: List[T],
+    *,
+    select: Optional[str] = None,
+    select_at: Optional[str] = None,
+    prepend: Optional[str] = None,
+    append: Optional[str] = None,
+    input: Optional[str] = None,
+    output: Optional[str] = None,
+    gate: Optional[str] = None,
     ignore: Optional[List[str]] = None,
-    **actions: str,
 ) -> List[T]:
     """Transform a list of circuits.
 
@@ -50,28 +57,24 @@ def transform(
         select_at: Add a selectat parameter to all circuits that support it.
         prepend: Add a word to the start of all virtual cable names.
         append: Add a word to the end of all virtual cable names.
-        output: If an output is found, change it to value of input (e.g., O2)
         input: If an input is found, change it to the value of input
+        output: If an output is found, change it to value of input (e.g., O2)
         gate: If a gate is found, change it to the value of the gate.
 
         ignore: Ignore any of the supplied names when doing a rewriting operation.
     """
     if not ignore:
         ignore = []
-    select = actions.get("select")
-    select_at = actions.get("select_at")
     if select:
         circuits = [add_select(circuit, select, select_at) for circuit in circuits]
 
-    append: Optional[str] = actions.get("append", None)
-    prepend: Optional[str] = actions.get("prepend", None)
     circuits = [rename_cables(circuit, append, prepend, ignore) for circuit in circuits]
-    if new_input := actions.get("input", None):
-        circuits = change_jack(circuits, new_input, "input", ignore)
-    if new_output := actions.get("output", None):
-        circuits = change_jack(circuits, new_output, "output", ignore)
-    if new_gate := actions.get("gate", None):
-        circuits = change_jack(circuits, new_gate, "gate", ignore)
+    if input:
+        circuits = change_jack(circuits, input, "input", ignore)
+    if output:
+        circuits = change_jack(circuits, output, "output", ignore)
+    if gate:
+        circuits = change_jack(circuits, gate, "gate", ignore)
 
     return circuits
 
