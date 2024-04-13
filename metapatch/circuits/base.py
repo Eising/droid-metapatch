@@ -1,5 +1,6 @@
 """Circuit base class."""
 
+from copy import copy
 from dataclasses import dataclass, is_dataclass, fields, asdict
 from typing import Dict, Literal, List, Optional, TypeVar, Protocol, runtime_checkable
 from metapatch.base import Circuit
@@ -7,15 +8,15 @@ from metapatch.base import Circuit
 
 @runtime_checkable
 @dataclass
-class TDataclass(Protocol):
+class DroidCircuit(Protocol):
     pass
 
 
-T = TypeVar("T", bound=TDataclass)
+T = TypeVar("T", bound=DroidCircuit)
 
 
 def dataclass_to_circuit(
-    circuit: TDataclass, section: Optional[str] = None, comment: Optional[str] = None
+    circuit: DroidCircuit, section: Optional[str] = None, comment: Optional[str] = None
 ) -> Circuit:
     """Convert a dataclass to a circuit."""
     if not is_dataclass(circuit):
@@ -37,7 +38,11 @@ def dataclass_to_circuit(
     return Circuit(circuit_name, parameters, comment, section)
 
 
-def transform(circuits: List[T], **actions: str) -> List[T]:
+def transform(
+    circuits: List[T],
+    ignore: Optional[List[str]] = None,
+    **actions: str,
+) -> List[T]:
     """Transform a list of circuits.
 
     Args:
@@ -48,7 +53,11 @@ def transform(circuits: List[T], **actions: str) -> List[T]:
         output: If an output is found, change it to value of input (e.g., O2)
         input: If an input is found, change it to the value of input
         gate: If a gate is found, change it to the value of the gate.
+
+        ignore: Ignore any of the supplied names when doing a rewriting operation.
     """
+    if not ignore:
+        ignore = []
     select = actions.get("select")
     select_at = actions.get("select_at")
     if select:
@@ -56,18 +65,20 @@ def transform(circuits: List[T], **actions: str) -> List[T]:
 
     append: Optional[str] = actions.get("append", None)
     prepend: Optional[str] = actions.get("prepend", None)
-    circuits = [rename_cables(circuit, append, prepend) for circuit in circuits]
+    circuits = [rename_cables(circuit, append, prepend, ignore) for circuit in circuits]
     if new_input := actions.get("input", None):
-        circuits = change_jack(circuits, new_input, "input")
+        circuits = change_jack(circuits, new_input, "input", ignore)
     if new_output := actions.get("output", None):
-        circuits = change_jack(circuits, new_output, "output")
+        circuits = change_jack(circuits, new_output, "output", ignore)
     if new_gate := actions.get("gate", None):
-        circuits = change_jack(circuits, new_gate, "gate")
+        circuits = change_jack(circuits, new_gate, "gate", ignore)
 
     return circuits
 
 
-def rename_cables(circuit: T, append: Optional[str], prepend: Optional[str]) -> T:
+def rename_cables(
+    circuit: T, append: Optional[str], prepend: Optional[str], ignore: List[str]
+) -> T:
     """Rename cables."""
     if not append and not prepend:
         return circuit
@@ -77,6 +88,8 @@ def rename_cables(circuit: T, append: Optional[str], prepend: Optional[str]) -> 
         return circuit
 
     for fieldname, cablename in cables.items():
+        if cablename in ignore:
+            continue
         if not prepend:
             prependname = ""
         elif prepend.startswith("_"):
@@ -90,7 +103,7 @@ def rename_cables(circuit: T, append: Optional[str], prepend: Optional[str]) -> 
     return circuit
 
 
-def find_cables(circuit: TDataclass) -> Dict[str, str]:
+def find_cables(circuit: DroidCircuit) -> Dict[str, str]:
     """Return a dictionary of the input/outputs that contain virtual cables."""
     cables = {}
     for field in fields(circuit):
@@ -123,7 +136,10 @@ def add_select(circuit: T, select: str, select_at: Optional[str] = None) -> T:
 
 
 def change_jack(
-    circuits: List[T], new_jack: str, jacktype: Literal["input", "output", "gate"]
+    circuits: List[T],
+    new_jack: str,
+    jacktype: Literal["input", "output", "gate"],
+    ignore: List[str],
 ) -> List[T]:
     """Change jack on a list of circuits.
 
@@ -135,8 +151,9 @@ def change_jack(
     new_circuits = []
     for circuit in circuits:
         circuit_fields = asdict(circuit)
+        new_circuit = copy(circuit)
         for key, value in circuit_fields.items():
-            if not value:
+            if not value or value in ignore:
                 continue
             if value.startswith(start):
                 jacks.add(value)
@@ -144,7 +161,7 @@ def change_jack(
                     raise ValueError(
                         f"Cannot run {jacktype} transformation, more than one unique {jacktype} found."
                     )
-                setattr(circuit, key, new_jack)
-            new_circuits.append(circuit)
+                setattr(new_circuit, key, new_jack)
+        new_circuits.append(new_circuit)
 
     return new_circuits

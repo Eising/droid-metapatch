@@ -123,6 +123,9 @@ def test_rewrite_input():
     with pytest.raises(ValueError):
         metapatch.transform(circuits2, input="I2")
 
+    transformed = metapatch.transform(circuits2, input="I2", ignore=["I1", "I4"])
+    assert transformed[0].input1 == "I2"
+
 
 def test_rewrite_output():
     """Test rewriting inputs."""
@@ -166,3 +169,63 @@ def test_rewrite_gate():
     ]
     with pytest.raises(ValueError):
         metapatch.transform(circuits2, gate="G1.1")
+
+
+def test_voice_transformation():
+    """Test common operations on a voice.."""
+    test_circuits = [
+        metapatch.circuits.Algoquencer(
+            clock="_CLOCK",
+            reset="_RESET",
+            button1="B1.1",
+            button2="B1.2",
+            button3="B1.3",
+            button4="B1.4",
+            button5="B1.5",
+            button6="B1.6",
+            button7="B1.7",
+            button8="B1.8",
+            led1="L1.1",
+            led2="L1.2",
+            led3="L1.3",
+            led4="L1.4",
+            led5="L1.5",
+            led6="L1.6",
+            led7="L1.7",
+            led8="L1.8",
+            gate="_GATE",
+            pitch="_PITCH_U",
+            activity="_ACTIVITY",
+        ),
+        metapatch.circuits.Pot(pot="P1.1", notch="0.1", output="_ACTIVITY"),
+        metapatch.circuits.Minifonion(
+            input="_PITCH_U",
+            root="_ROOT",
+            degree="_DEGREE",
+            select1="1",
+            select3="1",
+            select5="1",
+            select7="1",
+            select9="1",
+            select11="1",
+            select13="1",
+            tuningmode="_TUNINGMODE",
+            tuningpitch="3V",
+            output="O1",
+        ),
+        metapatch.circuits.Button(
+            button="B1.9", led="L1.9", onvalue="0", offvalue="1", output="_MUTED"
+        ),
+        metapatch.circuits.Copy(input="_GATE * _MUTED", output="G1.1"),
+    ]
+    voice_1 = metapatch.transform(
+        test_circuits,
+        ignore=["_ROOT", "_DEGREE", "_CLOCK", "_RESET", "_TUNINGMODE"],
+        prepend="VOICE_1",
+        output="O2",
+        gate="G1.2",
+    )
+    assert voice_1[2].output == "O2"
+    assert voice_1[2].root == "_ROOT"
+    assert voice_1[0].pitch == "_VOICE_1_PITCH_U"
+    assert voice_1[2].input == "_VOICE_1_PITCH_U"
