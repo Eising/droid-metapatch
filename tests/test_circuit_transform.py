@@ -224,8 +224,10 @@ def test_voice_transformation():
         prepend="VOICE_1",
         output="O2",
         gate="G1.2",
+        replace=[("P1.1", "P1.2")],
     )
     assert voice_1[2].output == "O2"
     assert voice_1[2].root == "_ROOT"
     assert voice_1[0].pitch == "_VOICE_1_PITCH_U"
     assert voice_1[2].input == "_VOICE_1_PITCH_U"
+    assert voice_1[1].pot == "P1.2"

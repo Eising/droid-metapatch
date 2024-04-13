@@ -2,7 +2,16 @@
 
 from copy import copy
 from dataclasses import dataclass, is_dataclass, fields, asdict
-from typing import Dict, Literal, List, Optional, TypeVar, Protocol, runtime_checkable
+from typing import (
+    Dict,
+    Literal,
+    List,
+    Optional,
+    Tuple,
+    TypeVar,
+    Protocol,
+    runtime_checkable,
+)
 from metapatch.base import Circuit
 
 
@@ -48,6 +57,7 @@ def transform(
     input: Optional[str] = None,
     output: Optional[str] = None,
     gate: Optional[str] = None,
+    replace: Optional[List[Tuple[str, str]]] = None,
     ignore: Optional[List[str]] = None,
 ) -> List[T]:
     """Transform a list of circuits.
@@ -60,6 +70,8 @@ def transform(
         input: If an input is found, change it to the value of input
         output: If an output is found, change it to value of input (e.g., O2)
         gate: If a gate is found, change it to the value of the gate.
+        replace: List of (from, to). Does a search and replace for an arbitrary value.
+           Can be used to e.g., replace one pot with another.
 
         ignore: Ignore any of the supplied names when doing a rewriting operation.
     """
@@ -75,6 +87,9 @@ def transform(
         circuits = change_jack(circuits, output, "output", ignore)
     if gate:
         circuits = change_jack(circuits, gate, "gate", ignore)
+
+    if replace:
+        circuits = translate(circuits, replace)
 
     return circuits
 
@@ -167,4 +182,21 @@ def change_jack(
                 setattr(new_circuit, key, new_jack)
         new_circuits.append(new_circuit)
 
+    return new_circuits
+
+
+def translate(circuits: List[T], translations: List[Tuple[str, str]]) -> List[T]:
+    """Translate parameters in multiple circuits.
+
+    This allows renaming a controller to another controller.
+    """
+    new_circuits = []
+    d_translation = dict(translations)
+    for circuit in circuits:
+        circuit_fields = asdict(circuit)
+        c_copy = copy(circuit)
+        for key, value in circuit_fields.items():
+            if value and value in d_translation:
+                setattr(c_copy, key, d_translation[value])
+        new_circuits.append(c_copy)
     return new_circuits
