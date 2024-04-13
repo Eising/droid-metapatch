@@ -1,7 +1,7 @@
 """Circuit base class."""
 
-from dataclasses import dataclass, is_dataclass, fields
-from typing import Any, Dict, List, Optional, TypeVar, Protocol, runtime_checkable
+from dataclasses import dataclass, is_dataclass, fields, asdict
+from typing import Dict, Literal, List, Optional, TypeVar, Protocol, runtime_checkable
 from metapatch.base import Circuit
 
 
@@ -45,6 +45,9 @@ def transform(circuits: List[T], **actions: str) -> List[T]:
         select_at: Add a selectat parameter to all circuits that support it.
         prepend: Add a word to the start of all virtual cable names.
         append: Add a word to the end of all virtual cable names.
+        output: If an output is found, change it to value of input (e.g., O2)
+        input: If an input is found, change it to the value of input
+        gate: If a gate is found, change it to the value of the gate.
     """
     select = actions.get("select")
     select_at = actions.get("select_at")
@@ -54,6 +57,12 @@ def transform(circuits: List[T], **actions: str) -> List[T]:
     append: Optional[str] = actions.get("append", None)
     prepend: Optional[str] = actions.get("prepend", None)
     circuits = [rename_cables(circuit, append, prepend) for circuit in circuits]
+    if new_input := actions.get("input", None):
+        circuits = change_jack(circuits, new_input, "input")
+    if new_output := actions.get("output", None):
+        circuits = change_jack(circuits, new_output, "output")
+    if new_gate := actions.get("gate", None):
+        circuits = change_jack(circuits, new_gate, "gate")
 
     return circuits
 
@@ -111,3 +120,31 @@ def add_select(circuit: T, select: str, select_at: Optional[str] = None) -> T:
         setattr(circuit, "selectat", select_at)
 
     return circuit
+
+
+def change_jack(
+    circuits: List[T], new_jack: str, jacktype: Literal["input", "output", "gate"]
+) -> List[T]:
+    """Change jack on a list of circuits.
+
+    There can only be a single distinct value in all of the circuits.
+    """
+    jackmap = {"input": "I", "output": "O", "gate": "G"}
+    start = jackmap[jacktype]
+    jacks = set()
+    new_circuits = []
+    for circuit in circuits:
+        circuit_fields = asdict(circuit)
+        for key, value in circuit_fields.items():
+            if not value:
+                continue
+            if value.startswith(start):
+                jacks.add(value)
+                if len(jacks) > 1:
+                    raise ValueError(
+                        f"Cannot run {jacktype} transformation, more than one unique {jacktype} found."
+                    )
+                setattr(circuit, key, new_jack)
+            new_circuits.append(circuit)
+
+    return new_circuits

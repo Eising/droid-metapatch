@@ -100,3 +100,69 @@ def test_multiple(circuits_with_selects):
                 assert value.endswith("_VOICE_1")
         if "select" in circuitdict and circuitdict["select"] != "_UNRELATED":
             assert circuitdict["selectat"] == "1"
+
+
+def test_rewrite_input():
+    """Test rewriting inputs."""
+    circuits = [
+        metapatch.circuits.Math(input1="_SOMETHING"),
+        metapatch.circuits.Algoquencer(clock="_CLOCK"),
+        metapatch.circuits.Copy(input="I1", output="O2"),
+        metapatch.circuits.Button(button="B1.1", led="L1.1"),
+    ]
+    transformed = metapatch.transform(circuits, input="I2")
+    assert transformed[2].input == "I2"
+
+    # This should fail
+    circuits2 = [
+        metapatch.circuits.Math(input1="I3", input2="I4", difference="_DIFFERENCE"),
+        metapatch.circuits.Algoquencer(clock="_CLOCK"),
+        metapatch.circuits.Copy(input="I1", output="O2"),
+        metapatch.circuits.Button(button="B1.1", led="L1.1"),
+    ]
+    with pytest.raises(ValueError):
+        metapatch.transform(circuits2, input="I2")
+
+
+def test_rewrite_output():
+    """Test rewriting inputs."""
+    circuits = [
+        metapatch.circuits.Math(input1="_SOMETHING"),
+        metapatch.circuits.Algoquencer(clock="_CLOCK"),
+        metapatch.circuits.Copy(input="I1", output="O2"),
+        metapatch.circuits.Button(button="B1.1", led="L1.1"),
+    ]
+    transformed = metapatch.transform(circuits, output="O1")
+    assert transformed[2].output == "O1"
+
+    # This should fail
+    circuits2 = [
+        metapatch.circuits.Math(input1="I3", input2="I4", difference="_DIFFERENCE"),
+        metapatch.circuits.Algoquencer(clock="_CLOCK", pitch="O3"),
+        metapatch.circuits.Copy(input="I1", output="O2"),
+        metapatch.circuits.Button(button="B1.1", led="L1.1"),
+    ]
+    with pytest.raises(ValueError):
+        metapatch.transform(circuits2, output="O1")
+
+
+def test_rewrite_gate():
+    """Test rewriting inputs."""
+    circuits = [
+        metapatch.circuits.Math(input1="_SOMETHING"),
+        metapatch.circuits.Algoquencer(clock="_CLOCK", trigger="G1.1"),
+        metapatch.circuits.Copy(input="I1", output="O2"),
+        metapatch.circuits.Button(button="B1.1", led="L1.1"),
+    ]
+    transformed = metapatch.transform(circuits, gate="G1.2")
+    assert transformed[1].trigger == "G1.2"
+
+    # This should fail
+    circuits2 = [
+        metapatch.circuits.Math(input1="I3", input2="I4", difference="_DIFFERENCE"),
+        metapatch.circuits.Algoquencer(clock="_CLOCK", trigger="G1.1"),
+        metapatch.circuits.Copy(input="I1", output="O2"),
+        metapatch.circuits.Button(button="B1.1", led="L1.1", output="G9"),
+    ]
+    with pytest.raises(ValueError):
+        metapatch.transform(circuits2, gate="G1.1")
