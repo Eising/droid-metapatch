@@ -5,7 +5,7 @@ import json
 import textwrap
 
 from abc import abstractmethod
-from dataclasses import is_dataclass
+from dataclasses import dataclass, is_dataclass
 from itertools import groupby
 from typing import (
     Any,
@@ -13,12 +13,13 @@ from typing import (
     List,
     Mapping,
     Optional,
+    Tuple,
 )
 
 from .base import Circuit, Controller, Label
 from .options import Option, BoolOption, NumberOption, EnumOption, Preset
 from .utils import write_patch_section
-from .circuits.base import dataclass_to_circuit
+from .circuits.base import dataclass_to_circuit, transform, DroidCircuit
 
 DEFAULT_SECTION_NAME = "Generated Patch"
 
@@ -309,6 +310,65 @@ class PatchGenerator(metaclass=MetaMetaPatch):
         self._section = name
         if name not in self.sections or self.sections.get(name) != comment:
             self.sections[name] = comment
+
+    def add_circuits(
+        self,
+        circuits: List[DroidCircuit],
+        section: Optional[str] = None,
+        *,
+        select: Optional[str] = None,
+        select_at: Optional[str] = None,
+        prepend: Optional[str] = None,
+        append: Optional[str] = None,
+        input: Optional[str] = None,
+        output: Optional[str] = None,
+        gate: Optional[str] = None,
+        replace: Optional[List[Tuple[str, str]]] = None,
+        ignore: Optional[List[str]] = None,
+    ) -> None:
+        """Add multiple circuits.
+
+        This allows you to add a collection of circuits, optionally into a named
+        section, and optionally apply a set of transformations.
+
+        Args:
+            circuits: a list of Circuits.
+            section: Name of the section to add them to.
+            action: One or more the below transform parameters.
+
+        Transforms:
+            select: Add a select parameter to any circuit that supports it.
+            select_at: Add or change the selectat attribute if they have a given select value.
+            prepend: Prepend all virtual cable names with a string.
+            append: Append all virtual cable names with a string.
+            output: If an output is found, change it to value of input (e.g., O2)
+            input: If an input is found, change it to the value of input
+            gate: If a gate is found, change it to the value of the gate.
+            replace: List of (from, to). Does a search and replace for an arbitrary value.
+                Can be used to e.g., replace one pot with another.
+        """
+        assert all([is_dataclass(circuit) for circuit in circuits]) is True
+        if not ignore:
+            ignore = []
+
+        action = {
+            "select": select,
+            "select_at": select_at,
+            "prepend": prepend,
+            "append": append,
+            "input": input,
+            "output": output,
+            "gate": gate,
+            "replace": replace,
+        }
+        # TODO: Test without the val is not None
+        if any([val is not None for val in list(action.values())]):
+            circuits = transform(circuits, ignore=ignore, **action)
+
+        if not section:
+            section = self.section
+        for circuit in circuits:
+            self.circuits.append(dataclass_to_circuit(circuit, section))
 
     @property
     def _has_sections(self) -> bool:

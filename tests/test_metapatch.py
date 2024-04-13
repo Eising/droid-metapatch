@@ -86,3 +86,10 @@ def test_auto_preset(helper):
     assert testbool is True
     assert testnumber == 1
     assert testchoice == "first"
+
+
+def test_function_voices(helper):
+    """Test transforming a single voice into multiple."""
+    helper.test(
+        "function_to_layers.py", "function_to_layers.ini", "TestMetaPatch", voices=4
+    )
