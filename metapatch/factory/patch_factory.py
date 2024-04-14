@@ -189,7 +189,7 @@ def generate_transformation(
     context.add("self.add_circuits(")
     with context.next_level() as in_fun:
         in_fun.apply_template("funcall", fun=f"self.{funcname}", params="", comma=True)
-        in_fun.add(f'"{sectionname},"')
+        in_fun.add(f'"{sectionname}",')
         for action, value in transforms.items():
             in_fun.apply_template("fun_assignment", key=action, val=value, comma=True)
         if ignore:
