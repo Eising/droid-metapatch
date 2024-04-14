@@ -89,7 +89,7 @@ def generate_section_function(
             "docstring_short",
             docstring=f"Generate contents of section '{section_name}'.",
         )
-        in_function.add("circuits = [")
+        in_function.add("return [")
         with in_function.next_level() as in_circuit:
             for circuit in circuits:
                 for circuitname, circuitparams in circuit.items():
@@ -101,8 +101,7 @@ def generate_section_function(
                             comma=True,
                         )
                     )
-        in_function.add("]")
-        in_function.add("return circuits", newlines=2)
+        in_function.add("]\n\n")
 
     return str(context)
 
