@@ -9,16 +9,19 @@ from typing import (
     Optional,
     Tuple,
     TypeVar,
-    Protocol,
-    runtime_checkable,
 )
 from metapatch.base import Circuit
 
 
-@runtime_checkable
 @dataclass
-class DroidCircuit(Protocol):
-    pass
+class DroidCircuit:
+    """Droid Circuit parent class."""
+
+    comment: Optional[str] = None
+
+    def to_circuit(self) -> Circuit:
+        """Convert to circuit."""
+        return dataclass_to_circuit(self)
 
 
 T = TypeVar("T", bound=DroidCircuit)

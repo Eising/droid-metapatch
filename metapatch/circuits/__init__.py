@@ -3,10 +3,11 @@
 from dataclasses import dataclass
 from typing import Optional
 
+from metapatch.circuits.base import DroidCircuit
 
 
 @dataclass
-class Adc:
+class Adc(DroidCircuit):
     """Circuit adc.
       AD Converter with 12 bits
 
@@ -115,11 +116,9 @@ class Adc:
     bit11: Optional[str] = None
     bit12: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Algoquencer:
+class Algoquencer(DroidCircuit):
     """Circuit algoquencer.
       Algorithmic sequencer
 
@@ -946,11 +945,9 @@ class Algoquencer:
     branch: Optional[str] = None
     lengthoutput: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Arpeggio:
+class Arpeggio(DroidCircuit):
     """Circuit arpeggio.
       Arpeggiator – pattern based melody generator
 
@@ -1278,11 +1275,9 @@ class Arpeggio:
     transpose: Optional[str] = None
     output: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Bernoulli:
+class Bernoulli(DroidCircuit):
     """Circuit bernoulli.
       Random gate distributor
 
@@ -1312,11 +1307,9 @@ class Bernoulli:
     output1: Optional[str] = None
     output2: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Burst:
+class Burst(DroidCircuit):
     """Circuit burst.
       Generate burst of pulses
 
@@ -1370,11 +1363,9 @@ class Burst:
     skip: Optional[str] = None
     output: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Button:
+class Button(DroidCircuit):
     """Circuit button.
       Does all sorts of useful things with buttons
 
@@ -1572,11 +1563,9 @@ class Button:
     longpress: Optional[str] = None
     shortpress: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Buttongroup:
+class Buttongroup(DroidCircuit):
     """Circuit buttongroup.
       Connected buttons
 
@@ -2849,11 +2838,9 @@ class Buttongroup:
     longpress: Optional[str] = None
     selectionchanged: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Calibrator:
+class Calibrator(DroidCircuit):
     """Circuit calibrator.
       VCO Calibrator
 
@@ -3051,11 +3038,9 @@ class Calibrator:
     leddown: Optional[str] = None
     correction: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Case:
+class Case(DroidCircuit):
     """Circuit case.
       Switch choosing from inputs via conditions
 
@@ -3235,11 +3220,9 @@ class Case:
     else_: Optional[str] = None
     output: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Chord:
+class Chord(DroidCircuit):
     """Circuit chord.
       Chord generator
 
@@ -3475,11 +3458,9 @@ class Chord:
     output3: Optional[str] = None
     output4: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Clocktool:
+class Clocktool(DroidCircuit):
     """Circuit clocktool.
       Clock divider / multiplier / shifter
 
@@ -3559,11 +3540,9 @@ class Clocktool:
     inputpitch: Optional[str] = None
     outputpitch: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Compare:
+class Compare(DroidCircuit):
     """Circuit compare.
       Compare two values
 
@@ -3610,11 +3589,9 @@ class Compare:
     precision: Optional[str] = None
     output: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Contour:
+class Contour(DroidCircuit):
     """Circuit contour.
       Contour generator
 
@@ -3866,11 +3843,9 @@ class Contour:
     endofdecay: Optional[str] = None
     endofrelease: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Copy:
+class Copy(DroidCircuit):
     """Circuit copy.
       Copy a signal, while applying attenuation and offset
 
@@ -3889,11 +3864,9 @@ class Copy:
     input: Optional[str] = None
     output: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Crossfader:
+class Crossfader(DroidCircuit):
     """Circuit crossfader.
       Morph between 8 inputs
 
@@ -3963,11 +3936,9 @@ class Crossfader:
     fade: Optional[str] = None
     output: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Cvlooper:
+class Cvlooper(DroidCircuit):
     """Circuit cvlooper.
       Clocked CV looper
 
@@ -4058,11 +4029,9 @@ class Cvlooper:
     cvout: Optional[str] = None
     gateout: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Dac:
+class Dac(DroidCircuit):
     """Circuit dac.
       DA Converter with 12 bits
 
@@ -4159,11 +4128,9 @@ class Dac:
     maximum: Optional[str] = None
     output: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Delay:
+class Delay(DroidCircuit):
     """Circuit delay.
       A tape delay for CVs, gates and numbers
 
@@ -4322,11 +4289,9 @@ class Delay:
     gateout8: Optional[str] = None
     overflow: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Detune:
+class Detune(DroidCircuit):
     """Circuit detune.
       Detune multiple voices in a most disharmonic way
 
@@ -4399,11 +4364,9 @@ class Detune:
     output7: Optional[str] = None
     output8: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Droid:
+class Droid(DroidCircuit):
     """Circuit droid.
       General DROID controls
 
@@ -4775,11 +4738,9 @@ class Droid:
     clear: Optional[str] = None
     clearall: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Encoderbank:
+class Encoderbank(DroidCircuit):
     """Circuit encoderbank.
       Create bank of up to 8 virtual input knobs from E4 encoders
 
@@ -5149,11 +5110,9 @@ class Encoderbank:
     button7: Optional[str] = None
     button8: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Encoder:
+class Encoder(DroidCircuit):
     """Circuit encoder.
       Provide access to a knob on the E4 controller
 
@@ -5456,11 +5415,9 @@ class Encoder:
     movedup: Optional[str] = None
     valuechanged: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Encoquencer:
+class Encoquencer(DroidCircuit):
     """Circuit encoquencer.
       Performance sequencer using E4 encoders
 
@@ -6453,11 +6410,9 @@ class Encoquencer:
     currentpage: Optional[str] = None
     accumulator: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Euklid:
+class Euklid(DroidCircuit):
     """Circuit euklid.
       Euclidean rhythm generator
 
@@ -6518,11 +6473,9 @@ class Euklid:
     output: Optional[str] = None
     offbeats: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Explin:
+class Explin(DroidCircuit):
     """Circuit explin.
       Exponential to linear converter
 
@@ -6562,11 +6515,9 @@ class Explin:
     mix: Optional[str] = None
     output: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Faderbank:
+class Faderbank(DroidCircuit):
     """Circuit faderbank.
       Create multiple virtual faders in M4 controller
 
@@ -6931,11 +6882,9 @@ class Faderbank:
     button15: Optional[str] = None
     button16: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Fadermatrix:
+class Fadermatrix(DroidCircuit):
     """Circuit fadermatrix.
       Matrix of up to 4x4 virtual motor faders
 
@@ -7395,11 +7344,9 @@ class Fadermatrix:
     button43: Optional[str] = None
     button44: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Firefacecontrol:
+class Firefacecontrol(DroidCircuit):
     """Circuit firefacecontrol.
       Control a RME Fireface interface (experimental)
 
@@ -8407,11 +8354,9 @@ class Firefacecontrol:
     select: Optional[str] = None
     selectat: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Flipflop:
+class Flipflop(DroidCircuit):
     """Circuit flipflop.
       Simple flip flop
 
@@ -8456,11 +8401,9 @@ class Flipflop:
     loadvalue: Optional[str] = None
     output: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Fold:
+class Fold(DroidCircuit):
     """Circuit fold.
       CV folder – keep (pitch) CV within certain bounds
 
@@ -8495,11 +8438,9 @@ class Fold:
     maximum: Optional[str] = None
     output: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Fourstatebutton:
+class Fourstatebutton(DroidCircuit):
     """Circuit fourstatebutton.
       Button switching through 4 states (OBSOLETE)
 
@@ -8555,11 +8496,9 @@ class Fourstatebutton:
     output: Optional[str] = None
     led: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Gatetool:
+class Gatetool(DroidCircuit):
     """Circuit gatetool.
       Operate on triggers and gates, modify gatelength
 
@@ -8625,11 +8564,9 @@ class Gatetool:
     outputtrigger: Optional[str] = None
     outputedge: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Lfo:
+class Lfo(DroidCircuit):
     """Circuit lfo.
       Low frequency oscillator (LFO)
 
@@ -8785,11 +8722,9 @@ class Lfo:
     sine: Optional[str] = None
     cosine: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Logic:
+class Logic(DroidCircuit):
     """Circuit logic.
       Logic operations utility
 
@@ -8907,11 +8842,9 @@ class Logic:
     count: Optional[str] = None
     countlow: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Math:
+class Math(DroidCircuit):
     """Circuit math.
       Math utility circuit
 
@@ -9046,11 +8979,9 @@ class Math:
     floor: Optional[str] = None
     ceil: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Matrixmixer:
+class Matrixmixer(DroidCircuit):
     """Circuit matrixmixer.
       Matrix mixer for CVs
 
@@ -9341,11 +9272,9 @@ class Matrixmixer:
     led43: Optional[str] = None
     led44: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Midifileplayer:
+class Midifileplayer(DroidCircuit):
     """Circuit midifileplayer.
       MIDI file player
 
@@ -10337,11 +10266,9 @@ class Midifileplayer:
     portamento: Optional[str] = None
     soft: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Midiin:
+class Midiin(DroidCircuit):
     """Circuit midiin.
       MIDI to CV converter
 
@@ -11354,11 +11281,9 @@ class Midiin:
     portamento: Optional[str] = None
     soft: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Midiout:
+class Midiout(DroidCircuit):
     """Circuit midiout.
       CV to MIDI converter
 
@@ -12579,11 +12504,9 @@ class Midiout:
     select: Optional[str] = None
     selectat: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Midithrough:
+class Midithrough(DroidCircuit):
     """Circuit midithrough.
       Forward MIDI events from input to one or more outputs
 
@@ -12619,11 +12542,9 @@ class Midithrough:
     totrs: Optional[str] = None
     tousb: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Minifonion:
+class Minifonion(DroidCircuit):
     """Circuit minifonion.
       Musical quantizer
 
@@ -12843,11 +12764,9 @@ class Minifonion:
     output: Optional[str] = None
     notechange: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Mixer:
+class Mixer(DroidCircuit):
     """Circuit mixer.
       CV mixer
 
@@ -12908,11 +12827,9 @@ class Mixer:
     minimum: Optional[str] = None
     average: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Motoquencer:
+class Motoquencer(DroidCircuit):
     """Circuit motoquencer.
       Motor fader sequencer
 
@@ -13865,11 +13782,9 @@ class Motoquencer:
     currentpage: Optional[str] = None
     accumulator: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Motorfader:
+class Motorfader(DroidCircuit):
     """Circuit motorfader.
       Create virtual fader in M4 controller
 
@@ -13985,11 +13900,9 @@ class Motorfader:
     output: Optional[str] = None
     button: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Multicompare:
+class Multicompare(DroidCircuit):
     """Circuit multicompare.
       Compare in input with up to eight possible values
 
@@ -14085,11 +13998,9 @@ class Multicompare:
     else_: Optional[str] = None
     output: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Notchedpot:
+class Notchedpot(DroidCircuit):
     """Circuit notchedpot.
       Helper circuit for pots (OBSOLETE)
 
@@ -14147,11 +14058,9 @@ class Notchedpot:
     lefthalfinv: Optional[str] = None
     righthalfinv: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Notebuttons:
+class Notebuttons(DroidCircuit):
     """Circuit notebuttons.
       Note Selection Buttons
 
@@ -14342,11 +14251,9 @@ class Notebuttons:
     semitone: Optional[str] = None
     gate: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Nudge:
+class Nudge(DroidCircuit):
     """Circuit nudge.
       Modify a value in steps using two buttons
 
@@ -14460,11 +14367,9 @@ class Nudge:
     leddown: Optional[str] = None
     output: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Octave:
+class Octave(DroidCircuit):
     """Circuit octave.
       Multi-VCO octave animator
 
@@ -14522,11 +14427,9 @@ class Octave:
     output2: Optional[str] = None
     output3: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Once:
+class Once(DroidCircuit):
     """Circuit once.
       Output one trigger after the Droid has started
 
@@ -14555,11 +14458,9 @@ class Once:
     onlycoldstart: Optional[str] = None
     trigger: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Outputcalibrator:
+class Outputcalibrator(DroidCircuit):
     """Circuit outputcalibrator.
       Tune the calibration of your CV outputs
 
@@ -14622,11 +14523,9 @@ class Outputcalibrator:
     calibration: Optional[str] = None
     uncalibrated: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Polytool:
+class Polytool(DroidCircuit):
     """Circuit polytool.
       Change number of voices in polyphonic setups
 
@@ -14932,11 +14831,9 @@ class Polytool:
     gateoutput15: Optional[str] = None
     gateoutput16: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Pot:
+class Pot(DroidCircuit):
     """Circuit pot.
       Helper circuit for pots
 
@@ -15145,11 +15042,9 @@ class Pot:
     righthalfinv: Optional[str] = None
     onchange: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Quantizer:
+class Quantizer(DroidCircuit):
     """Circuit quantizer.
       Non-musical quantizer
 
@@ -15207,11 +15102,9 @@ class Quantizer:
     output: Optional[str] = None
     changed: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Queue:
+class Queue(DroidCircuit):
     """Circuit queue.
       Clocked CV shift register
 
@@ -15345,11 +15238,9 @@ class Queue:
     output7: Optional[str] = None
     output8: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Random:
+class Random(DroidCircuit):
     """Circuit random.
       Random number generator
 
@@ -15387,11 +15278,9 @@ class Random:
     steps: Optional[str] = None
     output: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Recorder:
+class Recorder(DroidCircuit):
     """Circuit recorder.
       Record and playback CVs und gates
 
@@ -15644,11 +15533,9 @@ class Recorder:
     gateout8: Optional[str] = None
     overflow: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Sample:
+class Sample(DroidCircuit):
     """Circuit sample.
       Sample & Hold Circuit
 
@@ -15707,11 +15594,9 @@ class Sample:
     bypass: Optional[str] = None
     output: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Select:
+class Select(DroidCircuit):
     """Circuit select.
       Copy a signal if selected
 
@@ -15752,11 +15637,9 @@ class Select:
     selectat: Optional[str] = None
     output: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Sequencer:
+class Sequencer(DroidCircuit):
     """Circuit sequencer.
       Simple eight step sequencer
 
@@ -16089,11 +15972,9 @@ class Sequencer:
     cvoutput: Optional[str] = None
     gateoutput: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Sinfonionlink:
+class Sinfonionlink(DroidCircuit):
     """Circuit sinfonionlink.
       Sync harmonic state from Sinfonion
 
@@ -16162,11 +16043,9 @@ class Sinfonionlink:
     step: Optional[str] = None
     beat: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Slew:
+class Slew(DroidCircuit):
     """Circuit slew.
       Slew limiter
 
@@ -16221,11 +16100,9 @@ class Slew:
     linear: Optional[str] = None
     scurve: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Spring:
+class Spring(DroidCircuit):
     """Circuit spring.
       Physical spring simulation
 
@@ -16304,11 +16181,9 @@ class Spring:
     velocity: Optional[str] = None
     position: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Superjust:
+class Superjust(DroidCircuit):
     """Circuit superjust.
       Perfect intonation of up to eight voices
 
@@ -16406,11 +16281,9 @@ class Superjust:
     output7: Optional[str] = None
     output8: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Switch:
+class Switch(DroidCircuit):
     """Circuit switch.
       Adressable/clockable switch
 
@@ -16611,11 +16484,9 @@ class Switch:
     output15: Optional[str] = None
     output16: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Switchedpot:
+class Switchedpot(DroidCircuit):
     """Circuit switchedpot.
       Overlay pot with multiple functions (OBSOLETE)
 
@@ -16717,11 +16588,9 @@ class Switchedpot:
     output7: Optional[str] = None
     output8: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Timing:
+class Timing(DroidCircuit):
     """Circuit timing.
       Shuffle/swing and complex timing generator
 
@@ -16809,11 +16678,9 @@ class Timing:
     timing8: Optional[str] = None
     output: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Togglebutton:
+class Togglebutton(DroidCircuit):
     """Circuit togglebutton.
       Create on/off buttons (OBSOLETE)
 
@@ -16889,11 +16756,9 @@ class Togglebutton:
     inverted: Optional[str] = None
     negated: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Transient:
+class Transient(DroidCircuit):
     """Circuit transient.
       Transient generator
 
@@ -16963,11 +16828,9 @@ class Transient:
     phase: Optional[str] = None
     endoftransient: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Triggerdelay:
+class Triggerdelay(DroidCircuit):
     """Circuit triggerdelay.
       Trigger Delay with multi tap and optional clocking
 
@@ -17026,11 +16889,9 @@ class Triggerdelay:
     output: Optional[str] = None
     overflow: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Unusedfaders:
+class Unusedfaders(DroidCircuit):
     """Circuit unusedfaders.
       Declare unused motor faders
 
@@ -17071,11 +16932,9 @@ class Unusedfaders:
     select: Optional[str] = None
     selectat: Optional[str] = None
 
-    comment: Optional[str] = None
-
 
 @dataclass
-class Vcotuner:
+class Vcotuner(DroidCircuit):
     """Circuit vcotuner.
       measure frequency and tuning of a VCO
 
@@ -17208,5 +17067,3 @@ class Vcotuner:
     pitch: Optional[str] = None
     referencepitch: Optional[str] = None
     vcofound: Optional[str] = None
-
-    comment: Optional[str] = None

@@ -9,6 +9,7 @@ import json
 import re
 import sys
 import textwrap
+import keyword
 from dataclasses import dataclass, field
 from typing import List, TypedDict
 
@@ -17,7 +18,7 @@ from pylatexenc.latex2text import LatexNodes2Text
 
 CIRCUIT_TEMPLATE = """
 @dataclass
-class {circuitname}:
+class {circuitname}(DroidCircuit):
     \"\"\"Circuit {internalname}.
      {title}
 
@@ -33,46 +34,10 @@ MODULE_HEADER = """\"\"\"DROID circuits. These circuits are auto-generated from 
 
 from dataclasses import dataclass
 from typing import Optional
-"""
+
+from metapatch.circuits.base import DroidCircuit"""
 
 PARAM_TEMPLATE = "    {param}: Optional[str] = None"
-COMMENT_TEMPLATE = "    comment: Optional[str] = None"
-
-
-PYTHON_PROTECTED_WORDS = [
-    "and",
-    "as",
-    "assert",
-    "async",
-    "await",
-    "break",
-    "class",
-    "continue",
-    "def",
-    "del",
-    "elif",
-    "else",
-    "except",
-    "finally",
-    "for",
-    "from",
-    "global",
-    "if",
-    "import",
-    "in",
-    "is",
-    "lambda",
-    "nonlocal",
-    "not",
-    "or",
-    "pass",
-    "raise",
-    "return",
-    "try",
-    "while",
-    "with",
-    "yield",
-]
 
 
 def _strip_latex(text: str) -> str:
@@ -100,7 +65,7 @@ class Parameter:
 
     def __post_init__(self) -> None:
         """Reformat name if it collides with python."""
-        if self.name in PYTHON_PROTECTED_WORDS:
+        if keyword.iskeyword(self.name):
             self.name += "_"
 
     @property
@@ -161,7 +126,7 @@ class Circuit:
             outputs=output_params,
         )
 
-        return "\n\n".join([circuit, props, COMMENT_TEMPLATE])
+        return "\n\n".join([circuit, props])
 
 
 class DroidControllerJSON(TypedDict):
@@ -221,7 +186,7 @@ def _parse_parameters(param: DroidParamJSON, direction: str) -> List[Parameter]:
             )
     else:
         p_name = param["name"]
-        if p_name in PYTHON_PROTECTED_WORDS:
+        if keyword.iskeyword(p_name):
             p_name = f"{p_name}_"
         params.append(
             Parameter(
