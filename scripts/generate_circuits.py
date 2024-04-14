@@ -10,8 +10,10 @@ import re
 import sys
 import textwrap
 import keyword
+from collections import defaultdict
 from dataclasses import dataclass, field
-from typing import List, TypedDict
+from pathlib import Path
+from typing import Dict, List, TypedDict
 
 from pylatexenc.latex2text import LatexNodes2Text
 
@@ -30,6 +32,8 @@ class {circuitname}(DroidCircuit):
     \"\"\"
 """
 
+INIT_HEADER = """\"\"\"DROID circuits module. These circuits are auto-generated from circuits.json.\"\"\""""
+
 MODULE_HEADER = """\"\"\"DROID circuits. These circuits are auto-generated from circuits.json.\"\"\"
 
 from dataclasses import dataclass
@@ -38,6 +42,8 @@ from typing import Optional
 from metapatch.circuits.base import DroidCircuit"""
 
 PARAM_TEMPLATE = "    {param}: Optional[str] = None"
+
+INIT_TEMPLATE = "from .{filename} import ("
 
 
 def _strip_latex(text: str) -> str:
@@ -104,6 +110,7 @@ class Circuit:
 
     name: str
     title: str
+    category: str
     parameters: List[Parameter] = field(default_factory=list)
 
     def __post_init__(self) -> None:
@@ -161,6 +168,7 @@ class DroidParamJSON(TypedDict):
 class DroidCircuitJSON(TypedDict):
     """Typing of the DROID circuit JSON."""
 
+    category: str
     ramsize: int
     title: str
     description: str
@@ -211,15 +219,16 @@ def _parse_parameters(param: DroidParamJSON, direction: str) -> List[Parameter]:
     return params
 
 
-def parse_circuits(json_circuits: DroidOuterJSON) -> str:
-    """Parse circuits."""
+def _parse_circuits(json_circuits: DroidOuterJSON) -> List[Circuit]:
+    """Perform the actual parsing."""
     circuits: List[Circuit] = []
 
     for circuit_name, params in json_circuits["circuits"].items():
         inputs = params.get("inputs", [])
         outputs = params.get("outputs", [])
         title = params.get("title", "")
-        circuit = Circuit(circuit_name, title)
+        category = params.get("category", "other")
+        circuit = Circuit(circuit_name, title, category)
         for in_param in inputs:
             circuit.parameters.extend(_parse_parameters(in_param, "input"))
 
@@ -227,6 +236,78 @@ def parse_circuits(json_circuits: DroidOuterJSON) -> str:
             circuit.parameters.extend(_parse_parameters(out_param, "output"))
 
         circuits.append(circuit)
+
+    return circuits
+
+
+def split_circuits(circuits: List[Circuit]) -> Dict[str, str]:
+    """Split circuits into one file per category.
+
+    Returns a dictionary keyed by filename, with the contents of the file as
+    value.
+    """
+    files = {}
+    for circuit in circuits:
+        filename = f"{circuit.category}.py"
+        if filename not in files:
+            files[filename] = ""
+        files[filename] += f"{circuit}\n"
+
+    return files
+
+
+def write_circuits(files: Dict[str, str], directory: Path) -> None:
+    """Write circuits to files in a directory."""
+    assert (
+        directory.exists() and directory.is_dir()
+    ), "Directory must exist and be a directory."
+    for filename, content in files.items():
+        filepath = directory / filename
+        with open(filepath, "w", encoding="utf-8") as f:
+            f.write(MODULE_HEADER)
+            f.write("\n")
+            f.write(content)
+            f.flush()
+
+
+def write_init(circuits: List[Circuit], directory: Path) -> None:
+    """Write circuit imports to the module init file."""
+    assert (
+        directory.exists() and directory.is_dir()
+    ), "Directory must exist and be a directory."
+    filepath = directory / "__init__.py"
+    content = [INIT_HEADER]
+    categorymap = defaultdict(list)
+    for circuit in circuits:
+        categorymap[circuit.category].append(circuit.name.capitalize())
+
+    for category, c_circuits in categorymap.items():
+        content.append(INIT_TEMPLATE.format(filename=category))
+        for circuit in c_circuits:
+            content.append(f"    {circuit},")
+        content.append(")")
+
+    content.append("\n__all__ = (")
+
+    for circuit in sorted(circuits, key=lambda x: x.name):
+        content.append(f'    "{circuit.name.capitalize()}",')
+    content.append(")")
+    with open(filepath, "w", encoding="utf-8") as f:
+        f.write("\n".join(content))
+        f.flush()
+
+
+def parse_to_directory(json_circuits: DroidOuterJSON, directory: Path) -> None:
+    """Parse circuits and write in smaller files to a directory."""
+    circuits = _parse_circuits(json_circuits)
+    files = split_circuits(circuits)
+    write_circuits(files, directory)
+    write_init(circuits, directory)
+
+
+def parse_circuits(json_circuits: DroidOuterJSON) -> str:
+    """Parse circuits."""
+    circuits = _parse_circuits(json_circuits)
     circuitstr = "\n\n".join([str(circuit) for circuit in circuits])
     text = [MODULE_HEADER, circuitstr]
 
@@ -249,10 +330,22 @@ def cli() -> None:
         default=sys.stdout,
     )
 
+    parser.add_argument("--directory", "-d", help="Output directory")
+
     args = parser.parse_args()
     circuits: DroidOuterJSON = json.load(args.circuitsfile)
-    circuitstr = parse_circuits(circuits)
-    args.outfile.write(circuitstr)
+    if args.directory:
+        directory = Path(args.directory)
+        assert (
+            directory.exists() and directory.is_dir()
+        ), "Directory must exist and be a directory."
+
+        print(f"Writing files to directory {directory.absolute()}")
+        parse_to_directory(circuits, directory)
+
+    else:
+        circuitstr = parse_circuits(circuits)
+        args.outfile.write(circuitstr)
 
 
 if __name__ == "__main__":
