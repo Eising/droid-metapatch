@@ -71,7 +71,9 @@ class Parameter:
     @property
     def clean_description(self) -> str:
         """Return description without LaTeX."""
-        return _strip_latex(self.description)
+        # Join lines together
+        description = " ".join(self.description.splitlines())
+        return _strip_latex(description)
 
     @property
     def synopsis(self) -> str:
@@ -80,8 +82,16 @@ class Parameter:
         descr_indent = " " * 12
         heading_str = f"{self.name}: {self.type}"
         heading = textwrap.indent(heading_str, indent)
-        body = textwrap.indent(self.clean_description, descr_indent)
-        return "\n".join([heading, body])
+        body = "\n".join(
+            textwrap.wrap(
+                self.clean_description,
+                width=88,
+                initial_indent=descr_indent,
+                subsequent_indent=descr_indent,
+            )
+        )
+        # body = textwrap.indent(self.clean_description, descr_indent)
+        return "\n".join([heading, body, ""])
 
     def __str__(self) -> str:
         """Generate string."""
