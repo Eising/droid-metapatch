@@ -1,6 +1,6 @@
 """Boilerplate functions."""
 
-from typing import List
+from typing import Dict, List, Optional, Tuple
 from .patch_parser import parse_patch
 from . import patch_factory
 
@@ -51,7 +51,52 @@ def find_unique_section_name(section_name: str, used_names: List[str]):
             digit += 1
 
 
-def generate_boilerplate(patch: str) -> str:
+def _generate_transforms(
+    select: Optional[str] = None,
+    select_at: Optional[str] = None,
+    prepend: Optional[str] = None,
+    append: Optional[str] = None,
+    input: Optional[str] = None,
+    output: Optional[str] = None,
+    gate: Optional[str] = None,
+) -> Dict[str, str]:
+    """Generate a transform kwargs dict."""
+    all_transforms = {
+        "select": select,
+        "select_at": select_at,
+        "prepend": prepend,
+        "append": append,
+        "input": input,
+        "output": output,
+        "gate": gate,
+    }
+    return {k: v for k, v in all_transforms.items() if v is not None}
+
+
+def _grab_jack(jack: Optional[List[str]]) -> Tuple[Optional[List[str]], Optional[str]]:
+    """Grab an input, output or gate if possible.
+
+    Return the modified list and the value.
+    """
+    if not jack:
+        return (None, None)
+    jackval = jack.pop(0)
+    return (jack, jackval)
+
+
+def generate_boilerplate(
+    patch: str,
+    title: str,
+    description: str,
+    classname: str,
+    to_voices: Optional[int] = None,
+    template_section: Optional[str] = None,
+    prepend: Optional[str] = None,
+    inputs: Optional[List[str]] = None,
+    outputs: Optional[List[str]] = None,
+    gates: Optional[List[str]] = None,
+    ignored: Optional[List[str]] = None,
+) -> str:
     """Generate boilerplate."""
     parsed = parse_patch(patch)
     pg_fun = [
@@ -63,7 +108,7 @@ def generate_boilerplate(patch: str) -> str:
         # We have sections.
 
         boilerplate.append(patch_factory.header(with_list=True))
-        boilerplate.append(patch_factory.pg_class())
+        boilerplate.append(patch_factory.pg_class(title, description, classname))
         secfunmap = {}
         used_sections = []
         circuits_main = []
@@ -95,13 +140,45 @@ def generate_boilerplate(patch: str) -> str:
                 )
 
         for secfun, section_name in secfunmap.items():
-            # TODO: Pass in transformations
-            pg_fun.append(
-                patch_factory.generate_transformation(secfun, section_name, {}, [])
-            )
+            if section_name == template_section and to_voices:
+                if ignored is None:
+                    ignored = []
+                for voice in range(1, to_voices + 1):
+                    inputs, v_input = _grab_jack(inputs)
+                    outputs, v_output = _grab_jack(outputs)
+                    gates, v_gate = _grab_jack(gates)
+                    if not prepend:
+                        prepend = "_VOICE"
+                    if prepend.startswith("_"):
+                        select = prepend
+                    else:
+                        select = "_" + prepend
+                    select_at = str(voice)
+                    transformation = _generate_transforms(
+                        select,
+                        select_at,
+                        prepend,
+                        input=v_input,
+                        output=v_output,
+                        gate=v_gate,
+                    )
+
+                    pg_fun.append(
+                        patch_factory.generate_transformation(
+                            secfun,
+                            section_name,
+                            transforms=transformation,
+                            ignore=ignored,
+                        )
+                    )
+
+            else:
+                pg_fun.append(
+                    patch_factory.generate_transformation(secfun, section_name, {}, [])
+                )
 
         boilerplate.extend(pg_fun)
-        boilerplate.append(patch_factory.footer())
+        boilerplate.append(patch_factory.footer(classname))
         boilerplate.append("\n")
         return "".join(boilerplate)
 
@@ -114,8 +191,8 @@ def generate_boilerplate(patch: str) -> str:
                 )
             )
 
-    boilerplate.append(patch_factory.pg_class())
+    boilerplate.append(patch_factory.pg_class(title, description, classname))
     boilerplate.extend(pg_fun)
     boilerplate.append("\n")
-    boilerplate.append(patch_factory.footer())
+    boilerplate.append(patch_factory.footer(classname))
     return "".join(boilerplate)

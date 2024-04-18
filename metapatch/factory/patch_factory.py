@@ -6,10 +6,6 @@ import keyword
 from .context import TemplateContext
 from .formatting import format_line
 
-DEFAULT_TITLE = "Draft Patch Generator"
-DEFAULT_DESCRIPTION = "A short description"
-DEFAULT_CLASSNAME = "PatchGenerator"
-
 
 TCircuitParams = Dict[str, str]
 TCircuit = Dict[str, TCircuitParams]
@@ -29,7 +25,7 @@ def header(with_list: bool = False) -> str:
     return str(context)
 
 
-def footer(classname: str = DEFAULT_CLASSNAME) -> str:
+def footer(classname: str) -> str:
     """Generate footer."""
     context = TemplateContext()
     context.add('if __name__ == "__main__":')
@@ -40,9 +36,9 @@ def footer(classname: str = DEFAULT_CLASSNAME) -> str:
 
 
 def pg_class(
-    title: str = DEFAULT_TITLE,
-    description: str = DEFAULT_DESCRIPTION,
-    classname: str = DEFAULT_CLASSNAME,
+    title: str,
+    description: str,
+    classname: str,
 ) -> str:
     """Generate a patch generator class."""
     context = TemplateContext()

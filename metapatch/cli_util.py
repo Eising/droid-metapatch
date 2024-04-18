@@ -3,13 +3,15 @@
 import argparse
 import sys
 import os
-import re
-import keyword
+from typing import TextIO
 
-from dataclasses import dataclass
-from typing import Iterator, Dict, List, Optional
 
 import metapatch.factory
+
+
+DEFAULT_TITLE = "Draft Patch Generator"
+DEFAULT_DESCRIPTION = "A short description"
+DEFAULT_CLASSNAME = "PatchGenerator"
 
 
 def get_patch_stdin() -> str:
@@ -35,46 +37,91 @@ def get_patch_stdin() -> str:
 def cli() -> argparse.Namespace:
     """Parse cli."""
     parser = argparse.ArgumentParser(description="Metapatch helper script.")
-    parser.add_argument(
+
+    subparsers = parser.add_subparsers(help="actions", metavar="action", dest="action")
+
+    convert_parser = subparsers.add_parser(
+        "convert", help="Convert (partial) droid patches to python statements."
+    )
+
+    convert_parser.add_argument(
         "infile",
         nargs="?",
         type=argparse.FileType("r", encoding="utf-8"),
         default=sys.stdin,
         help="Input file. Defaults to stdin.",
     )
-    parser.add_argument(
+    boilerplate_parser = subparsers.add_parser(
+        "generate", help="Generate a patch generator from a droid patch."
+    )
+    boilerplate_parser.add_argument(
+        "infile", type=argparse.FileType("r", encoding="utf-8")
+    )
+    boilerplate_parser.add_argument(
         "outfile",
         nargs="?",
         type=argparse.FileType("w", encoding="utf-8"),
         default=sys.stdout,
         help="Output file. Defaults to stdout.",
     )
-    parser.add_argument(
-        "--boilerplate",
-        action="store_true",
-        help="Generate a full example patch generator.",
+
+    boilerplate_parser.add_argument(
+        "--title", help="Title of your patch generator.", default=DEFAULT_TITLE
     )
+    boilerplate_parser.add_argument(
+        "--description",
+        help="Description of your patch generator.",
+        default=DEFAULT_DESCRIPTION,
+    )
+    boilerplate_parser.add_argument(
+        "--classname",
+        help="Name of the python class for the patch generator.",
+        default=DEFAULT_CLASSNAME,
+    )
+
     parser.epilog = (
         "If called without any arguments, you may input one or more droid circuits, "
         "and get the corresponding python code back."
     )
     args = parser.parse_args()
+    if not args.action:
+        if not sys.stdin.isatty():
+            parser.exit(1)
+        else:
+            args.action = "convert"
+            args.infile = sys.stdin
+
     return args
+
+
+def cli_convert(infile: TextIO) -> None:
+    """Convert on the CLI."""
+    if infile.isatty():
+        print("Paste a circuit configuration and finish with ctrl-d.\n")
+    buffer = infile.read()
+
+    print(metapatch.factory.generate_snippet(buffer))
+
+
+def cli_boilerplate(args: argparse.Namespace) -> None:
+    """Generate boilerplate."""
+    buffer = args.infile.read()
+    output = metapatch.factory.generate_boilerplate(
+        buffer, args.title, args.description, args.classname
+    )
+    args.outfile.write(output + os.linesep)
 
 
 def main() -> None:
     """Main function."""
     args = cli()
-    if args.infile.isatty():
-        print("Paste a circuit configuration and finish with ctrl-d.\n")
-    buffer = args.infile.read()
-    if args.boilerplate:
-        # output = generate_boilerplate(buffer)
-        output = metapatch.factory.generate_boilerplate(buffer)
-    else:
-        output = metapatch.factory.generate_snippet(buffer)
 
-    args.outfile.write(output + os.linesep)
+    if args.action == "convert":
+        cli_convert(args.infile)
+    elif args.action == "generate":
+        cli_boilerplate(args)
+    else:
+        print(f"Unsupported action: {args.action}")
 
 
 if __name__ == "__main__":

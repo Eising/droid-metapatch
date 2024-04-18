@@ -60,7 +60,7 @@ def tokenize(patch: str) -> Iterator[Token]:
     tok_regex = "|".join("(?P<%s>%s)" % pair for pair in spec)
     line_num = 1
     line_start = 0
-    section_header = "-" * 49
+    section_re = re.compile(r"----*$")  # This is the regex that Forge uses too.
     in_section = False
     section_title_derived = False
     for mo in re.finditer(tok_regex, patch):
@@ -73,7 +73,7 @@ def tokenize(patch: str) -> Iterator[Token]:
             line_start = mo.end()
             line_num += 1
             continue
-        if kind == "COMMENT" and value == section_header:
+        if kind == "COMMENT" and section_re.match(value) is not None:
             in_section = not in_section
             if in_section:
                 section_title_derived = False
@@ -101,10 +101,12 @@ def parse_patch(patch: str) -> ParsedPatch:
     curr_section: Optional[str] = None
     curr_circuit: Optional[str] = None
     curr_circuit_comments: List[str] = []
+    in_header = True
     for token in tokenize(patch):
         if token.type == "SECTION":
             curr_section = token.value
             sections[curr_section] = []
+            in_header = False
             continue
         elif token.type == "CONTROLLER":
             # Discard all previous comments
@@ -112,6 +114,7 @@ def parse_patch(patch: str) -> ParsedPatch:
             curr_circuit_comments = []
 
         elif token.type == "CIRCUIT":
+            in_header = False
             if curr_circuit:
                 circuits.append({curr_circuit: curr_params})
             curr_circuit = token.value
@@ -132,7 +135,8 @@ def parse_patch(patch: str) -> ParsedPatch:
         elif token.type == "SECTION_COMMENT":
             sections[curr_section].append(token.value)
         elif token.type == "COMMENT":
-            curr_circuit_comments.append(token.value)
+            if not in_header:
+                curr_circuit_comments.append(token.value)
 
     if curr_circuit:
         final_circuit = {curr_circuit: curr_params}
