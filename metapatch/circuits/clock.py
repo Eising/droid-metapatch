@@ -8,25 +8,24 @@ from metapatch.circuits.base import DroidCircuit
 @dataclass
 class Bernoulli(DroidCircuit):
     """Circuit bernoulli.
-      Random gate distributor
 
-    Inputs:
-        input: gate
-            Send gate or trigger signals here.
+    Random gate distributor
 
-        distribution: bipolar
-            This controls the probability of a gate to be forwarded to output1. A value
-            of 0.5 means 50%.
+    Args:
+        input (gate):
+          Send gate or trigger signals here.
 
+        distribution (bipolar):
+          This controls the probability of a gate to be forwarded to output1. A value of
+          0.5 means 50%.
 
-    Outputs:
-        output1: gate
-            Gates from input are forwarded here if the random decision was in favour of
-            output 1.
+        output1 (gate):
+          Gates from input are forwarded here if the random decision was in favour of
+          output 1.
 
-        output2: gate
-            Gates from input are forwarded here if the random decision was in favour of
-            output 2.
+        output2 (gate):
+          Gates from input are forwarded here if the random decision was in favour of
+          output 2.
 
     """
 
@@ -39,42 +38,41 @@ class Bernoulli(DroidCircuit):
 @dataclass
 class Burst(DroidCircuit):
     """Circuit burst.
-      Generate burst of pulses
 
-    Inputs:
-        rate: cv
-            Frequency control: The default frequency of the burst rate is 1 Hz (one
-            trigger per second or 60 BPM if you like). Each volt doubles the frequency.
-            So an input of 1 V (a number of 0.1) speeds up to two triggers per second
-            (120 BPM), 2 V (0.2) creates triggers at 4 Hz (240 BPM) and so on. On the
-            other hand negative voltages reduce the speed, so -1 V (-0.1) will give
-            0.5 Hz (30 BPM) and so on.
+    Generate burst of pulses
 
-        taptempo: trigger
-            Feed a reference clock here and the burst will run at the speed of that
-            clock – albeit optionally modified by rate. Please see page 23 for details
-            on using taptempo inputs.
+    Args:
+        rate (cv):
+          Frequency control: The default frequency of the burst rate is 1 Hz (one
+          trigger per second or 60 BPM if you like). Each volt doubles the frequency. So
+          an input of 1 V (a number of 0.1) speeds up to two triggers per second
+          (120 BPM), 2 V (0.2) creates triggers at 4 Hz (240 BPM) and so on. On the
+          other hand negative voltages reduce the speed, so -1 V (-0.1) will give 0.5 Hz
+          (30 BPM) and so on.
 
-        hz: cv
-            Set the frequency in Hz directly by setting a number here. This is exclusive
-            to taptempo, but will work in combination with rate.
+        taptempo (trigger):
+          Feed a reference clock here and the burst will run at the speed of that clock
+          – albeit optionally modified by rate. Please see page 23 for details on using
+          taptempo inputs.
 
-        trigger: trigger
-            Send a trigger here in order to start the bursts
+        hz (cv):
+          Set the frequency in Hz directly by setting a number here. This is exclusive
+          to taptempo, but will work in combination with rate.
 
-        reset: trigger
-            Send a trigger here to immediately stop any ongoing burst.
+        trigger (trigger):
+          Send a trigger here in order to start the bursts
 
-        count: integer
-            Number of triggers to send in one burst.
+        reset (trigger):
+          Send a trigger here to immediately stop any ongoing burst.
 
-        skip: integer
-            Number of time slots to wait before starting with the burst.
+        count (integer):
+          Number of triggers to send in one burst.
 
+        skip (integer):
+          Number of time slots to wait before starting with the burst.
 
-    Outputs:
-        output: trigger
-            The triggers are output here.
+        output (trigger):
+          The triggers are output here.
 
     """
 
@@ -91,63 +89,62 @@ class Burst(DroidCircuit):
 @dataclass
 class Clocktool(DroidCircuit):
     """Circuit clocktool.
-      Clock divider / multiplier / shifter
 
-    Inputs:
-        clock: trigger
-            Patch a steady clock here for this circuit to be of any use
+    Clock divider / multiplier / shifter
 
-        reset: trigger
-            A trigger here resets the internal counters. This is useful if you use the
-            clock divider and want to restart the internal counting from 0, in order to
-            align the clock divider with some external sequencers or the like
+    Args:
+        clock (trigger):
+          Patch a steady clock here for this circuit to be of any use
 
-        divide: integer
-            Number to divide the clock through. This will be rounded to the nearest
-            integer number. Note: if you want to use an external CV then you need to
-            multiply that with some useful number, since otherwise you will get a number
-            between 0 and 1 which is not useful at all. Remember: 10 V translates to a
-            number of 1.
+        reset (trigger):
+          A trigger here resets the internal counters. This is useful if you use the
+          clock divider and want to restart the internal counting from 0, in order to
+          align the clock divider with some external sequencers or the like
 
-        multiply: integer
-            Number to multiply the clock with. Same considerations hold as for divide.
+        divide (integer):
+          Number to divide the clock through. This will be rounded to the nearest
+          integer number. Note: if you want to use an external CV then you need to
+          multiply that with some useful number, since otherwise you will get a number
+          between 0 and 1 which is not useful at all. Remember: 10 V translates to a
+          number of 1.
 
-        dutycycle: bipolar
-            Output duty cycle of the clock – which is essentially a square wave – in a
-            range from 0.0 to 1.0 or 0% to 100%. If you don't patch anything here, the
-            length of the trigger output pulses will be 10 ms ('s standard trigger
-            duration).
+        multiply (integer):
+          Number to multiply the clock with. Same considerations hold as for divide.
 
-        gatelength: cv
-            This jack is alternative to dutycycle and will override it if it is used.
-            It sets the length of each output pulse to a fixed value that is independent
-            of the incoming clock. A value of 0.5 (a CV of 5 volts) translates into a
-            gate length of 0.5 seconds.
+        dutycycle (bipolar):
+          Output duty cycle of the clock – which is essentially a square wave – in a
+          range from 0.0 to 1.0 or 0% to 100%. If you don't patch anything here, the
+          length of the trigger output pulses will be 10 ms ('s standard trigger
+          duration).
 
-        delay: cv
-            This CV allows you to shift the input clock beat around in time. A value of
-            0.1 will delay each beat by 10% of a clock cycle. A value of -0.1 is also
-            allowed and shifts the beat 10% ahead.  For an unmodulated delay -0.1 and
-            0.9 is just the same, because the output clock will have the same relation
-            to the input clock. But if you modify the delay from 0.0 to 0.9, the next
-            tick will be delayed by 90% of one cycle, where is a modification from 0.0
-            to -0.1 will play the next tick by 10% earlier.
+        gatelength (cv):
+          This jack is alternative to dutycycle and will override it if it is used.
+          It sets the length of each output pulse to a fixed value that is independent
+          of the incoming clock. A value of 0.5 (a CV of 5 volts) translates into a gate
+          length of 0.5 seconds.
 
+        delay (cv):
+          This CV allows you to shift the input clock beat around in time. A value of
+          0.1 will delay each beat by 10% of a clock cycle. A value of -0.1 is also
+          allowed and shifts the beat 10% ahead.  For an unmodulated delay -0.1 and 0.9
+          is just the same, because the output clock will have the same relation to the
+          input clock. But if you modify the delay from 0.0 to 0.9, the next tick will
+          be delayed by 90% of one cycle, where is a modification from 0.0 to -0.1 will
+          play the next tick by 10% earlier.
 
-    Outputs:
-        output: gate
-            Here comes the modified clock
+        output (gate):
+          Here comes the modified clock
 
-        inputpitch: cv
-            Experimental output that outputs a representation of the input clock's pitch
-            on a 1V/octave base, based on the reference of 60 BPM (1 Hz). This means
-            that an input clock of 120 BPM will output 1V (a value of 0.1), since
-            120 BPM it is one octave higher than 60 BPM. If you feed that value to the
-            rate input of an LFO you get that running at exactly the same speed (not in
-            the same phase, however).
+        inputpitch (cv):
+          Experimental output that outputs a representation of the input clock's pitch
+          on a 1V/octave base, based on the reference of 60 BPM (1 Hz). This means that
+          an input clock of 120 BPM will output 1V (a value of 0.1), since 120 BPM it is
+          one octave higher than 60 BPM. If you feed that value to the rate input of an
+          LFO you get that running at exactly the same speed (not in the same phase,
+          however).
 
-        outputpitch: cv
-            Same for the modified output clock
+        outputpitch (cv):
+          Same for the modified output clock
 
     """
 
@@ -166,36 +163,35 @@ class Clocktool(DroidCircuit):
 @dataclass
 class Flipflop(DroidCircuit):
     """Circuit flipflop.
-      Simple flip flop
 
-    Inputs:
-        toggle: trigger
-            A trigger here inverts the state of the flip flop. It changes 0 to 1 and 1
-            to 0.
+    Simple flip flop
 
-        set: trigger
-            Sets the flip flop to 1.
+    Args:
+        toggle (trigger):
+          A trigger here inverts the state of the flip flop. It changes 0 to 1 and 1 to
+          0.
 
-        reset: trigger
-            Sets the flip flop to 0.
+        set (trigger):
+          Sets the flip flop to 1.
 
-        clear: trigger
-            Sets the flip flop to the value defined by startvalue.
+        reset (trigger):
+          Sets the flip flop to 0.
 
-        startvalue: gate
-            The flip flop starts its live with this value. Also clear will set the flip
-            flop to this value.
+        clear (trigger):
+          Sets the flip flop to the value defined by startvalue.
 
-        load: trigger
-            Loads the value into the flip flop that's defined with loadvalue.
+        startvalue (gate):
+          The flip flop starts its live with this value. Also clear will set the flip
+          flop to this value.
 
-        loadvalue: gate
-            Value to set the flip flop to, when load is triggered.
+        load (trigger):
+          Loads the value into the flip flop that's defined with loadvalue.
 
+        loadvalue (gate):
+          Value to set the flip flop to, when load is triggered.
 
-    Outputs:
-        output: gate
-            Outputs the current value of the flip flop: either 0 or 1.
+        output (gate):
+          Outputs the current value of the flip flop: either 0 or 1.
 
     """
 
@@ -212,49 +208,47 @@ class Flipflop(DroidCircuit):
 @dataclass
 class Gatetool(DroidCircuit):
     """Circuit gatetool.
-      Operate on triggers and gates, modify gatelength
 
-    Inputs:
-        inputgate: gate
-            Input gate. Use this if the length of the input gate is relevant.
+    Operate on triggers and gates, modify gatelength
 
-        inputtrigger: trigger
-            Input trigger. Use this if the length of the input gate should be ignored.
+    Args:
+        inputgate (gate):
+          Input gate. Use this if the length of the input gate is relevant.
 
-        inputedge: gate
-            Input edge: Use this if every low/high or high/low transition should count
-            as a trigger.
+        inputtrigger (trigger):
+          Input trigger. Use this if the length of the input gate should be ignored.
 
-        gatelength: cv
-            Sets the length of the gate of outputgate in seconds. If you use taptempo
-            the length is in fractions of a clock tick, instead.
+        inputedge (gate):
+          Input edge: Use this if every low/high or high/low transition should count as
+          a trigger.
 
-        gatestretch: cv
-            Makes the output gate longer than the input gate by the given percentage.
-            This parameter is ignored if gatelength is used.
+        gatelength (cv):
+          Sets the length of the gate of outputgate in seconds. If you use taptempo the
+          length is in fractions of a clock tick, instead.
 
-        mingatelength: cv
-            Defines a minimum length of the output gate in seconds or clock ticks.
+        gatestretch (cv):
+          Makes the output gate longer than the input gate by the given percentage. This
+          parameter is ignored if gatelength is used.
 
-        maxgatelength: cv
-            Defines a maximum length of the output gate in seconds or clock ticks.
+        mingatelength (cv):
+          Defines a minimum length of the output gate in seconds or clock ticks.
 
-        taptempo: trigger
-            If you patch a reference clock here, gatelength, mingatelength and
-            maxgatelength are fractions of one clock tick, not seconds anymore. Please
-            see page 23 for details on using taptempo inputs.
+        maxgatelength (cv):
+          Defines a maximum length of the output gate in seconds or clock ticks.
 
+        taptempo (trigger):
+          If you patch a reference clock here, gatelength, mingatelength and
+          maxgatelength are fractions of one clock tick, not seconds anymore. Please see
+          page 23 for details on using taptempo inputs.
 
-    Outputs:
-        outputgate: gate
-            Outputs a gate with controllable length for every gate, trigger or edge
-            event.
+        outputgate (gate):
+          Outputs a gate with controllable length for every gate, trigger or edge event.
 
-        outputtrigger: trigger
-            Outputs a 10 ms trigger for every gate, trigger or edge event.
+        outputtrigger (trigger):
+          Outputs a 10 ms trigger for every gate, trigger or edge event.
 
-        outputedge: gate
-            Toggle between 0 and 1 at every gate, trigger or edge event.
+        outputedge (gate):
+          Toggle between 0 and 1 at every gate, trigger or edge event.
 
     """
 
@@ -274,24 +268,23 @@ class Gatetool(DroidCircuit):
 @dataclass
 class Once(DroidCircuit):
     """Circuit once.
-      Output one trigger after the Droid has started
 
-    Inputs:
-        delay: cv
-            Set a delay in seconds after the Droid's start before the trigger triggers.
-            Note: the default value is 10 ms, not zero. This allows all attached
-            controllers to have sent at least one update before and the real pot values
-            etc. are available at the circuits.
+    Output one trigger after the Droid has started
 
-        onlycoldstart: gate
-            If you set this input to 1, once just sends a trigger after a cold start,
-            only. A cold start means that the Droid has been powered up. Pressing the
-            button for loading a new patch and does a warm start.
+    Args:
+        delay (cv):
+          Set a delay in seconds after the Droid's start before the trigger triggers.
+          Note: the default value is 10 ms, not zero. This allows all attached
+          controllers to have sent at least one update before and the real pot values
+          etc. are available at the circuits.
 
+        onlycoldstart (gate):
+          If you set this input to 1, once just sends a trigger after a cold start,
+          only. A cold start means that the Droid has been powered up. Pressing the
+          button for loading a new patch and does a warm start.
 
-    Outputs:
-        trigger: trigger
-            The trigger is output here.
+        trigger (trigger):
+          The trigger is output here.
 
     """
 
@@ -303,67 +296,66 @@ class Once(DroidCircuit):
 @dataclass
 class Timing(DroidCircuit):
     """Circuit timing.
-      Shuffle/swing and complex timing generator
 
-    Inputs:
-        clock: trigger
-            Patch a steady clock here for this circuit to be of any use
+    Shuffle/swing and complex timing generator
 
-        reset: trigger
-            A trigger here resets the internal step counter and restart at step 1.
+    Args:
+        clock (trigger):
+          Patch a steady clock here for this circuit to be of any use
 
-        timing1: cv
-            Specifies a relative timing for each step in relation to the input clock. A
-            timing of 0.3 will shift the respective beat 30% of a clock cycle behind,
-            while -0.3 will make it 30% early.  The timing values are clipped into the
-            range -0.9999 …0.9999.
+        reset (trigger):
+          A trigger here resets the internal step counter and restart at step 1.
 
-        timing2: cv
-            Specifies a relative timing for each step in relation to the input clock. A
-            timing of 0.3 will shift the respective beat 30% of a clock cycle behind,
-            while -0.3 will make it 30% early.  The timing values are clipped into the
-            range -0.9999 …0.9999.
+        timing1 (cv):
+          Specifies a relative timing for each step in relation to the input clock. A
+          timing of 0.3 will shift the respective beat 30% of a clock cycle behind,
+          while -0.3 will make it 30% early.  The timing values are clipped into the
+          range -0.9999 …0.9999.
 
-        timing3: cv
-            Specifies a relative timing for each step in relation to the input clock. A
-            timing of 0.3 will shift the respective beat 30% of a clock cycle behind,
-            while -0.3 will make it 30% early.  The timing values are clipped into the
-            range -0.9999 …0.9999.
+        timing2 (cv):
+          Specifies a relative timing for each step in relation to the input clock. A
+          timing of 0.3 will shift the respective beat 30% of a clock cycle behind,
+          while -0.3 will make it 30% early.  The timing values are clipped into the
+          range -0.9999 …0.9999.
 
-        timing4: cv
-            Specifies a relative timing for each step in relation to the input clock. A
-            timing of 0.3 will shift the respective beat 30% of a clock cycle behind,
-            while -0.3 will make it 30% early.  The timing values are clipped into the
-            range -0.9999 …0.9999.
+        timing3 (cv):
+          Specifies a relative timing for each step in relation to the input clock. A
+          timing of 0.3 will shift the respective beat 30% of a clock cycle behind,
+          while -0.3 will make it 30% early.  The timing values are clipped into the
+          range -0.9999 …0.9999.
 
-        timing5: cv
-            Specifies a relative timing for each step in relation to the input clock. A
-            timing of 0.3 will shift the respective beat 30% of a clock cycle behind,
-            while -0.3 will make it 30% early.  The timing values are clipped into the
-            range -0.9999 …0.9999.
+        timing4 (cv):
+          Specifies a relative timing for each step in relation to the input clock. A
+          timing of 0.3 will shift the respective beat 30% of a clock cycle behind,
+          while -0.3 will make it 30% early.  The timing values are clipped into the
+          range -0.9999 …0.9999.
 
-        timing6: cv
-            Specifies a relative timing for each step in relation to the input clock. A
-            timing of 0.3 will shift the respective beat 30% of a clock cycle behind,
-            while -0.3 will make it 30% early.  The timing values are clipped into the
-            range -0.9999 …0.9999.
+        timing5 (cv):
+          Specifies a relative timing for each step in relation to the input clock. A
+          timing of 0.3 will shift the respective beat 30% of a clock cycle behind,
+          while -0.3 will make it 30% early.  The timing values are clipped into the
+          range -0.9999 …0.9999.
 
-        timing7: cv
-            Specifies a relative timing for each step in relation to the input clock. A
-            timing of 0.3 will shift the respective beat 30% of a clock cycle behind,
-            while -0.3 will make it 30% early.  The timing values are clipped into the
-            range -0.9999 …0.9999.
+        timing6 (cv):
+          Specifies a relative timing for each step in relation to the input clock. A
+          timing of 0.3 will shift the respective beat 30% of a clock cycle behind,
+          while -0.3 will make it 30% early.  The timing values are clipped into the
+          range -0.9999 …0.9999.
 
-        timing8: cv
-            Specifies a relative timing for each step in relation to the input clock. A
-            timing of 0.3 will shift the respective beat 30% of a clock cycle behind,
-            while -0.3 will make it 30% early.  The timing values are clipped into the
-            range -0.9999 …0.9999.
+        timing7 (cv):
+          Specifies a relative timing for each step in relation to the input clock. A
+          timing of 0.3 will shift the respective beat 30% of a clock cycle behind,
+          while -0.3 will make it 30% early.  The timing values are clipped into the
+          range -0.9999 …0.9999.
 
+        timing8 (cv):
+          Specifies a relative timing for each step in relation to the input clock. A
+          timing of 0.3 will shift the respective beat 30% of a clock cycle behind,
+          while -0.3 will make it 30% early.  The timing values are clipped into the
+          range -0.9999 …0.9999.
 
-    Outputs:
-        output: trigger
-            Here comes the modified output clock
+        output (trigger):
+          Here comes the modified output clock
 
     """
 
@@ -383,49 +375,48 @@ class Timing(DroidCircuit):
 @dataclass
 class Triggerdelay(DroidCircuit):
     """Circuit triggerdelay.
-      Trigger Delay with multi tap and optional clocking
 
-    Inputs:
-        input: gate
-            Patch triggers or gates to be delayed here.
+    Trigger Delay with multi tap and optional clocking
 
-        delay: cv
-            Amount of time the incoming triggers are being delayed. When clock is
-            patched, this is in relation to one clock cycle, so a delay of 4 will delay
-            the input pattern by exactly 4 beats. Fractions are allowed also. If clock
-            is not patched, this parameter is in seconds. So for example in order to
-            delay by 100 ms you need a delay of 0.1.
+    Args:
+        input (gate):
+          Patch triggers or gates to be delayed here.
 
-        gatelength: cv
-            Unless you patch this jack the length of the output gates is exactly the
-            length of the input gates. By use of this parameter you override that length
-            and set a fixed length in seconds – or if clock is being used – in clock
-            cycles.
+        delay (cv):
+          Amount of time the incoming triggers are being delayed. When clock is patched,
+          this is in relation to one clock cycle, so a delay of 4 will delay the input
+          pattern by exactly 4 beats. Fractions are allowed also. If clock is not
+          patched, this parameter is in seconds. So for example in order to delay by
+          100 ms you need a delay of 0.1.
 
-        repeats: integer
-            Number of times the delayed trigger is being repeated. Each further
-            repetition is with the same delay.
+        gatelength (cv):
+          Unless you patch this jack the length of the output gates is exactly the
+          length of the input gates. By use of this parameter you override that length
+          and set a fixed length in seconds – or if clock is being used – in clock
+          cycles.
 
-        mute: gate
-            A high gate signal suppresses any further output gates. However, the current
-            gate is finished normally.
+        repeats (integer):
+          Number of times the delayed trigger is being repeated. Each further repetition
+          is with the same delay.
 
-        clock: trigger
-            When you patch this input, the trigger delay runs in clocked mode. In this
-            mode delay is relative to one clock cycle. I.e. a delay if 0.5 will delay
-            the trigger by half a clock cycle. The same holds for gatelength. That is
-            measured in clock cycles, too.
+        mute (gate):
+          A high gate signal suppresses any further output gates. However, the current
+          gate is finished normally.
 
+        clock (trigger):
+          When you patch this input, the trigger delay runs in clocked mode. In this
+          mode delay is relative to one clock cycle. I.e. a delay if 0.5 will delay the
+          trigger by half a clock cycle. The same holds for gatelength. That is measured
+          in clock cycles, too.
 
-    Outputs:
-        output: gate
-            Outputs the delayed triggers/gates, while keeping the gate length – unless
-            you have changed that
+        output (gate):
+          Outputs the delayed triggers/gates, while keeping the gate length – unless you
+          have changed that
 
-        overflow: gate
-            Whenever there are more input triggers than this circuit can keep memory of,
-            this output outputs a gate of 0.5 sec length. You can wire this to an LED in
-            order to know when this happens.
+        overflow (gate):
+          Whenever there are more input triggers than this circuit can keep memory of,
+          this output outputs a gate of 0.5 sec length. You can wire this to an LED in
+          order to know when this happens.
 
     """
 

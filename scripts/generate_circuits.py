@@ -22,17 +22,22 @@ CIRCUIT_TEMPLATE = """
 @dataclass
 class {circuitname}(DroidCircuit):
     \"\"\"Circuit {internalname}.
-     {title}
 
-    Inputs:
+    {title}
+
+    Args:
 {inputs}
-
-    Outputs:
 {outputs}
     \"\"\"
 """
 
-INIT_HEADER = """\"\"\"DROID circuits module. These circuits are auto-generated from circuits.json.\"\"\""""
+INIT_HEADER = """\"\"\"DROID circuits module. These circuits are auto-generated from circuits.json.
+
+.. include:: README.md
+\"\"\"
+
+__docformat__ = "google"
+"""
 
 MODULE_HEADER = """\"\"\"DROID circuits. These circuits are auto-generated from circuits.json.\"\"\"
 
@@ -56,6 +61,8 @@ def _strip_latex(text: str) -> str:
     for pat, replacement in patterns:
         text = re.sub(pat, replacement, text)
     text = LatexNodes2Text().latex_to_text(text).strip("\t")
+    # Modify those frameboxes that remain
+    text = text.replace("[5mm][c]", "")
     return text
 
 
@@ -85,8 +92,8 @@ class Parameter:
     def synopsis(self) -> str:
         """Return a synopsis for the docstring."""
         indent = " " * 8
-        descr_indent = " " * 12
-        heading_str = f"{self.name}: {self.type}"
+        descr_indent = " " * 10
+        heading_str = f"{self.name} ({self.type}):"
         heading = textwrap.indent(heading_str, indent)
         body = "\n".join(
             textwrap.wrap(
@@ -226,7 +233,7 @@ def _parse_circuits(json_circuits: DroidOuterJSON) -> List[Circuit]:
     for circuit_name, params in json_circuits["circuits"].items():
         inputs = params.get("inputs", [])
         outputs = params.get("outputs", [])
-        title = params.get("title", "")
+        title = params.get("title", "").strip()
         category = params.get("category", "other")
         circuit = Circuit(circuit_name, title, category)
         for in_param in inputs:

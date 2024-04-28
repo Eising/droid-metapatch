@@ -71,7 +71,7 @@ def transform(
         prepend: Add a word to the start of all virtual cable names.
         append: Add a word to the end of all virtual cable names.
         input: If an input is found, change it to the value of input
-        output: If an output is found, change it to value of input (e.g., O2)
+        output: If an output is found, change it to value of output (e.g., O2)
         gate: If a gate is found, change it to the value of the gate.
         replace: List of (from, to). Does a search and replace for an arbitrary value.
            Can be used to e.g., replace one pot with another.

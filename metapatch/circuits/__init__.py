@@ -1,4 +1,10 @@
-"""DROID circuits module. These circuits are auto-generated from circuits.json."""
+"""DROID circuits module. These circuits are auto-generated from circuits.json.
+
+.. include:: README.md
+"""
+
+__docformat__ = "google"
+
 from .logic import (
     Adc,
     Compare,
