@@ -1,0 +1,141 @@
+#!/usr/bin/env python3
+"""The finished patch from the getting started guide."""
+
+from typing import List
+import metapatch
+
+class PatchGenerator(metapatch.PatchGenerator):
+    """"Auto-generated patch generator.
+
+    Change this to something more meaningful.
+        Also remember to add parameters and presets.
+    """
+
+    title = "Simple Algoquencer"
+    description = "A patch generator for simple algoquencers."
+
+    voices: int = metapatch.option("Number of voices", minimum=1, maximum=4)
+    steps: str = metapatch.option("Number of steps", choices=[("16", "16 steps"), ("8", "8 steps")])
+    external_clock: bool = metapatch.option("Use an external clock input instead of the internal one.")
+    my_preset = metapatch.preset("My Favorite Preset", {"voices": 4, "steps": "16", "external_clock": False})
+
+    def clock(self) -> List[metapatch.DroidCircuit]:
+        """Generate contents of section 'clock'."""
+        if self.external_clock:
+            return [
+                metapatch.circuits.Copy(input="I1", output="_CLOCK"),
+                metapatch.circuits.Copy(input="I2", output="_RESET"),
+            ]
+
+        # if external clock is false, the following is returned:
+        return [
+            metapatch.circuits.Lfo(
+                hz="-8 * P1.4 + 8",
+                square="_CLOCK_UNMUTED",
+            ),
+            metapatch.circuits.Button(
+                button="B1.1",
+                onvalue="1",
+                offvalue="0",
+                led="L1.1",
+                output="_RUNNING",
+            ),
+            metapatch.circuits.Button(
+                button="B1.1",
+                states="1",
+                output="_RESET",
+            ),
+            metapatch.circuits.Copy(
+                input="_CLOCK_UNMUTED * _RUNNING",
+                output="_CLOCK",
+            ),
+        ]
+
+    def algoquencer(self, output: str, gate: str, mutebutton: str, select: str) -> List[metapatch.DroidCircuit]:
+        """Generate contents of section 'Algoquencer'."""
+        muteled = "L" + mutebutton[1:]
+        algoquencer = metapatch.circuits.Algoquencer(
+            select=select,
+            clock="_CLOCK",
+            reset="_RESET",
+            button1="B2.1",
+            button2="B2.2",
+            button3="B2.3",
+            button4="B2.4",
+            button5="B2.5",
+            button6="B2.6",
+            button7="B2.7",
+            button8="B2.8",
+            activity="P1.1",
+            pitch=f"{select}_PITCH_UNQUANTIZED",
+            gate=gate,
+            mutebutton=mutebutton,
+            lengthbutton="B2.17",
+            muteled=muteled,
+            led1="L2.1",
+            led2="L2.2",
+            led3="L2.3",
+            led4="L2.4",
+            led5="L2.5",
+            led6="L2.6",
+            led7="L2.7",
+            led8="L2.8",
+        )
+        if self.steps == "16":
+            algoquencer.button9 = "B2.9"
+            algoquencer.button10 = "B2.10"
+            algoquencer.button11 = "B2.11"
+            algoquencer.button12 = "B3.12"
+            algoquencer.button13 = "B2.13"
+            algoquencer.button14 = "B3.14"
+            algoquencer.button15 = "B2.15"
+            algoquencer.button16 = "B2.16"
+            algoquencer.led9 = "L2.9"
+            algoquencer.led10 = "L2.10"
+            algoquencer.led11 = "L2.11"
+            algoquencer.led12 = "L3.12"
+            algoquencer.led13 = "L2.13"
+            algoquencer.led14 = "L3.14"
+            algoquencer.led15 = "L2.15"
+            algoquencer.led16 = "L2.16"
+
+        quantizer = metapatch.circuits.Minifonion(
+            input=f"{select}_PITCH_UNQUANTIZED",
+            root="0",
+            degree="7",
+            select1="1",
+            select3="1",
+            select5="1",
+            select7="1",
+            select9="1",
+            select11="1",
+            select13="1",
+            output=output,
+        )
+
+        return [algoquencer, quantizer]
+    def generate(self) -> None:
+        """"Patch generator function.
+
+        This function is the entrypoint function when generating the patch.
+        """
+        self.add_controller("p4b2", 1)
+        self.add_controller("b32", 2)
+        self.add_circuits(
+            self.clock(),
+            "clock",
+        )
+
+        for voice in range(1, self.voices + 1):
+            output = "output"
+            gate = f"G1.{voice}"
+            mutebutton = f"B2.{16 + voice}"
+            select = f"_VOICE_{voice}"
+            self.add_circuits(
+                self.algoquencer(output, gate, mutebutton, select),
+                f"Voice {voice} Algoquencer",
+            )
+
+
+if __name__ == "__main__":
+    PatchGenerator.run()
