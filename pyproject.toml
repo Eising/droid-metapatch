@@ -1,10 +1,12 @@
 [tool.poetry]
 name = "droid-metapatch"
-version = "2.0.0"
+version = "2.0.1"
 description = "DROID patch generator"
 authors = ["Allan Eising <allan@eising.dk>"]
 license = "GPL-3.0-only"
 readme = "README.md"
+documentation = "https://eising.github.io/droid-metapatch"
+repository = "https://github.com/Eising/droid-metapatch"
 packages = [{include = "metapatch"}]
 
 [tool.poetry.dependencies]
