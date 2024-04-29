@@ -732,4 +732,11 @@ If you have any problems with the library, let me know on the DROID discord serv
 
 Please note that any support will be on a best effort basis, if I have the time an energy.
 
-If you have found a bug, please create an issue here on github.
+If you have found a bug, please create an issue on [Github](https://github.com/Eising/droid-metapatch).
+
+
+# License
+
+I have chosen to use the same license as the DROID Forge, namely GPL version 3.
+
+The source code is distributed with a copy of this license.
