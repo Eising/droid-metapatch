@@ -171,18 +171,44 @@ def option(
     A number of different option types can be generated. Without any further
     options, the option will be a boolean true/false.
 
-    Number Option:
-        minimum: integer
-        maximum: integer
+    ### Boolean Option
 
-    Enumeration Option:
-        choices: List of tuples. The Tuples define (value, description)
+    Example:
+    ```python
+    enable_arpeggiator: bool = metapatch.option("Enable arpeggiator")
+    ```
 
-    Default:
-        You can specify a default, otherwise it will be derived as follows:
-        Bool: True
-        Number: Lowest number
-        Enum: First value.
+    ### Number Option
+    - minimum: integer
+    - maximum: integer
+
+    Example:
+    ```python
+    midi_channel: int = metaclass.option("MIDI channel", minimum=1, maximum=16)
+    ```
+
+    ### Enumeration Option
+    - choices: List of tuples. The Tuples define (value, description)
+
+    Example:
+    ```python
+    clock_source: str = metapatch.option(
+        "Clock Source",
+        choices=[("internal", "Internal clock"), ("external", "External clock")]
+    )
+    ```
+
+
+    ### Defaults
+    You can specify a default for any option, otherwise it will be derived as follows:
+    - Bool: True
+    - Number: Lowest number
+    - Enum: First value.
+
+    Example:
+    ```python
+    enable_arpeggiator: bool = metapatch.option("Enable arpeggiator", default=True)
+    ```
 
     """
     params: Dict[str, Any] = {
@@ -233,5 +259,14 @@ def preset(title: str, parameters: Dict[str, Any]) -> Preset:
     Args:
         title: The name of the preset.
         parameter: A dictionary containing parameter to value mappings.
+
+    This helper function allows you to define presets for your patch generators.
+    Presets are essentially just predefined values for your options defined as a python
+    dictionary.
+
+    See `metapatch.option` for how to define options.
+
+    Example:
+        simple = metapatch.preset("The simplest version", {"voices": 1, "clock_source": "internal"})
     """
     return Preset(title, parameters)

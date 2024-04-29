@@ -33,7 +33,9 @@ def test_opts(testpatch):
     assert "testbool" in preset_params
 
 
-@pytest.mark.parametrize("name", ["sections", "disjoint_sections", "labels"])
+@pytest.mark.parametrize(
+    "name", ["sections", "disjoint_sections", "labels", "with_circuits"]
+)
 def test_patch(helper, name):
     """Generic test function."""
     helper.test(f"{name}.py", f"{name}.ini")
@@ -84,3 +86,10 @@ def test_auto_preset(helper):
     assert testbool is True
     assert testnumber == 1
     assert testchoice == "first"
+
+
+def test_function_voices(helper):
+    """Test transforming a single voice into multiple."""
+    helper.test(
+        "function_to_layers.py", "function_to_layers.ini", "TestMetaPatch", voices=4
+    )
