@@ -1,6 +1,9 @@
 """Patch Generator module.
 
 .. include:: ../README.md
+
+# Public API
+
 """
 
 from .metapatch import PatchGenerator
@@ -11,10 +14,10 @@ from .circuits.base import transform, DroidCircuit
 __docformat__ = "google"
 
 __all__ = [
-    "DroidCircuit",
     "PatchGenerator",
     "option",
     "preset",
     "circuits",
     "transform",
+    "DroidCircuit",
 ]

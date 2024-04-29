@@ -102,7 +102,30 @@ class MetaMetaPatch(type):
 
 
 class PatchGenerator(metaclass=MetaMetaPatch):
-    """Patch Generator."""
+    """Patch Generator.
+
+    You need to subclass this to create your own patch generators.
+
+    As a minimum, you need to provide the `title` and `description`
+    class variables, and you should probably also provide one or more options.
+
+    See `metapatch.option`.
+
+    Presets can be defined with `metapatch.preset`.
+    If no presets are defined, one named `default` will be created.
+
+    For example:
+    ```python
+    class MyGenerator(metapatch.PatchGenerator)
+
+        title = "My Patch Generator"
+        description = "A simple patch generator"
+
+        voices: int = metapatch.option("Number of voices", minimum=1, maximum=4)
+        my_preset = metapatch.preset("Standard patch with 4 voices", {"voices": 4})
+    ```
+
+    """
 
     title: str
     description: str
@@ -143,7 +166,10 @@ class PatchGenerator(metaclass=MetaMetaPatch):
 
     @classmethod
     def load_preset(cls, preset_name: str) -> "PatchGenerator":
-        """Load preset."""
+        """Load preset.
+
+        @private
+        """
         preset = getattr(cls, preset_name)
         if preset:
             return cls(**preset.parameters)
@@ -210,7 +236,17 @@ class PatchGenerator(metaclass=MetaMetaPatch):
 
     @classmethod
     def run(cls) -> None:
-        """Process parameters given via command line arguments."""
+        """Process parameters given via command line arguments.
+
+        You need to call this function at the end of your script to make the
+        patch generator work.
+
+        ```python
+        if __name__ == "__main__":
+            MyPatchGenerator.run()
+        ```
+
+        """
         args = cls._handle_cli()
         if args.synopsis:
             print(json.dumps(cls.synopsis))
@@ -248,10 +284,18 @@ class PatchGenerator(metaclass=MetaMetaPatch):
     ) -> None:
         """Add a circuit.
 
+        This allows you to generate raw DROID circuits, i.e., without using the
+        circuit classes.
+
         Args:
             name: Circuit name, e.g. copy for a [copy] circuit
             params: Dictionary of circuit parameters.
             comment: Optional comment for the circuit.
+
+        Example:
+        ```python
+        self.add_circuit("button", {"button": "B1.1", "led": "L1.1", "output": "_MY_BUTTON"})
+        ```
         """
         self._circuits.append(
             Circuit(name=name, parameters=params, comment=comment, section=self.section)
@@ -262,10 +306,17 @@ class PatchGenerator(metaclass=MetaMetaPatch):
     ) -> None:
         """Add a label.
 
+        This enables you to add a label to a jack or a control.
+
         Args:
             item: string of the thing you want to label, e.g. O1 or G1.2
             short_label: The short label
             long_label: Optional longer label
+
+        Example:
+        ```python
+        self.add_label("P1.1", "Activity", "Activity of algoquencer circuits.")
+        ```
         """
         self._labels.append(Label.from_item(item, short_label, long_label))
 
@@ -297,7 +348,36 @@ class PatchGenerator(metaclass=MetaMetaPatch):
 
     @property
     def section(self) -> Optional[str]:
-        """Get the current section name, if any."""
+        """Get the current section name, if any.
+
+        This is implemented as a simple getter and setter.
+
+        The getter holds the value of the current section.
+
+        You can use the setter inline in your code to quickly change which
+        section you are adding circuits to.
+
+        While this will create a section if it does not exist, if you want to
+        define your section properly, it's better to use `metapatch.PatchGenerator.add_section`.
+
+        Example:
+        ```python
+        self.section = "Clock"
+        self.add(metapatch.circuits.Lfo(hz="40", square="_CLOCK"))
+        self.section = "Envelope"
+        self.add(
+            metapatch.circuits.Contour(
+                trigger="_CLOCK",
+                attack="0",
+                decay="0.1",
+                sustain="1",
+                release="0.2",
+                output="O1",
+            )
+        )
+        ```
+
+        """
         return self._section
 
     @section.setter
@@ -310,7 +390,18 @@ class PatchGenerator(metaclass=MetaMetaPatch):
         self._section = name
 
     def add_section(self, name: str, comment: Optional[str] = None) -> None:
-        """Add a section with an optional comment."""
+        """Add a section with an optional comment.
+
+        This will create a section in your patch.
+
+        This differs from the `metapatch.DroidCircuit.section` setter in that it
+        allows you to define a comment for your section.
+
+        Args:
+            name: Name of the section
+            comment: Provide a comment for the section.
+
+        """
         self._section = name
         if name not in self._sections or self._sections.get(name) != comment:
             self._sections[name] = comment
@@ -338,18 +429,51 @@ class PatchGenerator(metaclass=MetaMetaPatch):
         Args:
             circuits: a list of Circuits.
             section: Name of the section to add them to.
-            action: One or more the below transform parameters.
 
-        Transforms:
-            select: Add a select parameter to any circuit that supports it.
-            select_at: Add or change the selectat attribute if they have a given select value.
-            prepend: Prepend all virtual cable names with a string.
-            append: Append all virtual cable names with a string.
-            output: If an output is found, change it to value of input (e.g., O2)
-            input: If an input is found, change it to the value of input
-            gate: If a gate is found, change it to the value of the gate.
-            replace: List of (from, to). Does a search and replace for an arbitrary value.
-                Can be used to e.g., replace one pot with another.
+        #### Transform actions:
+        You can optionally add one or more of these transform actions:
+
+        - **select**: Add a select parameter to any circuit that supports it.
+        - **select_at**: Add or change the selectat attribute if they have a given select value.
+        - **prepend**: Prepend all virtual cable names with a string.
+        - **append**: Append all virtual cable names with a string.
+        - **output**: If an output is found, change it to value of input (e.g., O2)
+        - **input**: If an input is found, change it to the value of input
+        - **gate**: If a gate is found, change it to the value of the gate.
+        - **replace**: List of (from, to). Does a search and replace for an arbitrary value.
+                       Can be used to e.g., replace one pot with another.
+        - **ignore**: Ignore any of the supplied names when doing a rewriting operation.
+
+        #### Usage notes
+
+        This method is intended to add a bunch of circuits all at once, for
+        example if you have a function that generates some part of your patch
+        logic.
+
+        The transformation functions could for example allow you to generate a
+        *generic* voice in a function, and then dynamically transform to scale
+        to a number of voices.
+
+        ```python
+
+        # Generate the needed voices
+        for voice in range(1, self.voices + 1):
+            output_jack = "O" + str(voice)
+            input_jack = "I" + str(voice)
+            gate = "G1." + str(voice)
+            self.add_circuits(
+                self.generate_voice(),
+                f"Voice {voice}",  # Use one section per voice
+                select="_VOICE",  # Add a select
+                select_at=str(voice), # Add a selectat matching the voice number
+                input=input_jack,  # Rewrite inputs
+                output=output_jack,  # Rewrite outputs
+                gate=gate,  # Rewrite gates
+                prepend=f"VOICE_{voice}",  # Prepend VOICE_X_ to all cables
+                ignore=["_CLOCK", "_RESET"]  # Don't rewrite _CLOCK and _RESET
+            )
+        ```
+
         """
         assert all([is_dataclass(circuit) for circuit in circuits]) is True
         if not ignore:
@@ -441,4 +565,16 @@ class PatchGenerator(metaclass=MetaMetaPatch):
         """Generate patch.
 
         Define this in your subclass, and use it to add circuits and controllers.
+
+        Example:
+        ```python
+        def generate(self) -> None:
+            # Add some controllers
+            self.add_controller("p4b2", 1)
+            self.add_controller("b32", 2)
+            # Add a LFO
+            self.add(metapatch.circuits.Lfo(hz="-8 * P1.1 + 8"), square="_LFO")
+            # ...
+
+        ```
         """

@@ -15,7 +15,7 @@ from metapatch.base import Circuit
 
 @dataclass
 class DroidCircuit:
-    """Droid Circuit parent class."""
+    """@private Droid Circuit parent class."""
 
     comment: Optional[str] = None
 
@@ -75,7 +75,6 @@ def transform(
         gate: If a gate is found, change it to the value of the gate.
         replace: List of (from, to). Does a search and replace for an arbitrary value.
            Can be used to e.g., replace one pot with another.
-
         ignore: Ignore any of the supplied names when doing a rewriting operation.
     """
     if not ignore:
