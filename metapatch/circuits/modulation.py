@@ -19,15 +19,16 @@ class Contour(DroidCircuit):
 
         trigger (trigger):
           This is an alternative method of starting the envelope. If you use trigger
-          instead of gate, there are the following differences:      * The duration of
-          the trigger signal is being ignored.    * There is no decay / sustain phase.
-          Attack and hold are immediately followed by release. The inputs sustain and
-          decay have no impact anymore.    * The predelay and attack phases are
-          continued until their end even when the trigger signal ends (When using gate
-          and the gate signal ends during predelay, the envelope does not start. When it
-          ends during attack, decay / sustain are being skipped and release starts at
-          the current level of the envelope. That way short gates can result in
-          “quieter” envelopes).
+          instead of gate, there are the following differences:
+          * The duration of the trigger signal is being ignored.
+          * There is no decay / sustain phase. Attack and hold are immediately followed
+            by release. The inputs sustain and decay have no impact anymore.
+          * The predelay and attack phases are continued until their end even when the
+            trigger signal ends (When using gate and the gate signal ends during
+            predelay, the envelope does not start. When it ends during attack, decay /
+            sustain are being skipped and release starts at the current level of the
+            envelope. That way short gates can result in “quieter” envelopes).
+
 
         retrigger (gate):
           If you patch 0 or off here, a gate or trigger impulse will not immediately

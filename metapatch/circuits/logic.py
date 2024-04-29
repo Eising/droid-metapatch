@@ -457,9 +457,10 @@ class Math(DroidCircuit):
           input1 to the power of input2. Please note that the power has several cases
           where it is not defined when either the base or the exponent is zero or less
           than zero. In order to be as useful for your music making as possible the math
-          circuit behaves in the following way:      * If input1 < 0, input2 is rounded
-          to the nearest integer.    * If input1 = 0 and input2 < 0, a very large number
-          is output.
+          circuit behaves in the following way:
+          * If input1 < 0, input2 is rounded to the nearest integer.
+          * If input1 = 0 and input2 < 0, a very large number is output.
+
 
         average (cv):
           The average of input1 and input2
@@ -498,9 +499,11 @@ class Math(DroidCircuit):
 
         logarithm (cv):
           The natural logarithm of input1: ln _ input1. The logarithm is only defined
-          for positive numbers. mathcircuit behaves like this:      * If input1 = 0, a
-          negative very large number is output.    * If input2 < 0, - ln _-  input1 is
-          output.
+          for positive numbers. mathcircuit behaves like this:
+          * If input1 = 0, a negative very large number is output.
+          * If input2 < 0, - ln _-
+          input1 is output.
+
 
         round (cv):
           The integer number nearest to input1

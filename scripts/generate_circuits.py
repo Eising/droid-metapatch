@@ -66,6 +66,45 @@ def _strip_latex(text: str) -> str:
     return text
 
 
+def _reformat_inline_list(text: str, indent: int) -> str:
+    """Find inline lists."""
+    if "*" not in text:
+        return text
+    # dedent the text
+    list_indent = indent * " "
+    continuation = list_indent + "  "
+    text = textwrap.dedent(text)
+    lines = ""
+    sections = []
+    for line in re.split(r"\s{2,}", text):
+        line = line.replace("\n", " ")
+        if line.startswith("*"):
+            sections.append((True, line))
+        else:
+            sections.append((False, line))
+    for is_list, line in sections:
+        if not is_list:
+            lines += "\n".join(
+                textwrap.wrap(
+                    line,
+                    width=88,
+                    initial_indent=list_indent,
+                    subsequent_indent=list_indent,
+                )
+            )
+        else:
+            lines += "\n".join(
+                textwrap.wrap(
+                    line,
+                    width=88,
+                    initial_indent=list_indent,
+                    subsequent_indent=continuation,
+                )
+            )
+        lines += "\n"
+    return lines
+
+
 @dataclass
 class Parameter:
     """Parameter."""
@@ -103,7 +142,8 @@ class Parameter:
                 subsequent_indent=descr_indent,
             )
         )
-        # body = textwrap.indent(self.clean_description, descr_indent)
+        if "*" in body:
+            body = _reformat_inline_list(body, 10)
         return "\n".join([heading, body, ""])
 
     def __str__(self) -> str:

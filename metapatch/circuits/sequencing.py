@@ -81,8 +81,10 @@ class Algoquencer(DroidCircuit):
           input to any integer number you like. The default pattern is 0. If you patch a
           pot here, simply multiply it by the number of different patterns you want to
           select, e.g. pattern = P1.1 * 10. This will allow you to select one of the
-          pattern 0, 1, ... 10.  Note: If you use pattern, the trigger inputs
-          nextpattern, prevpattern and reroll are ignored.
+          pattern 0, 1, ... 10.
+          Note: If you use pattern, the trigger inputs nextpattern, prevpattern and
+          reroll are ignored.
+
 
         nextpattern (trigger):
           Switches forward to the next pseudo random pattern.
@@ -245,13 +247,16 @@ class Algoquencer(DroidCircuit):
           time to time. If you set it above zero, at every start of a bar some of the
           deterministic random decisions will be remade. Setting morphs = 1 will
           essentially disable dejavu, since all decisions are redone every bar anyway
-          then.  If you know the Turing Machine: In principle that has the same idea,
-          but Algoquencer has a few improvements:      * The number of random changes is
-          exactly controlled by the setting. At each specific setting of morphs the same
-          number of changes will be done at each bar.    * Changes only appear at the
-          beginning of each bar. If you use branches, they will appear whenever you
-          sequence is over.    * Small settings will introduce just one morph each 64
-          step.
+          then.
+          If you know the Turing Machine: In principle that has the same idea, but
+          Algoquencer has a few improvements:
+          * The number of random changes is exactly controlled by the setting. At each
+            specific setting of morphs the same number of changes will be done at each
+            bar.
+          * Changes only appear at the beginning of each bar. If you use branches, they
+            will appear whenever you sequence is over.
+          * Small settings will introduce just one morph each 64 step.
+
 
         offbeats (bipolar):
           Whenever random beats are being placed then this setting controlls whether
@@ -1118,17 +1123,20 @@ class Encoquencer(DroidCircuit):
         form (integer):
           This is an advanced feature that allows you to slice your steps into two or
           three parts and create musical song forms like AAAB or ABAC. Each of the parts
-          A, B or C are then played according to the playmode.  The form AAAB, for
-          example, creates a 32 step form from just 16 steps, by playing the first 8
-          steps three times and then the second 8 steps once.  The following forms are
-          available:  0A (forms are basically deactivated) 1AAAB 2AABB 3ABAC 4AAABAAAC
-          5AB 6AAB   Notes:     * The splitting of the steps into parts takes place
-          after accounting for startstep and endstep.    * Forms with A, B and C split
-          the pattern into three parts. These parts can only be of equal size if the
-          number of steps is dividable by 3, of course.    * The pattern AB is really
-          not the same as A, e.g when direction is set 1 (reverse). In that case each of
-          the parts is played backwards, but the parts themselves move forwards on your
-          steps.
+          A, B or C are then played according to the playmode.
+          The form AAAB, for example, creates a 32 step form from just 16 steps, by
+          playing the first 8 steps three times and then the second 8 steps once.
+          The following forms are available:
+          0A (forms are basically deactivated) 1AAAB 2AABB 3ABAC 4AAABAAAC 5AB 6AAB
+          Notes:
+          * The splitting of the steps into parts takes place after accounting for
+            startstep and endstep.
+          * Forms with A, B and C split the pattern into three parts. These parts can
+            only be of equal size if the number of steps is dividable by 3, of course.
+          * The pattern AB is really not the same as A, e.g when direction is set 1
+            (reverse). In that case each of the parts is played backwards, but the parts
+            themselves move forwards on your steps.
+
 
         direction (gate):
           Sets the general direction in which the sequencer moves through the steps. 0
@@ -1895,17 +1903,20 @@ class Motoquencer(DroidCircuit):
         form (integer):
           This is an advanced feature that allows you to slice your steps into two or
           three parts and create musical song forms like AAAB or ABAC. Each of the parts
-          A, B or C are then played according to the playmode.  The form AAAB, for
-          example, creates a 32 step form from just 16 steps, by playing the first 8
-          steps three times and then the second 8 steps once.  The following forms are
-          available:  0A (forms are basically deactivated) 1AAAB 2AABB 3ABAC 4AAABAAAC
-          5AB 6AAB   Notes:     * The splitting of the steps into parts takes place
-          after accounting for startstep and endstep.    * Forms with A, B and C split
-          the pattern into three parts. These parts can only be of equal size if the
-          number of steps is dividable by 3, of course.    * The pattern AB is really
-          not the same as A, e.g when direction is set 1 (reverse). In that case each of
-          the parts is played backwards, but the parts themselves move forwards on your
-          steps.
+          A, B or C are then played according to the playmode.
+          The form AAAB, for example, creates a 32 step form from just 16 steps, by
+          playing the first 8 steps three times and then the second 8 steps once.
+          The following forms are available:
+          0A (forms are basically deactivated) 1AAAB 2AABB 3ABAC 4AAABAAAC 5AB 6AAB
+          Notes:
+          * The splitting of the steps into parts takes place after accounting for
+            startstep and endstep.
+          * Forms with A, B and C split the pattern into three parts. These parts can
+            only be of equal size if the number of steps is dividable by 3, of course.
+          * The pattern AB is really not the same as A, e.g when direction is set 1
+            (reverse). In that case each of the parts is played backwards, but the parts
+            themselves move forwards on your steps.
+
 
         direction (gate):
           Sets the general direction in which the sequencer moves through the steps. 0
