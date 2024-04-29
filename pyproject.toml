@@ -14,7 +14,6 @@ python = "^3.8"
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.1.1"
 mypy = "^1.9.0"
-pdoc = "^14.4.0"
 
 
 [tool.poetry.group.generation]
@@ -22,6 +21,12 @@ optional = true
 
 [tool.poetry.group.generation.dependencies]
 pylatexenc = "^2.10"
+
+[tool.poetry.group.docs]
+optional = true
+
+[tool.poetry.group.docs.dependencies]
+pdoc = "^14.4.0"
 
 [tool.poetry.scripts]
 droid-metapatch = "metapatch.cli_util:main"
