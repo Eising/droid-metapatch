@@ -10,8 +10,6 @@ permissions:
   contents: read
 
 jobs:
-
-jobs:
   test:
     runs-on: ubuntu-latest
     steps:
@@ -64,7 +62,6 @@ jobs:
       # ensures this only runs on a cache miss.
       - run: poetry install --no-interaction --no-root
         if: steps.cache-deps.outputs.cache-hit != 'true'
-
 
       # Now install _your_ project. This isn't necessary for many types of projects -- particularly
       # things like Django apps don't need this. But it's a good idea since it fully-exercises the
