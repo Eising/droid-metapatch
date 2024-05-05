@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "droid-metapatch"
-version = "2.0.1"
+version = "2.0.2"
 description = "DROID patch generator"
 authors = ["Allan Eising <allan@eising.dk>"]
 license = "GPL-3.0-only"

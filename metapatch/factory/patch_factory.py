@@ -106,6 +106,8 @@ def _generate_circuit_params(circuit: TCircuitParams, level: int = 2) -> str:
     """Generate the parameters for a circuit."""
     context = TemplateContext(level)
     for key, value in circuit.items():
+        if not key:
+            continue
         if key.startswith("__"):
             continue
         if key in keyword.kwlist:

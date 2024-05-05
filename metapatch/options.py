@@ -60,9 +60,9 @@ class BoolOption(Option):
     def get_value(self) -> bool:
         """Return value."""
         if isinstance(self.value, str):
-            if self.value.lower() in ("false", "off", "no"):
+            if self.value.lower() in ("false", "off", "no", "0"):
                 return False
-            elif self.value.lower() in ("true", "on", "yes"):
+            elif self.value.lower() in ("true", "on", "yes", "1"):
                 return True
 
         return bool(self.value)
