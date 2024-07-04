@@ -110,7 +110,7 @@ def test_rewrite_input():
         metapatch.circuits.Copy(input="I1", output="O2"),
         metapatch.circuits.Button(button="B1.1", led="L1.1"),
     ]
-    transformed = metapatch.transform(circuits, input="I2")
+    transformed = metapatch.transform(circuits, new_input="I2")
     assert transformed[2].input == "I2"
 
     # This should fail
@@ -121,9 +121,9 @@ def test_rewrite_input():
         metapatch.circuits.Button(button="B1.1", led="L1.1"),
     ]
     with pytest.raises(ValueError):
-        metapatch.transform(circuits2, input="I2")
+        metapatch.transform(circuits2, new_input="I2")
 
-    transformed = metapatch.transform(circuits2, input="I2", ignore=["I1", "I4"])
+    transformed = metapatch.transform(circuits2, new_input="I2", ignore=["I1", "I4"])
     assert transformed[0].input1 == "I2"
 
 
@@ -135,7 +135,7 @@ def test_rewrite_output():
         metapatch.circuits.Copy(input="I1", output="O2"),
         metapatch.circuits.Button(button="B1.1", led="L1.1"),
     ]
-    transformed = metapatch.transform(circuits, output="O1")
+    transformed = metapatch.transform(circuits, new_output="O1")
     assert transformed[2].output == "O1"
 
     # This should fail
@@ -146,7 +146,7 @@ def test_rewrite_output():
         metapatch.circuits.Button(button="B1.1", led="L1.1"),
     ]
     with pytest.raises(ValueError):
-        metapatch.transform(circuits2, output="O1")
+        metapatch.transform(circuits2, new_output="O1")
 
 
 def test_rewrite_gate():
@@ -222,7 +222,7 @@ def test_voice_transformation():
         test_circuits,
         ignore=["_ROOT", "_DEGREE", "_CLOCK", "_RESET", "_TUNINGMODE"],
         prepend="VOICE_1",
-        output="O2",
+        new_output="O2",
         gate="G1.2",
         replace=[("P1.1", "P1.2")],
     )

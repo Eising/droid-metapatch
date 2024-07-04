@@ -1,8 +1,15 @@
-"""Circuit base class."""
+"""Circuit base class.
+
+
+TODO: I need to define a new type of class for circuits that handles each
+input/output type since they have both a datatype and a memory consumption.
+
+"""
 
 from copy import copy
 from dataclasses import dataclass, is_dataclass, fields, asdict
 from typing import (
+    ClassVar,
     Dict,
     Literal,
     List,
@@ -18,6 +25,7 @@ class DroidCircuit:
     """@private Droid Circuit parent class."""
 
     comment: Optional[str] = None
+    __ramsize__: ClassVar[int] = 0
 
     def to_circuit(self) -> Circuit:
         """Convert to circuit."""
@@ -50,6 +58,7 @@ def dataclass_to_circuit(
     return Circuit(circuit_name, parameters, comment, section)
 
 
+# TODO: Update tests and documentation for new_input/new_output
 def transform(
     circuits: List[T],
     *,
@@ -57,8 +66,8 @@ def transform(
     select_at: Optional[str] = None,
     prepend: Optional[str] = None,
     append: Optional[str] = None,
-    input: Optional[str] = None,
-    output: Optional[str] = None,
+    new_input: Optional[str] = None,
+    new_output: Optional[str] = None,
     gate: Optional[str] = None,
     replace: Optional[List[Tuple[str, str]]] = None,
     ignore: Optional[List[str]] = None,
@@ -66,16 +75,19 @@ def transform(
     """Transform a list of circuits.
 
     Args:
-        select: Add a select parameter to all circuits that support it and have no current select.
+
+        select: Add a select parameter to all circuits that support it and have
+            no current select.
         select_at: Add a selectat parameter to all circuits that support it.
         prepend: Add a word to the start of all virtual cable names.
         append: Add a word to the end of all virtual cable names.
-        input: If an input is found, change it to the value of input
+        new_input: If an input is found, change it to the value of input
         output: If an output is found, change it to value of output (e.g., O2)
         gate: If a gate is found, change it to the value of the gate.
         replace: List of (from, to). Does a search and replace for an arbitrary value.
            Can be used to e.g., replace one pot with another.
         ignore: Ignore any of the supplied names when doing a rewriting operation.
+
     """
     if not ignore:
         ignore = []
@@ -83,10 +95,10 @@ def transform(
         circuits = [add_select(circuit, select, select_at) for circuit in circuits]
 
     circuits = [rename_cables(circuit, append, prepend, ignore) for circuit in circuits]
-    if input:
-        circuits = change_jack(circuits, input, "input", ignore)
-    if output:
-        circuits = change_jack(circuits, output, "output", ignore)
+    if new_input:
+        circuits = change_jack(circuits, new_input, "input", ignore)
+    if new_output:
+        circuits = change_jack(circuits, new_output, "output", ignore)
     if gate:
         circuits = change_jack(circuits, gate, "gate", ignore)
 

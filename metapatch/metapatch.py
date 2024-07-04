@@ -484,8 +484,8 @@ class PatchGenerator(metaclass=MetaMetaPatch):
             "select_at": select_at,
             "prepend": prepend,
             "append": append,
-            "input": input,
-            "output": output,
+            "new_input": input,
+            "new_output": output,
             "gate": gate,
             "replace": replace,
         }
