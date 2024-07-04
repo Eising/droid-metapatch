@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2.1.0 - 2024-07-04
+### Added
+- Circuits have their memory consumption stored. This could allow for analysis to be added later.
+
+### Changed
+- The transform function `input` and `output` parameters have been renamed to
+  `new_input` and `new_output`. This may break your code if you use that
+  function! The `add_circuits()` instance function has not been changed.
+  
+- The circuit.json parsing has been refactored and greatly improved.
+
 ## 2.0.2 - 2024-05-05
 
 ### Fixed

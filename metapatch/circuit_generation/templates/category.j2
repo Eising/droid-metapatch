@@ -1,0 +1,37 @@
+"""DROID circuits. These circuits are auto-generated from circuits.json."""
+
+from dataclasses import dataclass, field
+from typing import Optional
+
+from metapatch.circuits.base import DroidCircuit
+from metapatch.circuits import circuit_types as ctype
+
+
+__droid_version__ = "{{ droid_version }}"
+
+
+{% for circuit in circuits %}
+@dataclass
+class {{ circuit.name|capitalize }}(DroidCircuit):
+    """{{circuit.title}}.
+
+    Args:
+    {% for param in circuit.parameters|sort(attribute="direction") %}
+        {{ param.name}} ({{ param.type }}):
+{{ param.synopsis }}
+    {% endfor %}
+        comment: Add a comment in the droid ini file.
+
+    """
+
+    __ramsize__ = {{ circuit.ramsize }}
+    {% for param in circuit.parameters %}
+    {{ param.name }}: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_{{ param.type }}(ramsize={{param.ramsize}})
+    )
+    {% endfor %}
+
+
+
+{% endfor %}
