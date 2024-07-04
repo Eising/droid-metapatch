@@ -19,8 +19,9 @@ class {{ circuit.name|capitalize }}(DroidCircuit):
     {% for param in circuit.parameters|sort(attribute="direction") %}
         {{ param.name}} ({{ param.type }}):
 {{ param.synopsis }}
-
     {% endfor %}
+        comment: Add a comment in the droid ini file.
+
     """
 
     __ramsize__ = {{ circuit.ramsize }}

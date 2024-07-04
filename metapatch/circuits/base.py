@@ -1,10 +1,4 @@
-"""Circuit base class.
-
-
-TODO: I need to define a new type of class for circuits that handles each
-input/output type since they have both a datatype and a memory consumption.
-
-"""
+"""Circuit base class."""
 
 from copy import copy
 from dataclasses import dataclass, is_dataclass, fields, asdict
@@ -24,11 +18,15 @@ from metapatch.base import Circuit
 class DroidCircuit:
     """@private Droid Circuit parent class."""
 
+    """@private"""
     comment: Optional[str] = None
     __ramsize__: ClassVar[int] = 0
 
     def to_circuit(self) -> Circuit:
-        """Convert to circuit."""
+        """Convert to circuit.
+
+        @private
+        """
         return dataclass_to_circuit(self)
 
 
@@ -58,7 +56,6 @@ def dataclass_to_circuit(
     return Circuit(circuit_name, parameters, comment, section)
 
 
-# TODO: Update tests and documentation for new_input/new_output
 def transform(
     circuits: List[T],
     *,
@@ -75,7 +72,6 @@ def transform(
     """Transform a list of circuits.
 
     Args:
-
         select: Add a select parameter to all circuits that support it and have
             no current select.
         select_at: Add a selectat parameter to all circuits that support it.
@@ -191,7 +187,8 @@ def change_jack(
                 jacks.add(value)
                 if len(jacks) > 1:
                     raise ValueError(
-                        f"Cannot run {jacktype} transformation, more than one unique {jacktype} found."
+                        f"Cannot run {jacktype} transformation, "
+                        f"more than one unique {jacktype} found."
                     )
                 setattr(new_circuit, key, new_jack)
         new_circuits.append(new_circuit)
