@@ -1,15 +1,18 @@
 """DROID circuits. These circuits are auto-generated from circuits.json."""
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Optional
 
 from metapatch.circuits.base import DroidCircuit
+from metapatch.circuits import circuit_types as ctype
+
+
+__droid_version__ = "blue-5"
+
 
 @dataclass
 class Fourstatebutton(DroidCircuit):
-    """Circuit fourstatebutton.
-
-    Button switching through 4 states (OBSOLETE)
+    """Button switching through 4 states (OBSOLETE).
 
     Args:
         button (trigger):
@@ -44,22 +47,49 @@ class Fourstatebutton(DroidCircuit):
 
     """
 
+    __ramsize__ = 40
+    button: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    reset: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    value1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    value2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    value3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    value4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    startvalue: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    output: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    led: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
 
-    button: Optional[str] = None
-    reset: Optional[str] = None
-    value1: Optional[str] = None
-    value2: Optional[str] = None
-    value3: Optional[str] = None
-    value4: Optional[str] = None
-    startvalue: Optional[str] = None
-    output: Optional[str] = None
-    led: Optional[str] = None
+
 
 @dataclass
 class Notchedpot(DroidCircuit):
-    """Circuit notchedpot.
-
-    Helper circuit for pots (OBSOLETE)
+    """Helper circuit for pots (OBSOLETE).
 
     Args:
         pot (fraction):
@@ -99,22 +129,49 @@ class Notchedpot(DroidCircuit):
 
     """
 
+    __ramsize__ = 40
+    pot: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    notch: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    output: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    bipolar: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    absbipolar: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    lefthalf: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    righthalf: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    lefthalfinv: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    righthalfinv: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
 
-    pot: Optional[str] = None
-    notch: Optional[str] = None
-    output: Optional[str] = None
-    bipolar: Optional[str] = None
-    absbipolar: Optional[str] = None
-    lefthalf: Optional[str] = None
-    righthalf: Optional[str] = None
-    lefthalfinv: Optional[str] = None
-    righthalfinv: Optional[str] = None
+
 
 @dataclass
 class Switchedpot(DroidCircuit):
-    """Circuit switchedpot.
-
-    Overlay pot with multiple functions (OBSOLETE)
+    """Overlay pot with multiple functions (OBSOLETE).
 
     Args:
         pot (fraction):
@@ -183,31 +240,85 @@ class Switchedpot(DroidCircuit):
 
     """
 
+    __ramsize__ = 88
+    pot: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    bipolar: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    switch1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    switch2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    switch3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    switch4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    switch5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    switch6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    switch7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    switch8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    output1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    output2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    output3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    output4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    output5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    output6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    output7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    output8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
 
-    pot: Optional[str] = None
-    bipolar: Optional[str] = None
-    switch1: Optional[str] = None
-    switch2: Optional[str] = None
-    switch3: Optional[str] = None
-    switch4: Optional[str] = None
-    switch5: Optional[str] = None
-    switch6: Optional[str] = None
-    switch7: Optional[str] = None
-    switch8: Optional[str] = None
-    output1: Optional[str] = None
-    output2: Optional[str] = None
-    output3: Optional[str] = None
-    output4: Optional[str] = None
-    output5: Optional[str] = None
-    output6: Optional[str] = None
-    output7: Optional[str] = None
-    output8: Optional[str] = None
+
 
 @dataclass
 class Togglebutton(DroidCircuit):
-    """Circuit togglebutton.
-
-    Create on/off buttons (OBSOLETE)
+    """Create on/off buttons (OBSOLETE).
 
     Args:
         button (trigger):
@@ -260,14 +371,47 @@ class Togglebutton(DroidCircuit):
 
     """
 
+    __ramsize__ = 48
+    button: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    reset: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    onvalue: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    offvalue: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    doubleclickmode: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    startvalue: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    led: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    output: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    inverted: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    negated: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
 
-    button: Optional[str] = None
-    reset: Optional[str] = None
-    onvalue: Optional[str] = None
-    offvalue: Optional[str] = None
-    doubleclickmode: Optional[str] = None
-    startvalue: Optional[str] = None
-    led: Optional[str] = None
-    output: Optional[str] = None
-    inverted: Optional[str] = None
-    negated: Optional[str] = None
+
+

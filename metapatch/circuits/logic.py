@@ -1,15 +1,18 @@
 """DROID circuits. These circuits are auto-generated from circuits.json."""
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Optional
 
 from metapatch.circuits.base import DroidCircuit
+from metapatch.circuits import circuit_types as ctype
+
+
+__droid_version__ = "blue-5"
+
 
 @dataclass
 class Adc(DroidCircuit):
-    """Circuit adc.
-
-    AD Converter with 12 bits
+    """AD Converter with 12 bits.
 
     Args:
         input (cv):
@@ -97,28 +100,73 @@ class Adc(DroidCircuit):
 
     """
 
+    __ramsize__ = 56
+    input: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    minimum: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    maximum: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    bit1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    bit2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    bit3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    bit4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    bit5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    bit6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    bit7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    bit8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    bit9: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    bit10: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    bit11: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    bit12: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
 
-    input: Optional[str] = None
-    minimum: Optional[str] = None
-    maximum: Optional[str] = None
-    bit1: Optional[str] = None
-    bit2: Optional[str] = None
-    bit3: Optional[str] = None
-    bit4: Optional[str] = None
-    bit5: Optional[str] = None
-    bit6: Optional[str] = None
-    bit7: Optional[str] = None
-    bit8: Optional[str] = None
-    bit9: Optional[str] = None
-    bit10: Optional[str] = None
-    bit11: Optional[str] = None
-    bit12: Optional[str] = None
+
 
 @dataclass
 class Compare(DroidCircuit):
-    """Circuit compare.
-
-    Compare two values
+    """Compare two values.
 
     Args:
         input (cv):
@@ -151,21 +199,45 @@ class Compare(DroidCircuit):
 
     """
 
+    __ramsize__ = 32
+    input: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    compare: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    ifgreater: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    ifless: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    ifequal: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    else_: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    precision: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    output: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
 
-    input: Optional[str] = None
-    compare: Optional[str] = None
-    ifgreater: Optional[str] = None
-    ifless: Optional[str] = None
-    ifequal: Optional[str] = None
-    else_: Optional[str] = None
-    precision: Optional[str] = None
-    output: Optional[str] = None
+
 
 @dataclass
 class Copy(DroidCircuit):
-    """Circuit copy.
-
-    Copy a signal, while applying attenuation and offset
+    """Copy a signal, while applying attenuation and offset.
 
     Args:
         input (cv):
@@ -176,15 +248,21 @@ class Copy(DroidCircuit):
 
     """
 
+    __ramsize__ = 24
+    input: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    output: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
 
-    input: Optional[str] = None
-    output: Optional[str] = None
+
 
 @dataclass
 class Dac(DroidCircuit):
-    """Circuit dac.
-
-    DA Converter with 12 bits
+    """DA Converter with 12 bits.
 
     Args:
         bit1 (gate):
@@ -248,28 +326,73 @@ class Dac(DroidCircuit):
 
     """
 
+    __ramsize__ = 56
+    bit1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    bit2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    bit3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    bit4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    bit5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    bit6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    bit7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    bit8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    bit9: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    bit10: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    bit11: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    bit12: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    minimum: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    maximum: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    output: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
 
-    bit1: Optional[str] = None
-    bit2: Optional[str] = None
-    bit3: Optional[str] = None
-    bit4: Optional[str] = None
-    bit5: Optional[str] = None
-    bit6: Optional[str] = None
-    bit7: Optional[str] = None
-    bit8: Optional[str] = None
-    bit9: Optional[str] = None
-    bit10: Optional[str] = None
-    bit11: Optional[str] = None
-    bit12: Optional[str] = None
-    minimum: Optional[str] = None
-    maximum: Optional[str] = None
-    output: Optional[str] = None
+
 
 @dataclass
 class Explin(DroidCircuit):
-    """Circuit explin.
-
-    Exponential to linear converter
+    """Exponential to linear converter.
 
     Args:
         input (cv):
@@ -296,18 +419,33 @@ class Explin(DroidCircuit):
 
     """
 
+    __ramsize__ = 32
+    input: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    startvalue: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    endvalue: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    mix: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    output: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
 
-    input: Optional[str] = None
-    startvalue: Optional[str] = None
-    endvalue: Optional[str] = None
-    mix: Optional[str] = None
-    output: Optional[str] = None
+
 
 @dataclass
 class Logic(DroidCircuit):
-    """Circuit logic.
-
-    Logic operations utility
+    """Logic operations utility.
 
     Args:
         input1 (gate):
@@ -398,33 +536,93 @@ class Logic(DroidCircuit):
 
     """
 
+    __ramsize__ = 56
+    input1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    input2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    input3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    input4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    input5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    input6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    input7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    input8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    threshold: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    lowvalue: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    highvalue: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    countvalue: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    and_: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    or_: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    xor: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    nand: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    nor: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    negated: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    count: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=4)
+    )
+    countlow: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
 
-    input1: Optional[str] = None
-    input2: Optional[str] = None
-    input3: Optional[str] = None
-    input4: Optional[str] = None
-    input5: Optional[str] = None
-    input6: Optional[str] = None
-    input7: Optional[str] = None
-    input8: Optional[str] = None
-    threshold: Optional[str] = None
-    lowvalue: Optional[str] = None
-    highvalue: Optional[str] = None
-    countvalue: Optional[str] = None
-    and_: Optional[str] = None
-    or_: Optional[str] = None
-    xor: Optional[str] = None
-    nand: Optional[str] = None
-    nor: Optional[str] = None
-    negated: Optional[str] = None
-    count: Optional[str] = None
-    countlow: Optional[str] = None
+
 
 @dataclass
 class Math(DroidCircuit):
-    """Circuit math.
-
-    Math utility circuit
+    """Math utility circuit.
 
     Args:
         input1 (cv):
@@ -516,35 +714,101 @@ class Math(DroidCircuit):
 
     """
 
+    __ramsize__ = 64
+    input1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    input2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    sum: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    difference: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    product: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    quotient: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    modulo: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    power: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    average: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    maximum: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    minimum: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    negation: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    reciprocal: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    amount: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    sine: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    cosine: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    square: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    root: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    logarithm: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    round: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    floor: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    ceil: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
 
-    input1: Optional[str] = None
-    input2: Optional[str] = None
-    sum: Optional[str] = None
-    difference: Optional[str] = None
-    product: Optional[str] = None
-    quotient: Optional[str] = None
-    modulo: Optional[str] = None
-    power: Optional[str] = None
-    average: Optional[str] = None
-    maximum: Optional[str] = None
-    minimum: Optional[str] = None
-    negation: Optional[str] = None
-    reciprocal: Optional[str] = None
-    amount: Optional[str] = None
-    sine: Optional[str] = None
-    cosine: Optional[str] = None
-    square: Optional[str] = None
-    root: Optional[str] = None
-    logarithm: Optional[str] = None
-    round: Optional[str] = None
-    floor: Optional[str] = None
-    ceil: Optional[str] = None
+
 
 @dataclass
 class Multicompare(DroidCircuit):
-    """Circuit multicompare.
-
-    Compare in input with up to eight possible values
+    """Compare in input with up to eight possible values.
 
     Args:
         input (cv):
@@ -607,32 +871,89 @@ class Multicompare(DroidCircuit):
 
     """
 
+    __ramsize__ = 56
+    input: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    compare1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    compare2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    compare3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    compare4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    compare5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    compare6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    compare7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    compare8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    ifequal1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    ifequal2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    ifequal3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    ifequal4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    ifequal5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    ifequal6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    ifequal7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    ifequal8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    else_: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    output: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
 
-    input: Optional[str] = None
-    compare1: Optional[str] = None
-    compare2: Optional[str] = None
-    compare3: Optional[str] = None
-    compare4: Optional[str] = None
-    compare5: Optional[str] = None
-    compare6: Optional[str] = None
-    compare7: Optional[str] = None
-    compare8: Optional[str] = None
-    ifequal1: Optional[str] = None
-    ifequal2: Optional[str] = None
-    ifequal3: Optional[str] = None
-    ifequal4: Optional[str] = None
-    ifequal5: Optional[str] = None
-    ifequal6: Optional[str] = None
-    ifequal7: Optional[str] = None
-    ifequal8: Optional[str] = None
-    else_: Optional[str] = None
-    output: Optional[str] = None
+
 
 @dataclass
 class Select(DroidCircuit):
-    """Circuit select.
-
-    Copy a signal if selected
+    """Copy a signal if selected.
 
     Args:
         input (cv):
@@ -659,8 +980,23 @@ class Select(DroidCircuit):
 
     """
 
+    __ramsize__ = 24
+    input: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    select: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    selectat: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    output: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
 
-    input: Optional[str] = None
-    select: Optional[str] = None
-    selectat: Optional[str] = None
-    output: Optional[str] = None
+
+

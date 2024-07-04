@@ -1,15 +1,18 @@
 """DROID circuits. These circuits are auto-generated from circuits.json."""
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Optional
 
 from metapatch.circuits.base import DroidCircuit
+from metapatch.circuits import circuit_types as ctype
+
+
+__droid_version__ = "blue-5"
+
 
 @dataclass
 class Calibrator(DroidCircuit):
-    """Circuit calibrator.
-
-    VCO Calibrator
+    """VCO Calibrator.
 
     Args:
         input (voltperoctave):
@@ -152,41 +155,125 @@ class Calibrator(DroidCircuit):
 
     """
 
+    __ramsize__ = 216
+    input: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    nudgeup: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    nudgedown: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    clearhere: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    nudgeamount: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    tune0: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    tune1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    tune2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    tune3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    tune4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    tune5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    tune6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    tune7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    tune8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    tunelowtail: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    tunehightail: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    select: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    selectat: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    preset: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    loadpreset: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    savepreset: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    clear: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    clearall: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    dontsave: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    output: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
+    ledup: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    leddown: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    correction: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
 
-    input: Optional[str] = None
-    nudgeup: Optional[str] = None
-    nudgedown: Optional[str] = None
-    clearhere: Optional[str] = None
-    nudgeamount: Optional[str] = None
-    tune0: Optional[str] = None
-    tune1: Optional[str] = None
-    tune2: Optional[str] = None
-    tune3: Optional[str] = None
-    tune4: Optional[str] = None
-    tune5: Optional[str] = None
-    tune6: Optional[str] = None
-    tune7: Optional[str] = None
-    tune8: Optional[str] = None
-    tunelowtail: Optional[str] = None
-    tunehightail: Optional[str] = None
-    select: Optional[str] = None
-    selectat: Optional[str] = None
-    preset: Optional[str] = None
-    loadpreset: Optional[str] = None
-    savepreset: Optional[str] = None
-    clear: Optional[str] = None
-    clearall: Optional[str] = None
-    dontsave: Optional[str] = None
-    output: Optional[str] = None
-    ledup: Optional[str] = None
-    leddown: Optional[str] = None
-    correction: Optional[str] = None
+
 
 @dataclass
 class Chord(DroidCircuit):
-    """Circuit chord.
-
-    Chord generator
+    """Chord generator.
 
     Args:
         pitch (voltperoctave):
@@ -322,41 +409,125 @@ class Chord(DroidCircuit):
 
     """
 
+    __ramsize__ = 104
+    pitch: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    spread: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    inversion: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    trigger: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    root: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    degree: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    select1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    select3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    select5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    select7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    select9: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    select11: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    select13: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    selectfill1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    selectfill2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    selectfill3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    selectfill4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    selectfill5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    harmonicshift: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    noteshift: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    selectnoteshift: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    tuningmode: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    tuningpitch: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    transpose: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    output1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
+    output2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
+    output3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
+    output4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
 
-    pitch: Optional[str] = None
-    spread: Optional[str] = None
-    inversion: Optional[str] = None
-    trigger: Optional[str] = None
-    root: Optional[str] = None
-    degree: Optional[str] = None
-    select1: Optional[str] = None
-    select3: Optional[str] = None
-    select5: Optional[str] = None
-    select7: Optional[str] = None
-    select9: Optional[str] = None
-    select11: Optional[str] = None
-    select13: Optional[str] = None
-    selectfill1: Optional[str] = None
-    selectfill2: Optional[str] = None
-    selectfill3: Optional[str] = None
-    selectfill4: Optional[str] = None
-    selectfill5: Optional[str] = None
-    harmonicshift: Optional[str] = None
-    noteshift: Optional[str] = None
-    selectnoteshift: Optional[str] = None
-    tuningmode: Optional[str] = None
-    tuningpitch: Optional[str] = None
-    transpose: Optional[str] = None
-    output1: Optional[str] = None
-    output2: Optional[str] = None
-    output3: Optional[str] = None
-    output4: Optional[str] = None
+
 
 @dataclass
 class Detune(DroidCircuit):
-    """Circuit detune.
-
-    Detune multiple voices in a most disharmonic way
+    """Detune multiple voices in a most disharmonic way.
 
     Args:
         input1 (cv):
@@ -419,32 +590,89 @@ class Detune(DroidCircuit):
 
     """
 
+    __ramsize__ = 56
+    input1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    input2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    input3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    input4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    input5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    input6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    input7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    input8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    detune: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    tuningmode: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    tuningpitch: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    output1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    output2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    output3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    output4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    output5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    output6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    output7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    output8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
 
-    input1: Optional[str] = None
-    input2: Optional[str] = None
-    input3: Optional[str] = None
-    input4: Optional[str] = None
-    input5: Optional[str] = None
-    input6: Optional[str] = None
-    input7: Optional[str] = None
-    input8: Optional[str] = None
-    detune: Optional[str] = None
-    tuningmode: Optional[str] = None
-    tuningpitch: Optional[str] = None
-    output1: Optional[str] = None
-    output2: Optional[str] = None
-    output3: Optional[str] = None
-    output4: Optional[str] = None
-    output5: Optional[str] = None
-    output6: Optional[str] = None
-    output7: Optional[str] = None
-    output8: Optional[str] = None
+
 
 @dataclass
 class Fold(DroidCircuit):
-    """Circuit fold.
-
-    CV folder – keep (pitch) CV within certain bounds
+    """CV folder – keep (pitch) CV within certain bounds.
 
     Args:
         input (cv):
@@ -468,18 +696,33 @@ class Fold(DroidCircuit):
 
     """
 
+    __ramsize__ = 32
+    input: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    foldby: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    minimum: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    maximum: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    output: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
 
-    input: Optional[str] = None
-    foldby: Optional[str] = None
-    minimum: Optional[str] = None
-    maximum: Optional[str] = None
-    output: Optional[str] = None
+
 
 @dataclass
 class Minifonion(DroidCircuit):
-    """Circuit minifonion.
-
-    Musical quantizer
+    """Musical quantizer.
 
     Args:
         input (voltperoctave):
@@ -602,38 +845,113 @@ class Minifonion(DroidCircuit):
 
     """
 
+    __ramsize__ = 80
+    input: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    trigger: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    bypass: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    root: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    degree: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    select1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    select3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    select5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    select7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    select9: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    select11: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    select13: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    selectfill1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    selectfill2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    selectfill3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    selectfill4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    selectfill5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    harmonicshift: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    noteshift: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    selectnoteshift: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    tuningmode: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    tuningpitch: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    transpose: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    output: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
+    notechange: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
 
-    input: Optional[str] = None
-    trigger: Optional[str] = None
-    bypass: Optional[str] = None
-    root: Optional[str] = None
-    degree: Optional[str] = None
-    select1: Optional[str] = None
-    select3: Optional[str] = None
-    select5: Optional[str] = None
-    select7: Optional[str] = None
-    select9: Optional[str] = None
-    select11: Optional[str] = None
-    select13: Optional[str] = None
-    selectfill1: Optional[str] = None
-    selectfill2: Optional[str] = None
-    selectfill3: Optional[str] = None
-    selectfill4: Optional[str] = None
-    selectfill5: Optional[str] = None
-    harmonicshift: Optional[str] = None
-    noteshift: Optional[str] = None
-    selectnoteshift: Optional[str] = None
-    tuningmode: Optional[str] = None
-    tuningpitch: Optional[str] = None
-    transpose: Optional[str] = None
-    output: Optional[str] = None
-    notechange: Optional[str] = None
+
 
 @dataclass
 class Octave(DroidCircuit):
-    """Circuit octave.
-
-    Multi-VCO octave animator
+    """Multi-VCO octave animator.
 
     Args:
         input (voltperoctave):
@@ -672,23 +990,43 @@ class Octave(DroidCircuit):
 
     """
 
+    __ramsize__ = 32
+    input: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    spread: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_stepped(ramsize=12)
+    )
+    detune: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    fifths: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    output1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
+    output2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
+    output3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
 
-    input: Optional[str] = None
-    spread: Optional[str] = None
-    detune: Optional[str] = None
-    fifths: Optional[str] = None
-    output1: Optional[str] = None
-    output2: Optional[str] = None
-    output3: Optional[str] = None
+
 
 @dataclass
 class Sinfonionlink(DroidCircuit):
-    """Circuit sinfonionlink.
-
-    Sync harmonic state from Sinfonion
+    """Sync harmonic state from Sinfonion.
 
     Args:
-
         root (integer):
           The current root note as an integer number. C = 0, C♯ = 1, D = 2 and so on.
 
@@ -732,23 +1070,53 @@ class Sinfonionlink(DroidCircuit):
 
     """
 
+    __ramsize__ = 56
+    root: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=4)
+    )
+    degree: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=4)
+    )
+    transpose: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
+    chaoticdetune: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    harmonicshift: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=4)
+    )
+    linkstate: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    clock: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    reset: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    step: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    beat: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
 
-    root: Optional[str] = None
-    degree: Optional[str] = None
-    transpose: Optional[str] = None
-    chaoticdetune: Optional[str] = None
-    harmonicshift: Optional[str] = None
-    linkstate: Optional[str] = None
-    clock: Optional[str] = None
-    reset: Optional[str] = None
-    step: Optional[str] = None
-    beat: Optional[str] = None
+
 
 @dataclass
 class Superjust(DroidCircuit):
-    """Circuit superjust.
-
-    Perfect intonation of up to eight voices
+    """Perfect intonation of up to eight voices.
 
     Args:
         input1 (voltperoctave):
@@ -816,33 +1184,93 @@ class Superjust(DroidCircuit):
 
     """
 
+    __ramsize__ = 64
+    input1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    input2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    input3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    input4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    input5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    input6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    input7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    input8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    tuningmode: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    tuningpitch: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    bypass: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    transpose: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    output1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
+    output2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
+    output3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
+    output4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
+    output5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
+    output6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
+    output7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
+    output8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
 
-    input1: Optional[str] = None
-    input2: Optional[str] = None
-    input3: Optional[str] = None
-    input4: Optional[str] = None
-    input5: Optional[str] = None
-    input6: Optional[str] = None
-    input7: Optional[str] = None
-    input8: Optional[str] = None
-    tuningmode: Optional[str] = None
-    tuningpitch: Optional[str] = None
-    bypass: Optional[str] = None
-    transpose: Optional[str] = None
-    output1: Optional[str] = None
-    output2: Optional[str] = None
-    output3: Optional[str] = None
-    output4: Optional[str] = None
-    output5: Optional[str] = None
-    output6: Optional[str] = None
-    output7: Optional[str] = None
-    output8: Optional[str] = None
+
 
 @dataclass
 class Vcotuner(DroidCircuit):
-    """Circuit vcotuner.
-
-    measure frequency and tuning of a VCO
+    """measure frequency and tuning of a VCO.
 
     Args:
         tuningnote (integer):
@@ -938,21 +1366,75 @@ class Vcotuner(DroidCircuit):
 
     """
 
+    __ramsize__ = 0
+    tuningnote: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    concertpitch: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    basepitch: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    smooth: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    precision: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    select: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    selectat: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    hz: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    ledflat: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    ledsharp: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    ledintune: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    intune: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    tuning: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_bipolar(ramsize=4)
+    )
+    cents: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_bipolar(ramsize=4)
+    )
+    pitch: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
+    referencepitch: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
+    vcofound: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
 
-    tuningnote: Optional[str] = None
-    concertpitch: Optional[str] = None
-    basepitch: Optional[str] = None
-    smooth: Optional[str] = None
-    precision: Optional[str] = None
-    select: Optional[str] = None
-    selectat: Optional[str] = None
-    hz: Optional[str] = None
-    ledflat: Optional[str] = None
-    ledsharp: Optional[str] = None
-    ledintune: Optional[str] = None
-    intune: Optional[str] = None
-    tuning: Optional[str] = None
-    cents: Optional[str] = None
-    pitch: Optional[str] = None
-    referencepitch: Optional[str] = None
-    vcofound: Optional[str] = None
+
+

@@ -1,15 +1,18 @@
 """DROID circuits. These circuits are auto-generated from circuits.json."""
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Optional
 
 from metapatch.circuits.base import DroidCircuit
+from metapatch.circuits import circuit_types as ctype
+
+
+__droid_version__ = "blue-5"
+
 
 @dataclass
 class Firefacecontrol(DroidCircuit):
-    """Circuit firefacecontrol.
-
-    Control a RME Fireface interface (experimental)
+    """Control a RME Fireface interface (experimental).
 
     Args:
         trs (integer):
@@ -1002,343 +1005,1323 @@ class Firefacecontrol(DroidCircuit):
           will be active if select is exactly 0 instead of a positive gate signal. In
           some cases this is more conventient.
 
-
     """
 
+    __ramsize__ = 1088
+    trs: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    outputlevel1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputlevel2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputlevel3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputlevel4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputlevel5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputlevel6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputlevel7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputlevel8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputlevel9: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputlevel10: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputlevel11: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputlevel12: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputlevel13: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputlevel14: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputlevel15: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputlevel16: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    mainoutput: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    phonesoutput1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    phonesoutput2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    outputmix1in1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix1in2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix1in3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix1in4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix1in5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix1in6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix1in7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix1in8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix1in9: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix1in10: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix1in11: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix1in12: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix1in13: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix1in14: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix1in15: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix1in16: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix2in1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix2in2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix2in3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix2in4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix2in5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix2in6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix2in7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix2in8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix2in9: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix2in10: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix2in11: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix2in12: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix2in13: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix2in14: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix2in15: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix2in16: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix3in1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix3in2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix3in3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix3in4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix3in5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix3in6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix3in7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix3in8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix3in9: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix3in10: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix3in11: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix3in12: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix3in13: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix3in14: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix3in15: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix3in16: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix4in1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix4in2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix4in3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix4in4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix4in5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix4in6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix4in7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix4in8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix4in9: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix4in10: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix4in11: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix4in12: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix4in13: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix4in14: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix4in15: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix4in16: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix5in1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix5in2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix5in3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix5in4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix5in5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix5in6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix5in7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix5in8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix5in9: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix5in10: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix5in11: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix5in12: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix5in13: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix5in14: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix5in15: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix5in16: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix6in1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix6in2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix6in3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix6in4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix6in5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix6in6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix6in7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix6in8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix6in9: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix6in10: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix6in11: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix6in12: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix6in13: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix6in14: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix6in15: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix6in16: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix7in1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix7in2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix7in3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix7in4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix7in5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix7in6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix7in7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix7in8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix7in9: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix7in10: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix7in11: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix7in12: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix7in13: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix7in14: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix7in15: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix7in16: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix8in1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix8in2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix8in3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix8in4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix8in5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix8in6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix8in7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix8in8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix8in9: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix8in10: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix8in11: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix8in12: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix8in13: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix8in14: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix8in15: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix8in16: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix9in1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix9in2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix9in3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix9in4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix9in5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix9in6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix9in7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix9in8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix9in9: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix9in10: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix9in11: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix9in12: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix9in13: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix9in14: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix9in15: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix9in16: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix10in1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix10in2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix10in3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix10in4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix10in5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix10in6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix10in7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix10in8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix10in9: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix10in10: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix10in11: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix10in12: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix10in13: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix10in14: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix10in15: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix10in16: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix11in1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix11in2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix11in3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix11in4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix11in5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix11in6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix11in7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix11in8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix11in9: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix11in10: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix11in11: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix11in12: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix11in13: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix11in14: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix11in15: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix11in16: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix12in1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix12in2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix12in3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix12in4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix12in5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix12in6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix12in7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix12in8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix12in9: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix12in10: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix12in11: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix12in12: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix12in13: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix12in14: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix12in15: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix12in16: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix13in1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix13in2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix13in3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix13in4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix13in5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix13in6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix13in7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix13in8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix13in9: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix13in10: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix13in11: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix13in12: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix13in13: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix13in14: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix13in15: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix13in16: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix14in1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix14in2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix14in3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix14in4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix14in5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix14in6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix14in7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix14in8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix14in9: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix14in10: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix14in11: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix14in12: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix14in13: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix14in14: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix14in15: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix14in16: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix15in1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix15in2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix15in3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix15in4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix15in5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix15in6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix15in7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix15in8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix15in9: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix15in10: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix15in11: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix15in12: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix15in13: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix15in14: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix15in15: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix15in16: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix16in1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix16in2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix16in3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix16in4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix16in5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix16in6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix16in7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix16in8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix16in9: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix16in10: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix16in11: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix16in12: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix16in13: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix16in14: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix16in15: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    outputmix16in16: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    postfader1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    postfader2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    postfader3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    postfader4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    postfader5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    postfader6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    postfader7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    postfader8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    postfader9: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    postfader10: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    postfader11: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    postfader12: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    postfader13: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    postfader14: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    postfader15: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    postfader16: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    pan1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    pan2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    pan3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    pan4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    pan5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    pan6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    pan7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    pan8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    pan9: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    pan10: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    pan11: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    pan12: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    pan13: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    pan14: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    pan15: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    pan16: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    unmute1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    unmute2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    unmute3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    unmute4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    unmute5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    unmute6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    unmute7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    unmute8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    unmute9: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    unmute10: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    unmute11: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    unmute12: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    unmute13: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    unmute14: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    unmute15: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    unmute16: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    update: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    select: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    selectat: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
 
-    trs: Optional[str] = None
-    outputlevel1: Optional[str] = None
-    outputlevel2: Optional[str] = None
-    outputlevel3: Optional[str] = None
-    outputlevel4: Optional[str] = None
-    outputlevel5: Optional[str] = None
-    outputlevel6: Optional[str] = None
-    outputlevel7: Optional[str] = None
-    outputlevel8: Optional[str] = None
-    outputlevel9: Optional[str] = None
-    outputlevel10: Optional[str] = None
-    outputlevel11: Optional[str] = None
-    outputlevel12: Optional[str] = None
-    outputlevel13: Optional[str] = None
-    outputlevel14: Optional[str] = None
-    outputlevel15: Optional[str] = None
-    outputlevel16: Optional[str] = None
-    mainoutput: Optional[str] = None
-    phonesoutput1: Optional[str] = None
-    phonesoutput2: Optional[str] = None
-    outputmix1in1: Optional[str] = None
-    outputmix1in2: Optional[str] = None
-    outputmix1in3: Optional[str] = None
-    outputmix1in4: Optional[str] = None
-    outputmix1in5: Optional[str] = None
-    outputmix1in6: Optional[str] = None
-    outputmix1in7: Optional[str] = None
-    outputmix1in8: Optional[str] = None
-    outputmix1in9: Optional[str] = None
-    outputmix1in10: Optional[str] = None
-    outputmix1in11: Optional[str] = None
-    outputmix1in12: Optional[str] = None
-    outputmix1in13: Optional[str] = None
-    outputmix1in14: Optional[str] = None
-    outputmix1in15: Optional[str] = None
-    outputmix1in16: Optional[str] = None
-    outputmix2in1: Optional[str] = None
-    outputmix2in2: Optional[str] = None
-    outputmix2in3: Optional[str] = None
-    outputmix2in4: Optional[str] = None
-    outputmix2in5: Optional[str] = None
-    outputmix2in6: Optional[str] = None
-    outputmix2in7: Optional[str] = None
-    outputmix2in8: Optional[str] = None
-    outputmix2in9: Optional[str] = None
-    outputmix2in10: Optional[str] = None
-    outputmix2in11: Optional[str] = None
-    outputmix2in12: Optional[str] = None
-    outputmix2in13: Optional[str] = None
-    outputmix2in14: Optional[str] = None
-    outputmix2in15: Optional[str] = None
-    outputmix2in16: Optional[str] = None
-    outputmix3in1: Optional[str] = None
-    outputmix3in2: Optional[str] = None
-    outputmix3in3: Optional[str] = None
-    outputmix3in4: Optional[str] = None
-    outputmix3in5: Optional[str] = None
-    outputmix3in6: Optional[str] = None
-    outputmix3in7: Optional[str] = None
-    outputmix3in8: Optional[str] = None
-    outputmix3in9: Optional[str] = None
-    outputmix3in10: Optional[str] = None
-    outputmix3in11: Optional[str] = None
-    outputmix3in12: Optional[str] = None
-    outputmix3in13: Optional[str] = None
-    outputmix3in14: Optional[str] = None
-    outputmix3in15: Optional[str] = None
-    outputmix3in16: Optional[str] = None
-    outputmix4in1: Optional[str] = None
-    outputmix4in2: Optional[str] = None
-    outputmix4in3: Optional[str] = None
-    outputmix4in4: Optional[str] = None
-    outputmix4in5: Optional[str] = None
-    outputmix4in6: Optional[str] = None
-    outputmix4in7: Optional[str] = None
-    outputmix4in8: Optional[str] = None
-    outputmix4in9: Optional[str] = None
-    outputmix4in10: Optional[str] = None
-    outputmix4in11: Optional[str] = None
-    outputmix4in12: Optional[str] = None
-    outputmix4in13: Optional[str] = None
-    outputmix4in14: Optional[str] = None
-    outputmix4in15: Optional[str] = None
-    outputmix4in16: Optional[str] = None
-    outputmix5in1: Optional[str] = None
-    outputmix5in2: Optional[str] = None
-    outputmix5in3: Optional[str] = None
-    outputmix5in4: Optional[str] = None
-    outputmix5in5: Optional[str] = None
-    outputmix5in6: Optional[str] = None
-    outputmix5in7: Optional[str] = None
-    outputmix5in8: Optional[str] = None
-    outputmix5in9: Optional[str] = None
-    outputmix5in10: Optional[str] = None
-    outputmix5in11: Optional[str] = None
-    outputmix5in12: Optional[str] = None
-    outputmix5in13: Optional[str] = None
-    outputmix5in14: Optional[str] = None
-    outputmix5in15: Optional[str] = None
-    outputmix5in16: Optional[str] = None
-    outputmix6in1: Optional[str] = None
-    outputmix6in2: Optional[str] = None
-    outputmix6in3: Optional[str] = None
-    outputmix6in4: Optional[str] = None
-    outputmix6in5: Optional[str] = None
-    outputmix6in6: Optional[str] = None
-    outputmix6in7: Optional[str] = None
-    outputmix6in8: Optional[str] = None
-    outputmix6in9: Optional[str] = None
-    outputmix6in10: Optional[str] = None
-    outputmix6in11: Optional[str] = None
-    outputmix6in12: Optional[str] = None
-    outputmix6in13: Optional[str] = None
-    outputmix6in14: Optional[str] = None
-    outputmix6in15: Optional[str] = None
-    outputmix6in16: Optional[str] = None
-    outputmix7in1: Optional[str] = None
-    outputmix7in2: Optional[str] = None
-    outputmix7in3: Optional[str] = None
-    outputmix7in4: Optional[str] = None
-    outputmix7in5: Optional[str] = None
-    outputmix7in6: Optional[str] = None
-    outputmix7in7: Optional[str] = None
-    outputmix7in8: Optional[str] = None
-    outputmix7in9: Optional[str] = None
-    outputmix7in10: Optional[str] = None
-    outputmix7in11: Optional[str] = None
-    outputmix7in12: Optional[str] = None
-    outputmix7in13: Optional[str] = None
-    outputmix7in14: Optional[str] = None
-    outputmix7in15: Optional[str] = None
-    outputmix7in16: Optional[str] = None
-    outputmix8in1: Optional[str] = None
-    outputmix8in2: Optional[str] = None
-    outputmix8in3: Optional[str] = None
-    outputmix8in4: Optional[str] = None
-    outputmix8in5: Optional[str] = None
-    outputmix8in6: Optional[str] = None
-    outputmix8in7: Optional[str] = None
-    outputmix8in8: Optional[str] = None
-    outputmix8in9: Optional[str] = None
-    outputmix8in10: Optional[str] = None
-    outputmix8in11: Optional[str] = None
-    outputmix8in12: Optional[str] = None
-    outputmix8in13: Optional[str] = None
-    outputmix8in14: Optional[str] = None
-    outputmix8in15: Optional[str] = None
-    outputmix8in16: Optional[str] = None
-    outputmix9in1: Optional[str] = None
-    outputmix9in2: Optional[str] = None
-    outputmix9in3: Optional[str] = None
-    outputmix9in4: Optional[str] = None
-    outputmix9in5: Optional[str] = None
-    outputmix9in6: Optional[str] = None
-    outputmix9in7: Optional[str] = None
-    outputmix9in8: Optional[str] = None
-    outputmix9in9: Optional[str] = None
-    outputmix9in10: Optional[str] = None
-    outputmix9in11: Optional[str] = None
-    outputmix9in12: Optional[str] = None
-    outputmix9in13: Optional[str] = None
-    outputmix9in14: Optional[str] = None
-    outputmix9in15: Optional[str] = None
-    outputmix9in16: Optional[str] = None
-    outputmix10in1: Optional[str] = None
-    outputmix10in2: Optional[str] = None
-    outputmix10in3: Optional[str] = None
-    outputmix10in4: Optional[str] = None
-    outputmix10in5: Optional[str] = None
-    outputmix10in6: Optional[str] = None
-    outputmix10in7: Optional[str] = None
-    outputmix10in8: Optional[str] = None
-    outputmix10in9: Optional[str] = None
-    outputmix10in10: Optional[str] = None
-    outputmix10in11: Optional[str] = None
-    outputmix10in12: Optional[str] = None
-    outputmix10in13: Optional[str] = None
-    outputmix10in14: Optional[str] = None
-    outputmix10in15: Optional[str] = None
-    outputmix10in16: Optional[str] = None
-    outputmix11in1: Optional[str] = None
-    outputmix11in2: Optional[str] = None
-    outputmix11in3: Optional[str] = None
-    outputmix11in4: Optional[str] = None
-    outputmix11in5: Optional[str] = None
-    outputmix11in6: Optional[str] = None
-    outputmix11in7: Optional[str] = None
-    outputmix11in8: Optional[str] = None
-    outputmix11in9: Optional[str] = None
-    outputmix11in10: Optional[str] = None
-    outputmix11in11: Optional[str] = None
-    outputmix11in12: Optional[str] = None
-    outputmix11in13: Optional[str] = None
-    outputmix11in14: Optional[str] = None
-    outputmix11in15: Optional[str] = None
-    outputmix11in16: Optional[str] = None
-    outputmix12in1: Optional[str] = None
-    outputmix12in2: Optional[str] = None
-    outputmix12in3: Optional[str] = None
-    outputmix12in4: Optional[str] = None
-    outputmix12in5: Optional[str] = None
-    outputmix12in6: Optional[str] = None
-    outputmix12in7: Optional[str] = None
-    outputmix12in8: Optional[str] = None
-    outputmix12in9: Optional[str] = None
-    outputmix12in10: Optional[str] = None
-    outputmix12in11: Optional[str] = None
-    outputmix12in12: Optional[str] = None
-    outputmix12in13: Optional[str] = None
-    outputmix12in14: Optional[str] = None
-    outputmix12in15: Optional[str] = None
-    outputmix12in16: Optional[str] = None
-    outputmix13in1: Optional[str] = None
-    outputmix13in2: Optional[str] = None
-    outputmix13in3: Optional[str] = None
-    outputmix13in4: Optional[str] = None
-    outputmix13in5: Optional[str] = None
-    outputmix13in6: Optional[str] = None
-    outputmix13in7: Optional[str] = None
-    outputmix13in8: Optional[str] = None
-    outputmix13in9: Optional[str] = None
-    outputmix13in10: Optional[str] = None
-    outputmix13in11: Optional[str] = None
-    outputmix13in12: Optional[str] = None
-    outputmix13in13: Optional[str] = None
-    outputmix13in14: Optional[str] = None
-    outputmix13in15: Optional[str] = None
-    outputmix13in16: Optional[str] = None
-    outputmix14in1: Optional[str] = None
-    outputmix14in2: Optional[str] = None
-    outputmix14in3: Optional[str] = None
-    outputmix14in4: Optional[str] = None
-    outputmix14in5: Optional[str] = None
-    outputmix14in6: Optional[str] = None
-    outputmix14in7: Optional[str] = None
-    outputmix14in8: Optional[str] = None
-    outputmix14in9: Optional[str] = None
-    outputmix14in10: Optional[str] = None
-    outputmix14in11: Optional[str] = None
-    outputmix14in12: Optional[str] = None
-    outputmix14in13: Optional[str] = None
-    outputmix14in14: Optional[str] = None
-    outputmix14in15: Optional[str] = None
-    outputmix14in16: Optional[str] = None
-    outputmix15in1: Optional[str] = None
-    outputmix15in2: Optional[str] = None
-    outputmix15in3: Optional[str] = None
-    outputmix15in4: Optional[str] = None
-    outputmix15in5: Optional[str] = None
-    outputmix15in6: Optional[str] = None
-    outputmix15in7: Optional[str] = None
-    outputmix15in8: Optional[str] = None
-    outputmix15in9: Optional[str] = None
-    outputmix15in10: Optional[str] = None
-    outputmix15in11: Optional[str] = None
-    outputmix15in12: Optional[str] = None
-    outputmix15in13: Optional[str] = None
-    outputmix15in14: Optional[str] = None
-    outputmix15in15: Optional[str] = None
-    outputmix15in16: Optional[str] = None
-    outputmix16in1: Optional[str] = None
-    outputmix16in2: Optional[str] = None
-    outputmix16in3: Optional[str] = None
-    outputmix16in4: Optional[str] = None
-    outputmix16in5: Optional[str] = None
-    outputmix16in6: Optional[str] = None
-    outputmix16in7: Optional[str] = None
-    outputmix16in8: Optional[str] = None
-    outputmix16in9: Optional[str] = None
-    outputmix16in10: Optional[str] = None
-    outputmix16in11: Optional[str] = None
-    outputmix16in12: Optional[str] = None
-    outputmix16in13: Optional[str] = None
-    outputmix16in14: Optional[str] = None
-    outputmix16in15: Optional[str] = None
-    outputmix16in16: Optional[str] = None
-    postfader1: Optional[str] = None
-    postfader2: Optional[str] = None
-    postfader3: Optional[str] = None
-    postfader4: Optional[str] = None
-    postfader5: Optional[str] = None
-    postfader6: Optional[str] = None
-    postfader7: Optional[str] = None
-    postfader8: Optional[str] = None
-    postfader9: Optional[str] = None
-    postfader10: Optional[str] = None
-    postfader11: Optional[str] = None
-    postfader12: Optional[str] = None
-    postfader13: Optional[str] = None
-    postfader14: Optional[str] = None
-    postfader15: Optional[str] = None
-    postfader16: Optional[str] = None
-    pan1: Optional[str] = None
-    pan2: Optional[str] = None
-    pan3: Optional[str] = None
-    pan4: Optional[str] = None
-    pan5: Optional[str] = None
-    pan6: Optional[str] = None
-    pan7: Optional[str] = None
-    pan8: Optional[str] = None
-    pan9: Optional[str] = None
-    pan10: Optional[str] = None
-    pan11: Optional[str] = None
-    pan12: Optional[str] = None
-    pan13: Optional[str] = None
-    pan14: Optional[str] = None
-    pan15: Optional[str] = None
-    pan16: Optional[str] = None
-    unmute1: Optional[str] = None
-    unmute2: Optional[str] = None
-    unmute3: Optional[str] = None
-    unmute4: Optional[str] = None
-    unmute5: Optional[str] = None
-    unmute6: Optional[str] = None
-    unmute7: Optional[str] = None
-    unmute8: Optional[str] = None
-    unmute9: Optional[str] = None
-    unmute10: Optional[str] = None
-    unmute11: Optional[str] = None
-    unmute12: Optional[str] = None
-    unmute13: Optional[str] = None
-    unmute14: Optional[str] = None
-    unmute15: Optional[str] = None
-    unmute16: Optional[str] = None
-    update: Optional[str] = None
-    select: Optional[str] = None
-    selectat: Optional[str] = None
+
 
 @dataclass
 class Midifileplayer(DroidCircuit):
-    """Circuit midifileplayer.
-
-    MIDI file player
+    """MIDI file player.
 
     Args:
         file (integer):
@@ -2083,128 +3066,473 @@ class Midifileplayer(DroidCircuit):
 
     """
 
+    __ramsize__ = 6384
+    file: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    track: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    clock: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=30)
+    )
+    reset: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    loop: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    end: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    speed: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    channel: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    tuningmode: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    tuningpitch: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    transpose: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    holdvelocity: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    pitchbendrange: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    bendpitch: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    roundrobin: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    voiceallocation: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    notegap: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    ccnumber1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    ccnumber2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    ccnumber3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    ccnumber4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    lowestnote: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    highestnote: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note9: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note10: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note11: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note12: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note13: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note14: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note15: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note16: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    clockout: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    midiclock: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    endoftrack: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    error: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    pitch1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
+    pitch2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
+    pitch3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
+    pitch4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
+    pitch5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
+    pitch6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
+    pitch7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
+    pitch8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
+    velocity1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    velocity2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    velocity3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    velocity4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    velocity5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    velocity6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    velocity7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    velocity8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    pressure1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    pressure2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    pressure3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    pressure4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    pressure5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    pressure6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    pressure7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    pressure8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    gate1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    gate2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    gate3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    gate4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    gate5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    gate6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    gate7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    gate8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    trigger1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    trigger2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    trigger3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    trigger4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    trigger5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    trigger6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    trigger7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    trigger8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    cc1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    cc2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    cc3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    cc4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    cctrigger1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    cctrigger2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    cctrigger3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    cctrigger4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    notegate1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    notegate2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    notegate3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    notegate4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    notegate5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    notegate6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    notegate7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    notegate8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    notegate9: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    notegate10: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    notegate11: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    notegate12: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    notegate13: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    notegate14: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    notegate15: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    notegate16: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    pitchbend: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    programchange: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    program: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=4)
+    )
+    bank: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=4)
+    )
+    modwheel: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    volume: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    portamento: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    soft: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
 
-    file: Optional[str] = None
-    track: Optional[str] = None
-    clock: Optional[str] = None
-    reset: Optional[str] = None
-    loop: Optional[str] = None
-    end: Optional[str] = None
-    speed: Optional[str] = None
-    channel: Optional[str] = None
-    tuningmode: Optional[str] = None
-    tuningpitch: Optional[str] = None
-    transpose: Optional[str] = None
-    holdvelocity: Optional[str] = None
-    pitchbendrange: Optional[str] = None
-    bendpitch: Optional[str] = None
-    roundrobin: Optional[str] = None
-    voiceallocation: Optional[str] = None
-    notegap: Optional[str] = None
-    ccnumber1: Optional[str] = None
-    ccnumber2: Optional[str] = None
-    ccnumber3: Optional[str] = None
-    ccnumber4: Optional[str] = None
-    lowestnote: Optional[str] = None
-    highestnote: Optional[str] = None
-    note1: Optional[str] = None
-    note2: Optional[str] = None
-    note3: Optional[str] = None
-    note4: Optional[str] = None
-    note5: Optional[str] = None
-    note6: Optional[str] = None
-    note7: Optional[str] = None
-    note8: Optional[str] = None
-    note9: Optional[str] = None
-    note10: Optional[str] = None
-    note11: Optional[str] = None
-    note12: Optional[str] = None
-    note13: Optional[str] = None
-    note14: Optional[str] = None
-    note15: Optional[str] = None
-    note16: Optional[str] = None
-    clockout: Optional[str] = None
-    midiclock: Optional[str] = None
-    endoftrack: Optional[str] = None
-    error: Optional[str] = None
-    pitch1: Optional[str] = None
-    pitch2: Optional[str] = None
-    pitch3: Optional[str] = None
-    pitch4: Optional[str] = None
-    pitch5: Optional[str] = None
-    pitch6: Optional[str] = None
-    pitch7: Optional[str] = None
-    pitch8: Optional[str] = None
-    velocity1: Optional[str] = None
-    velocity2: Optional[str] = None
-    velocity3: Optional[str] = None
-    velocity4: Optional[str] = None
-    velocity5: Optional[str] = None
-    velocity6: Optional[str] = None
-    velocity7: Optional[str] = None
-    velocity8: Optional[str] = None
-    pressure1: Optional[str] = None
-    pressure2: Optional[str] = None
-    pressure3: Optional[str] = None
-    pressure4: Optional[str] = None
-    pressure5: Optional[str] = None
-    pressure6: Optional[str] = None
-    pressure7: Optional[str] = None
-    pressure8: Optional[str] = None
-    gate1: Optional[str] = None
-    gate2: Optional[str] = None
-    gate3: Optional[str] = None
-    gate4: Optional[str] = None
-    gate5: Optional[str] = None
-    gate6: Optional[str] = None
-    gate7: Optional[str] = None
-    gate8: Optional[str] = None
-    trigger1: Optional[str] = None
-    trigger2: Optional[str] = None
-    trigger3: Optional[str] = None
-    trigger4: Optional[str] = None
-    trigger5: Optional[str] = None
-    trigger6: Optional[str] = None
-    trigger7: Optional[str] = None
-    trigger8: Optional[str] = None
-    cc1: Optional[str] = None
-    cc2: Optional[str] = None
-    cc3: Optional[str] = None
-    cc4: Optional[str] = None
-    cctrigger1: Optional[str] = None
-    cctrigger2: Optional[str] = None
-    cctrigger3: Optional[str] = None
-    cctrigger4: Optional[str] = None
-    notegate1: Optional[str] = None
-    notegate2: Optional[str] = None
-    notegate3: Optional[str] = None
-    notegate4: Optional[str] = None
-    notegate5: Optional[str] = None
-    notegate6: Optional[str] = None
-    notegate7: Optional[str] = None
-    notegate8: Optional[str] = None
-    notegate9: Optional[str] = None
-    notegate10: Optional[str] = None
-    notegate11: Optional[str] = None
-    notegate12: Optional[str] = None
-    notegate13: Optional[str] = None
-    notegate14: Optional[str] = None
-    notegate15: Optional[str] = None
-    notegate16: Optional[str] = None
-    pitchbend: Optional[str] = None
-    programchange: Optional[str] = None
-    program: Optional[str] = None
-    bank: Optional[str] = None
-    modwheel: Optional[str] = None
-    volume: Optional[str] = None
-    portamento: Optional[str] = None
-    soft: Optional[str] = None
+
 
 @dataclass
 class Midiin(DroidCircuit):
-    """Circuit midiin.
-
-    MIDI to CV converter
+    """MIDI to CV converter.
 
     Args:
         trs (integer):
@@ -2961,132 +4289,489 @@ class Midiin(DroidCircuit):
 
     """
 
+    __ramsize__ = 560
+    trs: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    usb: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    initialrunning: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    systemreset: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    channel: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    tuningmode: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    tuningpitch: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    transpose: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    holdvelocity: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    pitchbendrange: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    bendpitch: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    roundrobin: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    voiceallocation: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    notegap: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    ccnumber1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    ccnumber2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    ccnumber3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    ccnumber4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    lowestnote: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    highestnote: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note9: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note10: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note11: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note12: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note13: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note14: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note15: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note16: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    clock: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    clock8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    clock8t: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    clock16: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    clock4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    midiclock: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    start: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    continue_: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    stop: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    running: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    active: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    pitch1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
+    pitch2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
+    pitch3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
+    pitch4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
+    pitch5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
+    pitch6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
+    pitch7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
+    pitch8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=4)
+    )
+    velocity1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    velocity2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    velocity3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    velocity4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    velocity5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    velocity6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    velocity7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    velocity8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    pressure1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    pressure2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    pressure3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    pressure4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    pressure5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    pressure6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    pressure7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    pressure8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    gate1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    gate2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    gate3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    gate4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    gate5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    gate6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    gate7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    gate8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    trigger1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    trigger2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    trigger3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    trigger4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    trigger5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    trigger6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    trigger7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    trigger8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    cc1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    cc2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    cc3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    cc4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    cctrigger1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    cctrigger2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    cctrigger3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    cctrigger4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    notegate1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    notegate2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    notegate3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    notegate4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    notegate5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    notegate6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    notegate7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    notegate8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    notegate9: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    notegate10: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    notegate11: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    notegate12: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    notegate13: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    notegate14: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    notegate15: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    notegate16: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    pitchbend: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    programchange: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    program: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=4)
+    )
+    bank: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=4)
+    )
+    modwheel: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    volume: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=4)
+    )
+    portamento: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
+    soft: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=4)
+    )
 
-    trs: Optional[str] = None
-    usb: Optional[str] = None
-    initialrunning: Optional[str] = None
-    systemreset: Optional[str] = None
-    channel: Optional[str] = None
-    tuningmode: Optional[str] = None
-    tuningpitch: Optional[str] = None
-    transpose: Optional[str] = None
-    holdvelocity: Optional[str] = None
-    pitchbendrange: Optional[str] = None
-    bendpitch: Optional[str] = None
-    roundrobin: Optional[str] = None
-    voiceallocation: Optional[str] = None
-    notegap: Optional[str] = None
-    ccnumber1: Optional[str] = None
-    ccnumber2: Optional[str] = None
-    ccnumber3: Optional[str] = None
-    ccnumber4: Optional[str] = None
-    lowestnote: Optional[str] = None
-    highestnote: Optional[str] = None
-    note1: Optional[str] = None
-    note2: Optional[str] = None
-    note3: Optional[str] = None
-    note4: Optional[str] = None
-    note5: Optional[str] = None
-    note6: Optional[str] = None
-    note7: Optional[str] = None
-    note8: Optional[str] = None
-    note9: Optional[str] = None
-    note10: Optional[str] = None
-    note11: Optional[str] = None
-    note12: Optional[str] = None
-    note13: Optional[str] = None
-    note14: Optional[str] = None
-    note15: Optional[str] = None
-    note16: Optional[str] = None
-    clock: Optional[str] = None
-    clock8: Optional[str] = None
-    clock8t: Optional[str] = None
-    clock16: Optional[str] = None
-    clock4: Optional[str] = None
-    midiclock: Optional[str] = None
-    start: Optional[str] = None
-    continue_: Optional[str] = None
-    stop: Optional[str] = None
-    running: Optional[str] = None
-    active: Optional[str] = None
-    pitch1: Optional[str] = None
-    pitch2: Optional[str] = None
-    pitch3: Optional[str] = None
-    pitch4: Optional[str] = None
-    pitch5: Optional[str] = None
-    pitch6: Optional[str] = None
-    pitch7: Optional[str] = None
-    pitch8: Optional[str] = None
-    velocity1: Optional[str] = None
-    velocity2: Optional[str] = None
-    velocity3: Optional[str] = None
-    velocity4: Optional[str] = None
-    velocity5: Optional[str] = None
-    velocity6: Optional[str] = None
-    velocity7: Optional[str] = None
-    velocity8: Optional[str] = None
-    pressure1: Optional[str] = None
-    pressure2: Optional[str] = None
-    pressure3: Optional[str] = None
-    pressure4: Optional[str] = None
-    pressure5: Optional[str] = None
-    pressure6: Optional[str] = None
-    pressure7: Optional[str] = None
-    pressure8: Optional[str] = None
-    gate1: Optional[str] = None
-    gate2: Optional[str] = None
-    gate3: Optional[str] = None
-    gate4: Optional[str] = None
-    gate5: Optional[str] = None
-    gate6: Optional[str] = None
-    gate7: Optional[str] = None
-    gate8: Optional[str] = None
-    trigger1: Optional[str] = None
-    trigger2: Optional[str] = None
-    trigger3: Optional[str] = None
-    trigger4: Optional[str] = None
-    trigger5: Optional[str] = None
-    trigger6: Optional[str] = None
-    trigger7: Optional[str] = None
-    trigger8: Optional[str] = None
-    cc1: Optional[str] = None
-    cc2: Optional[str] = None
-    cc3: Optional[str] = None
-    cc4: Optional[str] = None
-    cctrigger1: Optional[str] = None
-    cctrigger2: Optional[str] = None
-    cctrigger3: Optional[str] = None
-    cctrigger4: Optional[str] = None
-    notegate1: Optional[str] = None
-    notegate2: Optional[str] = None
-    notegate3: Optional[str] = None
-    notegate4: Optional[str] = None
-    notegate5: Optional[str] = None
-    notegate6: Optional[str] = None
-    notegate7: Optional[str] = None
-    notegate8: Optional[str] = None
-    notegate9: Optional[str] = None
-    notegate10: Optional[str] = None
-    notegate11: Optional[str] = None
-    notegate12: Optional[str] = None
-    notegate13: Optional[str] = None
-    notegate14: Optional[str] = None
-    notegate15: Optional[str] = None
-    notegate16: Optional[str] = None
-    pitchbend: Optional[str] = None
-    programchange: Optional[str] = None
-    program: Optional[str] = None
-    bank: Optional[str] = None
-    modwheel: Optional[str] = None
-    volume: Optional[str] = None
-    portamento: Optional[str] = None
-    soft: Optional[str] = None
+
 
 @dataclass
 class Midiout(DroidCircuit):
-    """Circuit midiout.
-
-    CV to MIDI converter
+    """CV to MIDI converter.
 
     Args:
         channel (integer):
@@ -3981,163 +5666,603 @@ class Midiout(DroidCircuit):
           will be active if select is exactly 0 instead of a positive gate signal. In
           some cases this is more conventient.
 
-
     """
 
+    __ramsize__ = 664
+    channel: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    usb: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    trs: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    pitch1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    pitch2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    pitch3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    pitch4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    pitch5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    pitch6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    pitch7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    pitch8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    gate1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    gate2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    gate3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    gate4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    gate5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    gate6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    gate7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    gate8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    velocity1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    velocity2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    velocity3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    velocity4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    velocity5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    velocity6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    velocity7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    velocity8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    noteoffvelocity1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    noteoffvelocity2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    noteoffvelocity3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    noteoffvelocity4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    noteoffvelocity5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    noteoffvelocity6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    noteoffvelocity7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    noteoffvelocity8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    pressure1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    pressure2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    pressure3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    pressure4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    pressure5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    pressure6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    pressure7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    pressure8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    channelpressure: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    pitchstabilization: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    triggerdelay: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    lowestnote: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    highestnote: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    notegate1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    notegate2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    notegate3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    notegate4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    notegate5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    notegate6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    notegate7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    notegate8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    notegate9: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    notegate10: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    notegate11: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    notegate12: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    notegate13: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    notegate14: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    notegate15: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    notegate16: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    note1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note9: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note10: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note11: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note12: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note13: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note14: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note15: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    note16: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    notegatevelocity1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    notegatevelocity2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    notegatevelocity3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    notegatevelocity4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    notegatevelocity5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    notegatevelocity6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    notegatevelocity7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    notegatevelocity8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    notegatevelocity9: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    notegatevelocity10: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    notegatevelocity11: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    notegatevelocity12: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    notegatevelocity13: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    notegatevelocity14: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    notegatevelocity15: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    notegatevelocity16: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    modwheel: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    volume: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    pitchbend: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    pitchtracking: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    pitchbendrange: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    ccnumber1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    ccnumber2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    ccnumber3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    ccnumber4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    ccnumber5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    ccnumber6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    ccnumber7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    ccnumber8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    cc1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    cc2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    cc3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    cc4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    cc5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    cc6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    cc7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    cc8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    cctrigger1: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    cctrigger2: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    cctrigger3: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    cctrigger4: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    cctrigger5: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    cctrigger6: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    cctrigger7: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    cctrigger8: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    updateccs: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    delayinitialccs: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    bank: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    program: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    programchange: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    start: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    stop: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    running: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    systemreset: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    allnotesoff: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    allsoundoff: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    damper: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    portamento: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    sostenuto: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    soft: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    legato: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    clock: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=30)
+    )
+    midiclock: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    activesensing: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    updaterate: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    select: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    selectat: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
 
-    channel: Optional[str] = None
-    usb: Optional[str] = None
-    trs: Optional[str] = None
-    pitch1: Optional[str] = None
-    pitch2: Optional[str] = None
-    pitch3: Optional[str] = None
-    pitch4: Optional[str] = None
-    pitch5: Optional[str] = None
-    pitch6: Optional[str] = None
-    pitch7: Optional[str] = None
-    pitch8: Optional[str] = None
-    gate1: Optional[str] = None
-    gate2: Optional[str] = None
-    gate3: Optional[str] = None
-    gate4: Optional[str] = None
-    gate5: Optional[str] = None
-    gate6: Optional[str] = None
-    gate7: Optional[str] = None
-    gate8: Optional[str] = None
-    velocity1: Optional[str] = None
-    velocity2: Optional[str] = None
-    velocity3: Optional[str] = None
-    velocity4: Optional[str] = None
-    velocity5: Optional[str] = None
-    velocity6: Optional[str] = None
-    velocity7: Optional[str] = None
-    velocity8: Optional[str] = None
-    noteoffvelocity1: Optional[str] = None
-    noteoffvelocity2: Optional[str] = None
-    noteoffvelocity3: Optional[str] = None
-    noteoffvelocity4: Optional[str] = None
-    noteoffvelocity5: Optional[str] = None
-    noteoffvelocity6: Optional[str] = None
-    noteoffvelocity7: Optional[str] = None
-    noteoffvelocity8: Optional[str] = None
-    pressure1: Optional[str] = None
-    pressure2: Optional[str] = None
-    pressure3: Optional[str] = None
-    pressure4: Optional[str] = None
-    pressure5: Optional[str] = None
-    pressure6: Optional[str] = None
-    pressure7: Optional[str] = None
-    pressure8: Optional[str] = None
-    channelpressure: Optional[str] = None
-    pitchstabilization: Optional[str] = None
-    triggerdelay: Optional[str] = None
-    lowestnote: Optional[str] = None
-    highestnote: Optional[str] = None
-    notegate1: Optional[str] = None
-    notegate2: Optional[str] = None
-    notegate3: Optional[str] = None
-    notegate4: Optional[str] = None
-    notegate5: Optional[str] = None
-    notegate6: Optional[str] = None
-    notegate7: Optional[str] = None
-    notegate8: Optional[str] = None
-    notegate9: Optional[str] = None
-    notegate10: Optional[str] = None
-    notegate11: Optional[str] = None
-    notegate12: Optional[str] = None
-    notegate13: Optional[str] = None
-    notegate14: Optional[str] = None
-    notegate15: Optional[str] = None
-    notegate16: Optional[str] = None
-    note1: Optional[str] = None
-    note2: Optional[str] = None
-    note3: Optional[str] = None
-    note4: Optional[str] = None
-    note5: Optional[str] = None
-    note6: Optional[str] = None
-    note7: Optional[str] = None
-    note8: Optional[str] = None
-    note9: Optional[str] = None
-    note10: Optional[str] = None
-    note11: Optional[str] = None
-    note12: Optional[str] = None
-    note13: Optional[str] = None
-    note14: Optional[str] = None
-    note15: Optional[str] = None
-    note16: Optional[str] = None
-    notegatevelocity1: Optional[str] = None
-    notegatevelocity2: Optional[str] = None
-    notegatevelocity3: Optional[str] = None
-    notegatevelocity4: Optional[str] = None
-    notegatevelocity5: Optional[str] = None
-    notegatevelocity6: Optional[str] = None
-    notegatevelocity7: Optional[str] = None
-    notegatevelocity8: Optional[str] = None
-    notegatevelocity9: Optional[str] = None
-    notegatevelocity10: Optional[str] = None
-    notegatevelocity11: Optional[str] = None
-    notegatevelocity12: Optional[str] = None
-    notegatevelocity13: Optional[str] = None
-    notegatevelocity14: Optional[str] = None
-    notegatevelocity15: Optional[str] = None
-    notegatevelocity16: Optional[str] = None
-    modwheel: Optional[str] = None
-    volume: Optional[str] = None
-    pitchbend: Optional[str] = None
-    pitchtracking: Optional[str] = None
-    pitchbendrange: Optional[str] = None
-    ccnumber1: Optional[str] = None
-    ccnumber2: Optional[str] = None
-    ccnumber3: Optional[str] = None
-    ccnumber4: Optional[str] = None
-    ccnumber5: Optional[str] = None
-    ccnumber6: Optional[str] = None
-    ccnumber7: Optional[str] = None
-    ccnumber8: Optional[str] = None
-    cc1: Optional[str] = None
-    cc2: Optional[str] = None
-    cc3: Optional[str] = None
-    cc4: Optional[str] = None
-    cc5: Optional[str] = None
-    cc6: Optional[str] = None
-    cc7: Optional[str] = None
-    cc8: Optional[str] = None
-    cctrigger1: Optional[str] = None
-    cctrigger2: Optional[str] = None
-    cctrigger3: Optional[str] = None
-    cctrigger4: Optional[str] = None
-    cctrigger5: Optional[str] = None
-    cctrigger6: Optional[str] = None
-    cctrigger7: Optional[str] = None
-    cctrigger8: Optional[str] = None
-    updateccs: Optional[str] = None
-    delayinitialccs: Optional[str] = None
-    bank: Optional[str] = None
-    program: Optional[str] = None
-    programchange: Optional[str] = None
-    start: Optional[str] = None
-    stop: Optional[str] = None
-    running: Optional[str] = None
-    systemreset: Optional[str] = None
-    allnotesoff: Optional[str] = None
-    allsoundoff: Optional[str] = None
-    damper: Optional[str] = None
-    portamento: Optional[str] = None
-    sostenuto: Optional[str] = None
-    soft: Optional[str] = None
-    legato: Optional[str] = None
-    clock: Optional[str] = None
-    midiclock: Optional[str] = None
-    activesensing: Optional[str] = None
-    updaterate: Optional[str] = None
-    select: Optional[str] = None
-    selectat: Optional[str] = None
+
 
 @dataclass
 class Midithrough(DroidCircuit):
-    """Circuit midithrough.
-
-    Forward MIDI events from input to one or more outputs
+    """Forward MIDI events from input to one or more outputs.
 
     Args:
         fromtrs (integer):
@@ -4158,11 +6283,25 @@ class Midithrough(DroidCircuit):
           Selects which USB MIDI port to output to. See the manual of midiout for
           details on port selection.
 
-
     """
 
+    __ramsize__ = 240
+    fromtrs: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    fromusb: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    totrs: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    tousb: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
 
-    fromtrs: Optional[str] = None
-    fromusb: Optional[str] = None
-    totrs: Optional[str] = None
-    tousb: Optional[str] = None
+
+

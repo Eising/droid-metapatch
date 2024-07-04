@@ -1,15 +1,18 @@
 """DROID circuits. These circuits are auto-generated from circuits.json."""
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Optional
 
 from metapatch.circuits.base import DroidCircuit
+from metapatch.circuits import circuit_types as ctype
+
+
+__droid_version__ = "blue-5"
+
 
 @dataclass
 class Contour(DroidCircuit):
-    """Circuit contour.
-
-    Contour generator
+    """Contour generator.
 
     Args:
         gate (gate):
@@ -193,46 +196,145 @@ class Contour(DroidCircuit):
 
     """
 
+    __ramsize__ = 112
+    gate: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=16)
+    )
+    trigger: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    retrigger: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    startfromzero: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    abortattack: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    loop: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    predelay: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    attack: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    hold: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    decay: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    sustain: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    swell: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    swelltime: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    swelllevel: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    release: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    level: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    velocity: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    pitch: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_voltperoctave(ramsize=12)
+    )
+    taptempo: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=30)
+    )
+    shape: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_bipolar(ramsize=12)
+    )
+    attackshape: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_bipolar(ramsize=12)
+    )
+    decayshape: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_bipolar(ramsize=12)
+    )
+    swellshape: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_bipolar(ramsize=12)
+    )
+    releaseshape: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_bipolar(ramsize=12)
+    )
+    zerocrossing: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    output: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    negated: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    inverted: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    endofpredelay: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    endofattack: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    endofhold: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    endofdecay: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
+    endofrelease: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=8)
+    )
 
-    gate: Optional[str] = None
-    trigger: Optional[str] = None
-    retrigger: Optional[str] = None
-    startfromzero: Optional[str] = None
-    abortattack: Optional[str] = None
-    loop: Optional[str] = None
-    predelay: Optional[str] = None
-    attack: Optional[str] = None
-    hold: Optional[str] = None
-    decay: Optional[str] = None
-    sustain: Optional[str] = None
-    swell: Optional[str] = None
-    swelltime: Optional[str] = None
-    swelllevel: Optional[str] = None
-    release: Optional[str] = None
-    level: Optional[str] = None
-    velocity: Optional[str] = None
-    pitch: Optional[str] = None
-    taptempo: Optional[str] = None
-    shape: Optional[str] = None
-    attackshape: Optional[str] = None
-    decayshape: Optional[str] = None
-    swellshape: Optional[str] = None
-    releaseshape: Optional[str] = None
-    zerocrossing: Optional[str] = None
-    output: Optional[str] = None
-    negated: Optional[str] = None
-    inverted: Optional[str] = None
-    endofpredelay: Optional[str] = None
-    endofattack: Optional[str] = None
-    endofhold: Optional[str] = None
-    endofdecay: Optional[str] = None
-    endofrelease: Optional[str] = None
+
 
 @dataclass
 class Lfo(DroidCircuit):
-    """Circuit lfo.
-
-    Low frequency oscillator (LFO)
+    """Low frequency oscillator (LFO).
 
     Args:
         rate (cv):
@@ -341,34 +443,97 @@ class Lfo(DroidCircuit):
 
     """
 
+    __ramsize__ = 216
+    rate: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    taptempo: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=30)
+    )
+    hz: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    level: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    randomize: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    offset: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    bipolar: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    phase: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    pulsewidth: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_bipolar(ramsize=12)
+    )
+    skew: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_bipolar(ramsize=12)
+    )
+    sync: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    syncphase: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_fraction(ramsize=12)
+    )
+    waveform: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    output: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    square: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    sawtooth: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    triangle: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    ramp: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    paraboloid: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    sine: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    cosine: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
 
-    rate: Optional[str] = None
-    taptempo: Optional[str] = None
-    hz: Optional[str] = None
-    level: Optional[str] = None
-    randomize: Optional[str] = None
-    offset: Optional[str] = None
-    bipolar: Optional[str] = None
-    phase: Optional[str] = None
-    pulsewidth: Optional[str] = None
-    skew: Optional[str] = None
-    sync: Optional[str] = None
-    syncphase: Optional[str] = None
-    waveform: Optional[str] = None
-    output: Optional[str] = None
-    square: Optional[str] = None
-    sawtooth: Optional[str] = None
-    triangle: Optional[str] = None
-    ramp: Optional[str] = None
-    paraboloid: Optional[str] = None
-    sine: Optional[str] = None
-    cosine: Optional[str] = None
+
 
 @dataclass
 class Random(DroidCircuit):
-    """Circuit random.
-
-    Random number generator
+    """Random number generator.
 
     Args:
         clock (trigger):
@@ -394,18 +559,33 @@ class Random(DroidCircuit):
 
     """
 
+    __ramsize__ = 32
+    clock: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    minimum: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    maximum: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    steps: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_integer(ramsize=12)
+    )
+    output: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
 
-    clock: Optional[str] = None
-    minimum: Optional[str] = None
-    maximum: Optional[str] = None
-    steps: Optional[str] = None
-    output: Optional[str] = None
+
 
 @dataclass
 class Spring(DroidCircuit):
-    """Circuit spring.
-
-    Physical spring simulation
+    """Physical spring simulation.
 
     Args:
         mass (cv):
@@ -462,26 +642,65 @@ class Spring(DroidCircuit):
 
     """
 
+    __ramsize__ = 56
+    mass: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    gravity: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    springforce: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    flowresistance: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    friction: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    speed: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    shove: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    shoveforce: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    reset: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    startvelocity: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    startposition: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    velocity: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    position: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
 
-    mass: Optional[str] = None
-    gravity: Optional[str] = None
-    springforce: Optional[str] = None
-    flowresistance: Optional[str] = None
-    friction: Optional[str] = None
-    speed: Optional[str] = None
-    shove: Optional[str] = None
-    shoveforce: Optional[str] = None
-    reset: Optional[str] = None
-    startvelocity: Optional[str] = None
-    startposition: Optional[str] = None
-    velocity: Optional[str] = None
-    position: Optional[str] = None
+
 
 @dataclass
 class Transient(DroidCircuit):
-    """Circuit transient.
-
-    Transient generator
+    """Transient generator.
 
     Args:
         start (cv):
@@ -530,15 +749,51 @@ class Transient(DroidCircuit):
 
     """
 
+    __ramsize__ = 56
+    start: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    end: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    duration: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=12)
+    )
+    loop: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    pingpong: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    freeze: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=12)
+    )
+    reset: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=16)
+    )
+    clock: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=30)
+    )
+    output: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    phase: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_cv(ramsize=4)
+    )
+    endoftransient: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=8)
+    )
 
-    start: Optional[str] = None
-    end: Optional[str] = None
-    duration: Optional[str] = None
-    loop: Optional[str] = None
-    pingpong: Optional[str] = None
-    freeze: Optional[str] = None
-    reset: Optional[str] = None
-    clock: Optional[str] = None
-    output: Optional[str] = None
-    phase: Optional[str] = None
-    endoftransient: Optional[str] = None
+
+
