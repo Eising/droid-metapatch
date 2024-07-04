@@ -26,6 +26,7 @@ class {{ circuit.name|capitalize }}(DroidCircuit):
     __ramsize__ = {{ circuit.ramsize }}
     {% for param in circuit.parameters %}
     {{ param.name }}: Optional[str] = field(
+            default=None,
             metadata=ctype.type_{{ param.type }}(ramsize={{param.ramsize}})
     )
     {% endfor %}
