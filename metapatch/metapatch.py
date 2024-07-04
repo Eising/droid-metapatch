@@ -294,7 +294,10 @@ class PatchGenerator(metaclass=MetaMetaPatch):
 
         Example:
         ```python
-        self.add_circuit("button", {"button": "B1.1", "led": "L1.1", "output": "_MY_BUTTON"})
+        self.add_circuit(
+            "button",
+            {"button": "B1.1", "led": "L1.1", "output": "_MY_BUTTON"},
+        )
         ```
         """
         self._circuits.append(
@@ -322,7 +325,7 @@ class PatchGenerator(metaclass=MetaMetaPatch):
 
     def _generate_labels(self) -> str:
         """Generate label strings."""
-        sorted_labels = {}
+        sorted_labels: Dict[str, List[Label]] = {}
         for label in self._labels:
             if label.heading not in sorted_labels:
                 sorted_labels[label.heading] = []
@@ -358,7 +361,8 @@ class PatchGenerator(metaclass=MetaMetaPatch):
         section you are adding circuits to.
 
         While this will create a section if it does not exist, if you want to
-        define your section properly, it's better to use `metapatch.PatchGenerator.add_section`.
+        define your section properly, it's better to use
+        `metapatch.PatchGenerator.add_section`.
 
         Example:
         ```python
@@ -434,13 +438,13 @@ class PatchGenerator(metaclass=MetaMetaPatch):
         You can optionally add one or more of these transform actions:
 
         - **select**: Add a select parameter to any circuit that supports it.
-        - **select_at**: Add or change the selectat attribute if they have a given select value.
+        - **select_at**: Add or change the selectat attribute.
         - **prepend**: Prepend all virtual cable names with a string.
         - **append**: Append all virtual cable names with a string.
         - **output**: If an output is found, change it to value of input (e.g., O2)
         - **input**: If an input is found, change it to the value of input
         - **gate**: If a gate is found, change it to the value of the gate.
-        - **replace**: List of (from, to). Does a search and replace for an arbitrary value.
+        - **replace**: List of (from, to). Does a search and replace for an given value.
                        Can be used to e.g., replace one pot with another.
         - **ignore**: Ignore any of the supplied names when doing a rewriting operation.
 
