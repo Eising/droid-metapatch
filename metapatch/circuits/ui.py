@@ -7,7 +7,7 @@ from metapatch.circuits.base import DroidCircuit
 from metapatch.circuits import circuit_types as ctype
 
 
-__droid_version__ = "blue-5"
+__droid_version__ = "magenta-3"
 
 
 @dataclass
@@ -67,7 +67,7 @@ class Button(DroidCircuit):
           State of the push button when you switch on your system or on a trigger to
           clear. If you have three states, the start value needs to be 0, 1 or 2. With
           four states, it can also be 3.
-        select (gate):
+        select (integer):
           The select input allows you to overlay buttons and LEDs with multiple
           functions. If you use this input, the circuit will process the buttons and
           LEDs just as if select has a positive gate signal (usually you will select
@@ -137,103 +137,103 @@ class Button(DroidCircuit):
     __ramsize__ = 96
     button: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     onvalue: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     offvalue: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     doubleclickmode: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     longpresstime: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     states: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     startvalue: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     select: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     selectat: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     preset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     loadpreset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     savepreset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clear: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clearall: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     dontsave: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     inverted: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     negated: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     longpress: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     shortpress: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=8)
+            metadata=ctype.type_trigger(ramsize=0)
     )
 
 
@@ -481,11 +481,13 @@ class Buttongroup(DroidCircuit):
           If you set this parameter to the number of a button, that button will be
           selected (and all other deselected) at the start when no state is loaded or at
           a trigger to clear. This allows you to set useful default values for your
-          button groups. Note: this only makes sense if maxactive is not 0. Also it is
-          not possible to select more than one button, even in a group where maxactive
-          is greater than 1.  if minactive = 0, you also can set startbutton = 0. Then a
-          clear will clear all buttons.
-        select (gate):
+          button groups. Note: this only makes sense if maxactive is not 0.  if
+          minactive = 0, you also can set startbutton = 0. Then a clear will clear all
+          buttons.  If you set startbutton = -1, the maximum number of allowed buttons
+          will be set. This is useful in situations where maxactive is greater than 1.
+          If maxactive is less than the number of buttons, the selected buttons are
+          filled from the start.
+        select (integer):
           The select input allows you to overlay buttons and LEDs with multiple
           functions. If you use this input, the circuit will process the buttons and
           LEDs just as if select has a positive gate signal (usually you will select
@@ -948,586 +950,595 @@ class Buttongroup(DroidCircuit):
           change. Also in multi button situations (e.g. maxactive = 4 where you have 7
           buttons) the change is delayed up to 25 ms due to detection of bursts of quasi
           simultanous presses.
+        extrapress (trigger):
+          Emits a trigger, when one of the buttons was pressed but the selection has not
+          changed. This can be used to build clever interfaces like in the Motor Fader
+          Performance Sequencer, where a press on the already selected track toggles the
+          current page.
         comment: Add a comment in the droid ini file.
 
     """
 
-    __ramsize__ = 432
+    __ramsize__ = 440
     minactive: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     maxactive: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     longpresstime: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     button1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button5: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button6: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button7: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button8: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button9: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button10: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button11: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button12: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button13: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button14: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button15: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button16: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button17: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button18: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button19: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button20: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button21: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button22: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button23: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button24: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button25: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button26: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button27: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button28: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button29: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button30: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button31: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button32: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     value1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value5: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value6: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value7: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value8: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value9: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value10: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value11: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value12: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value13: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value14: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value15: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value16: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value17: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value18: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value19: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value20: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value21: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value22: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value23: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value24: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value25: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value26: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value27: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value28: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value29: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value30: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value31: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     value32: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     startbutton: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     select: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     selectat: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     preset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     loadpreset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     savepreset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clear: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clearall: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     dontsave: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led5: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led6: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led7: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led8: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led9: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led10: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led11: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led12: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led13: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led14: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led15: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led16: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led17: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led18: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led19: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led20: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led21: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led22: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led23: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led24: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led25: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led26: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led27: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led28: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led29: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led30: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led31: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led32: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     buttonoutput1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     buttonoutput2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     buttonoutput3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     buttonoutput4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     buttonoutput5: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     buttonoutput6: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     buttonoutput7: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     buttonoutput8: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     buttonoutput9: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     buttonoutput10: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     buttonoutput11: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     buttonoutput12: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     buttonoutput13: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     buttonoutput14: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     buttonoutput15: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     buttonoutput16: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     buttonoutput17: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     buttonoutput18: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     buttonoutput19: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     buttonoutput20: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     buttonoutput21: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     buttonoutput22: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     buttonoutput23: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     buttonoutput24: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     buttonoutput25: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     buttonoutput26: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     buttonoutput27: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     buttonoutput28: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     buttonoutput29: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     buttonoutput30: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     buttonoutput31: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     buttonoutput32: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     buttonpress: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=8)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     longpress: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=8)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     selectionchanged: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=8)
+            metadata=ctype.type_trigger(ramsize=0)
+    )
+    extrapress: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_trigger(ramsize=0)
     )
 
 
@@ -1657,7 +1668,7 @@ class Encoderbank(DroidCircuit):
           Selects whether the LED ring displays the current value with just a single
           colored dot (ledfill = 0) or by additionally illuminating all LEDs between 0
           and the current value in half brightness (ledfill = 1).
-        select (gate):
+        select (integer):
           The select input allows you to overlay buttons and LEDs with multiple
           functions. If you use this input, the circuit will process the buttons and
           LEDs just as if select has a positive gate signal (usually you will select
@@ -1759,191 +1770,191 @@ class Encoderbank(DroidCircuit):
     __ramsize__ = 736
     firstencoder: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     led1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     led2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     led3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     led4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     led5: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     led6: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     led7: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     led8: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     startvalue: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     notch: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     outputscale: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     outputoffset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     mode: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     smooth: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     discrete: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     snapto: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     snapforce: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     sensivity: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     autozoom: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     color: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     negativecolor: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledfill: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     select: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     selectat: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     preset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     loadpreset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     savepreset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clear: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clearall: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     dontsave: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     output1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output5: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output6: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output7: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output8: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     button1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button5: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button6: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button7: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button8: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
 
 
@@ -2065,7 +2076,7 @@ class Encoder(DroidCircuit):
           Selects whether the LED ring displays the current value with just a single
           colored dot (ledfill = 0) or by additionally illuminating all LEDs between 0
           and the current value in half brightness (ledfill = 1).
-        select (gate):
+        select (integer):
           The select input allows you to overlay buttons and LEDs with multiple
           functions. If you use this input, the circuit will process the buttons and
           LEDs just as if select has a positive gate signal (usually you will select
@@ -2118,134 +2129,134 @@ class Encoder(DroidCircuit):
 
     """
 
-    __ramsize__ = 176
+    __ramsize__ = 184
     encoder: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     override: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     sharewithnext: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     movementticks: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     led: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     startvalue: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     notch: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     outputscale: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     outputoffset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     mode: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     smooth: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     discrete: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     snapto: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     snapforce: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     sensivity: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     autozoom: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     color: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     negativecolor: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledfill: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     select: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     selectat: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     preset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     loadpreset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     savepreset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clear: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clearall: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     dontsave: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     output: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     button: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     moveddown: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=8)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     movedup: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=8)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     valuechanged: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=8)
+            metadata=ctype.type_trigger(ramsize=0)
     )
 
 
@@ -2318,7 +2329,7 @@ class Faderbank(DroidCircuit):
         ledvalue16 (cv):
           When you use this input, it will override the brightness of the LEDs below the
           faders, but just when this circuit is selected.
-        select (gate):
+        select (integer):
           The select input allows you to overlay buttons and LEDs with multiple
           functions. If you use this input, the circuit will process the buttons and
           LEDs just as if select has a positive gate signal (usually you will select
@@ -2436,243 +2447,243 @@ class Faderbank(DroidCircuit):
     __ramsize__ = 616
     firstfader: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     notches: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     startvalue: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledcolor: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledvalue1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledvalue2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledvalue3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledvalue4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledvalue5: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledvalue6: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledvalue7: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledvalue8: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledvalue9: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledvalue10: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledvalue11: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledvalue12: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledvalue13: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledvalue14: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledvalue15: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledvalue16: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     select: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     selectat: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     preset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     loadpreset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     savepreset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clear: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clearall: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     dontsave: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     output1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output5: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output6: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output7: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output8: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output9: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output10: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output11: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output12: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output13: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output14: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output15: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output16: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     button1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button5: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button6: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button7: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button8: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button9: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button10: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button11: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button12: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button13: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button14: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button15: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button16: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
 
 
@@ -2840,7 +2851,7 @@ class Fadermatrix(DroidCircuit):
           just four inputs since every column of outputs has the same LED color (in
           order to identify them). The color works as with the R registers for the LEDs
           on the master module.
-        select (gate):
+        select (integer):
           The select input allows you to overlay buttons and LEDs with multiple
           functions. If you use this input, the circuit will process the buttons and
           LEDs just as if select has a positive gate signal (usually you will select
@@ -2958,283 +2969,283 @@ class Fadermatrix(DroidCircuit):
     __ramsize__ = 640
     firstfader: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     rowcolumn: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     notches1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     notches2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     notches3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     notches4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     startvalue1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     startvalue2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     startvalue3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     startvalue4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledvalue11: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledvalue12: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledvalue13: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledvalue14: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledvalue21: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledvalue22: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledvalue23: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledvalue24: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledvalue31: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledvalue32: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledvalue33: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledvalue34: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledvalue41: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledvalue42: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledvalue43: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledvalue44: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledcolor1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledcolor2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledcolor3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledcolor4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     select: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     selectat: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     preset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     loadpreset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     savepreset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clear: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clearall: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     dontsave: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     output11: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output12: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output13: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output14: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output21: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output22: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output23: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output24: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output31: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output32: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output33: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output34: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output41: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output42: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output43: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output44: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     button11: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button12: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button13: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button14: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button21: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button22: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button23: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button24: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button31: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button32: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button33: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button34: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button41: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button42: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button43: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button44: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
 
 
@@ -3257,14 +3268,18 @@ class Motorfader(DroidCircuit):
           output one of the value 0, 1, ... 8. The maximum allowed number is 25.
         ledvalue (cv):
           When you use this input, it will override the brightness of the LED below the
-          fader, but just when this circuit is selected.
+          fader, but just when this circuit is selected.  And there is a special trick:
+          When you use a negative value for ledvalue, it switches to a magical mode.
+          Here the LED is at full brightness when the current setting of the motorfader
+          matches its startvalue, whereas the setting of ledvalue is used (made
+          positive) in all other cases.
         ledcolor (cv):
           When you use this input, it will set the color of the LED below the fader,
           when the circuit is selected. If the LED is off, this setting has now impact.
         sharewithnext (gate):
           If set to 1, the output output will not be used but the circuit shares it's
           output with the next motorfader circuit.
-        select (gate):
+        select (integer):
           The select input allows you to overlay buttons and LEDs with multiple
           functions. If you use this input, the circuit will process the buttons and
           LEDs just as if select has a positive gate signal (usually you will select
@@ -3307,70 +3322,70 @@ class Motorfader(DroidCircuit):
 
     """
 
-    __ramsize__ = 104
+    __ramsize__ = 112
     fader: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     startvalue: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     notches: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     ledvalue: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledcolor: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     sharewithnext: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     select: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     selectat: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     preset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     loadpreset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     savepreset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clear: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clearall: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     dontsave: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     output: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     button: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
 
 
@@ -3412,7 +3427,7 @@ class Notebuttons(DroidCircuit):
           Specify the note that should be selected when the Droid starts and no state is
           loaded, or when a trigger to clear or clearall happened. This is an integer
           number from 0 to 11.
-        select (gate):
+        select (integer):
           The select input allows you to overlay buttons and LEDs with multiple
           functions. If you use this input, the circuit will process the buttons and
           LEDs just as if select has a positive gate signal (usually you will select
@@ -3485,151 +3500,151 @@ class Notebuttons(DroidCircuit):
     __ramsize__ = 128
     button1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button5: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button6: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button7: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button8: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button9: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button10: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button11: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button12: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clock: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     startnote: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     select: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     selectat: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     preset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     loadpreset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     savepreset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clear: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clearall: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     dontsave: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led5: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led6: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led7: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led8: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led9: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led10: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led11: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     led12: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     output: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=4)
+            metadata=ctype.type_integer(ramsize=0)
     )
     semitone: Optional[str] = field(
             default=None,
-            metadata=ctype.type_voltperoctave(ramsize=4)
+            metadata=ctype.type_voltperoctave(ramsize=0)
     )
     gate: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
 
 
@@ -3660,7 +3675,7 @@ class Nudge(DroidCircuit):
           maximum.
         offset (cv):
           This value is being added to the output.
-        select (gate):
+        select (integer):
           The select input allows you to overlay buttons and LEDs with multiple
           functions. If you use this input, the circuit will process the buttons and
           LEDs just as if select has a positive gate signal (usually you will select
@@ -3703,82 +3718,82 @@ class Nudge(DroidCircuit):
 
     """
 
-    __ramsize__ = 136
+    __ramsize__ = 144
     buttonup: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     buttondown: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     amount: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     startvalue: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     minimum: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     maximum: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     wrap: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     offset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     select: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     selectat: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     preset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     loadpreset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     savepreset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clear: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clearall: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     dontsave: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     ledup: Optional[str] = field(
             default=None,
-            metadata=ctype.type_stepped(ramsize=4)
+            metadata=ctype.type_stepped(ramsize=0)
     )
     leddown: Optional[str] = field(
             default=None,
-            metadata=ctype.type_stepped(ramsize=4)
+            metadata=ctype.type_stepped(ramsize=0)
     )
     output: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
 
 
@@ -3840,7 +3855,7 @@ class Pot(DroidCircuit):
           clear. This is the value before outputscale is applied.  If you use discrete,
           the parameter does not expect a fraction but a discrete number in the range of
           the discrete values (0, 1, 2, etc.
-        select (gate):
+        select (integer):
           The select input allows you to overlay buttons and LEDs with multiple
           functions. If you use this input, the circuit will process the buttons and
           LEDs just as if select has a positive gate signal (usually you will select
@@ -3901,95 +3916,95 @@ class Pot(DroidCircuit):
     __ramsize__ = 120
     pot: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     outputscale: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     notch: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     discrete: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     slope: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     ledgauge: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     startvalue: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     select: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     selectat: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     preset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     loadpreset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     savepreset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clear: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clearall: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     dontsave: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     output: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=4)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     bipolar: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     absbipolar: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     lefthalf: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     righthalf: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     lefthalfinv: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     righthalfinv: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     onchange: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=8)
+            metadata=ctype.type_trigger(ramsize=0)
     )
 
 
@@ -4003,7 +4018,7 @@ class Unusedfaders(DroidCircuit):
           The number of the first unused motor fader motor.
         numfaders (integer):
           The number of unused faders
-        select (gate):
+        select (integer):
           The select input allows you to overlay buttons and LEDs with multiple
           functions. If you use this input, the circuit will process the buttons and
           LEDs just as if select has a positive gate signal (usually you will select
@@ -4023,19 +4038,19 @@ class Unusedfaders(DroidCircuit):
     __ramsize__ = 32
     firstfader: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     numfaders: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     select: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     selectat: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
 
 

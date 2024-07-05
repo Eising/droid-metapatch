@@ -7,7 +7,7 @@ from metapatch.circuits.base import DroidCircuit
 from metapatch.circuits import circuit_types as ctype
 
 
-__droid_version__ = "blue-5"
+__droid_version__ = "magenta-3"
 
 
 @dataclass
@@ -241,103 +241,103 @@ class Droid(DroidCircuit):
     __ramsize__ = 72
     ledbrightness: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     maxslope1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     maxslope2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     maxslope3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     maxslope4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     maxslope5: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     maxslope6: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     maxslope7: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     maxslope8: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     lpfilter1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     lpfilter2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     lpfilter3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     lpfilter4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     lpfilter5: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     lpfilter6: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     lpfilter7: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     lpfilter8: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     m4faderspeed: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     statusdump: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     m4notchpower: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     calibrate: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     startcontrollerupgrade: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     startx7upgrade: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clear: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clearall: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
 
 
@@ -382,43 +382,43 @@ class Outputcalibrator(DroidCircuit):
     __ramsize__ = 40
     output: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     referencepoint: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     nudgeup: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     nudgedown: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     save: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     cancel: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     loaddefaults: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     dirty: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     calibration: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     uncalibrated: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=4)
+            metadata=ctype.type_fraction(ramsize=0)
     )
 
 
