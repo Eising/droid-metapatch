@@ -7,7 +7,7 @@ from metapatch.circuits.base import DroidCircuit
 from metapatch.circuits import circuit_types as ctype
 
 
-__droid_version__ = "blue-5"
+__droid_version__ = "blue-6"
 
 
 @dataclass
@@ -33,19 +33,19 @@ class Bernoulli(DroidCircuit):
     __ramsize__ = 32
     input: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     distribution: Optional[str] = field(
             default=None,
-            metadata=ctype.type_bipolar(ramsize=12)
+            metadata=ctype.type_bipolar(ramsize=0)
     )
     output1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     output2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
 
 
@@ -86,35 +86,35 @@ class Burst(DroidCircuit):
     __ramsize__ = 40
     rate: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     taptempo: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=30)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     hz: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     trigger: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     reset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     count: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     skip: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     output: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=4)
+            metadata=ctype.type_trigger(ramsize=0)
     )
 
 
@@ -174,43 +174,43 @@ class Clocktool(DroidCircuit):
     __ramsize__ = 96
     clock: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=30)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     reset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     divide: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     multiply: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     dutycycle: Optional[str] = field(
             default=None,
-            metadata=ctype.type_bipolar(ramsize=12)
+            metadata=ctype.type_bipolar(ramsize=0)
     )
     gatelength: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     delay: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=8)
+            metadata=ctype.type_gate(ramsize=0)
     )
     inputpitch: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     outputpitch: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
 
 
@@ -245,35 +245,35 @@ class Flipflop(DroidCircuit):
     __ramsize__ = 40
     toggle: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     set: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     reset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clear: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     startvalue: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     load: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     loadvalue: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     output: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
 
 
@@ -317,47 +317,47 @@ class Gatetool(DroidCircuit):
     __ramsize__ = 56
     inputgate: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     inputtrigger: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     inputedge: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gatelength: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     gatestretch: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     mingatelength: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     maxgatelength: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     taptempo: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=30)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     outputgate: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     outputtrigger: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=8)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     outputedge: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
 
 
@@ -385,15 +385,15 @@ class Once(DroidCircuit):
     __ramsize__ = 24
     delay: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     onlycoldstart: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     trigger: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=8)
+            metadata=ctype.type_trigger(ramsize=0)
     )
 
 
@@ -456,47 +456,47 @@ class Timing(DroidCircuit):
     __ramsize__ = 56
     clock: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=30)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     reset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     timing1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     timing2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     timing3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     timing4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     timing5: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     timing6: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     timing7: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     timing8: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     output: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=8)
+            metadata=ctype.type_trigger(ramsize=0)
     )
 
 
@@ -544,35 +544,35 @@ class Triggerdelay(DroidCircuit):
     __ramsize__ = 248
     input: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     delay: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     gatelength: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     repeats: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     mute: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     clock: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=30)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     output: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     overflow: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=8)
+            metadata=ctype.type_gate(ramsize=0)
     )
 
 

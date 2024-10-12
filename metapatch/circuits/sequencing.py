@@ -7,7 +7,7 @@ from metapatch.circuits.base import DroidCircuit
 from metapatch.circuits import circuit_types as ctype
 
 
-__droid_version__ = "blue-5"
+__droid_version__ = "blue-6"
 
 
 @dataclass
@@ -66,8 +66,10 @@ class Algoquencer(DroidCircuit):
           pot here, simply multiply it by the number of different patterns you want to
           select, e.g. pattern = P1.1 * 10. This will allow you to select one of the
           pattern 0, 1, ... 10.
-          Note: If you use pattern, the trigger inputs nextpattern, prevpattern and
-          reroll are ignored.
+          You can use pattern in combination with nextpattern, prevpattern and reroll.
+          These three inputs create an offset to the chosen pattern. E.g. if you set
+          pattern = 5 and send one trigger to nextpattern, the actually used pattern is
+          6.
 
         nextpattern (trigger):
           Switches forward to the next pseudo random pattern.
@@ -369,7 +371,7 @@ class Algoquencer(DroidCircuit):
           variation will also be applied to these notes. Note: If length is larger than
           16, these pitch inputs will be cycled through, so step 17 uses pitch1, step 18
           uses pitch2 and so on.
-        select (gate):
+        select (integer):
           The select input allows you to overlay buttons and LEDs with multiple
           functions. If you use this input, the circuit will process the buttons and
           LEDs just as if select has a positive gate signal (usually you will select
@@ -503,434 +505,434 @@ class Algoquencer(DroidCircuit):
 
     """
 
-    __ramsize__ = 872
+    __ramsize__ = 880
     clock: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=30)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     reset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     button1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button5: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button6: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button7: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button8: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button9: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button10: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button11: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button12: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button13: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button14: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button15: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     button16: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     length: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     pattern: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     nextpattern: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     prevpattern: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     reroll: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clearpage: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     pitchlow: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     pitchhigh: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     pitchresolution: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     gatelength: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     lengthbutton: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     repeats: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     alternaterepeats: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     branches: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     mutebutton: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     unmutebutton: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     accentbutton: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     alternatebutton: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     alternatebars: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     accentlow: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     accenthigh: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     activity: Optional[str] = field(
             default=None,
-            metadata=ctype.type_bipolar(ramsize=12)
+            metadata=ctype.type_bipolar(ramsize=0)
     )
     variation: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     dejavu: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     morphs: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     offbeats: Optional[str] = field(
             default=None,
-            metadata=ctype.type_bipolar(ramsize=12)
+            metadata=ctype.type_bipolar(ramsize=0)
     )
     distribution: Optional[str] = field(
             default=None,
-            metadata=ctype.type_bipolar(ramsize=12)
+            metadata=ctype.type_bipolar(ramsize=0)
     )
     fills: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     fillorder: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     rolls: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     rollcount: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     rollsteps: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     rollstartvelo: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     pitch1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     pitch2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     pitch3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     pitch4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     pitch5: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     pitch6: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     pitch7: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     pitch8: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     pitch9: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     pitch10: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     pitch11: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     pitch12: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     pitch13: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     pitch14: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     pitch15: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     pitch16: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     select: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     selectat: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     preset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     loadpreset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     savepreset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clear: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clearall: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     dontsave: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     trigger: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=8)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     gate: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=8)
+            metadata=ctype.type_gate(ramsize=0)
     )
     pitch: Optional[str] = field(
             default=None,
-            metadata=ctype.type_stepped(ramsize=4)
+            metadata=ctype.type_stepped(ramsize=0)
     )
     accent: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     led1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_stepped(ramsize=4)
+            metadata=ctype.type_stepped(ramsize=0)
     )
     led2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_stepped(ramsize=4)
+            metadata=ctype.type_stepped(ramsize=0)
     )
     led3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_stepped(ramsize=4)
+            metadata=ctype.type_stepped(ramsize=0)
     )
     led4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_stepped(ramsize=4)
+            metadata=ctype.type_stepped(ramsize=0)
     )
     led5: Optional[str] = field(
             default=None,
-            metadata=ctype.type_stepped(ramsize=4)
+            metadata=ctype.type_stepped(ramsize=0)
     )
     led6: Optional[str] = field(
             default=None,
-            metadata=ctype.type_stepped(ramsize=4)
+            metadata=ctype.type_stepped(ramsize=0)
     )
     led7: Optional[str] = field(
             default=None,
-            metadata=ctype.type_stepped(ramsize=4)
+            metadata=ctype.type_stepped(ramsize=0)
     )
     led8: Optional[str] = field(
             default=None,
-            metadata=ctype.type_stepped(ramsize=4)
+            metadata=ctype.type_stepped(ramsize=0)
     )
     led9: Optional[str] = field(
             default=None,
-            metadata=ctype.type_stepped(ramsize=4)
+            metadata=ctype.type_stepped(ramsize=0)
     )
     led10: Optional[str] = field(
             default=None,
-            metadata=ctype.type_stepped(ramsize=4)
+            metadata=ctype.type_stepped(ramsize=0)
     )
     led11: Optional[str] = field(
             default=None,
-            metadata=ctype.type_stepped(ramsize=4)
+            metadata=ctype.type_stepped(ramsize=0)
     )
     led12: Optional[str] = field(
             default=None,
-            metadata=ctype.type_stepped(ramsize=4)
+            metadata=ctype.type_stepped(ramsize=0)
     )
     led13: Optional[str] = field(
             default=None,
-            metadata=ctype.type_stepped(ramsize=4)
+            metadata=ctype.type_stepped(ramsize=0)
     )
     led14: Optional[str] = field(
             default=None,
-            metadata=ctype.type_stepped(ramsize=4)
+            metadata=ctype.type_stepped(ramsize=0)
     )
     led15: Optional[str] = field(
             default=None,
-            metadata=ctype.type_stepped(ramsize=4)
+            metadata=ctype.type_stepped(ramsize=0)
     )
     led16: Optional[str] = field(
             default=None,
-            metadata=ctype.type_stepped(ramsize=4)
+            metadata=ctype.type_stepped(ramsize=0)
     )
     barled1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     barled2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     barled3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     barled4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     rollvelocity: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     startofbar: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=8)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     muteled: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     unmuteled: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     morphled: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=8)
+            metadata=ctype.type_gate(ramsize=0)
     )
     fillsled: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=8)
+            metadata=ctype.type_gate(ramsize=0)
     )
     branch: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=4)
+            metadata=ctype.type_integer(ramsize=0)
     )
     lengthoutput: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=4)
+            metadata=ctype.type_integer(ramsize=0)
     )
 
 
@@ -1019,14 +1021,14 @@ class Arpeggio(DroidCircuit):
           2D 3D♯ 4E 5F 6F♯ 7G 8G♯ 9A 10A♯ 11B 12C
         degree (integer):
           Set the musical scale. This is a number from 0 to 107. Below are the first 12
-          and most important scales. You find a list of all 108 scales on page 105.
+          and most important scales. You find a list of all 108 scales on page 107.
           0lyd – Lydian major scale (it has a ♯ 4) 1maj – Normal major scale (ionian)
           2X^7 – Mixolydian (dominant seven chords) 3sus – mixolydian with 3/4 swapped
           4alt – Altered scale 5hm^5 – Harmonic minor scale from the 5 6dor – Dorian
           minor (minor with ♯ 13) 7min – Natural minor (aeolian) 8hm – Harmonic minor (♭
           6 but ♯ 7) 9phr – Phrygian minor scale (with ♭ 9) 10dim – Diminished scale
           (whole/half tone) 11aug – Augmented scale (just whole tones)   Note:
-          Alltogether there are 108 scales. Please see page 105 for a complete list
+          Alltogether there are 108 scales. Please see page 107 for a complete list
         select1 (gate):
           Gate input for selecting the root note as being an allowed interval. When you
           want to create a playing interface for live operation you can patch the output
@@ -1068,12 +1070,12 @@ class Arpeggio(DroidCircuit):
           You also can use negative values. These create rather strange sounds by
           removing the simple chord functions instead of the complex ones first.  Here
           are the possible values:   0off – all selected notes are allowed 1disable all
-          fill notes (non-scale notes) 2disable fills and 11 3disable fills, 11 and 13
-          4disable fills, 11, 13 and 9 5disable fills, 11, 13, 9 and 7 6disable fills,
-          11, 13, 9, 7 and 3 7disable fills, 11, 13, 9, 7, 3 and 5 -1disable the root
-          note -2disable the root note and the 5 -3disable root, 3, 5 -4disable root, 3,
-          5, 7 -5disable root, 3, 5, 7, 9 -6disable root, 3, 5, 7, 9 and 13 -7disable
-          all scale notes (fill notes untouched)
+          fill notes (non-scale notes) 2disable fills and 11þ 3disable fills, 11þand 13þ
+          4disable fills, 11þ, 13þand 9 5disable fills, 11þ, 13þ, 9 and 7 6disable
+          fills, 11þ, 13þ, 9, 7 and 3 7disable fills, 11þ, 13þ, 9, 7, 3 and 5 -1disable
+          the root note -2disable the root note and the 5 -3disable root, 3, 5 -4disable
+          root, 3, 5, 7 -5disable root, 3, 5, 7, 9 -6disable root, 3, 5, 7, 9 and 13þ
+          -7disable all scale notes (fill notes untouched)
         noteshift (integer):
           Shifts the resulting output note(s) by this number of scale notes up or down
           (if negative). So the output note still is part of the scale but may be a note
@@ -1098,138 +1100,138 @@ class Arpeggio(DroidCircuit):
 
     """
 
-    __ramsize__ = 112
+    __ramsize__ = 144
     pitch: Optional[str] = field(
             default=None,
-            metadata=ctype.type_voltperoctave(ramsize=12)
+            metadata=ctype.type_voltperoctave(ramsize=0)
     )
     range: Optional[str] = field(
             default=None,
-            metadata=ctype.type_voltperoctave(ramsize=12)
+            metadata=ctype.type_voltperoctave(ramsize=0)
     )
     clock: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     reset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     pattern: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     direction: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     pingpong: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     butterfly: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     drop: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     octaves: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     startnote: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     autoreset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     root: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     degree: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     select1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     select3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     select5: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     select7: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     select9: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     select11: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     select13: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     selectfill1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     selectfill2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     selectfill3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     selectfill4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     selectfill5: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     harmonicshift: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     noteshift: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     selectnoteshift: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     tuningmode: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     tuningpitch: Optional[str] = field(
             default=None,
-            metadata=ctype.type_voltperoctave(ramsize=12)
+            metadata=ctype.type_voltperoctave(ramsize=0)
     )
     transpose: Optional[str] = field(
             default=None,
-            metadata=ctype.type_voltperoctave(ramsize=12)
+            metadata=ctype.type_voltperoctave(ramsize=0)
     )
     output: Optional[str] = field(
             default=None,
-            metadata=ctype.type_voltperoctave(ramsize=4)
+            metadata=ctype.type_voltperoctave(ramsize=0)
     )
 
 
@@ -1436,6 +1438,19 @@ class Encoquencer(DroidCircuit):
           fader mode for pitch randomization still is in the special mode where the
           upper four positions control the impact of the accumulator.  Please consult
           the manual of motoquencer for details on the pitch accumulator.
+        constantlength (gate):
+          This input enables a feature that (tries to) keep the actual length of the
+          sequence constant. There are two levels. If constantlength = 1, every change
+          in the repeats of a step is compensated by changing the repeats in the
+          following steps. E.g. if you increase the number of repeats from 4 to 5 in
+          step 3 (by moving the fader in the appropriate fader mode), the repeats in
+          step 4 are reduced by 1. If they are already 1, step 5 is tried an so on,
+          until it wrap around to step 1.  The second level is constantlength = 2. Here
+          also the skip setting of steps is honored and modified in order to keep the
+          length constant. A skipped step essentially has the length 0 (or 0 repeats).
+          The componsation is now done not only when the repeats are changed but also
+          when skip is switched on or off on a step.  All the compensation is only
+          active with the range that is set with the start and end step.
         autoreset (integer):
           If set to non-zero, automatically issues a reset (just like a trigger to
           reset) every N clock ticks.
@@ -1633,14 +1648,14 @@ class Encoquencer(DroidCircuit):
           2D 3D♯ 4E 5F 6F♯ 7G 8G♯ 9A 10A♯ 11B 12C
         degree (integer):
           Set the musical scale. This is a number from 0 to 107. Below are the first 12
-          and most important scales. You find a list of all 108 scales on page 105.
+          and most important scales. You find a list of all 108 scales on page 107.
           0lyd – Lydian major scale (it has a ♯ 4) 1maj – Normal major scale (ionian)
           2X^7 – Mixolydian (dominant seven chords) 3sus – mixolydian with 3/4 swapped
           4alt – Altered scale 5hm^5 – Harmonic minor scale from the 5 6dor – Dorian
           minor (minor with ♯ 13) 7min – Natural minor (aeolian) 8hm – Harmonic minor (♭
           6 but ♯ 7) 9phr – Phrygian minor scale (with ♭ 9) 10dim – Diminished scale
           (whole/half tone) 11aug – Augmented scale (just whole tones)   Note:
-          Alltogether there are 108 scales. Please see page 105 for a complete list
+          Alltogether there are 108 scales. Please see page 107 for a complete list
         select1 (gate):
           Gate input for selecting the root note as being an allowed interval. When you
           want to create a playing interface for live operation you can patch the output
@@ -1682,12 +1697,12 @@ class Encoquencer(DroidCircuit):
           You also can use negative values. These create rather strange sounds by
           removing the simple chord functions instead of the complex ones first.  Here
           are the possible values:   0off – all selected notes are allowed 1disable all
-          fill notes (non-scale notes) 2disable fills and 11 3disable fills, 11 and 13
-          4disable fills, 11, 13 and 9 5disable fills, 11, 13, 9 and 7 6disable fills,
-          11, 13, 9, 7 and 3 7disable fills, 11, 13, 9, 7, 3 and 5 -1disable the root
-          note -2disable the root note and the 5 -3disable root, 3, 5 -4disable root, 3,
-          5, 7 -5disable root, 3, 5, 7, 9 -6disable root, 3, 5, 7, 9 and 13 -7disable
-          all scale notes (fill notes untouched)
+          fill notes (non-scale notes) 2disable fills and 11þ 3disable fills, 11þand 13þ
+          4disable fills, 11þ, 13þand 9 5disable fills, 11þ, 13þ, 9 and 7 6disable
+          fills, 11þ, 13þ, 9, 7 and 3 7disable fills, 11þ, 13þ, 9, 7, 3 and 5 -1disable
+          the root note -2disable the root note and the 5 -3disable root, 3, 5 -4disable
+          root, 3, 5, 7 -5disable root, 3, 5, 7, 9 -6disable root, 3, 5, 7, 9 and 13þ
+          -7disable all scale notes (fill notes untouched)
         noteshift (integer):
           Shifts the resulting output note(s) by this number of scale notes up or down
           (if negative). So the output note still is part of the scale but may be a note
@@ -1705,7 +1720,7 @@ class Encoquencer(DroidCircuit):
         transpose (voltperoctave):
           This value is being added to the output pitch when not in tuning mode. It can
           be used for musical transposition or adding a vibrato.
-        select (gate):
+        select (integer):
           The select input allows you to overlay buttons and LEDs with multiple
           functions. If you use this input, the circuit will process the buttons and
           LEDs just as if select has a positive gate signal (usually you will select
@@ -1768,434 +1783,438 @@ class Encoquencer(DroidCircuit):
 
     """
 
-    __ramsize__ = 1296
+    __ramsize__ = 1336
     zorder: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     nume4s: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     ledpreview: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     firstfader: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     numfaders: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     numsteps: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     page: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     clock: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=30)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     taptempo: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=30)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     reset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     run: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     composemode: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     mute: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     cvbase: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     cvrange: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     invert: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     quantize: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     cvnotches: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     shiftsteps: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     startstep: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     endstep: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     form: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     direction: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     pingpong: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     pattern: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     repeatshift: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     ratchetshift: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     accumulatorrange: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
+    )
+    constantlength: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=0)
     )
     autoreset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     metricsaver: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     fadermode: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     buttonmode: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     holdcv: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     defaultcv: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     defaultgate: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     clearskips: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clearrepeats: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clearstartend: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     gatelength: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     keyboardmode: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     keyboardcv: Optional[str] = field(
             default=None,
-            metadata=ctype.type_voltperoctave(ramsize=12)
+            metadata=ctype.type_voltperoctave(ramsize=0)
     )
     keyboardgate: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     recordmode: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     recordsilence: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     copy: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     paste: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     pastefaders: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     pastebuttons: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     linktonext: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     luckychance: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     luckyscope: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     luckyamount: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     luckycvbase: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     luckyfaders: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     luckybuttons: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     luckycvs: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     luckycvdrift: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     luckyspread: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     luckyinvert: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     luckyrandomizecv: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     luckygates: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     luckyskips: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     luckyties: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     luckygatepattern: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     luckygateprob: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     luckyrepeats: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     luckyratchets: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     luckyshuffle: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     buttoncolor: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     luckyreverse: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     root: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     degree: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     select1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     select3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     select5: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     select7: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     select9: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     select11: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     select13: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     selectfill1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     selectfill2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     selectfill3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     selectfill4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     selectfill5: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     harmonicshift: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     noteshift: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     selectnoteshift: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     tuningmode: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     tuningpitch: Optional[str] = field(
             default=None,
-            metadata=ctype.type_voltperoctave(ramsize=12)
+            metadata=ctype.type_voltperoctave(ramsize=0)
     )
     transpose: Optional[str] = field(
             default=None,
-            metadata=ctype.type_voltperoctave(ramsize=12)
+            metadata=ctype.type_voltperoctave(ramsize=0)
     )
     select: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     selectat: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     preset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     loadpreset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     savepreset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clear: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clearall: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     dontsave: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     cv: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     gate: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     startofsequence: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=8)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     startofpart: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=8)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     startstepout: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=4)
+            metadata=ctype.type_integer(ramsize=0)
     )
     endstepout: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=4)
+            metadata=ctype.type_integer(ramsize=0)
     )
     currentstep: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=4)
+            metadata=ctype.type_integer(ramsize=0)
     )
     currentpage: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=4)
+            metadata=ctype.type_integer(ramsize=0)
     )
     accumulator: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=4)
+            metadata=ctype.type_integer(ramsize=0)
     )
 
 
@@ -2241,35 +2260,35 @@ class Euklid(DroidCircuit):
     __ramsize__ = 48
     clock: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     reset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     outputsignal: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     length: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     beats: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     offset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     output: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     offbeats: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
 
 
@@ -2453,6 +2472,19 @@ class Motoquencer(DroidCircuit):
           fader mode for pitch randomization still is in the special mode where the
           upper four positions control the impact of the accumulator.  Please consult
           the manual of motoquencer for details on the pitch accumulator.
+        constantlength (gate):
+          This input enables a feature that (tries to) keep the actual length of the
+          sequence constant. There are two levels. If constantlength = 1, every change
+          in the repeats of a step is compensated by changing the repeats in the
+          following steps. E.g. if you increase the number of repeats from 4 to 5 in
+          step 3 (by moving the fader in the appropriate fader mode), the repeats in
+          step 4 are reduced by 1. If they are already 1, step 5 is tried an so on,
+          until it wrap around to step 1.  The second level is constantlength = 2. Here
+          also the skip setting of steps is honored and modified in order to keep the
+          length constant. A skipped step essentially has the length 0 (or 0 repeats).
+          The componsation is now done not only when the repeats are changed but also
+          when skip is switched on or off on a step.  All the compensation is only
+          active with the range that is set with the start and end step.
         autoreset (integer):
           If set to non-zero, automatically issues a reset (just like a trigger to
           reset) every N clock ticks.
@@ -2650,14 +2682,14 @@ class Motoquencer(DroidCircuit):
           2D 3D♯ 4E 5F 6F♯ 7G 8G♯ 9A 10A♯ 11B 12C
         degree (integer):
           Set the musical scale. This is a number from 0 to 107. Below are the first 12
-          and most important scales. You find a list of all 108 scales on page 105.
+          and most important scales. You find a list of all 108 scales on page 107.
           0lyd – Lydian major scale (it has a ♯ 4) 1maj – Normal major scale (ionian)
           2X^7 – Mixolydian (dominant seven chords) 3sus – mixolydian with 3/4 swapped
           4alt – Altered scale 5hm^5 – Harmonic minor scale from the 5 6dor – Dorian
           minor (minor with ♯ 13) 7min – Natural minor (aeolian) 8hm – Harmonic minor (♭
           6 but ♯ 7) 9phr – Phrygian minor scale (with ♭ 9) 10dim – Diminished scale
           (whole/half tone) 11aug – Augmented scale (just whole tones)   Note:
-          Alltogether there are 108 scales. Please see page 105 for a complete list
+          Alltogether there are 108 scales. Please see page 107 for a complete list
         select1 (gate):
           Gate input for selecting the root note as being an allowed interval. When you
           want to create a playing interface for live operation you can patch the output
@@ -2699,12 +2731,12 @@ class Motoquencer(DroidCircuit):
           You also can use negative values. These create rather strange sounds by
           removing the simple chord functions instead of the complex ones first.  Here
           are the possible values:   0off – all selected notes are allowed 1disable all
-          fill notes (non-scale notes) 2disable fills and 11 3disable fills, 11 and 13
-          4disable fills, 11, 13 and 9 5disable fills, 11, 13, 9 and 7 6disable fills,
-          11, 13, 9, 7 and 3 7disable fills, 11, 13, 9, 7, 3 and 5 -1disable the root
-          note -2disable the root note and the 5 -3disable root, 3, 5 -4disable root, 3,
-          5, 7 -5disable root, 3, 5, 7, 9 -6disable root, 3, 5, 7, 9 and 13 -7disable
-          all scale notes (fill notes untouched)
+          fill notes (non-scale notes) 2disable fills and 11þ 3disable fills, 11þand 13þ
+          4disable fills, 11þ, 13þand 9 5disable fills, 11þ, 13þ, 9 and 7 6disable
+          fills, 11þ, 13þ, 9, 7 and 3 7disable fills, 11þ, 13þ, 9, 7, 3 and 5 -1disable
+          the root note -2disable the root note and the 5 -3disable root, 3, 5 -4disable
+          root, 3, 5, 7 -5disable root, 3, 5, 7, 9 -6disable root, 3, 5, 7, 9 and 13þ
+          -7disable all scale notes (fill notes untouched)
         noteshift (integer):
           Shifts the resulting output note(s) by this number of scale notes up or down
           (if negative). So the output note still is part of the scale but may be a note
@@ -2722,7 +2754,7 @@ class Motoquencer(DroidCircuit):
         transpose (voltperoctave):
           This value is being added to the output pitch when not in tuning mode. It can
           be used for musical transposition or adding a vibrato.
-        select (gate):
+        select (integer):
           The select input allows you to overlay buttons and LEDs with multiple
           functions. If you use this input, the circuit will process the buttons and
           LEDs just as if select has a positive gate signal (usually you will select
@@ -2785,422 +2817,426 @@ class Motoquencer(DroidCircuit):
 
     """
 
-    __ramsize__ = 1128
+    __ramsize__ = 1168
     firstfader: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     numfaders: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     numsteps: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     page: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     clock: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=30)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     taptempo: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=30)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     reset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     run: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     composemode: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     mute: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     cvbase: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     cvrange: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     invert: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     quantize: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     cvnotches: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     shiftsteps: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     startstep: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     endstep: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     form: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     direction: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     pingpong: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     pattern: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     repeatshift: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     ratchetshift: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     accumulatorrange: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
+    )
+    constantlength: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=0)
     )
     autoreset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     metricsaver: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     fadermode: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     buttonmode: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     holdcv: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     defaultcv: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     defaultgate: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     clearskips: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clearrepeats: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clearstartend: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     gatelength: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     keyboardmode: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     keyboardcv: Optional[str] = field(
             default=None,
-            metadata=ctype.type_voltperoctave(ramsize=12)
+            metadata=ctype.type_voltperoctave(ramsize=0)
     )
     keyboardgate: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     recordmode: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     recordsilence: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     copy: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     paste: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     pastefaders: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     pastebuttons: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     linktonext: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     luckychance: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     luckyscope: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     luckyamount: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     luckycvbase: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     luckyfaders: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     luckybuttons: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     luckycvs: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     luckycvdrift: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     luckyspread: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     luckyinvert: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     luckyrandomizecv: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     luckygates: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     luckyskips: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     luckyties: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     luckygatepattern: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     luckygateprob: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     luckyrepeats: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     luckyratchets: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     luckyshuffle: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     buttoncolor: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     luckyreverse: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     root: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     degree: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     select1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     select3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     select5: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     select7: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     select9: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     select11: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     select13: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     selectfill1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     selectfill2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     selectfill3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     selectfill4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     selectfill5: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     harmonicshift: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     noteshift: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     selectnoteshift: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     tuningmode: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     tuningpitch: Optional[str] = field(
             default=None,
-            metadata=ctype.type_voltperoctave(ramsize=12)
+            metadata=ctype.type_voltperoctave(ramsize=0)
     )
     transpose: Optional[str] = field(
             default=None,
-            metadata=ctype.type_voltperoctave(ramsize=12)
+            metadata=ctype.type_voltperoctave(ramsize=0)
     )
     select: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     selectat: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     preset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     loadpreset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     savepreset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clear: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     clearall: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     dontsave: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     cv: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     gate: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     startofsequence: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=8)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     startofpart: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=8)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     startstepout: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=4)
+            metadata=ctype.type_integer(ramsize=0)
     )
     endstepout: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=4)
+            metadata=ctype.type_integer(ramsize=0)
     )
     currentstep: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=4)
+            metadata=ctype.type_integer(ramsize=0)
     )
     currentpage: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=4)
+            metadata=ctype.type_integer(ramsize=0)
     )
     accumulator: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=4)
+            metadata=ctype.type_integer(ramsize=0)
     )
 
 
@@ -3366,267 +3402,267 @@ class Polytool(DroidCircuit):
     __ramsize__ = 240
     pitchinput1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_any(ramsize=12)
+            metadata=ctype.type_any(ramsize=0)
     )
     pitchinput2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_any(ramsize=12)
+            metadata=ctype.type_any(ramsize=0)
     )
     pitchinput3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_any(ramsize=12)
+            metadata=ctype.type_any(ramsize=0)
     )
     pitchinput4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_any(ramsize=12)
+            metadata=ctype.type_any(ramsize=0)
     )
     pitchinput5: Optional[str] = field(
             default=None,
-            metadata=ctype.type_any(ramsize=12)
+            metadata=ctype.type_any(ramsize=0)
     )
     pitchinput6: Optional[str] = field(
             default=None,
-            metadata=ctype.type_any(ramsize=12)
+            metadata=ctype.type_any(ramsize=0)
     )
     pitchinput7: Optional[str] = field(
             default=None,
-            metadata=ctype.type_any(ramsize=12)
+            metadata=ctype.type_any(ramsize=0)
     )
     pitchinput8: Optional[str] = field(
             default=None,
-            metadata=ctype.type_any(ramsize=12)
+            metadata=ctype.type_any(ramsize=0)
     )
     pitchinput9: Optional[str] = field(
             default=None,
-            metadata=ctype.type_any(ramsize=12)
+            metadata=ctype.type_any(ramsize=0)
     )
     pitchinput10: Optional[str] = field(
             default=None,
-            metadata=ctype.type_any(ramsize=12)
+            metadata=ctype.type_any(ramsize=0)
     )
     pitchinput11: Optional[str] = field(
             default=None,
-            metadata=ctype.type_any(ramsize=12)
+            metadata=ctype.type_any(ramsize=0)
     )
     pitchinput12: Optional[str] = field(
             default=None,
-            metadata=ctype.type_any(ramsize=12)
+            metadata=ctype.type_any(ramsize=0)
     )
     pitchinput13: Optional[str] = field(
             default=None,
-            metadata=ctype.type_any(ramsize=12)
+            metadata=ctype.type_any(ramsize=0)
     )
     pitchinput14: Optional[str] = field(
             default=None,
-            metadata=ctype.type_any(ramsize=12)
+            metadata=ctype.type_any(ramsize=0)
     )
     pitchinput15: Optional[str] = field(
             default=None,
-            metadata=ctype.type_any(ramsize=12)
+            metadata=ctype.type_any(ramsize=0)
     )
     pitchinput16: Optional[str] = field(
             default=None,
-            metadata=ctype.type_any(ramsize=12)
+            metadata=ctype.type_any(ramsize=0)
     )
     gateinput1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gateinput2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gateinput3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gateinput4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gateinput5: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gateinput6: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gateinput7: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gateinput8: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gateinput9: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gateinput10: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gateinput11: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gateinput12: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gateinput13: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gateinput14: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gateinput15: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gateinput16: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=16)
+            metadata=ctype.type_gate(ramsize=0)
     )
     roundrobin: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     voiceallocation: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     pitchoutput1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_any(ramsize=4)
+            metadata=ctype.type_any(ramsize=0)
     )
     pitchoutput2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_any(ramsize=4)
+            metadata=ctype.type_any(ramsize=0)
     )
     pitchoutput3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_any(ramsize=4)
+            metadata=ctype.type_any(ramsize=0)
     )
     pitchoutput4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_any(ramsize=4)
+            metadata=ctype.type_any(ramsize=0)
     )
     pitchoutput5: Optional[str] = field(
             default=None,
-            metadata=ctype.type_any(ramsize=4)
+            metadata=ctype.type_any(ramsize=0)
     )
     pitchoutput6: Optional[str] = field(
             default=None,
-            metadata=ctype.type_any(ramsize=4)
+            metadata=ctype.type_any(ramsize=0)
     )
     pitchoutput7: Optional[str] = field(
             default=None,
-            metadata=ctype.type_any(ramsize=4)
+            metadata=ctype.type_any(ramsize=0)
     )
     pitchoutput8: Optional[str] = field(
             default=None,
-            metadata=ctype.type_any(ramsize=4)
+            metadata=ctype.type_any(ramsize=0)
     )
     pitchoutput9: Optional[str] = field(
             default=None,
-            metadata=ctype.type_any(ramsize=4)
+            metadata=ctype.type_any(ramsize=0)
     )
     pitchoutput10: Optional[str] = field(
             default=None,
-            metadata=ctype.type_any(ramsize=4)
+            metadata=ctype.type_any(ramsize=0)
     )
     pitchoutput11: Optional[str] = field(
             default=None,
-            metadata=ctype.type_any(ramsize=4)
+            metadata=ctype.type_any(ramsize=0)
     )
     pitchoutput12: Optional[str] = field(
             default=None,
-            metadata=ctype.type_any(ramsize=4)
+            metadata=ctype.type_any(ramsize=0)
     )
     pitchoutput13: Optional[str] = field(
             default=None,
-            metadata=ctype.type_any(ramsize=4)
+            metadata=ctype.type_any(ramsize=0)
     )
     pitchoutput14: Optional[str] = field(
             default=None,
-            metadata=ctype.type_any(ramsize=4)
+            metadata=ctype.type_any(ramsize=0)
     )
     pitchoutput15: Optional[str] = field(
             default=None,
-            metadata=ctype.type_any(ramsize=4)
+            metadata=ctype.type_any(ramsize=0)
     )
     pitchoutput16: Optional[str] = field(
             default=None,
-            metadata=ctype.type_any(ramsize=4)
+            metadata=ctype.type_any(ramsize=0)
     )
     gateoutput1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gateoutput2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gateoutput3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gateoutput4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gateoutput5: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gateoutput6: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gateoutput7: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gateoutput8: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gateoutput9: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gateoutput10: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gateoutput11: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gateoutput12: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gateoutput13: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gateoutput14: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gateoutput15: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gateoutput16: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
 
 
@@ -3836,207 +3872,207 @@ class Sequencer(DroidCircuit):
     __ramsize__ = 168
     clock: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     reset: Optional[str] = field(
             default=None,
-            metadata=ctype.type_trigger(ramsize=16)
+            metadata=ctype.type_trigger(ramsize=0)
     )
     stages: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     steps: Optional[str] = field(
             default=None,
-            metadata=ctype.type_integer(ramsize=12)
+            metadata=ctype.type_integer(ramsize=0)
     )
     transpose: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     outputscaling: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     gatelength: Optional[str] = field(
             default=None,
-            metadata=ctype.type_fraction(ramsize=12)
+            metadata=ctype.type_fraction(ramsize=0)
     )
     pitch1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     pitch2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     pitch3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     pitch4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     pitch5: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     pitch6: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     pitch7: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     pitch8: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     cv1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     cv2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     cv3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     cv4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     cv5: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     cv6: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     cv7: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     cv8: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     gate1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gate2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gate3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gate4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gate5: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gate6: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gate7: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     gate8: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     slew1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     slew2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     slew3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     slew4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     slew5: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     slew6: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     slew7: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     slew8: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     repeat1: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     repeat2: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     repeat3: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     repeat4: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     repeat5: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     repeat6: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     repeat7: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     repeat8: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=12)
+            metadata=ctype.type_cv(ramsize=0)
     )
     chaintonext: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=12)
+            metadata=ctype.type_gate(ramsize=0)
     )
     pitchoutput: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     cvoutput: Optional[str] = field(
             default=None,
-            metadata=ctype.type_cv(ramsize=4)
+            metadata=ctype.type_cv(ramsize=0)
     )
     gateoutput: Optional[str] = field(
             default=None,
-            metadata=ctype.type_gate(ramsize=4)
+            metadata=ctype.type_gate(ramsize=0)
     )
 
 

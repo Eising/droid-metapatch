@@ -1,7 +1,7 @@
 """DROID circuits module.
 
 These circuits are auto-generated from circuits.json for droid firmware version
-'blue-5'.
+'blue-6'.
 
 
 .. include:: README.md
@@ -16,6 +16,7 @@ from .logic import (
     Copy,
     Dac,
     Explin,
+    Ifequal,
     Logic,
     Math,
     Multicompare,
@@ -110,6 +111,7 @@ __all__ = (
     "Copy",
     "Dac",
     "Explin",
+    "Ifequal",
     "Logic",
     "Math",
     "Multicompare",
