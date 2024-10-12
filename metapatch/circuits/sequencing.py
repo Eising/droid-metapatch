@@ -7,7 +7,7 @@ from metapatch.circuits.base import DroidCircuit
 from metapatch.circuits import circuit_types as ctype
 
 
-__droid_version__ = "magenta-3"
+__droid_version__ = "blue-6"
 
 
 @dataclass
@@ -66,8 +66,10 @@ class Algoquencer(DroidCircuit):
           pot here, simply multiply it by the number of different patterns you want to
           select, e.g. pattern = P1.1 * 10. This will allow you to select one of the
           pattern 0, 1, ... 10.
-          Note: If you use pattern, the trigger inputs nextpattern, prevpattern and
-          reroll are ignored.
+          You can use pattern in combination with nextpattern, prevpattern and reroll.
+          These three inputs create an offset to the chosen pattern. E.g. if you set
+          pattern = 5 and send one trigger to nextpattern, the actually used pattern is
+          6.
 
         nextpattern (trigger):
           Switches forward to the next pseudo random pattern.
@@ -1019,14 +1021,14 @@ class Arpeggio(DroidCircuit):
           2D 3D♯ 4E 5F 6F♯ 7G 8G♯ 9A 10A♯ 11B 12C
         degree (integer):
           Set the musical scale. This is a number from 0 to 107. Below are the first 12
-          and most important scales. You find a list of all 108 scales on page 106.
+          and most important scales. You find a list of all 108 scales on page 107.
           0lyd – Lydian major scale (it has a ♯ 4) 1maj – Normal major scale (ionian)
           2X^7 – Mixolydian (dominant seven chords) 3sus – mixolydian with 3/4 swapped
           4alt – Altered scale 5hm^5 – Harmonic minor scale from the 5 6dor – Dorian
           minor (minor with ♯ 13) 7min – Natural minor (aeolian) 8hm – Harmonic minor (♭
           6 but ♯ 7) 9phr – Phrygian minor scale (with ♭ 9) 10dim – Diminished scale
           (whole/half tone) 11aug – Augmented scale (just whole tones)   Note:
-          Alltogether there are 108 scales. Please see page 106 for a complete list
+          Alltogether there are 108 scales. Please see page 107 for a complete list
         select1 (gate):
           Gate input for selecting the root note as being an allowed interval. When you
           want to create a playing interface for live operation you can patch the output
@@ -1646,14 +1648,14 @@ class Encoquencer(DroidCircuit):
           2D 3D♯ 4E 5F 6F♯ 7G 8G♯ 9A 10A♯ 11B 12C
         degree (integer):
           Set the musical scale. This is a number from 0 to 107. Below are the first 12
-          and most important scales. You find a list of all 108 scales on page 106.
+          and most important scales. You find a list of all 108 scales on page 107.
           0lyd – Lydian major scale (it has a ♯ 4) 1maj – Normal major scale (ionian)
           2X^7 – Mixolydian (dominant seven chords) 3sus – mixolydian with 3/4 swapped
           4alt – Altered scale 5hm^5 – Harmonic minor scale from the 5 6dor – Dorian
           minor (minor with ♯ 13) 7min – Natural minor (aeolian) 8hm – Harmonic minor (♭
           6 but ♯ 7) 9phr – Phrygian minor scale (with ♭ 9) 10dim – Diminished scale
           (whole/half tone) 11aug – Augmented scale (just whole tones)   Note:
-          Alltogether there are 108 scales. Please see page 106 for a complete list
+          Alltogether there are 108 scales. Please see page 107 for a complete list
         select1 (gate):
           Gate input for selecting the root note as being an allowed interval. When you
           want to create a playing interface for live operation you can patch the output
@@ -2680,14 +2682,14 @@ class Motoquencer(DroidCircuit):
           2D 3D♯ 4E 5F 6F♯ 7G 8G♯ 9A 10A♯ 11B 12C
         degree (integer):
           Set the musical scale. This is a number from 0 to 107. Below are the first 12
-          and most important scales. You find a list of all 108 scales on page 106.
+          and most important scales. You find a list of all 108 scales on page 107.
           0lyd – Lydian major scale (it has a ♯ 4) 1maj – Normal major scale (ionian)
           2X^7 – Mixolydian (dominant seven chords) 3sus – mixolydian with 3/4 swapped
           4alt – Altered scale 5hm^5 – Harmonic minor scale from the 5 6dor – Dorian
           minor (minor with ♯ 13) 7min – Natural minor (aeolian) 8hm – Harmonic minor (♭
           6 but ♯ 7) 9phr – Phrygian minor scale (with ♭ 9) 10dim – Diminished scale
           (whole/half tone) 11aug – Augmented scale (just whole tones)   Note:
-          Alltogether there are 108 scales. Please see page 106 for a complete list
+          Alltogether there are 108 scales. Please see page 107 for a complete list
         select1 (gate):
           Gate input for selecting the root note as being an allowed interval. When you
           want to create a playing interface for live operation you can patch the output

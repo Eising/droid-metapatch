@@ -7,7 +7,7 @@ from metapatch.circuits.base import DroidCircuit
 from metapatch.circuits import circuit_types as ctype
 
 
-__droid_version__ = "magenta-3"
+__droid_version__ = "blue-6"
 
 
 @dataclass
@@ -234,6 +234,14 @@ class Droid(DroidCircuit):
           patched.  Note: Just that part of the state is affected that is saved to the
           SD card. For example the algoquencer does not reset to the first step, it just
           clears it's current pattern.
+        uislowdown (gate):
+          Since blue-6 circuits that are ment to build a user interface are executed at
+          just one eighth of the normal speed. They are just executed every eighth loop
+          cycle. This saves considerable loop time and speeds up all the other more
+          musical circuits.  This breaks the rule that all circuits are executed in the
+          order of their appearance in the patch, however. So if your patch really
+          depends on that and your buttons, buttongroups and pots seem to behave weird,
+          try switching off the UI optimization by setting this parameter to 0.
         comment: Add a comment in the droid ini file.
 
     """
@@ -338,6 +346,10 @@ class Droid(DroidCircuit):
     clearall: Optional[str] = field(
             default=None,
             metadata=ctype.type_trigger(ramsize=0)
+    )
+    uislowdown: Optional[str] = field(
+            default=None,
+            metadata=ctype.type_gate(ramsize=0)
     )
 
 

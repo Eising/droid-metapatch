@@ -1,7 +1,7 @@
 """DROID circuits module.
 
 These circuits are auto-generated from circuits.json for droid firmware version
-'magenta-3'.
+'blue-6'.
 
 
 .. include:: README.md

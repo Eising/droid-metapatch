@@ -7,7 +7,7 @@ from metapatch.circuits.base import DroidCircuit
 from metapatch.circuits import circuit_types as ctype
 
 
-__droid_version__ = "magenta-3"
+__droid_version__ = "blue-6"
 
 
 @dataclass
