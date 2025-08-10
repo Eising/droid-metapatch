@@ -16,14 +16,14 @@ def _negate_description(description: str) -> str:
 
 def generate_multi_help_statement(
     varname: str,
-    choices: List[Tuple[Union[str, int, bool], str]],
-    default: Union[str, int, bool],
-) -> List[Tuple[str, str]]:
+    choices: list[tuple[str | int | bool, str]],
+    default: str | int | bool,
+) -> list[tuple[str, str]]:
     """Generate a help statement for a multiple choice option."""
     is_default = "* "
     is_not_default = "  "
 
-    options = []
+    options: list[tuple[str, str]] = []
     for choice in choices:
         choiceval, choicedescr = choice
         if choiceval == default:
@@ -38,8 +38,8 @@ class Option:
     """Base option class."""
 
     title: str
-    default: Union[str, int, bool]
-    _ispatchoption = True
+    default: str | int | bool
+    _ispatchoption: bool = True
 
     def __init__(self, value: Union[str, int, bool]) -> None:
         """Initialize option with value."""

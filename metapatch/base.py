@@ -2,7 +2,7 @@
 
 import re
 from dataclasses import dataclass, field
-from typing import Optional, Mapping
+from collections.abc import Mapping
 
 from .utils import format_comment, write_patch_section
 
@@ -13,8 +13,8 @@ class Circuit:
 
     name: str
     parameters: Mapping[str, str] = field(default_factory=dict)
-    comment: Optional[str] = None
-    section: Optional[str] = None
+    comment: str | None = None
+    section: str | None = None
 
     def __str__(self) -> str:
         """Output circuit as patch."""
@@ -46,7 +46,7 @@ class Section:
     """Section class."""
 
     name: str
-    comment: Optional[str] = None
+    comment: str | None = None
 
     def __str__(self) -> str:
         """Return section string."""
@@ -65,7 +65,7 @@ class Label:
     heading: str
     item: str
     short_label: str
-    long_label: Optional[str] = None
+    long_label: str | None = None
 
     def __str__(self) -> str:
         """Generate label.
@@ -81,9 +81,10 @@ class Label:
 
     @classmethod
     def from_item(
-        cls, item: str, short_label: str, long_label: Optional[str] = None
+        cls, item: str, short_label: str, long_label: str | None = None
     ) -> "Label":
         """Construct from item."""
+        section: str | None = None
         if item.startswith("I"):
             # Input label
             section = "inputs"
@@ -100,4 +101,6 @@ class Label:
             else:
                 section = f"controller {module_num}"
 
+        if not section:
+            raise RuntimeError("Unable to resolve section.")
         return cls(section, item, short_label, long_label)

@@ -1,12 +1,11 @@
 """Utility functions."""
 
 import textwrap
-from typing import Optional
 
 COMMENT_LINE_LENGTH = 88
 
 
-def write_patch_section(name: str, comment: Optional[str] = None) -> str:
+def write_patch_section(name: str, comment: str | None = None) -> str:
     """Write a patch section."""
     delim = f"# {'-'*49}"
     if not comment:
