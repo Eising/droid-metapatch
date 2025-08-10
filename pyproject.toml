@@ -1,40 +1,51 @@
-[tool.poetry]
+[project]
 name = "droid-metapatch"
-version = "2.2.0"
+version = "2.3.0"
 description = "DROID patch generator"
-authors = ["Allan Eising <allan@eising.dk>"]
-license = "GPL-3.0-only"
+authors = [{ name = "Allan Eising", email = "allan@eising.dk" }]
+requires-python = ">=3.12"
 readme = "README.md"
-documentation = "https://eising.github.io/droid-metapatch"
-repository = "https://github.com/Eising/droid-metapatch"
-packages = [{include = "metapatch"}]
+license = "GPL-3.0-only"
+dependencies = ["jinja2>=3.1.4,<4"]
 
-[tool.poetry.dependencies]
-python = "^3.8"
-jinja2 = "^3.1.4"
+[project.urls]
+Repository = "https://github.com/Eising/droid-metapatch"
+Documentation = "https://eising.github.io/droid-metapatch"
 
-
-[tool.poetry.group.dev.dependencies]
-pytest = "^8.1.1"
-mypy = "^1.9.0"
-
-
-[tool.poetry.group.generation]
-optional = true
-
-[tool.poetry.group.generation.dependencies]
-pylatexenc = "^2.10"
-
-[tool.poetry.group.docs]
-optional = true
-
-[tool.poetry.group.docs.dependencies]
-pdoc = "^14.4.0"
-
-[tool.poetry.scripts]
+[project.scripts]
 droid-metapatch = "metapatch.cli_util:main"
 
+[dependency-groups]
+dev = [
+    "pytest>=8.1.1,<9",
+    "mypy>=1.9.0,<2",
+]
+generation = ["pylatexenc~=2.10"]
+docs = ["pdoc>=14.4.0,<15"]
+
+[tool.uv]
+default-groups = [
+    "dev",
+    "generation",
+    "docs",
+]
+
+[tool.hatch.build.targets.sdist]
+include = ["metapatch"]
+
+[tool.hatch.build.targets.wheel]
+include = ["metapatch"]
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["uv_build>=0.8.7,<0.9.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "metapatch"
+module-root = ""
+
+[tool.basedpyright]
+venvPath="."
+venv=".venv"
+reportImplicitOverride = false
+reportMissingTypeStubs = false
