@@ -49,3 +49,4 @@ venvPath="."
 venv=".venv"
 reportImplicitOverride = false
 reportMissingTypeStubs = false
+reportUnusedCallResult = false

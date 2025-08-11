@@ -1,8 +1,11 @@
 """Option classes."""
 
 from dataclasses import dataclass
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Any, ClassVar
 
+# choices: list[tuple[str | int | bool, str]],
+ParamType = str | int | bool
+ChoiceType = list[tuple[ParamType, str]]
 
 def _negate_description(description: str) -> str:
     """Negate a description.
@@ -16,7 +19,7 @@ def _negate_description(description: str) -> str:
 
 def generate_multi_help_statement(
     varname: str,
-    choices: list[tuple[str | int | bool, str]],
+    choices: ChoiceType,
     default: str | int | bool,
 ) -> list[tuple[str, str]]:
     """Generate a help statement for a multiple choice option."""
@@ -37,16 +40,16 @@ def generate_multi_help_statement(
 class Option:
     """Base option class."""
 
-    title: str
-    default: str | int | bool
-    _ispatchoption: bool = True
+    title: ClassVar[str]
+    default: ClassVar[ParamType]
+    _ispatchoption: ClassVar[bool] = True
 
-    def __init__(self, value: Union[str, int, bool]) -> None:
+    def __init__(self, value: str | int | bool) -> None:
         """Initialize option with value."""
-        self.value: Union[str, int, bool] = value
+        self.value: str | int | bool = value
 
     @classmethod
-    def asdict(cls, varname: str) -> Dict[str, Any]:
+    def asdict(cls, varname: str) -> dict[str, Any]:
         """Return as dictionary."""
         return {
             "name": varname,
@@ -73,18 +76,18 @@ class BoolOption(Option):
         return cls(cls.default)
 
     @classmethod
-    def help(cls, varname: str) -> List[Tuple[str, str]]:
+    def help(cls, varname: str) -> list[tuple[str, str]]:
         """Generate a help text."""
-        choices = [(True, cls.title), (False, _negate_description(cls.title))]
+        choices: ChoiceType = [(True, cls.title), (False, _negate_description(cls.title))]
         return generate_multi_help_statement(varname, choices, cls.default)
 
 
 class EnumOption(Option):
     """Enumeration option."""
 
-    enum: List[Tuple[str, str]]
+    enum: ClassVar[list[tuple[str, str]]]
 
-    def __init__(self, value: Union[str, int, bool]) -> None:
+    def __init__(self, value: ParamType) -> None:
         """Validate input."""
         choices = [choice[0] for choice in self.enum]
         if str(value) not in choices:
@@ -101,17 +104,17 @@ class EnumOption(Option):
         return cls(cls.default)
 
     @classmethod
-    def asdict(cls, varname: str) -> Dict[str, Any]:
+    def asdict(cls, varname: str) -> dict[str, Any]:
         """Return as dictionary."""
         base = super().asdict(varname)
         base["enum"] = cls.enum
         return base
 
     @classmethod
-    def help(cls, varname: str) -> List[Tuple[str, str]]:
+    def help(cls, varname: str) -> list[tuple[str, str]]:
         """Generate a help text."""
         # Coerce choices to make mypy happy
-        choices: List[Tuple[Union[str, int, bool], str]] = [
+        choices: ChoiceType = [
             choice for choice in cls.enum
         ]
         return generate_multi_help_statement(varname, choices, cls.default)
@@ -120,9 +123,9 @@ class EnumOption(Option):
 class NumberOption(Option):
     """NUmber option."""
 
-    number: Tuple[int, int]
+    number: ClassVar[tuple[int, int]]
 
-    def __init__(self, value: Union[str, int, bool]) -> None:
+    def __init__(self, value: ParamType) -> None:
         """Validate input."""
         if isinstance(value, str):
             if not value.isdecimal():
@@ -135,13 +138,13 @@ class NumberOption(Option):
         return int(self.value)
 
     @classmethod
-    def help(cls, varname: str) -> List[Tuple[str, str]]:
+    def help(cls, varname: str) -> list[tuple[str, str]]:
         """Generate a help statement."""
         # We won't list every number value, so we specify the options as a range instead.
         return [(f"  {varname}={cls.number[0]}..{cls.number[1]}", cls.title)]
 
     @classmethod
-    def asdict(cls, varname: str) -> Dict[str, Any]:
+    def asdict(cls, varname: str) -> dict[str, Any]:
         """Return as dictionary."""
         base = super().asdict(varname)
         base["number"] = cls.number
@@ -157,10 +160,10 @@ def option(
     description: str,
     section: str = "Options",
     *,
-    choices: Optional[List[Tuple[str, str]]] = None,
-    minimum: Optional[int] = None,
-    maximum: Optional[int] = None,
-    default: Optional[Union[str, int, bool]] = None,
+    choices: list[tuple[str, str]] | None = None,
+    minimum: int | None = None,
+    maximum: int | None = None,
+    default: str | int | bool | None = None,
 ) -> Any:
     """Define a configurable variable.
 
@@ -211,11 +214,11 @@ def option(
     ```
 
     """
-    params: Dict[str, Any] = {
+    params: dict[str, Any] = {
         "title": description,
         "section": section,
     }
-    bases: Tuple[type, ...]
+    bases: tuple[type, ...]
     if default:
         params["default"] = default
 
@@ -246,14 +249,14 @@ class Preset:
     """Preset class."""
 
     title: str
-    parameters: Dict[str, Any]
+    parameters: dict[str, Any]
 
-    def asdict(self, name: str) -> Dict[str, Any]:
+    def asdict(self, name: str) -> dict[str, Any]:
         """Construct preset dictionary."""
         return {"name": name, "title": self.title, "parameters": self.parameters}
 
 
-def preset(title: str, parameters: Dict[str, Any]) -> Preset:
+def preset(title: str, parameters: dict[str, Any]) -> Preset:
     """Define a preset.
 
     Args:
