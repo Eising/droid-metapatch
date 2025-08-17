@@ -1,18 +1,14 @@
 """DROID circuits. These circuits are auto-generated from circuits.json."""
 
-from dataclasses import dataclass, field
-from typing import Optional
-
+from pydantic import AliasChoices, Field
 from metapatch.circuits.base import DroidCircuit
-from metapatch.circuits import circuit_types as ctype
 
 
 __droid_version__ = "blue-6"
 
 
-@dataclass
 class Contour(DroidCircuit):
-    """Contour generator.
+    """ Contour generator
 
     Args:
         gate (gate):
@@ -162,148 +158,179 @@ class Contour(DroidCircuit):
           This output will emit a trigger with a length of 10 ms when the release phase
           has ended.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 112
-    gate: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    _ramsize: int = 112
+
+    gate: str | None = Field(
+        default=None,
+        serialization_alias="gate",
+        json_schema_extra={"essential": 2, "type": "gate", "shortname": "g"},
     )
-    trigger: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    trigger: str | None = Field(
+        default=None,
+        serialization_alias="trigger",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "t"},
     )
-    retrigger: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    retrigger: str | None = Field(
+        default=None,
+        serialization_alias="retrigger",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "rt"},
     )
-    startfromzero: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    startfromzero: str | None = Field(
+        default=None,
+        serialization_alias="startfromzero",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "sz"},
     )
-    abortattack: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    abortattack: str | None = Field(
+        default=None,
+        serialization_alias="abortattack",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "aa"},
     )
-    loop: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    loop: str | None = Field(
+        default=None,
+        serialization_alias="loop",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "lo"},
     )
-    predelay: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    predelay: str | None = Field(
+        default=None,
+        serialization_alias="predelay",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "pd"},
     )
-    attack: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    attack: str | None = Field(
+        default=None,
+        serialization_alias="attack",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "a"},
     )
-    hold: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    hold: str | None = Field(
+        default=None,
+        serialization_alias="hold",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "h"},
     )
-    decay: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    decay: str | None = Field(
+        default=None,
+        serialization_alias="decay",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "d"},
     )
-    sustain: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    sustain: str | None = Field(
+        default=None,
+        serialization_alias="sustain",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "s"},
     )
-    swell: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    swell: str | None = Field(
+        default=None,
+        serialization_alias="swell",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "sw"},
     )
-    swelltime: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    swelltime: str | None = Field(
+        default=None,
+        serialization_alias="swelltime",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "st"},
     )
-    swelllevel: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    swelllevel: str | None = Field(
+        default=None,
+        serialization_alias="swelllevel",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "sl"},
     )
-    release: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    release: str | None = Field(
+        default=None,
+        serialization_alias="release",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "r"},
     )
-    level: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    level: str | None = Field(
+        default=None,
+        serialization_alias="level",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "l"},
     )
-    velocity: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    velocity: str | None = Field(
+        default=None,
+        serialization_alias="velocity",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "v"},
     )
-    pitch: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    pitch: str | None = Field(
+        default=None,
+        serialization_alias="pitch",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "p"},
     )
-    taptempo: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    taptempo: str | None = Field(
+        default=None,
+        serialization_alias="taptempo",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "tt"},
     )
-    shape: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_bipolar(ramsize=0)
+    shape: str | None = Field(
+        default=None,
+        serialization_alias="shape",
+        json_schema_extra={"essential": 0, "type": "bipolar", "shortname": "sh"},
     )
-    attackshape: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_bipolar(ramsize=0)
+    attackshape: str | None = Field(
+        default=None,
+        serialization_alias="attackshape",
+        json_schema_extra={"essential": 0, "type": "bipolar", "shortname": "as"},
     )
-    decayshape: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_bipolar(ramsize=0)
+    decayshape: str | None = Field(
+        default=None,
+        serialization_alias="decayshape",
+        json_schema_extra={"essential": 0, "type": "bipolar", "shortname": "ds"},
     )
-    swellshape: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_bipolar(ramsize=0)
+    swellshape: str | None = Field(
+        default=None,
+        serialization_alias="swellshape",
+        json_schema_extra={"essential": 0, "type": "bipolar", "shortname": "ss"},
     )
-    releaseshape: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_bipolar(ramsize=0)
+    releaseshape: str | None = Field(
+        default=None,
+        serialization_alias="releaseshape",
+        json_schema_extra={"essential": 0, "type": "bipolar", "shortname": "rs"},
     )
-    zerocrossing: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    zerocrossing: str | None = Field(
+        default=None,
+        serialization_alias="zerocrossing",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "z"},
     )
-    output: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output: str | None = Field(
+        default=None,
+        serialization_alias="output",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "o"},
     )
-    negated: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    negated: str | None = Field(
+        default=None,
+        serialization_alias="negated",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "n"},
     )
-    inverted: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    inverted: str | None = Field(
+        default=None,
+        serialization_alias="inverted",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "iv"},
     )
-    endofpredelay: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    endofpredelay: str | None = Field(
+        default=None,
+        serialization_alias="endofpredelay",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ep"},
     )
-    endofattack: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    endofattack: str | None = Field(
+        default=None,
+        serialization_alias="endofattack",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ea"},
     )
-    endofhold: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    endofhold: str | None = Field(
+        default=None,
+        serialization_alias="endofhold",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "eh"},
     )
-    endofdecay: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    endofdecay: str | None = Field(
+        default=None,
+        serialization_alias="endofdecay",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ed"},
     )
-    endofrelease: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    endofrelease: str | None = Field(
+        default=None,
+        serialization_alias="endofrelease",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "er"},
     )
 
 
-
-@dataclass
 class Lfo(DroidCircuit):
-    """Low frequency oscillator (LFO).
+    """ Low frequency oscillator (LFO)
 
     Args:
         rate (cv):
@@ -390,100 +417,119 @@ class Lfo(DroidCircuit):
           applications. Please note that 180^∘ and 270^∘ can easily be achieved by
           negating the outputs sine and cosine at a later stage.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 216
-    rate: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    _ramsize: int = 216
+
+    rate: str | None = Field(
+        default=None,
+        serialization_alias="rate",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "ra"},
     )
-    taptempo: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    taptempo: str | None = Field(
+        default=None,
+        serialization_alias="taptempo",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "tt"},
     )
-    hz: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    hz: str | None = Field(
+        default=None,
+        serialization_alias="hz",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": ""},
     )
-    level: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    level: str | None = Field(
+        default=None,
+        serialization_alias="level",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "l"},
     )
-    randomize: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    randomize: str | None = Field(
+        default=None,
+        serialization_alias="randomize",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "r"},
     )
-    offset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    offset: str | None = Field(
+        default=None,
+        serialization_alias="offset",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "of"},
     )
-    bipolar: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    bipolar: str | None = Field(
+        default=None,
+        serialization_alias="bipolar",
+        json_schema_extra={"essential": 1, "type": "gate", "shortname": "b"},
     )
-    phase: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    phase: str | None = Field(
+        default=None,
+        serialization_alias="phase",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "p"},
     )
-    pulsewidth: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_bipolar(ramsize=0)
+    pulsewidth: str | None = Field(
+        default=None,
+        serialization_alias="pulsewidth",
+        json_schema_extra={"essential": 0, "type": "bipolar", "shortname": "pw"},
     )
-    skew: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_bipolar(ramsize=0)
+    skew: str | None = Field(
+        default=None,
+        serialization_alias="skew",
+        json_schema_extra={"essential": 0, "type": "bipolar", "shortname": "sk"},
     )
-    sync: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    sync: str | None = Field(
+        default=None,
+        serialization_alias="sync",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "sy"},
     )
-    syncphase: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    syncphase: str | None = Field(
+        default=None,
+        serialization_alias="syncphase",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "sp"},
     )
-    waveform: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    waveform: str | None = Field(
+        default=None,
+        serialization_alias="waveform",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "w"},
     )
-    output: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output: str | None = Field(
+        default=None,
+        serialization_alias="output",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "o"},
     )
-    square: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    square: str | None = Field(
+        default=None,
+        serialization_alias="square",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "q"},
     )
-    sawtooth: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    sawtooth: str | None = Field(
+        default=None,
+        serialization_alias="sawtooth",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "st"},
     )
-    triangle: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    triangle: str | None = Field(
+        default=None,
+        serialization_alias="triangle",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "t"},
     )
-    ramp: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ramp: str | None = Field(
+        default=None,
+        serialization_alias="ramp",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "rp"},
     )
-    paraboloid: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    paraboloid: str | None = Field(
+        default=None,
+        serialization_alias="paraboloid",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "pb"},
     )
-    sine: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    sine: str | None = Field(
+        default=None,
+        serialization_alias="sine",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "si"},
     )
-    cosine: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    cosine: str | None = Field(
+        default=None,
+        serialization_alias="cosine",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "cs"},
     )
 
 
-
-@dataclass
 class Random(DroidCircuit):
-    """Random number generator.
+    """ Random number generator
 
     Args:
         clock (trigger):
@@ -503,36 +549,39 @@ class Random(DroidCircuit):
         output (cv):
           Output of the random number / voltage
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 32
-    clock: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    _ramsize: int = 32
+
+    clock: str | None = Field(
+        default=None,
+        serialization_alias="clock",
+        json_schema_extra={"essential": 1, "type": "trigger", "shortname": "c"},
     )
-    minimum: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    minimum: str | None = Field(
+        default=None,
+        serialization_alias="minimum",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "m"},
     )
-    maximum: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    maximum: str | None = Field(
+        default=None,
+        serialization_alias="maximum",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "x"},
     )
-    steps: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    steps: str | None = Field(
+        default=None,
+        serialization_alias="steps",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "s"},
     )
-    output: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output: str | None = Field(
+        default=None,
+        serialization_alias="output",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o"},
     )
 
 
-
-@dataclass
 class Spring(DroidCircuit):
-    """Physical spring simulation.
+    """ Physical spring simulation
 
     Args:
         mass (cv):
@@ -575,68 +624,79 @@ class Spring(DroidCircuit):
           Output the current length of the string. If the string goes upwards (which is
           possible with certain modulations), this can be negative.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 56
-    mass: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    _ramsize: int = 56
+
+    mass: str | None = Field(
+        default=None,
+        serialization_alias="mass",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "m"},
     )
-    gravity: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    gravity: str | None = Field(
+        default=None,
+        serialization_alias="gravity",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "g"},
     )
-    springforce: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    springforce: str | None = Field(
+        default=None,
+        serialization_alias="springforce",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "f"},
     )
-    flowresistance: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    flowresistance: str | None = Field(
+        default=None,
+        serialization_alias="flowresistance",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "fr"},
     )
-    friction: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    friction: str | None = Field(
+        default=None,
+        serialization_alias="friction",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "fi"},
     )
-    speed: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    speed: str | None = Field(
+        default=None,
+        serialization_alias="speed",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "sp"},
     )
-    shove: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    shove: str | None = Field(
+        default=None,
+        serialization_alias="shove",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "sh"},
     )
-    shoveforce: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    shoveforce: str | None = Field(
+        default=None,
+        serialization_alias="shoveforce",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "sf"},
     )
-    reset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    reset: str | None = Field(
+        default=None,
+        serialization_alias="reset",
+        json_schema_extra={"essential": 2, "type": "trigger", "shortname": "r"},
     )
-    startvelocity: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    startvelocity: str | None = Field(
+        default=None,
+        serialization_alias="startvelocity",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "sv"},
     )
-    startposition: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    startposition: str | None = Field(
+        default=None,
+        serialization_alias="startposition",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "spo"},
     )
-    velocity: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    velocity: str | None = Field(
+        default=None,
+        serialization_alias="velocity",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "v"},
     )
-    position: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    position: str | None = Field(
+        default=None,
+        serialization_alias="position",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "p"},
     )
 
 
-
-@dataclass
 class Transient(DroidCircuit):
-    """Transient generator.
+    """ Transient generator
 
     Args:
         start (cv):
@@ -673,54 +733,63 @@ class Transient(DroidCircuit):
           In pingpong mode that trigger is not sent when the transient has reach the
           end-value, but when it is back at start (i.e. after one full cycle).
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 56
-    start: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    end: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    duration: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    loop: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    pingpong: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    freeze: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    reset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    clock: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    output: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    phase: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    endoftransient: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
+    _ramsize: int = 56
 
-
+    start: str | None = Field(
+        default=None,
+        serialization_alias="start",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "st"},
+    )
+    end: str | None = Field(
+        default=None,
+        serialization_alias="end",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "e"},
+    )
+    duration: str | None = Field(
+        default=None,
+        serialization_alias="duration",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "d"},
+    )
+    loop: str | None = Field(
+        default=None,
+        serialization_alias="loop",
+        json_schema_extra={"essential": 1, "type": "gate", "shortname": "lo"},
+    )
+    pingpong: str | None = Field(
+        default=None,
+        serialization_alias="pingpong",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "pp"},
+    )
+    freeze: str | None = Field(
+        default=None,
+        serialization_alias="freeze",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "f"},
+    )
+    reset: str | None = Field(
+        default=None,
+        serialization_alias="reset",
+        json_schema_extra={"essential": 1, "type": "trigger", "shortname": "r"},
+    )
+    clock: str | None = Field(
+        default=None,
+        serialization_alias="clock",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "c"},
+    )
+    output: str | None = Field(
+        default=None,
+        serialization_alias="output",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "o"},
+    )
+    phase: str | None = Field(
+        default=None,
+        serialization_alias="phase",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "p"},
+    )
+    endoftransient: str | None = Field(
+        default=None,
+        serialization_alias="endoftransient",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "et"},
+    )
 

@@ -1,6 +1,5 @@
 """Tests for the transform actions on circuits."""
 
-from dataclasses import asdict
 import metapatch
 import metapatch.circuits
 import pytest
@@ -92,7 +91,7 @@ def test_multiple(circuits_with_selects):
         circuits_with_selects, append="_VOICE_1", select="_VOICE", select_at="1"
     )
     for circuit in circuits:
-        circuitdict = asdict(circuit)
+        circuitdict = circuit.model_dump(by_alias=False, exclude_none=True)
         for value in list(circuitdict.values()):
             if value is None:
                 continue

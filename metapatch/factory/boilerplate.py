@@ -1,6 +1,5 @@
 """Boilerplate functions."""
 
-from typing import Dict, List, Optional, Tuple
 from .patch_parser import parse_patch
 from . import patch_factory
 
@@ -8,7 +7,7 @@ from . import patch_factory
 def generate_snippet(patch: str) -> str:
     """Generate a code snippet from a patch."""
     parsed = parse_patch(patch)
-    snippet = []
+    snippet: list[str] = []
     snippet.append(patch_factory.generate_add_controllers(parsed.controllers))
     for circuit in parsed.circuits:
         for circuitname, params in circuit.items():
@@ -33,7 +32,7 @@ def transform_section_name(section_name: str):
     return section_name
 
 
-def find_unique_section_name(section_name: str, used_names: List[str]):
+def find_unique_section_name(section_name: str, used_names: list[str]):
     """Find a unique section name."""
     if section_name[-1].isdigit():
         digit = int(section_name[-1])
@@ -52,14 +51,14 @@ def find_unique_section_name(section_name: str, used_names: List[str]):
 
 
 def _generate_transforms(
-    select: Optional[str] = None,
-    select_at: Optional[str] = None,
-    prepend: Optional[str] = None,
-    append: Optional[str] = None,
-    input: Optional[str] = None,
-    output: Optional[str] = None,
-    gate: Optional[str] = None,
-) -> Dict[str, str]:
+    select: str | None = None,
+    select_at: str | None = None,
+    prepend: str | None = None,
+    append: str | None = None,
+    input: str | None = None,
+    output: str | None = None,
+    gate: str | None = None,
+) -> dict[str, str]:
     """Generate a transform kwargs dict."""
     all_transforms = {
         "select": select,
@@ -73,7 +72,7 @@ def _generate_transforms(
     return {k: v for k, v in all_transforms.items() if v is not None}
 
 
-def _grab_jack(jack: Optional[List[str]]) -> Tuple[Optional[List[str]], Optional[str]]:
+def _grab_jack(jack: list[str] | None) -> tuple[list[str] | None, str | None]:
     """Grab an input, output or gate if possible.
 
     Return the modified list and the value.
@@ -89,20 +88,20 @@ def generate_boilerplate(
     title: str,
     description: str,
     classname: str,
-    to_voices: Optional[int] = None,
-    template_section: Optional[str] = None,
-    prepend: Optional[str] = None,
-    inputs: Optional[List[str]] = None,
-    outputs: Optional[List[str]] = None,
-    gates: Optional[List[str]] = None,
-    ignored: Optional[List[str]] = None,
+    to_voices: int | None = None,
+    template_section: str | None = None,
+    prepend: str | None = None,
+    inputs: list[str] | None = None,
+    outputs: list[str] | None = None,
+    gates: list[str] | None = None,
+    ignored: list[str] | None = None,
 ) -> str:
     """Generate boilerplate."""
     parsed = parse_patch(patch)
     pg_fun = [
         patch_factory.generate_pg_function(parsed.controllers),
     ]
-    boilerplate = []
+    boilerplate: list[str] = []
 
     if parsed.sections:
         # We have sections.
@@ -110,7 +109,7 @@ def generate_boilerplate(
         boilerplate.append(patch_factory.header(with_list=True))
         boilerplate.append(patch_factory.pg_class(title, description, classname))
         secfunmap = {}
-        used_sections = []
+        used_sections: list[str] = []
         circuits_main = []
         for section_name, circuits in parsed.section_grouped.items():
             if section_name == "__none":

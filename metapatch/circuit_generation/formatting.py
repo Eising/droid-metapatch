@@ -74,7 +74,7 @@ def format_synopsis(
     body = "\n".join(
         textwrap.wrap(
             text,
-            width=LINE_WRAP,
+            width=line_wrap,
             initial_indent=descr_indent,
             subsequent_indent=descr_indent,
         )

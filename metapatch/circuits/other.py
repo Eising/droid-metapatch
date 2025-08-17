@@ -1,18 +1,14 @@
 """DROID circuits. These circuits are auto-generated from circuits.json."""
 
-from dataclasses import dataclass, field
-from typing import Optional
-
+from pydantic import AliasChoices, Field
 from metapatch.circuits.base import DroidCircuit
-from metapatch.circuits import circuit_types as ctype
 
 
 __droid_version__ = "blue-6"
 
 
-@dataclass
 class Droid(DroidCircuit):
-    """General DROID controls.
+    """ General DROID controls
 
     Args:
         ledbrightness (cv):
@@ -243,120 +239,144 @@ class Droid(DroidCircuit):
           depends on that and your buttons, buttongroups and pots seem to behave weird,
           try switching off the UI optimization by setting this parameter to 0.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 72
-    ledbrightness: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    _ramsize: int = 72
+
+    ledbrightness: str | None = Field(
+        default=None,
+        serialization_alias="ledbrightness",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "l"},
     )
-    maxslope1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    maxslope1: str | None = Field(
+        default=None,
+        serialization_alias="maxslope1",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "s1"},
     )
-    maxslope2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    maxslope2: str | None = Field(
+        default=None,
+        serialization_alias="maxslope2",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "s2"},
     )
-    maxslope3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    maxslope3: str | None = Field(
+        default=None,
+        serialization_alias="maxslope3",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "s3"},
     )
-    maxslope4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    maxslope4: str | None = Field(
+        default=None,
+        serialization_alias="maxslope4",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "s4"},
     )
-    maxslope5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    maxslope5: str | None = Field(
+        default=None,
+        serialization_alias="maxslope5",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "s5"},
     )
-    maxslope6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    maxslope6: str | None = Field(
+        default=None,
+        serialization_alias="maxslope6",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "s6"},
     )
-    maxslope7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    maxslope7: str | None = Field(
+        default=None,
+        serialization_alias="maxslope7",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "s7"},
     )
-    maxslope8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    maxslope8: str | None = Field(
+        default=None,
+        serialization_alias="maxslope8",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "s8"},
     )
-    lpfilter1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    lpfilter1: str | None = Field(
+        default=None,
+        serialization_alias="lpfilter1",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "lf1"},
     )
-    lpfilter2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    lpfilter2: str | None = Field(
+        default=None,
+        serialization_alias="lpfilter2",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "lf2"},
     )
-    lpfilter3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    lpfilter3: str | None = Field(
+        default=None,
+        serialization_alias="lpfilter3",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "lf3"},
     )
-    lpfilter4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    lpfilter4: str | None = Field(
+        default=None,
+        serialization_alias="lpfilter4",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "lf4"},
     )
-    lpfilter5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    lpfilter5: str | None = Field(
+        default=None,
+        serialization_alias="lpfilter5",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "lf5"},
     )
-    lpfilter6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    lpfilter6: str | None = Field(
+        default=None,
+        serialization_alias="lpfilter6",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "lf6"},
     )
-    lpfilter7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    lpfilter7: str | None = Field(
+        default=None,
+        serialization_alias="lpfilter7",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "lf7"},
     )
-    lpfilter8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    lpfilter8: str | None = Field(
+        default=None,
+        serialization_alias="lpfilter8",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "lf8"},
     )
-    m4faderspeed: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    m4faderspeed: str | None = Field(
+        default=None,
+        serialization_alias="m4faderspeed",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "m4f"},
     )
-    statusdump: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    statusdump: str | None = Field(
+        default=None,
+        serialization_alias="statusdump",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "sd"},
     )
-    m4notchpower: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    m4notchpower: str | None = Field(
+        default=None,
+        serialization_alias="m4notchpower",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "m4n"},
     )
-    calibrate: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    calibrate: str | None = Field(
+        default=None,
+        serialization_alias="calibrate",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "c"},
     )
-    startcontrollerupgrade: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    startcontrollerupgrade: str | None = Field(
+        default=None,
+        serialization_alias="startcontrollerupgrade",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "u"},
     )
-    startx7upgrade: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    startx7upgrade: str | None = Field(
+        default=None,
+        serialization_alias="startx7upgrade",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "x7"},
     )
-    clear: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    clear: str | None = Field(
+        default=None,
+        serialization_alias="clear",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "cl"},
     )
-    clearall: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    clearall: str | None = Field(
+        default=None,
+        serialization_alias="clearall",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ca"},
     )
-    uislowdown: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    uislowdown: str | None = Field(
+        default=None,
+        serialization_alias="uislowdown",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "us"},
     )
 
 
-
-@dataclass
 class Outputcalibrator(DroidCircuit):
-    """Tune the calibration of your CV outputs.
+    """ Tune the calibration of your CV outputs
 
     Args:
         output (integer):
@@ -388,50 +408,58 @@ class Outputcalibrator(DroidCircuit):
           Shows you the percentage of uncalibrated outputs. If all eight outputs are
           calibrated (differ from the default calibration value) this outputs 0.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 40
-    output: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    referencepoint: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    nudgeup: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    nudgedown: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    save: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    cancel: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    loaddefaults: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    dirty: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    calibration: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    uncalibrated: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
+    _ramsize: int = 40
 
-
+    output: str | None = Field(
+        default=None,
+        serialization_alias="output",
+        json_schema_extra={"essential": 2, "type": "integer", "shortname": "o"},
+    )
+    referencepoint: str | None = Field(
+        default=None,
+        serialization_alias="referencepoint",
+        json_schema_extra={"essential": 2, "type": "integer", "shortname": "r"},
+    )
+    nudgeup: str | None = Field(
+        default=None,
+        serialization_alias="nudgeup",
+        json_schema_extra={"essential": 2, "type": "trigger", "shortname": "nu"},
+    )
+    nudgedown: str | None = Field(
+        default=None,
+        serialization_alias="nudgedown",
+        json_schema_extra={"essential": 2, "type": "trigger", "shortname": "nd"},
+    )
+    save: str | None = Field(
+        default=None,
+        serialization_alias="save",
+        json_schema_extra={"essential": 2, "type": "trigger", "shortname": "sv"},
+    )
+    cancel: str | None = Field(
+        default=None,
+        serialization_alias="cancel",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "c"},
+    )
+    loaddefaults: str | None = Field(
+        default=None,
+        serialization_alias="loaddefaults",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ld"},
+    )
+    dirty: str | None = Field(
+        default=None,
+        serialization_alias="dirty",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "d"},
+    )
+    calibration: str | None = Field(
+        default=None,
+        serialization_alias="calibration",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "cl"},
+    )
+    uncalibrated: str | None = Field(
+        default=None,
+        serialization_alias="uncalibrated",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "u"},
+    )
 

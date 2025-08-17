@@ -1,0 +1,17 @@
+"""Circuit name translations.
+
+This file is auto-generated.
+"""
+
+CIRCUIT_ALIASES = {
+{% for circuit_name, circuit in circuits.items(): %}
+    "{{ circuit_name }}": {
+    {% for param in circuit.get_io() %}
+        {% if param.short != "" %}
+        "{{ param.short }}": "{{ param.name }}",
+        {% endif %}
+        "{{ param.name }}": "{{ param.name }}",
+{% endfor %}
+    },
+{% endfor %}
+}

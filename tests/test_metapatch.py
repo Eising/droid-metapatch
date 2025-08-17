@@ -1,22 +1,46 @@
 """Metapatch tests."""
 
+import abc
 from pathlib import Path
 import pytest
+import metapatch
+from .helpers import MetapatchTestHelper
+
+
+class BaseTestMetaPatch(metapatch.PatchGenerator, abc.ABC):
+    """Test metapatch class shape."""
+
+    title = "title"
+    description = "description"
+
+    testbool: bool = metapatch.option("Boolean")
+    testnumber: int = metapatch.option("Number", minimum=1, maximum=10)
+    testchoice: str = metapatch.option(
+        "Choice", choices=[("first", "First choice"), ("second", "Second choice")]
+    )
+
+    @abc.abstractmethod
+    def testfun(self) -> None:
+        ...
 
 
 @pytest.fixture
-def testpatch(helper):
+def helper():
+    return MetapatchTestHelper
+
+@pytest.fixture
+def testpatch(helper: type[MetapatchTestHelper]) -> type[metapatch.PatchGenerator]:
     """Load testpatch."""
     pg = helper("simple_metapatch.py", "TestMetaPatch")
     return pg.patch_generator
 
 
-def test_opts(testpatch):
+def test_opts(testpatch: type[metapatch.PatchGenerator]) -> None:
     mytest = testpatch(testbool=False, testchoice="first", testnumber=7)
     mytest.testfun()
 
     # test metaclass function
-    synopsis = testpatch.synopsis
+    synopsis = testpatch.synopsis()
     assert isinstance(synopsis, dict)
     assert synopsis["title"] == "Test"
     assert isinstance(synopsis["sections"], list)
@@ -36,25 +60,25 @@ def test_opts(testpatch):
 @pytest.mark.parametrize(
     "name", ["sections", "disjoint_sections", "labels", "with_circuits"]
 )
-def test_patch(helper, name):
+def test_patch(helper: type[MetapatchTestHelper], name: str) -> None:
     """Generic test function."""
     helper.test(f"{name}.py", f"{name}.ini")
 
 
-def test_preset(testpatch):
+def test_preset(testpatch: type[BaseTestMetaPatch]) -> None:
     """Test preset loading."""
     mypatch = testpatch.load_preset("default")
     assert mypatch.testbool is True
 
 
-def test_generate(testpatch):
+def test_generate(testpatch: type[BaseTestMetaPatch]) -> None:
     """Test patch generation."""
     mytest = testpatch.load_preset("default")
     patch = str(mytest)
     assert patch == "[B32]\n[E4]\n\n[copy]\n    input = _FIRST\n    output = _OUTPUT\n"
 
 
-def test_megadrone(helper):
+def test_megadrone(helper: type[MetapatchTestHelper]):
     """Test megadrone from the example library."""
     megadrone_mod = Path(__file__).parent / ".." / "examples" / "e4megadrone"
     helper.test(
@@ -71,10 +95,10 @@ def test_megadrone(helper):
     )
 
 
-def test_auto_preset(helper):
+def test_auto_preset(helper: type[MetapatchTestHelper]) -> None:
     """Test auto-generated preset."""
     pg = helper("auto_preset.py")
-    synopsis = pg.patch_generator.synopsis
+    synopsis = pg.patch_generator.synopsis()
     assert "presets" in synopsis
     assert len(synopsis["presets"]) == 1
     preset = synopsis["presets"][0]
@@ -88,7 +112,7 @@ def test_auto_preset(helper):
     assert testchoice == "first"
 
 
-def test_function_voices(helper):
+def test_function_voices(helper: type[MetapatchTestHelper]):
     """Test transforming a single voice into multiple."""
     helper.test(
         "function_to_layers.py", "function_to_layers.ini", "TestMetaPatch", voices=4

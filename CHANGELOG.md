@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
+## 3.0.0 - 2025-08-27
+### Changed
+
+- Completely rewritten the logic for the circuits.
+  I am now using pydantic instead of pure dataclass models
+  
+- The `droid-metapatch` CLI command can now correctly parse the compressed patch format.
+
+## 2.3.0 - 2025-08-15
+### Changed
+- Minimum supported python version is now 3.12
+
 ## 2.2.0 - 2024-10-12
 ### Changed
 - Circuits have been re-generated for DROID Blue 6

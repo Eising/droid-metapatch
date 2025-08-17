@@ -1,18 +1,14 @@
 """DROID circuits. These circuits are auto-generated from circuits.json."""
 
-from dataclasses import dataclass, field
-from typing import Optional
-
+from pydantic import AliasChoices, Field
 from metapatch.circuits.base import DroidCircuit
-from metapatch.circuits import circuit_types as ctype
 
 
 __droid_version__ = "blue-6"
 
 
-@dataclass
 class Firefacecontrol(DroidCircuit):
-    """Control a RME Fireface interface (experimental).
+    """ Control a RME Fireface interface (experimental)
 
     Args:
         trs (integer):
@@ -679,1324 +675,1649 @@ class Firefacecontrol(DroidCircuit):
           will be active if select is exactly 0 instead of a positive gate signal. In
           some cases this is more conventient.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 1088
-    trs: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    outputlevel1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputlevel2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputlevel3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputlevel4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputlevel5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputlevel6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputlevel7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputlevel8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputlevel9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputlevel10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputlevel11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputlevel12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputlevel13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputlevel14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputlevel15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputlevel16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    mainoutput: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    phonesoutput1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    phonesoutput2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    outputmix1in1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix1in2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix1in3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix1in4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix1in5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix1in6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix1in7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix1in8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix1in9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix1in10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix1in11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix1in12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix1in13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix1in14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix1in15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix1in16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix2in1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix2in2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix2in3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix2in4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix2in5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix2in6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix2in7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix2in8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix2in9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix2in10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix2in11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix2in12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix2in13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix2in14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix2in15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix2in16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix3in1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix3in2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix3in3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix3in4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix3in5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix3in6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix3in7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix3in8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix3in9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix3in10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix3in11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix3in12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix3in13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix3in14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix3in15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix3in16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix4in1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix4in2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix4in3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix4in4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix4in5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix4in6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix4in7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix4in8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix4in9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix4in10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix4in11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix4in12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix4in13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix4in14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix4in15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix4in16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix5in1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix5in2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix5in3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix5in4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix5in5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix5in6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix5in7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix5in8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix5in9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix5in10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix5in11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix5in12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix5in13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix5in14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix5in15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix5in16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix6in1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix6in2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix6in3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix6in4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix6in5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix6in6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix6in7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix6in8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix6in9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix6in10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix6in11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix6in12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix6in13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix6in14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix6in15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix6in16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix7in1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix7in2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix7in3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix7in4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix7in5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix7in6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix7in7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix7in8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix7in9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix7in10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix7in11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix7in12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix7in13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix7in14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix7in15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix7in16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix8in1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix8in2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix8in3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix8in4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix8in5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix8in6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix8in7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix8in8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix8in9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix8in10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix8in11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix8in12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix8in13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix8in14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix8in15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix8in16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix9in1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix9in2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix9in3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix9in4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix9in5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix9in6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix9in7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix9in8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix9in9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix9in10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix9in11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix9in12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix9in13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix9in14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix9in15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix9in16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix10in1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix10in2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix10in3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix10in4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix10in5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix10in6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix10in7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix10in8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix10in9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix10in10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix10in11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix10in12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix10in13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix10in14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix10in15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix10in16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix11in1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix11in2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix11in3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix11in4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix11in5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix11in6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix11in7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix11in8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix11in9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix11in10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix11in11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix11in12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix11in13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix11in14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix11in15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix11in16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix12in1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix12in2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix12in3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix12in4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix12in5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix12in6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix12in7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix12in8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix12in9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix12in10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix12in11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix12in12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix12in13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix12in14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix12in15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix12in16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix13in1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix13in2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix13in3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix13in4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix13in5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix13in6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix13in7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix13in8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix13in9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix13in10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix13in11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix13in12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix13in13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix13in14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix13in15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix13in16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix14in1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix14in2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix14in3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix14in4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix14in5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix14in6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix14in7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix14in8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix14in9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix14in10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix14in11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix14in12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix14in13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix14in14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix14in15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix14in16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix15in1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix15in2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix15in3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix15in4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix15in5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix15in6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix15in7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix15in8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix15in9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix15in10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix15in11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix15in12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix15in13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix15in14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix15in15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix15in16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix16in1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix16in2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix16in3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix16in4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix16in5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix16in6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix16in7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix16in8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix16in9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix16in10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix16in11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix16in12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix16in13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix16in14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix16in15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    outputmix16in16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    postfader1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    postfader2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    postfader3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    postfader4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    postfader5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    postfader6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    postfader7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    postfader8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    postfader9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    postfader10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    postfader11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    postfader12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    postfader13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    postfader14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    postfader15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    postfader16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    pan1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pan2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pan3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pan4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pan5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pan6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pan7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pan8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pan9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pan10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pan11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pan12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pan13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pan14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pan15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pan16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    unmute1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    unmute2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    unmute3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    unmute4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    unmute5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    unmute6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    unmute7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    unmute8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    unmute9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    unmute10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    unmute11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    unmute12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    unmute13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    unmute14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    unmute15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    unmute16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    update: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    select: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    selectat: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    _ramsize: int = 1088
+
+    trs: str | None = Field(
+        default=None,
+        serialization_alias="trs",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": ""},
+    )
+    outputlevel1: str | None = Field(
+        default=None,
+        serialization_alias="outputlevel1",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "ol1"},
+    )
+    outputlevel2: str | None = Field(
+        default=None,
+        serialization_alias="outputlevel2",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "ol2"},
+    )
+    outputlevel3: str | None = Field(
+        default=None,
+        serialization_alias="outputlevel3",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "ol3"},
+    )
+    outputlevel4: str | None = Field(
+        default=None,
+        serialization_alias="outputlevel4",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "ol4"},
+    )
+    outputlevel5: str | None = Field(
+        default=None,
+        serialization_alias="outputlevel5",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "ol5"},
+    )
+    outputlevel6: str | None = Field(
+        default=None,
+        serialization_alias="outputlevel6",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "ol6"},
+    )
+    outputlevel7: str | None = Field(
+        default=None,
+        serialization_alias="outputlevel7",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "ol7"},
+    )
+    outputlevel8: str | None = Field(
+        default=None,
+        serialization_alias="outputlevel8",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "ol8"},
+    )
+    outputlevel9: str | None = Field(
+        default=None,
+        serialization_alias="outputlevel9",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "ol9"},
+    )
+    outputlevel10: str | None = Field(
+        default=None,
+        serialization_alias="outputlevel10",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "ol10"},
+    )
+    outputlevel11: str | None = Field(
+        default=None,
+        serialization_alias="outputlevel11",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "ol11"},
+    )
+    outputlevel12: str | None = Field(
+        default=None,
+        serialization_alias="outputlevel12",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "ol12"},
+    )
+    outputlevel13: str | None = Field(
+        default=None,
+        serialization_alias="outputlevel13",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "ol13"},
+    )
+    outputlevel14: str | None = Field(
+        default=None,
+        serialization_alias="outputlevel14",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "ol14"},
+    )
+    outputlevel15: str | None = Field(
+        default=None,
+        serialization_alias="outputlevel15",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "ol15"},
+    )
+    outputlevel16: str | None = Field(
+        default=None,
+        serialization_alias="outputlevel16",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "ol16"},
+    )
+    mainoutput: str | None = Field(
+        default=None,
+        serialization_alias="mainoutput",
+        json_schema_extra={"essential": 2, "type": "integer", "shortname": "mo"},
+    )
+    phonesoutput1: str | None = Field(
+        default=None,
+        serialization_alias="phonesoutput1",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "po1"},
+    )
+    phonesoutput2: str | None = Field(
+        default=None,
+        serialization_alias="phonesoutput2",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "po2"},
+    )
+    outputmix1in1: str | None = Field(
+        default=None,
+        serialization_alias="outputmix1in1",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "o1i1"},
+    )
+    outputmix1in2: str | None = Field(
+        default=None,
+        serialization_alias="outputmix1in2",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "o1i2"},
+    )
+    outputmix1in3: str | None = Field(
+        default=None,
+        serialization_alias="outputmix1in3",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "o1i3"},
+    )
+    outputmix1in4: str | None = Field(
+        default=None,
+        serialization_alias="outputmix1in4",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "o1i4"},
+    )
+    outputmix1in5: str | None = Field(
+        default=None,
+        serialization_alias="outputmix1in5",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o1i5"},
+    )
+    outputmix1in6: str | None = Field(
+        default=None,
+        serialization_alias="outputmix1in6",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o1i6"},
+    )
+    outputmix1in7: str | None = Field(
+        default=None,
+        serialization_alias="outputmix1in7",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o1i7"},
+    )
+    outputmix1in8: str | None = Field(
+        default=None,
+        serialization_alias="outputmix1in8",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o1i8"},
+    )
+    outputmix1in9: str | None = Field(
+        default=None,
+        serialization_alias="outputmix1in9",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o1i9"},
+    )
+    outputmix1in10: str | None = Field(
+        default=None,
+        serialization_alias="outputmix1in10",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o1i10"},
+    )
+    outputmix1in11: str | None = Field(
+        default=None,
+        serialization_alias="outputmix1in11",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o1i11"},
+    )
+    outputmix1in12: str | None = Field(
+        default=None,
+        serialization_alias="outputmix1in12",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o1i12"},
+    )
+    outputmix1in13: str | None = Field(
+        default=None,
+        serialization_alias="outputmix1in13",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o1i13"},
+    )
+    outputmix1in14: str | None = Field(
+        default=None,
+        serialization_alias="outputmix1in14",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o1i14"},
+    )
+    outputmix1in15: str | None = Field(
+        default=None,
+        serialization_alias="outputmix1in15",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o1i15"},
+    )
+    outputmix1in16: str | None = Field(
+        default=None,
+        serialization_alias="outputmix1in16",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o1i16"},
+    )
+    outputmix2in1: str | None = Field(
+        default=None,
+        serialization_alias="outputmix2in1",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "o2i1"},
+    )
+    outputmix2in2: str | None = Field(
+        default=None,
+        serialization_alias="outputmix2in2",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "o2i2"},
+    )
+    outputmix2in3: str | None = Field(
+        default=None,
+        serialization_alias="outputmix2in3",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "o2i3"},
+    )
+    outputmix2in4: str | None = Field(
+        default=None,
+        serialization_alias="outputmix2in4",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "o2i4"},
+    )
+    outputmix2in5: str | None = Field(
+        default=None,
+        serialization_alias="outputmix2in5",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o2i5"},
+    )
+    outputmix2in6: str | None = Field(
+        default=None,
+        serialization_alias="outputmix2in6",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o2i6"},
+    )
+    outputmix2in7: str | None = Field(
+        default=None,
+        serialization_alias="outputmix2in7",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o2i7"},
+    )
+    outputmix2in8: str | None = Field(
+        default=None,
+        serialization_alias="outputmix2in8",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o2i8"},
+    )
+    outputmix2in9: str | None = Field(
+        default=None,
+        serialization_alias="outputmix2in9",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o2i9"},
+    )
+    outputmix2in10: str | None = Field(
+        default=None,
+        serialization_alias="outputmix2in10",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o2i10"},
+    )
+    outputmix2in11: str | None = Field(
+        default=None,
+        serialization_alias="outputmix2in11",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o2i11"},
+    )
+    outputmix2in12: str | None = Field(
+        default=None,
+        serialization_alias="outputmix2in12",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o2i12"},
+    )
+    outputmix2in13: str | None = Field(
+        default=None,
+        serialization_alias="outputmix2in13",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o2i13"},
+    )
+    outputmix2in14: str | None = Field(
+        default=None,
+        serialization_alias="outputmix2in14",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o2i14"},
+    )
+    outputmix2in15: str | None = Field(
+        default=None,
+        serialization_alias="outputmix2in15",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o2i15"},
+    )
+    outputmix2in16: str | None = Field(
+        default=None,
+        serialization_alias="outputmix2in16",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o2i16"},
+    )
+    outputmix3in1: str | None = Field(
+        default=None,
+        serialization_alias="outputmix3in1",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "o3i1"},
+    )
+    outputmix3in2: str | None = Field(
+        default=None,
+        serialization_alias="outputmix3in2",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "o3i2"},
+    )
+    outputmix3in3: str | None = Field(
+        default=None,
+        serialization_alias="outputmix3in3",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "o3i3"},
+    )
+    outputmix3in4: str | None = Field(
+        default=None,
+        serialization_alias="outputmix3in4",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "o3i4"},
+    )
+    outputmix3in5: str | None = Field(
+        default=None,
+        serialization_alias="outputmix3in5",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o3i5"},
+    )
+    outputmix3in6: str | None = Field(
+        default=None,
+        serialization_alias="outputmix3in6",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o3i6"},
+    )
+    outputmix3in7: str | None = Field(
+        default=None,
+        serialization_alias="outputmix3in7",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o3i7"},
+    )
+    outputmix3in8: str | None = Field(
+        default=None,
+        serialization_alias="outputmix3in8",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o3i8"},
+    )
+    outputmix3in9: str | None = Field(
+        default=None,
+        serialization_alias="outputmix3in9",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o3i9"},
+    )
+    outputmix3in10: str | None = Field(
+        default=None,
+        serialization_alias="outputmix3in10",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o3i10"},
+    )
+    outputmix3in11: str | None = Field(
+        default=None,
+        serialization_alias="outputmix3in11",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o3i11"},
+    )
+    outputmix3in12: str | None = Field(
+        default=None,
+        serialization_alias="outputmix3in12",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o3i12"},
+    )
+    outputmix3in13: str | None = Field(
+        default=None,
+        serialization_alias="outputmix3in13",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o3i13"},
+    )
+    outputmix3in14: str | None = Field(
+        default=None,
+        serialization_alias="outputmix3in14",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o3i14"},
+    )
+    outputmix3in15: str | None = Field(
+        default=None,
+        serialization_alias="outputmix3in15",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o3i15"},
+    )
+    outputmix3in16: str | None = Field(
+        default=None,
+        serialization_alias="outputmix3in16",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o3i16"},
+    )
+    outputmix4in1: str | None = Field(
+        default=None,
+        serialization_alias="outputmix4in1",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "o4i1"},
+    )
+    outputmix4in2: str | None = Field(
+        default=None,
+        serialization_alias="outputmix4in2",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "o4i2"},
+    )
+    outputmix4in3: str | None = Field(
+        default=None,
+        serialization_alias="outputmix4in3",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "o4i3"},
+    )
+    outputmix4in4: str | None = Field(
+        default=None,
+        serialization_alias="outputmix4in4",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "o4i4"},
+    )
+    outputmix4in5: str | None = Field(
+        default=None,
+        serialization_alias="outputmix4in5",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o4i5"},
+    )
+    outputmix4in6: str | None = Field(
+        default=None,
+        serialization_alias="outputmix4in6",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o4i6"},
+    )
+    outputmix4in7: str | None = Field(
+        default=None,
+        serialization_alias="outputmix4in7",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o4i7"},
+    )
+    outputmix4in8: str | None = Field(
+        default=None,
+        serialization_alias="outputmix4in8",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o4i8"},
+    )
+    outputmix4in9: str | None = Field(
+        default=None,
+        serialization_alias="outputmix4in9",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o4i9"},
+    )
+    outputmix4in10: str | None = Field(
+        default=None,
+        serialization_alias="outputmix4in10",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o4i10"},
+    )
+    outputmix4in11: str | None = Field(
+        default=None,
+        serialization_alias="outputmix4in11",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o4i11"},
+    )
+    outputmix4in12: str | None = Field(
+        default=None,
+        serialization_alias="outputmix4in12",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o4i12"},
+    )
+    outputmix4in13: str | None = Field(
+        default=None,
+        serialization_alias="outputmix4in13",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o4i13"},
+    )
+    outputmix4in14: str | None = Field(
+        default=None,
+        serialization_alias="outputmix4in14",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o4i14"},
+    )
+    outputmix4in15: str | None = Field(
+        default=None,
+        serialization_alias="outputmix4in15",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o4i15"},
+    )
+    outputmix4in16: str | None = Field(
+        default=None,
+        serialization_alias="outputmix4in16",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o4i16"},
+    )
+    outputmix5in1: str | None = Field(
+        default=None,
+        serialization_alias="outputmix5in1",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o5i1"},
+    )
+    outputmix5in2: str | None = Field(
+        default=None,
+        serialization_alias="outputmix5in2",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o5i2"},
+    )
+    outputmix5in3: str | None = Field(
+        default=None,
+        serialization_alias="outputmix5in3",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o5i3"},
+    )
+    outputmix5in4: str | None = Field(
+        default=None,
+        serialization_alias="outputmix5in4",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o5i4"},
+    )
+    outputmix5in5: str | None = Field(
+        default=None,
+        serialization_alias="outputmix5in5",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o5i5"},
+    )
+    outputmix5in6: str | None = Field(
+        default=None,
+        serialization_alias="outputmix5in6",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o5i6"},
+    )
+    outputmix5in7: str | None = Field(
+        default=None,
+        serialization_alias="outputmix5in7",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o5i7"},
+    )
+    outputmix5in8: str | None = Field(
+        default=None,
+        serialization_alias="outputmix5in8",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o5i8"},
+    )
+    outputmix5in9: str | None = Field(
+        default=None,
+        serialization_alias="outputmix5in9",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o5i9"},
+    )
+    outputmix5in10: str | None = Field(
+        default=None,
+        serialization_alias="outputmix5in10",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o5i10"},
+    )
+    outputmix5in11: str | None = Field(
+        default=None,
+        serialization_alias="outputmix5in11",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o5i11"},
+    )
+    outputmix5in12: str | None = Field(
+        default=None,
+        serialization_alias="outputmix5in12",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o5i12"},
+    )
+    outputmix5in13: str | None = Field(
+        default=None,
+        serialization_alias="outputmix5in13",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o5i13"},
+    )
+    outputmix5in14: str | None = Field(
+        default=None,
+        serialization_alias="outputmix5in14",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o5i14"},
+    )
+    outputmix5in15: str | None = Field(
+        default=None,
+        serialization_alias="outputmix5in15",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o5i15"},
+    )
+    outputmix5in16: str | None = Field(
+        default=None,
+        serialization_alias="outputmix5in16",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o5i16"},
+    )
+    outputmix6in1: str | None = Field(
+        default=None,
+        serialization_alias="outputmix6in1",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o6i1"},
+    )
+    outputmix6in2: str | None = Field(
+        default=None,
+        serialization_alias="outputmix6in2",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o6i2"},
+    )
+    outputmix6in3: str | None = Field(
+        default=None,
+        serialization_alias="outputmix6in3",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o6i3"},
+    )
+    outputmix6in4: str | None = Field(
+        default=None,
+        serialization_alias="outputmix6in4",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o6i4"},
+    )
+    outputmix6in5: str | None = Field(
+        default=None,
+        serialization_alias="outputmix6in5",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o6i5"},
+    )
+    outputmix6in6: str | None = Field(
+        default=None,
+        serialization_alias="outputmix6in6",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o6i6"},
+    )
+    outputmix6in7: str | None = Field(
+        default=None,
+        serialization_alias="outputmix6in7",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o6i7"},
+    )
+    outputmix6in8: str | None = Field(
+        default=None,
+        serialization_alias="outputmix6in8",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o6i8"},
+    )
+    outputmix6in9: str | None = Field(
+        default=None,
+        serialization_alias="outputmix6in9",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o6i9"},
+    )
+    outputmix6in10: str | None = Field(
+        default=None,
+        serialization_alias="outputmix6in10",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o6i10"},
+    )
+    outputmix6in11: str | None = Field(
+        default=None,
+        serialization_alias="outputmix6in11",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o6i11"},
+    )
+    outputmix6in12: str | None = Field(
+        default=None,
+        serialization_alias="outputmix6in12",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o6i12"},
+    )
+    outputmix6in13: str | None = Field(
+        default=None,
+        serialization_alias="outputmix6in13",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o6i13"},
+    )
+    outputmix6in14: str | None = Field(
+        default=None,
+        serialization_alias="outputmix6in14",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o6i14"},
+    )
+    outputmix6in15: str | None = Field(
+        default=None,
+        serialization_alias="outputmix6in15",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o6i15"},
+    )
+    outputmix6in16: str | None = Field(
+        default=None,
+        serialization_alias="outputmix6in16",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o6i16"},
+    )
+    outputmix7in1: str | None = Field(
+        default=None,
+        serialization_alias="outputmix7in1",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o7i1"},
+    )
+    outputmix7in2: str | None = Field(
+        default=None,
+        serialization_alias="outputmix7in2",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o7i2"},
+    )
+    outputmix7in3: str | None = Field(
+        default=None,
+        serialization_alias="outputmix7in3",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o7i3"},
+    )
+    outputmix7in4: str | None = Field(
+        default=None,
+        serialization_alias="outputmix7in4",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o7i4"},
+    )
+    outputmix7in5: str | None = Field(
+        default=None,
+        serialization_alias="outputmix7in5",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o7i5"},
+    )
+    outputmix7in6: str | None = Field(
+        default=None,
+        serialization_alias="outputmix7in6",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o7i6"},
+    )
+    outputmix7in7: str | None = Field(
+        default=None,
+        serialization_alias="outputmix7in7",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o7i7"},
+    )
+    outputmix7in8: str | None = Field(
+        default=None,
+        serialization_alias="outputmix7in8",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o7i8"},
+    )
+    outputmix7in9: str | None = Field(
+        default=None,
+        serialization_alias="outputmix7in9",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o7i9"},
+    )
+    outputmix7in10: str | None = Field(
+        default=None,
+        serialization_alias="outputmix7in10",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o7i10"},
+    )
+    outputmix7in11: str | None = Field(
+        default=None,
+        serialization_alias="outputmix7in11",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o7i11"},
+    )
+    outputmix7in12: str | None = Field(
+        default=None,
+        serialization_alias="outputmix7in12",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o7i12"},
+    )
+    outputmix7in13: str | None = Field(
+        default=None,
+        serialization_alias="outputmix7in13",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o7i13"},
+    )
+    outputmix7in14: str | None = Field(
+        default=None,
+        serialization_alias="outputmix7in14",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o7i14"},
+    )
+    outputmix7in15: str | None = Field(
+        default=None,
+        serialization_alias="outputmix7in15",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o7i15"},
+    )
+    outputmix7in16: str | None = Field(
+        default=None,
+        serialization_alias="outputmix7in16",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o7i16"},
+    )
+    outputmix8in1: str | None = Field(
+        default=None,
+        serialization_alias="outputmix8in1",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o8i1"},
+    )
+    outputmix8in2: str | None = Field(
+        default=None,
+        serialization_alias="outputmix8in2",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o8i2"},
+    )
+    outputmix8in3: str | None = Field(
+        default=None,
+        serialization_alias="outputmix8in3",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o8i3"},
+    )
+    outputmix8in4: str | None = Field(
+        default=None,
+        serialization_alias="outputmix8in4",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o8i4"},
+    )
+    outputmix8in5: str | None = Field(
+        default=None,
+        serialization_alias="outputmix8in5",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o8i5"},
+    )
+    outputmix8in6: str | None = Field(
+        default=None,
+        serialization_alias="outputmix8in6",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o8i6"},
+    )
+    outputmix8in7: str | None = Field(
+        default=None,
+        serialization_alias="outputmix8in7",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o8i7"},
+    )
+    outputmix8in8: str | None = Field(
+        default=None,
+        serialization_alias="outputmix8in8",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o8i8"},
+    )
+    outputmix8in9: str | None = Field(
+        default=None,
+        serialization_alias="outputmix8in9",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o8i9"},
+    )
+    outputmix8in10: str | None = Field(
+        default=None,
+        serialization_alias="outputmix8in10",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o8i10"},
+    )
+    outputmix8in11: str | None = Field(
+        default=None,
+        serialization_alias="outputmix8in11",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o8i11"},
+    )
+    outputmix8in12: str | None = Field(
+        default=None,
+        serialization_alias="outputmix8in12",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o8i12"},
+    )
+    outputmix8in13: str | None = Field(
+        default=None,
+        serialization_alias="outputmix8in13",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o8i13"},
+    )
+    outputmix8in14: str | None = Field(
+        default=None,
+        serialization_alias="outputmix8in14",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o8i14"},
+    )
+    outputmix8in15: str | None = Field(
+        default=None,
+        serialization_alias="outputmix8in15",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o8i15"},
+    )
+    outputmix8in16: str | None = Field(
+        default=None,
+        serialization_alias="outputmix8in16",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o8i16"},
+    )
+    outputmix9in1: str | None = Field(
+        default=None,
+        serialization_alias="outputmix9in1",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o9i1"},
+    )
+    outputmix9in2: str | None = Field(
+        default=None,
+        serialization_alias="outputmix9in2",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o9i2"},
+    )
+    outputmix9in3: str | None = Field(
+        default=None,
+        serialization_alias="outputmix9in3",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o9i3"},
+    )
+    outputmix9in4: str | None = Field(
+        default=None,
+        serialization_alias="outputmix9in4",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o9i4"},
+    )
+    outputmix9in5: str | None = Field(
+        default=None,
+        serialization_alias="outputmix9in5",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o9i5"},
+    )
+    outputmix9in6: str | None = Field(
+        default=None,
+        serialization_alias="outputmix9in6",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o9i6"},
+    )
+    outputmix9in7: str | None = Field(
+        default=None,
+        serialization_alias="outputmix9in7",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o9i7"},
+    )
+    outputmix9in8: str | None = Field(
+        default=None,
+        serialization_alias="outputmix9in8",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o9i8"},
+    )
+    outputmix9in9: str | None = Field(
+        default=None,
+        serialization_alias="outputmix9in9",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o9i9"},
+    )
+    outputmix9in10: str | None = Field(
+        default=None,
+        serialization_alias="outputmix9in10",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o9i10"},
+    )
+    outputmix9in11: str | None = Field(
+        default=None,
+        serialization_alias="outputmix9in11",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o9i11"},
+    )
+    outputmix9in12: str | None = Field(
+        default=None,
+        serialization_alias="outputmix9in12",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o9i12"},
+    )
+    outputmix9in13: str | None = Field(
+        default=None,
+        serialization_alias="outputmix9in13",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o9i13"},
+    )
+    outputmix9in14: str | None = Field(
+        default=None,
+        serialization_alias="outputmix9in14",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o9i14"},
+    )
+    outputmix9in15: str | None = Field(
+        default=None,
+        serialization_alias="outputmix9in15",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o9i15"},
+    )
+    outputmix9in16: str | None = Field(
+        default=None,
+        serialization_alias="outputmix9in16",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o9i16"},
+    )
+    outputmix10in1: str | None = Field(
+        default=None,
+        serialization_alias="outputmix10in1",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o10i1"},
+    )
+    outputmix10in2: str | None = Field(
+        default=None,
+        serialization_alias="outputmix10in2",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o10i2"},
+    )
+    outputmix10in3: str | None = Field(
+        default=None,
+        serialization_alias="outputmix10in3",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o10i3"},
+    )
+    outputmix10in4: str | None = Field(
+        default=None,
+        serialization_alias="outputmix10in4",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o10i4"},
+    )
+    outputmix10in5: str | None = Field(
+        default=None,
+        serialization_alias="outputmix10in5",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o10i5"},
+    )
+    outputmix10in6: str | None = Field(
+        default=None,
+        serialization_alias="outputmix10in6",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o10i6"},
+    )
+    outputmix10in7: str | None = Field(
+        default=None,
+        serialization_alias="outputmix10in7",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o10i7"},
+    )
+    outputmix10in8: str | None = Field(
+        default=None,
+        serialization_alias="outputmix10in8",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o10i8"},
+    )
+    outputmix10in9: str | None = Field(
+        default=None,
+        serialization_alias="outputmix10in9",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o10i9"},
+    )
+    outputmix10in10: str | None = Field(
+        default=None,
+        serialization_alias="outputmix10in10",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o10i10"},
+    )
+    outputmix10in11: str | None = Field(
+        default=None,
+        serialization_alias="outputmix10in11",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o10i11"},
+    )
+    outputmix10in12: str | None = Field(
+        default=None,
+        serialization_alias="outputmix10in12",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o10i12"},
+    )
+    outputmix10in13: str | None = Field(
+        default=None,
+        serialization_alias="outputmix10in13",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o10i13"},
+    )
+    outputmix10in14: str | None = Field(
+        default=None,
+        serialization_alias="outputmix10in14",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o10i14"},
+    )
+    outputmix10in15: str | None = Field(
+        default=None,
+        serialization_alias="outputmix10in15",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o10i15"},
+    )
+    outputmix10in16: str | None = Field(
+        default=None,
+        serialization_alias="outputmix10in16",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o10i16"},
+    )
+    outputmix11in1: str | None = Field(
+        default=None,
+        serialization_alias="outputmix11in1",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o11i1"},
+    )
+    outputmix11in2: str | None = Field(
+        default=None,
+        serialization_alias="outputmix11in2",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o11i2"},
+    )
+    outputmix11in3: str | None = Field(
+        default=None,
+        serialization_alias="outputmix11in3",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o11i3"},
+    )
+    outputmix11in4: str | None = Field(
+        default=None,
+        serialization_alias="outputmix11in4",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o11i4"},
+    )
+    outputmix11in5: str | None = Field(
+        default=None,
+        serialization_alias="outputmix11in5",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o11i5"},
+    )
+    outputmix11in6: str | None = Field(
+        default=None,
+        serialization_alias="outputmix11in6",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o11i6"},
+    )
+    outputmix11in7: str | None = Field(
+        default=None,
+        serialization_alias="outputmix11in7",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o11i7"},
+    )
+    outputmix11in8: str | None = Field(
+        default=None,
+        serialization_alias="outputmix11in8",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o11i8"},
+    )
+    outputmix11in9: str | None = Field(
+        default=None,
+        serialization_alias="outputmix11in9",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o11i9"},
+    )
+    outputmix11in10: str | None = Field(
+        default=None,
+        serialization_alias="outputmix11in10",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o11i10"},
+    )
+    outputmix11in11: str | None = Field(
+        default=None,
+        serialization_alias="outputmix11in11",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o11i11"},
+    )
+    outputmix11in12: str | None = Field(
+        default=None,
+        serialization_alias="outputmix11in12",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o11i12"},
+    )
+    outputmix11in13: str | None = Field(
+        default=None,
+        serialization_alias="outputmix11in13",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o11i13"},
+    )
+    outputmix11in14: str | None = Field(
+        default=None,
+        serialization_alias="outputmix11in14",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o11i14"},
+    )
+    outputmix11in15: str | None = Field(
+        default=None,
+        serialization_alias="outputmix11in15",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o11i15"},
+    )
+    outputmix11in16: str | None = Field(
+        default=None,
+        serialization_alias="outputmix11in16",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o11i16"},
+    )
+    outputmix12in1: str | None = Field(
+        default=None,
+        serialization_alias="outputmix12in1",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o12i1"},
+    )
+    outputmix12in2: str | None = Field(
+        default=None,
+        serialization_alias="outputmix12in2",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o12i2"},
+    )
+    outputmix12in3: str | None = Field(
+        default=None,
+        serialization_alias="outputmix12in3",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o12i3"},
+    )
+    outputmix12in4: str | None = Field(
+        default=None,
+        serialization_alias="outputmix12in4",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o12i4"},
+    )
+    outputmix12in5: str | None = Field(
+        default=None,
+        serialization_alias="outputmix12in5",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o12i5"},
+    )
+    outputmix12in6: str | None = Field(
+        default=None,
+        serialization_alias="outputmix12in6",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o12i6"},
+    )
+    outputmix12in7: str | None = Field(
+        default=None,
+        serialization_alias="outputmix12in7",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o12i7"},
+    )
+    outputmix12in8: str | None = Field(
+        default=None,
+        serialization_alias="outputmix12in8",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o12i8"},
+    )
+    outputmix12in9: str | None = Field(
+        default=None,
+        serialization_alias="outputmix12in9",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o12i9"},
+    )
+    outputmix12in10: str | None = Field(
+        default=None,
+        serialization_alias="outputmix12in10",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o12i10"},
+    )
+    outputmix12in11: str | None = Field(
+        default=None,
+        serialization_alias="outputmix12in11",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o12i11"},
+    )
+    outputmix12in12: str | None = Field(
+        default=None,
+        serialization_alias="outputmix12in12",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o12i12"},
+    )
+    outputmix12in13: str | None = Field(
+        default=None,
+        serialization_alias="outputmix12in13",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o12i13"},
+    )
+    outputmix12in14: str | None = Field(
+        default=None,
+        serialization_alias="outputmix12in14",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o12i14"},
+    )
+    outputmix12in15: str | None = Field(
+        default=None,
+        serialization_alias="outputmix12in15",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o12i15"},
+    )
+    outputmix12in16: str | None = Field(
+        default=None,
+        serialization_alias="outputmix12in16",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o12i16"},
+    )
+    outputmix13in1: str | None = Field(
+        default=None,
+        serialization_alias="outputmix13in1",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o13i1"},
+    )
+    outputmix13in2: str | None = Field(
+        default=None,
+        serialization_alias="outputmix13in2",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o13i2"},
+    )
+    outputmix13in3: str | None = Field(
+        default=None,
+        serialization_alias="outputmix13in3",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o13i3"},
+    )
+    outputmix13in4: str | None = Field(
+        default=None,
+        serialization_alias="outputmix13in4",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o13i4"},
+    )
+    outputmix13in5: str | None = Field(
+        default=None,
+        serialization_alias="outputmix13in5",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o13i5"},
+    )
+    outputmix13in6: str | None = Field(
+        default=None,
+        serialization_alias="outputmix13in6",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o13i6"},
+    )
+    outputmix13in7: str | None = Field(
+        default=None,
+        serialization_alias="outputmix13in7",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o13i7"},
+    )
+    outputmix13in8: str | None = Field(
+        default=None,
+        serialization_alias="outputmix13in8",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o13i8"},
+    )
+    outputmix13in9: str | None = Field(
+        default=None,
+        serialization_alias="outputmix13in9",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o13i9"},
+    )
+    outputmix13in10: str | None = Field(
+        default=None,
+        serialization_alias="outputmix13in10",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o13i10"},
+    )
+    outputmix13in11: str | None = Field(
+        default=None,
+        serialization_alias="outputmix13in11",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o13i11"},
+    )
+    outputmix13in12: str | None = Field(
+        default=None,
+        serialization_alias="outputmix13in12",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o13i12"},
+    )
+    outputmix13in13: str | None = Field(
+        default=None,
+        serialization_alias="outputmix13in13",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o13i13"},
+    )
+    outputmix13in14: str | None = Field(
+        default=None,
+        serialization_alias="outputmix13in14",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o13i14"},
+    )
+    outputmix13in15: str | None = Field(
+        default=None,
+        serialization_alias="outputmix13in15",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o13i15"},
+    )
+    outputmix13in16: str | None = Field(
+        default=None,
+        serialization_alias="outputmix13in16",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o13i16"},
+    )
+    outputmix14in1: str | None = Field(
+        default=None,
+        serialization_alias="outputmix14in1",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o14i1"},
+    )
+    outputmix14in2: str | None = Field(
+        default=None,
+        serialization_alias="outputmix14in2",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o14i2"},
+    )
+    outputmix14in3: str | None = Field(
+        default=None,
+        serialization_alias="outputmix14in3",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o14i3"},
+    )
+    outputmix14in4: str | None = Field(
+        default=None,
+        serialization_alias="outputmix14in4",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o14i4"},
+    )
+    outputmix14in5: str | None = Field(
+        default=None,
+        serialization_alias="outputmix14in5",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o14i5"},
+    )
+    outputmix14in6: str | None = Field(
+        default=None,
+        serialization_alias="outputmix14in6",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o14i6"},
+    )
+    outputmix14in7: str | None = Field(
+        default=None,
+        serialization_alias="outputmix14in7",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o14i7"},
+    )
+    outputmix14in8: str | None = Field(
+        default=None,
+        serialization_alias="outputmix14in8",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o14i8"},
+    )
+    outputmix14in9: str | None = Field(
+        default=None,
+        serialization_alias="outputmix14in9",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o14i9"},
+    )
+    outputmix14in10: str | None = Field(
+        default=None,
+        serialization_alias="outputmix14in10",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o14i10"},
+    )
+    outputmix14in11: str | None = Field(
+        default=None,
+        serialization_alias="outputmix14in11",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o14i11"},
+    )
+    outputmix14in12: str | None = Field(
+        default=None,
+        serialization_alias="outputmix14in12",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o14i12"},
+    )
+    outputmix14in13: str | None = Field(
+        default=None,
+        serialization_alias="outputmix14in13",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o14i13"},
+    )
+    outputmix14in14: str | None = Field(
+        default=None,
+        serialization_alias="outputmix14in14",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o14i14"},
+    )
+    outputmix14in15: str | None = Field(
+        default=None,
+        serialization_alias="outputmix14in15",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o14i15"},
+    )
+    outputmix14in16: str | None = Field(
+        default=None,
+        serialization_alias="outputmix14in16",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o14i16"},
+    )
+    outputmix15in1: str | None = Field(
+        default=None,
+        serialization_alias="outputmix15in1",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o15i1"},
+    )
+    outputmix15in2: str | None = Field(
+        default=None,
+        serialization_alias="outputmix15in2",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o15i2"},
+    )
+    outputmix15in3: str | None = Field(
+        default=None,
+        serialization_alias="outputmix15in3",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o15i3"},
+    )
+    outputmix15in4: str | None = Field(
+        default=None,
+        serialization_alias="outputmix15in4",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o15i4"},
+    )
+    outputmix15in5: str | None = Field(
+        default=None,
+        serialization_alias="outputmix15in5",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o15i5"},
+    )
+    outputmix15in6: str | None = Field(
+        default=None,
+        serialization_alias="outputmix15in6",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o15i6"},
+    )
+    outputmix15in7: str | None = Field(
+        default=None,
+        serialization_alias="outputmix15in7",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o15i7"},
+    )
+    outputmix15in8: str | None = Field(
+        default=None,
+        serialization_alias="outputmix15in8",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o15i8"},
+    )
+    outputmix15in9: str | None = Field(
+        default=None,
+        serialization_alias="outputmix15in9",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o15i9"},
+    )
+    outputmix15in10: str | None = Field(
+        default=None,
+        serialization_alias="outputmix15in10",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o15i10"},
+    )
+    outputmix15in11: str | None = Field(
+        default=None,
+        serialization_alias="outputmix15in11",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o15i11"},
+    )
+    outputmix15in12: str | None = Field(
+        default=None,
+        serialization_alias="outputmix15in12",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o15i12"},
+    )
+    outputmix15in13: str | None = Field(
+        default=None,
+        serialization_alias="outputmix15in13",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o15i13"},
+    )
+    outputmix15in14: str | None = Field(
+        default=None,
+        serialization_alias="outputmix15in14",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o15i14"},
+    )
+    outputmix15in15: str | None = Field(
+        default=None,
+        serialization_alias="outputmix15in15",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o15i15"},
+    )
+    outputmix15in16: str | None = Field(
+        default=None,
+        serialization_alias="outputmix15in16",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o15i16"},
+    )
+    outputmix16in1: str | None = Field(
+        default=None,
+        serialization_alias="outputmix16in1",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o16i1"},
+    )
+    outputmix16in2: str | None = Field(
+        default=None,
+        serialization_alias="outputmix16in2",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o16i2"},
+    )
+    outputmix16in3: str | None = Field(
+        default=None,
+        serialization_alias="outputmix16in3",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o16i3"},
+    )
+    outputmix16in4: str | None = Field(
+        default=None,
+        serialization_alias="outputmix16in4",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o16i4"},
+    )
+    outputmix16in5: str | None = Field(
+        default=None,
+        serialization_alias="outputmix16in5",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o16i5"},
+    )
+    outputmix16in6: str | None = Field(
+        default=None,
+        serialization_alias="outputmix16in6",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o16i6"},
+    )
+    outputmix16in7: str | None = Field(
+        default=None,
+        serialization_alias="outputmix16in7",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o16i7"},
+    )
+    outputmix16in8: str | None = Field(
+        default=None,
+        serialization_alias="outputmix16in8",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o16i8"},
+    )
+    outputmix16in9: str | None = Field(
+        default=None,
+        serialization_alias="outputmix16in9",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o16i9"},
+    )
+    outputmix16in10: str | None = Field(
+        default=None,
+        serialization_alias="outputmix16in10",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o16i10"},
+    )
+    outputmix16in11: str | None = Field(
+        default=None,
+        serialization_alias="outputmix16in11",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o16i11"},
+    )
+    outputmix16in12: str | None = Field(
+        default=None,
+        serialization_alias="outputmix16in12",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o16i12"},
+    )
+    outputmix16in13: str | None = Field(
+        default=None,
+        serialization_alias="outputmix16in13",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o16i13"},
+    )
+    outputmix16in14: str | None = Field(
+        default=None,
+        serialization_alias="outputmix16in14",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o16i14"},
+    )
+    outputmix16in15: str | None = Field(
+        default=None,
+        serialization_alias="outputmix16in15",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o16i15"},
+    )
+    outputmix16in16: str | None = Field(
+        default=None,
+        serialization_alias="outputmix16in16",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "o16i16"},
+    )
+    postfader1: str | None = Field(
+        default=None,
+        serialization_alias="postfader1",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "pf1"},
+    )
+    postfader2: str | None = Field(
+        default=None,
+        serialization_alias="postfader2",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "pf2"},
+    )
+    postfader3: str | None = Field(
+        default=None,
+        serialization_alias="postfader3",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "pf3"},
+    )
+    postfader4: str | None = Field(
+        default=None,
+        serialization_alias="postfader4",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "pf4"},
+    )
+    postfader5: str | None = Field(
+        default=None,
+        serialization_alias="postfader5",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "pf5"},
+    )
+    postfader6: str | None = Field(
+        default=None,
+        serialization_alias="postfader6",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "pf6"},
+    )
+    postfader7: str | None = Field(
+        default=None,
+        serialization_alias="postfader7",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "pf7"},
+    )
+    postfader8: str | None = Field(
+        default=None,
+        serialization_alias="postfader8",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "pf8"},
+    )
+    postfader9: str | None = Field(
+        default=None,
+        serialization_alias="postfader9",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "pf9"},
+    )
+    postfader10: str | None = Field(
+        default=None,
+        serialization_alias="postfader10",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "pf10"},
+    )
+    postfader11: str | None = Field(
+        default=None,
+        serialization_alias="postfader11",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "pf11"},
+    )
+    postfader12: str | None = Field(
+        default=None,
+        serialization_alias="postfader12",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "pf12"},
+    )
+    postfader13: str | None = Field(
+        default=None,
+        serialization_alias="postfader13",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "pf13"},
+    )
+    postfader14: str | None = Field(
+        default=None,
+        serialization_alias="postfader14",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "pf14"},
+    )
+    postfader15: str | None = Field(
+        default=None,
+        serialization_alias="postfader15",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "pf15"},
+    )
+    postfader16: str | None = Field(
+        default=None,
+        serialization_alias="postfader16",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "pf16"},
+    )
+    pan1: str | None = Field(
+        default=None,
+        serialization_alias="pan1",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "p1"},
+    )
+    pan2: str | None = Field(
+        default=None,
+        serialization_alias="pan2",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "p2"},
+    )
+    pan3: str | None = Field(
+        default=None,
+        serialization_alias="pan3",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "p3"},
+    )
+    pan4: str | None = Field(
+        default=None,
+        serialization_alias="pan4",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "p4"},
+    )
+    pan5: str | None = Field(
+        default=None,
+        serialization_alias="pan5",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "p5"},
+    )
+    pan6: str | None = Field(
+        default=None,
+        serialization_alias="pan6",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "p6"},
+    )
+    pan7: str | None = Field(
+        default=None,
+        serialization_alias="pan7",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "p7"},
+    )
+    pan8: str | None = Field(
+        default=None,
+        serialization_alias="pan8",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "p8"},
+    )
+    pan9: str | None = Field(
+        default=None,
+        serialization_alias="pan9",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "p9"},
+    )
+    pan10: str | None = Field(
+        default=None,
+        serialization_alias="pan10",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "p10"},
+    )
+    pan11: str | None = Field(
+        default=None,
+        serialization_alias="pan11",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "p11"},
+    )
+    pan12: str | None = Field(
+        default=None,
+        serialization_alias="pan12",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "p12"},
+    )
+    pan13: str | None = Field(
+        default=None,
+        serialization_alias="pan13",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "p13"},
+    )
+    pan14: str | None = Field(
+        default=None,
+        serialization_alias="pan14",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "p14"},
+    )
+    pan15: str | None = Field(
+        default=None,
+        serialization_alias="pan15",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "p15"},
+    )
+    pan16: str | None = Field(
+        default=None,
+        serialization_alias="pan16",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "p16"},
+    )
+    unmute1: str | None = Field(
+        default=None,
+        serialization_alias="unmute1",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "u1"},
+    )
+    unmute2: str | None = Field(
+        default=None,
+        serialization_alias="unmute2",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "u2"},
+    )
+    unmute3: str | None = Field(
+        default=None,
+        serialization_alias="unmute3",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "u3"},
+    )
+    unmute4: str | None = Field(
+        default=None,
+        serialization_alias="unmute4",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "u4"},
+    )
+    unmute5: str | None = Field(
+        default=None,
+        serialization_alias="unmute5",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "u5"},
+    )
+    unmute6: str | None = Field(
+        default=None,
+        serialization_alias="unmute6",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "u6"},
+    )
+    unmute7: str | None = Field(
+        default=None,
+        serialization_alias="unmute7",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "u7"},
+    )
+    unmute8: str | None = Field(
+        default=None,
+        serialization_alias="unmute8",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "u8"},
+    )
+    unmute9: str | None = Field(
+        default=None,
+        serialization_alias="unmute9",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "u9"},
+    )
+    unmute10: str | None = Field(
+        default=None,
+        serialization_alias="unmute10",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "u10"},
+    )
+    unmute11: str | None = Field(
+        default=None,
+        serialization_alias="unmute11",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "u11"},
+    )
+    unmute12: str | None = Field(
+        default=None,
+        serialization_alias="unmute12",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "u12"},
+    )
+    unmute13: str | None = Field(
+        default=None,
+        serialization_alias="unmute13",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "u13"},
+    )
+    unmute14: str | None = Field(
+        default=None,
+        serialization_alias="unmute14",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "u14"},
+    )
+    unmute15: str | None = Field(
+        default=None,
+        serialization_alias="unmute15",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "u15"},
+    )
+    unmute16: str | None = Field(
+        default=None,
+        serialization_alias="unmute16",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "u16"},
+    )
+    update: str | None = Field(
+        default=None,
+        serialization_alias="update",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ud"},
+    )
+    select: str | None = Field(
+        default=None,
+        serialization_alias="select",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "s"},
+    )
+    selectat: str | None = Field(
+        default=None,
+        serialization_alias="selectat",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "sa"},
     )
 
 
-
-@dataclass
 class Midifileplayer(DroidCircuit):
-    """MIDI file player.
+    """ MIDI file player
 
     Args:
         file (integer):
@@ -2625,476 +2946,589 @@ class Midifileplayer(DroidCircuit):
           This output gives you access to the current state of the “soft pedal” (MIDI CC
           67). It is 1 while the pedal is hold and 0 otherwise.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 6384
-    file: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    track: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    clock: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    reset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    loop: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    end: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    speed: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    channel: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    tuningmode: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    tuningpitch: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    transpose: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    holdvelocity: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    pitchbendrange: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    bendpitch: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    roundrobin: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    voiceallocation: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    notegap: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    ccnumber1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    ccnumber2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    ccnumber3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    ccnumber4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    lowestnote: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    highestnote: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    clockout: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    midiclock: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    endoftrack: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    error: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    pitch1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    pitch2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    pitch3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    pitch4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    pitch5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    pitch6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    pitch7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    pitch8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    velocity1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    velocity2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    velocity3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    velocity4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    velocity5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    velocity6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    velocity7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    velocity8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pressure1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pressure2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pressure3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pressure4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pressure5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pressure6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pressure7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pressure8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    gate1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    gate2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    gate3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    gate4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    gate5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    gate6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    gate7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    gate8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    trigger1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    trigger2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    trigger3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    trigger4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    trigger5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    trigger6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    trigger7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    trigger8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    cc1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    cc2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    cc3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    cc4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    cctrigger1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    cctrigger2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    cctrigger3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    cctrigger4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    notegate1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    pitchbend: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    programchange: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    program: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    bank: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    modwheel: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    volume: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    portamento: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    soft: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    _ramsize: int = 6384
+
+    file: str | None = Field(
+        default=None,
+        serialization_alias="file",
+        json_schema_extra={"essential": 2, "type": "integer", "shortname": "f"},
+    )
+    track: str | None = Field(
+        default=None,
+        serialization_alias="track",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "tc"},
+    )
+    clock: str | None = Field(
+        default=None,
+        serialization_alias="clock",
+        json_schema_extra={"essential": 1, "type": "trigger", "shortname": "c"},
+    )
+    reset: str | None = Field(
+        default=None,
+        serialization_alias="reset",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "r"},
+    )
+    loop: str | None = Field(
+        default=None,
+        serialization_alias="loop",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "lo"},
+    )
+    end: str | None = Field(
+        default=None,
+        serialization_alias="end",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "e"},
+    )
+    speed: str | None = Field(
+        default=None,
+        serialization_alias="speed",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "sp"},
+    )
+    channel: str | None = Field(
+        default=None,
+        serialization_alias="channel",
+        json_schema_extra={"essential": 1, "type": "integer", "shortname": "ch"},
+    )
+    tuningmode: str | None = Field(
+        default=None,
+        serialization_alias="tuningmode",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "tm"},
+    )
+    tuningpitch: str | None = Field(
+        default=None,
+        serialization_alias="tuningpitch",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "tp"},
+    )
+    transpose: str | None = Field(
+        default=None,
+        serialization_alias="transpose",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "tr"},
+    )
+    holdvelocity: str | None = Field(
+        default=None,
+        serialization_alias="holdvelocity",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "hv"},
+    )
+    pitchbendrange: str | None = Field(
+        default=None,
+        serialization_alias="pitchbendrange",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "pbr"},
+    )
+    bendpitch: str | None = Field(
+        default=None,
+        serialization_alias="bendpitch",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "bp"},
+    )
+    roundrobin: str | None = Field(
+        default=None,
+        serialization_alias="roundrobin",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "rr"},
+    )
+    voiceallocation: str | None = Field(
+        default=None,
+        serialization_alias="voiceallocation",
+        json_schema_extra={"essential": 1, "type": "integer", "shortname": "va"},
+    )
+    notegap: str | None = Field(
+        default=None,
+        serialization_alias="notegap",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "ngp"},
+    )
+    ccnumber1: str | None = Field(
+        default=None,
+        serialization_alias="ccnumber1",
+        json_schema_extra={"essential": 1, "type": "integer", "shortname": "cn1"},
+    )
+    ccnumber2: str | None = Field(
+        default=None,
+        serialization_alias="ccnumber2",
+        json_schema_extra={"essential": 1, "type": "integer", "shortname": "cn2"},
+    )
+    ccnumber3: str | None = Field(
+        default=None,
+        serialization_alias="ccnumber3",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "cn3"},
+    )
+    ccnumber4: str | None = Field(
+        default=None,
+        serialization_alias="ccnumber4",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "cn4"},
+    )
+    lowestnote: str | None = Field(
+        default=None,
+        serialization_alias="lowestnote",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "ln"},
+    )
+    highestnote: str | None = Field(
+        default=None,
+        serialization_alias="highestnote",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "hn"},
+    )
+    note1: str | None = Field(
+        default=None,
+        serialization_alias="note1",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n1"},
+    )
+    note2: str | None = Field(
+        default=None,
+        serialization_alias="note2",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n2"},
+    )
+    note3: str | None = Field(
+        default=None,
+        serialization_alias="note3",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n3"},
+    )
+    note4: str | None = Field(
+        default=None,
+        serialization_alias="note4",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n4"},
+    )
+    note5: str | None = Field(
+        default=None,
+        serialization_alias="note5",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n5"},
+    )
+    note6: str | None = Field(
+        default=None,
+        serialization_alias="note6",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n6"},
+    )
+    note7: str | None = Field(
+        default=None,
+        serialization_alias="note7",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n7"},
+    )
+    note8: str | None = Field(
+        default=None,
+        serialization_alias="note8",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n8"},
+    )
+    note9: str | None = Field(
+        default=None,
+        serialization_alias="note9",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n9"},
+    )
+    note10: str | None = Field(
+        default=None,
+        serialization_alias="note10",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n10"},
+    )
+    note11: str | None = Field(
+        default=None,
+        serialization_alias="note11",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n11"},
+    )
+    note12: str | None = Field(
+        default=None,
+        serialization_alias="note12",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n12"},
+    )
+    note13: str | None = Field(
+        default=None,
+        serialization_alias="note13",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n13"},
+    )
+    note14: str | None = Field(
+        default=None,
+        serialization_alias="note14",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n14"},
+    )
+    note15: str | None = Field(
+        default=None,
+        serialization_alias="note15",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n15"},
+    )
+    note16: str | None = Field(
+        default=None,
+        serialization_alias="note16",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n16"},
+    )
+    clockout: str | None = Field(
+        default=None,
+        serialization_alias="clockout",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "co"},
+    )
+    midiclock: str | None = Field(
+        default=None,
+        serialization_alias="midiclock",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "mc"},
+    )
+    endoftrack: str | None = Field(
+        default=None,
+        serialization_alias="endoftrack",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "et"},
+    )
+    error: str | None = Field(
+        default=None,
+        serialization_alias="error",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "er"},
+    )
+    pitch1: str | None = Field(
+        default=None,
+        serialization_alias="pitch1",
+        json_schema_extra={"essential": 2, "type": "voltperoctave", "shortname": "p1"},
+    )
+    pitch2: str | None = Field(
+        default=None,
+        serialization_alias="pitch2",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "p2"},
+    )
+    pitch3: str | None = Field(
+        default=None,
+        serialization_alias="pitch3",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "p3"},
+    )
+    pitch4: str | None = Field(
+        default=None,
+        serialization_alias="pitch4",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "p4"},
+    )
+    pitch5: str | None = Field(
+        default=None,
+        serialization_alias="pitch5",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "p5"},
+    )
+    pitch6: str | None = Field(
+        default=None,
+        serialization_alias="pitch6",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "p6"},
+    )
+    pitch7: str | None = Field(
+        default=None,
+        serialization_alias="pitch7",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "p7"},
+    )
+    pitch8: str | None = Field(
+        default=None,
+        serialization_alias="pitch8",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "p8"},
+    )
+    velocity1: str | None = Field(
+        default=None,
+        serialization_alias="velocity1",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "v1"},
+    )
+    velocity2: str | None = Field(
+        default=None,
+        serialization_alias="velocity2",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "v2"},
+    )
+    velocity3: str | None = Field(
+        default=None,
+        serialization_alias="velocity3",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "v3"},
+    )
+    velocity4: str | None = Field(
+        default=None,
+        serialization_alias="velocity4",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "v4"},
+    )
+    velocity5: str | None = Field(
+        default=None,
+        serialization_alias="velocity5",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "v5"},
+    )
+    velocity6: str | None = Field(
+        default=None,
+        serialization_alias="velocity6",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "v6"},
+    )
+    velocity7: str | None = Field(
+        default=None,
+        serialization_alias="velocity7",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "v7"},
+    )
+    velocity8: str | None = Field(
+        default=None,
+        serialization_alias="velocity8",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "v8"},
+    )
+    pressure1: str | None = Field(
+        default=None,
+        serialization_alias="pressure1",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "pr1"},
+    )
+    pressure2: str | None = Field(
+        default=None,
+        serialization_alias="pressure2",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "pr2"},
+    )
+    pressure3: str | None = Field(
+        default=None,
+        serialization_alias="pressure3",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "pr3"},
+    )
+    pressure4: str | None = Field(
+        default=None,
+        serialization_alias="pressure4",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "pr4"},
+    )
+    pressure5: str | None = Field(
+        default=None,
+        serialization_alias="pressure5",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "pr5"},
+    )
+    pressure6: str | None = Field(
+        default=None,
+        serialization_alias="pressure6",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "pr6"},
+    )
+    pressure7: str | None = Field(
+        default=None,
+        serialization_alias="pressure7",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "pr7"},
+    )
+    pressure8: str | None = Field(
+        default=None,
+        serialization_alias="pressure8",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "pr8"},
+    )
+    gate1: str | None = Field(
+        default=None,
+        serialization_alias="gate1",
+        json_schema_extra={"essential": 2, "type": "gate", "shortname": "g1"},
+    )
+    gate2: str | None = Field(
+        default=None,
+        serialization_alias="gate2",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "g2"},
+    )
+    gate3: str | None = Field(
+        default=None,
+        serialization_alias="gate3",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "g3"},
+    )
+    gate4: str | None = Field(
+        default=None,
+        serialization_alias="gate4",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "g4"},
+    )
+    gate5: str | None = Field(
+        default=None,
+        serialization_alias="gate5",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "g5"},
+    )
+    gate6: str | None = Field(
+        default=None,
+        serialization_alias="gate6",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "g6"},
+    )
+    gate7: str | None = Field(
+        default=None,
+        serialization_alias="gate7",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "g7"},
+    )
+    gate8: str | None = Field(
+        default=None,
+        serialization_alias="gate8",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "g8"},
+    )
+    trigger1: str | None = Field(
+        default=None,
+        serialization_alias="trigger1",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "t1"},
+    )
+    trigger2: str | None = Field(
+        default=None,
+        serialization_alias="trigger2",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "t2"},
+    )
+    trigger3: str | None = Field(
+        default=None,
+        serialization_alias="trigger3",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "t3"},
+    )
+    trigger4: str | None = Field(
+        default=None,
+        serialization_alias="trigger4",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "t4"},
+    )
+    trigger5: str | None = Field(
+        default=None,
+        serialization_alias="trigger5",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "t5"},
+    )
+    trigger6: str | None = Field(
+        default=None,
+        serialization_alias="trigger6",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "t6"},
+    )
+    trigger7: str | None = Field(
+        default=None,
+        serialization_alias="trigger7",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "t7"},
+    )
+    trigger8: str | None = Field(
+        default=None,
+        serialization_alias="trigger8",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "t8"},
+    )
+    cc1: str | None = Field(
+        default=None,
+        serialization_alias="cc1",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "1"},
+    )
+    cc2: str | None = Field(
+        default=None,
+        serialization_alias="cc2",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "2"},
+    )
+    cc3: str | None = Field(
+        default=None,
+        serialization_alias="cc3",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "3"},
+    )
+    cc4: str | None = Field(
+        default=None,
+        serialization_alias="cc4",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "4"},
+    )
+    cctrigger1: str | None = Field(
+        default=None,
+        serialization_alias="cctrigger1",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ct1"},
+    )
+    cctrigger2: str | None = Field(
+        default=None,
+        serialization_alias="cctrigger2",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ct2"},
+    )
+    cctrigger3: str | None = Field(
+        default=None,
+        serialization_alias="cctrigger3",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ct3"},
+    )
+    cctrigger4: str | None = Field(
+        default=None,
+        serialization_alias="cctrigger4",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ct4"},
+    )
+    notegate1: str | None = Field(
+        default=None,
+        serialization_alias="notegate1",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng1"},
+    )
+    notegate2: str | None = Field(
+        default=None,
+        serialization_alias="notegate2",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng2"},
+    )
+    notegate3: str | None = Field(
+        default=None,
+        serialization_alias="notegate3",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng3"},
+    )
+    notegate4: str | None = Field(
+        default=None,
+        serialization_alias="notegate4",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng4"},
+    )
+    notegate5: str | None = Field(
+        default=None,
+        serialization_alias="notegate5",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng5"},
+    )
+    notegate6: str | None = Field(
+        default=None,
+        serialization_alias="notegate6",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng6"},
+    )
+    notegate7: str | None = Field(
+        default=None,
+        serialization_alias="notegate7",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng7"},
+    )
+    notegate8: str | None = Field(
+        default=None,
+        serialization_alias="notegate8",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng8"},
+    )
+    notegate9: str | None = Field(
+        default=None,
+        serialization_alias="notegate9",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng9"},
+    )
+    notegate10: str | None = Field(
+        default=None,
+        serialization_alias="notegate10",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng10"},
+    )
+    notegate11: str | None = Field(
+        default=None,
+        serialization_alias="notegate11",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng11"},
+    )
+    notegate12: str | None = Field(
+        default=None,
+        serialization_alias="notegate12",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng12"},
+    )
+    notegate13: str | None = Field(
+        default=None,
+        serialization_alias="notegate13",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng13"},
+    )
+    notegate14: str | None = Field(
+        default=None,
+        serialization_alias="notegate14",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng14"},
+    )
+    notegate15: str | None = Field(
+        default=None,
+        serialization_alias="notegate15",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng15"},
+    )
+    notegate16: str | None = Field(
+        default=None,
+        serialization_alias="notegate16",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng16"},
+    )
+    pitchbend: str | None = Field(
+        default=None,
+        serialization_alias="pitchbend",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "pb"},
+    )
+    programchange: str | None = Field(
+        default=None,
+        serialization_alias="programchange",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "pc"},
+    )
+    program: str | None = Field(
+        default=None,
+        serialization_alias="program",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "pm"},
+    )
+    bank: str | None = Field(
+        default=None,
+        serialization_alias="bank",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "ba"},
+    )
+    modwheel: str | None = Field(
+        default=None,
+        serialization_alias="modwheel",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "w"},
+    )
+    volume: str | None = Field(
+        default=None,
+        serialization_alias="volume",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "vo"},
+    )
+    portamento: str | None = Field(
+        default=None,
+        serialization_alias="portamento",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "po"},
+    )
+    soft: str | None = Field(
+        default=None,
+        serialization_alias="soft",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "so"},
     )
 
 
-
-@dataclass
 class Midiin(DroidCircuit):
-    """MIDI to CV converter.
+    """ MIDI to CV converter
 
     Args:
         trs (integer):
@@ -3374,7 +3808,7 @@ class Midiin(DroidCircuit):
           at 24 PPQ, i.e. 24 pulses per quarter note.
         start (trigger):
           This jack sends a trigger when a MIDI START message arrives.
-        continue_ (trigger):
+        continue (trigger):
           This jack sends a trigger when a MIDI CONTINUE message arrives.
         stop (trigger):
           This jack sends a trigger when a MIDI STOP message arrives.
@@ -3731,492 +4165,609 @@ class Midiin(DroidCircuit):
           This output gives you access to the current state of the “soft pedal” (MIDI CC
           67). It is 1 while the pedal is hold and 0 otherwise.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 560
-    trs: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    usb: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    initialrunning: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    systemreset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    channel: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    tuningmode: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    tuningpitch: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    transpose: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    holdvelocity: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    pitchbendrange: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    bendpitch: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    roundrobin: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    voiceallocation: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    notegap: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    ccnumber1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    ccnumber2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    ccnumber3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    ccnumber4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    lowestnote: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    highestnote: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    clock: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    clock8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    clock8t: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    clock16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    clock4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    midiclock: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    start: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    continue_: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    stop: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    running: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    active: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    pitch1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    pitch2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    pitch3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    pitch4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    pitch5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    pitch6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    pitch7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    pitch8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    velocity1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    velocity2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    velocity3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    velocity4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    velocity5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    velocity6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    velocity7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    velocity8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pressure1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pressure2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pressure3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pressure4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pressure5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pressure6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pressure7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pressure8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    gate1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    gate2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    gate3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    gate4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    gate5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    gate6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    gate7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    gate8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    trigger1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    trigger2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    trigger3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    trigger4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    trigger5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    trigger6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    trigger7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    trigger8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    cc1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    cc2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    cc3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    cc4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    cctrigger1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    cctrigger2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    cctrigger3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    cctrigger4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    notegate1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    pitchbend: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    programchange: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    program: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    bank: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    modwheel: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    volume: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    portamento: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    soft: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    _ramsize: int = 560
+
+    trs: str | None = Field(
+        default=None,
+        serialization_alias="trs",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": ""},
+    )
+    usb: str | None = Field(
+        default=None,
+        serialization_alias="usb",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": ""},
+    )
+    initialrunning: str | None = Field(
+        default=None,
+        serialization_alias="initialrunning",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "ir"},
+    )
+    systemreset: str | None = Field(
+        default=None,
+        serialization_alias="systemreset",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "sr"},
+    )
+    channel: str | None = Field(
+        default=None,
+        serialization_alias="channel",
+        json_schema_extra={"essential": 1, "type": "integer", "shortname": "ch"},
+    )
+    tuningmode: str | None = Field(
+        default=None,
+        serialization_alias="tuningmode",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "tm"},
+    )
+    tuningpitch: str | None = Field(
+        default=None,
+        serialization_alias="tuningpitch",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "tp"},
+    )
+    transpose: str | None = Field(
+        default=None,
+        serialization_alias="transpose",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "tr"},
+    )
+    holdvelocity: str | None = Field(
+        default=None,
+        serialization_alias="holdvelocity",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "hv"},
+    )
+    pitchbendrange: str | None = Field(
+        default=None,
+        serialization_alias="pitchbendrange",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "pbr"},
+    )
+    bendpitch: str | None = Field(
+        default=None,
+        serialization_alias="bendpitch",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "bp"},
+    )
+    roundrobin: str | None = Field(
+        default=None,
+        serialization_alias="roundrobin",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "rr"},
+    )
+    voiceallocation: str | None = Field(
+        default=None,
+        serialization_alias="voiceallocation",
+        json_schema_extra={"essential": 1, "type": "integer", "shortname": "va"},
+    )
+    notegap: str | None = Field(
+        default=None,
+        serialization_alias="notegap",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "ngp"},
+    )
+    ccnumber1: str | None = Field(
+        default=None,
+        serialization_alias="ccnumber1",
+        json_schema_extra={"essential": 1, "type": "integer", "shortname": "cn1"},
+    )
+    ccnumber2: str | None = Field(
+        default=None,
+        serialization_alias="ccnumber2",
+        json_schema_extra={"essential": 1, "type": "integer", "shortname": "cn2"},
+    )
+    ccnumber3: str | None = Field(
+        default=None,
+        serialization_alias="ccnumber3",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "cn3"},
+    )
+    ccnumber4: str | None = Field(
+        default=None,
+        serialization_alias="ccnumber4",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "cn4"},
+    )
+    lowestnote: str | None = Field(
+        default=None,
+        serialization_alias="lowestnote",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "ln"},
+    )
+    highestnote: str | None = Field(
+        default=None,
+        serialization_alias="highestnote",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "hn"},
+    )
+    note1: str | None = Field(
+        default=None,
+        serialization_alias="note1",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n1"},
+    )
+    note2: str | None = Field(
+        default=None,
+        serialization_alias="note2",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n2"},
+    )
+    note3: str | None = Field(
+        default=None,
+        serialization_alias="note3",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n3"},
+    )
+    note4: str | None = Field(
+        default=None,
+        serialization_alias="note4",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n4"},
+    )
+    note5: str | None = Field(
+        default=None,
+        serialization_alias="note5",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n5"},
+    )
+    note6: str | None = Field(
+        default=None,
+        serialization_alias="note6",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n6"},
+    )
+    note7: str | None = Field(
+        default=None,
+        serialization_alias="note7",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n7"},
+    )
+    note8: str | None = Field(
+        default=None,
+        serialization_alias="note8",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n8"},
+    )
+    note9: str | None = Field(
+        default=None,
+        serialization_alias="note9",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n9"},
+    )
+    note10: str | None = Field(
+        default=None,
+        serialization_alias="note10",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n10"},
+    )
+    note11: str | None = Field(
+        default=None,
+        serialization_alias="note11",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n11"},
+    )
+    note12: str | None = Field(
+        default=None,
+        serialization_alias="note12",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n12"},
+    )
+    note13: str | None = Field(
+        default=None,
+        serialization_alias="note13",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n13"},
+    )
+    note14: str | None = Field(
+        default=None,
+        serialization_alias="note14",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n14"},
+    )
+    note15: str | None = Field(
+        default=None,
+        serialization_alias="note15",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n15"},
+    )
+    note16: str | None = Field(
+        default=None,
+        serialization_alias="note16",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n16"},
+    )
+    clock: str | None = Field(
+        default=None,
+        serialization_alias="clock",
+        json_schema_extra={"essential": 1, "type": "trigger", "shortname": "c"},
+    )
+    clock8: str | None = Field(
+        default=None,
+        serialization_alias="clock8",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "c8"},
+    )
+    clock8t: str | None = Field(
+        default=None,
+        serialization_alias="clock8t",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "c8t"},
+    )
+    clock16: str | None = Field(
+        default=None,
+        serialization_alias="clock16",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "c16"},
+    )
+    clock4: str | None = Field(
+        default=None,
+        serialization_alias="clock4",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "c4"},
+    )
+    midiclock: str | None = Field(
+        default=None,
+        serialization_alias="midiclock",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "mc"},
+    )
+    start: str | None = Field(
+        default=None,
+        serialization_alias="start",
+        json_schema_extra={"essential": 1, "type": "trigger", "shortname": "st"},
+    )
+    continue_: str | None = Field(
+        default=None,
+        serialization_alias="continue",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "co"},
+    )
+    stop: str | None = Field(
+        default=None,
+        serialization_alias="stop",
+        json_schema_extra={"essential": 1, "type": "trigger", "shortname": "sp"},
+    )
+    running: str | None = Field(
+        default=None,
+        serialization_alias="running",
+        json_schema_extra={"essential": 1, "type": "gate", "shortname": "ru"},
+    )
+    active: str | None = Field(
+        default=None,
+        serialization_alias="active",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "a"},
+    )
+    pitch1: str | None = Field(
+        default=None,
+        serialization_alias="pitch1",
+        json_schema_extra={"essential": 2, "type": "voltperoctave", "shortname": "p1"},
+    )
+    pitch2: str | None = Field(
+        default=None,
+        serialization_alias="pitch2",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "p2"},
+    )
+    pitch3: str | None = Field(
+        default=None,
+        serialization_alias="pitch3",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "p3"},
+    )
+    pitch4: str | None = Field(
+        default=None,
+        serialization_alias="pitch4",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "p4"},
+    )
+    pitch5: str | None = Field(
+        default=None,
+        serialization_alias="pitch5",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "p5"},
+    )
+    pitch6: str | None = Field(
+        default=None,
+        serialization_alias="pitch6",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "p6"},
+    )
+    pitch7: str | None = Field(
+        default=None,
+        serialization_alias="pitch7",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "p7"},
+    )
+    pitch8: str | None = Field(
+        default=None,
+        serialization_alias="pitch8",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "p8"},
+    )
+    velocity1: str | None = Field(
+        default=None,
+        serialization_alias="velocity1",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "v1"},
+    )
+    velocity2: str | None = Field(
+        default=None,
+        serialization_alias="velocity2",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "v2"},
+    )
+    velocity3: str | None = Field(
+        default=None,
+        serialization_alias="velocity3",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "v3"},
+    )
+    velocity4: str | None = Field(
+        default=None,
+        serialization_alias="velocity4",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "v4"},
+    )
+    velocity5: str | None = Field(
+        default=None,
+        serialization_alias="velocity5",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "v5"},
+    )
+    velocity6: str | None = Field(
+        default=None,
+        serialization_alias="velocity6",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "v6"},
+    )
+    velocity7: str | None = Field(
+        default=None,
+        serialization_alias="velocity7",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "v7"},
+    )
+    velocity8: str | None = Field(
+        default=None,
+        serialization_alias="velocity8",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "v8"},
+    )
+    pressure1: str | None = Field(
+        default=None,
+        serialization_alias="pressure1",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "pr1"},
+    )
+    pressure2: str | None = Field(
+        default=None,
+        serialization_alias="pressure2",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "pr2"},
+    )
+    pressure3: str | None = Field(
+        default=None,
+        serialization_alias="pressure3",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "pr3"},
+    )
+    pressure4: str | None = Field(
+        default=None,
+        serialization_alias="pressure4",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "pr4"},
+    )
+    pressure5: str | None = Field(
+        default=None,
+        serialization_alias="pressure5",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "pr5"},
+    )
+    pressure6: str | None = Field(
+        default=None,
+        serialization_alias="pressure6",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "pr6"},
+    )
+    pressure7: str | None = Field(
+        default=None,
+        serialization_alias="pressure7",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "pr7"},
+    )
+    pressure8: str | None = Field(
+        default=None,
+        serialization_alias="pressure8",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "pr8"},
+    )
+    gate1: str | None = Field(
+        default=None,
+        serialization_alias="gate1",
+        json_schema_extra={"essential": 2, "type": "gate", "shortname": "g1"},
+    )
+    gate2: str | None = Field(
+        default=None,
+        serialization_alias="gate2",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "g2"},
+    )
+    gate3: str | None = Field(
+        default=None,
+        serialization_alias="gate3",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "g3"},
+    )
+    gate4: str | None = Field(
+        default=None,
+        serialization_alias="gate4",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "g4"},
+    )
+    gate5: str | None = Field(
+        default=None,
+        serialization_alias="gate5",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "g5"},
+    )
+    gate6: str | None = Field(
+        default=None,
+        serialization_alias="gate6",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "g6"},
+    )
+    gate7: str | None = Field(
+        default=None,
+        serialization_alias="gate7",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "g7"},
+    )
+    gate8: str | None = Field(
+        default=None,
+        serialization_alias="gate8",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "g8"},
+    )
+    trigger1: str | None = Field(
+        default=None,
+        serialization_alias="trigger1",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "t1"},
+    )
+    trigger2: str | None = Field(
+        default=None,
+        serialization_alias="trigger2",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "t2"},
+    )
+    trigger3: str | None = Field(
+        default=None,
+        serialization_alias="trigger3",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "t3"},
+    )
+    trigger4: str | None = Field(
+        default=None,
+        serialization_alias="trigger4",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "t4"},
+    )
+    trigger5: str | None = Field(
+        default=None,
+        serialization_alias="trigger5",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "t5"},
+    )
+    trigger6: str | None = Field(
+        default=None,
+        serialization_alias="trigger6",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "t6"},
+    )
+    trigger7: str | None = Field(
+        default=None,
+        serialization_alias="trigger7",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "t7"},
+    )
+    trigger8: str | None = Field(
+        default=None,
+        serialization_alias="trigger8",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "t8"},
+    )
+    cc1: str | None = Field(
+        default=None,
+        serialization_alias="cc1",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "1"},
+    )
+    cc2: str | None = Field(
+        default=None,
+        serialization_alias="cc2",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "2"},
+    )
+    cc3: str | None = Field(
+        default=None,
+        serialization_alias="cc3",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "3"},
+    )
+    cc4: str | None = Field(
+        default=None,
+        serialization_alias="cc4",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "4"},
+    )
+    cctrigger1: str | None = Field(
+        default=None,
+        serialization_alias="cctrigger1",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ct1"},
+    )
+    cctrigger2: str | None = Field(
+        default=None,
+        serialization_alias="cctrigger2",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ct2"},
+    )
+    cctrigger3: str | None = Field(
+        default=None,
+        serialization_alias="cctrigger3",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ct3"},
+    )
+    cctrigger4: str | None = Field(
+        default=None,
+        serialization_alias="cctrigger4",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ct4"},
+    )
+    notegate1: str | None = Field(
+        default=None,
+        serialization_alias="notegate1",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng1"},
+    )
+    notegate2: str | None = Field(
+        default=None,
+        serialization_alias="notegate2",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng2"},
+    )
+    notegate3: str | None = Field(
+        default=None,
+        serialization_alias="notegate3",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng3"},
+    )
+    notegate4: str | None = Field(
+        default=None,
+        serialization_alias="notegate4",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng4"},
+    )
+    notegate5: str | None = Field(
+        default=None,
+        serialization_alias="notegate5",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng5"},
+    )
+    notegate6: str | None = Field(
+        default=None,
+        serialization_alias="notegate6",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng6"},
+    )
+    notegate7: str | None = Field(
+        default=None,
+        serialization_alias="notegate7",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng7"},
+    )
+    notegate8: str | None = Field(
+        default=None,
+        serialization_alias="notegate8",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng8"},
+    )
+    notegate9: str | None = Field(
+        default=None,
+        serialization_alias="notegate9",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng9"},
+    )
+    notegate10: str | None = Field(
+        default=None,
+        serialization_alias="notegate10",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng10"},
+    )
+    notegate11: str | None = Field(
+        default=None,
+        serialization_alias="notegate11",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng11"},
+    )
+    notegate12: str | None = Field(
+        default=None,
+        serialization_alias="notegate12",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng12"},
+    )
+    notegate13: str | None = Field(
+        default=None,
+        serialization_alias="notegate13",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng13"},
+    )
+    notegate14: str | None = Field(
+        default=None,
+        serialization_alias="notegate14",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng14"},
+    )
+    notegate15: str | None = Field(
+        default=None,
+        serialization_alias="notegate15",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng15"},
+    )
+    notegate16: str | None = Field(
+        default=None,
+        serialization_alias="notegate16",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng16"},
+    )
+    pitchbend: str | None = Field(
+        default=None,
+        serialization_alias="pitchbend",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "pb"},
+    )
+    programchange: str | None = Field(
+        default=None,
+        serialization_alias="programchange",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "pc"},
+    )
+    program: str | None = Field(
+        default=None,
+        serialization_alias="program",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "pm"},
+    )
+    bank: str | None = Field(
+        default=None,
+        serialization_alias="bank",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "ba"},
+    )
+    modwheel: str | None = Field(
+        default=None,
+        serialization_alias="modwheel",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "w"},
+    )
+    volume: str | None = Field(
+        default=None,
+        serialization_alias="volume",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "vo"},
+    )
+    portamento: str | None = Field(
+        default=None,
+        serialization_alias="portamento",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "po"},
+    )
+    soft: str | None = Field(
+        default=None,
+        serialization_alias="soft",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "so"},
     )
 
 
-
-@dataclass
 class Midiout(DroidCircuit):
-    """CV to MIDI converter.
+    """ CV to MIDI converter
 
     Args:
         channel (integer):
@@ -4965,604 +5516,749 @@ class Midiout(DroidCircuit):
           will be active if select is exactly 0 instead of a positive gate signal. In
           some cases this is more conventient.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 664
-    channel: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    usb: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    trs: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    pitch1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    pitch2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    pitch3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    pitch4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    pitch5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    pitch6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    pitch7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    pitch8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    gate1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    gate2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    gate3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    gate4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    gate5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    gate6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    gate7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    gate8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    velocity1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    velocity2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    velocity3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    velocity4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    velocity5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    velocity6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    velocity7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    velocity8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    noteoffvelocity1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    noteoffvelocity2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    noteoffvelocity3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    noteoffvelocity4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    noteoffvelocity5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    noteoffvelocity6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    noteoffvelocity7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    noteoffvelocity8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pressure1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pressure2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pressure3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pressure4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pressure5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pressure6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pressure7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pressure8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    channelpressure: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pitchstabilization: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    triggerdelay: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    lowestnote: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    highestnote: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    notegate1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    notegate16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    note1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    note16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    notegatevelocity1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    notegatevelocity2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    notegatevelocity3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    notegatevelocity4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    notegatevelocity5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    notegatevelocity6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    notegatevelocity7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    notegatevelocity8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    notegatevelocity9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    notegatevelocity10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    notegatevelocity11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    notegatevelocity12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    notegatevelocity13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    notegatevelocity14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    notegatevelocity15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    notegatevelocity16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    modwheel: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    volume: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    pitchbend: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    pitchtracking: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    pitchbendrange: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    ccnumber1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    ccnumber2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    ccnumber3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    ccnumber4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    ccnumber5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    ccnumber6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    ccnumber7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    ccnumber8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    cc1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    cc2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    cc3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    cc4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    cc5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    cc6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    cc7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    cc8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    cctrigger1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    cctrigger2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    cctrigger3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    cctrigger4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    cctrigger5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    cctrigger6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    cctrigger7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    cctrigger8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    updateccs: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    delayinitialccs: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    bank: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    program: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    programchange: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    start: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    stop: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    running: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    systemreset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    allnotesoff: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    allsoundoff: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    damper: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    portamento: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    sostenuto: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    soft: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    legato: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    clock: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    midiclock: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    activesensing: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    updaterate: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    select: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    selectat: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    _ramsize: int = 664
+
+    channel: str | None = Field(
+        default=None,
+        serialization_alias="channel",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "ch"},
+    )
+    usb: str | None = Field(
+        default=None,
+        serialization_alias="usb",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": ""},
+    )
+    trs: str | None = Field(
+        default=None,
+        serialization_alias="trs",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": ""},
+    )
+    pitch1: str | None = Field(
+        default=None,
+        serialization_alias="pitch1",
+        json_schema_extra={"essential": 2, "type": "voltperoctave", "shortname": "p1"},
+    )
+    pitch2: str | None = Field(
+        default=None,
+        serialization_alias="pitch2",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "p2"},
+    )
+    pitch3: str | None = Field(
+        default=None,
+        serialization_alias="pitch3",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "p3"},
+    )
+    pitch4: str | None = Field(
+        default=None,
+        serialization_alias="pitch4",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "p4"},
+    )
+    pitch5: str | None = Field(
+        default=None,
+        serialization_alias="pitch5",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "p5"},
+    )
+    pitch6: str | None = Field(
+        default=None,
+        serialization_alias="pitch6",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "p6"},
+    )
+    pitch7: str | None = Field(
+        default=None,
+        serialization_alias="pitch7",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "p7"},
+    )
+    pitch8: str | None = Field(
+        default=None,
+        serialization_alias="pitch8",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "p8"},
+    )
+    gate1: str | None = Field(
+        default=None,
+        serialization_alias="gate1",
+        json_schema_extra={"essential": 2, "type": "gate", "shortname": "g1"},
+    )
+    gate2: str | None = Field(
+        default=None,
+        serialization_alias="gate2",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "g2"},
+    )
+    gate3: str | None = Field(
+        default=None,
+        serialization_alias="gate3",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "g3"},
+    )
+    gate4: str | None = Field(
+        default=None,
+        serialization_alias="gate4",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "g4"},
+    )
+    gate5: str | None = Field(
+        default=None,
+        serialization_alias="gate5",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "g5"},
+    )
+    gate6: str | None = Field(
+        default=None,
+        serialization_alias="gate6",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "g6"},
+    )
+    gate7: str | None = Field(
+        default=None,
+        serialization_alias="gate7",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "g7"},
+    )
+    gate8: str | None = Field(
+        default=None,
+        serialization_alias="gate8",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "g8"},
+    )
+    velocity1: str | None = Field(
+        default=None,
+        serialization_alias="velocity1",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "v1"},
+    )
+    velocity2: str | None = Field(
+        default=None,
+        serialization_alias="velocity2",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "v2"},
+    )
+    velocity3: str | None = Field(
+        default=None,
+        serialization_alias="velocity3",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "v3"},
+    )
+    velocity4: str | None = Field(
+        default=None,
+        serialization_alias="velocity4",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "v4"},
+    )
+    velocity5: str | None = Field(
+        default=None,
+        serialization_alias="velocity5",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "v5"},
+    )
+    velocity6: str | None = Field(
+        default=None,
+        serialization_alias="velocity6",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "v6"},
+    )
+    velocity7: str | None = Field(
+        default=None,
+        serialization_alias="velocity7",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "v7"},
+    )
+    velocity8: str | None = Field(
+        default=None,
+        serialization_alias="velocity8",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "v8"},
+    )
+    noteoffvelocity1: str | None = Field(
+        default=None,
+        serialization_alias="noteoffvelocity1",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "nv1"},
+    )
+    noteoffvelocity2: str | None = Field(
+        default=None,
+        serialization_alias="noteoffvelocity2",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "nv2"},
+    )
+    noteoffvelocity3: str | None = Field(
+        default=None,
+        serialization_alias="noteoffvelocity3",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "nv3"},
+    )
+    noteoffvelocity4: str | None = Field(
+        default=None,
+        serialization_alias="noteoffvelocity4",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "nv4"},
+    )
+    noteoffvelocity5: str | None = Field(
+        default=None,
+        serialization_alias="noteoffvelocity5",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "nv5"},
+    )
+    noteoffvelocity6: str | None = Field(
+        default=None,
+        serialization_alias="noteoffvelocity6",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "nv6"},
+    )
+    noteoffvelocity7: str | None = Field(
+        default=None,
+        serialization_alias="noteoffvelocity7",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "nv7"},
+    )
+    noteoffvelocity8: str | None = Field(
+        default=None,
+        serialization_alias="noteoffvelocity8",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "nv8"},
+    )
+    pressure1: str | None = Field(
+        default=None,
+        serialization_alias="pressure1",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "pr1"},
+    )
+    pressure2: str | None = Field(
+        default=None,
+        serialization_alias="pressure2",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "pr2"},
+    )
+    pressure3: str | None = Field(
+        default=None,
+        serialization_alias="pressure3",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "pr3"},
+    )
+    pressure4: str | None = Field(
+        default=None,
+        serialization_alias="pressure4",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "pr4"},
+    )
+    pressure5: str | None = Field(
+        default=None,
+        serialization_alias="pressure5",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "pr5"},
+    )
+    pressure6: str | None = Field(
+        default=None,
+        serialization_alias="pressure6",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "pr6"},
+    )
+    pressure7: str | None = Field(
+        default=None,
+        serialization_alias="pressure7",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "pr7"},
+    )
+    pressure8: str | None = Field(
+        default=None,
+        serialization_alias="pressure8",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "pr8"},
+    )
+    channelpressure: str | None = Field(
+        default=None,
+        serialization_alias="channelpressure",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "cp"},
+    )
+    pitchstabilization: str | None = Field(
+        default=None,
+        serialization_alias="pitchstabilization",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ps"},
+    )
+    triggerdelay: str | None = Field(
+        default=None,
+        serialization_alias="triggerdelay",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "td"},
+    )
+    lowestnote: str | None = Field(
+        default=None,
+        serialization_alias="lowestnote",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "ln"},
+    )
+    highestnote: str | None = Field(
+        default=None,
+        serialization_alias="highestnote",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "hn"},
+    )
+    notegate1: str | None = Field(
+        default=None,
+        serialization_alias="notegate1",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng1"},
+    )
+    notegate2: str | None = Field(
+        default=None,
+        serialization_alias="notegate2",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng2"},
+    )
+    notegate3: str | None = Field(
+        default=None,
+        serialization_alias="notegate3",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng3"},
+    )
+    notegate4: str | None = Field(
+        default=None,
+        serialization_alias="notegate4",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng4"},
+    )
+    notegate5: str | None = Field(
+        default=None,
+        serialization_alias="notegate5",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng5"},
+    )
+    notegate6: str | None = Field(
+        default=None,
+        serialization_alias="notegate6",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng6"},
+    )
+    notegate7: str | None = Field(
+        default=None,
+        serialization_alias="notegate7",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng7"},
+    )
+    notegate8: str | None = Field(
+        default=None,
+        serialization_alias="notegate8",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng8"},
+    )
+    notegate9: str | None = Field(
+        default=None,
+        serialization_alias="notegate9",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng9"},
+    )
+    notegate10: str | None = Field(
+        default=None,
+        serialization_alias="notegate10",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng10"},
+    )
+    notegate11: str | None = Field(
+        default=None,
+        serialization_alias="notegate11",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng11"},
+    )
+    notegate12: str | None = Field(
+        default=None,
+        serialization_alias="notegate12",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng12"},
+    )
+    notegate13: str | None = Field(
+        default=None,
+        serialization_alias="notegate13",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng13"},
+    )
+    notegate14: str | None = Field(
+        default=None,
+        serialization_alias="notegate14",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng14"},
+    )
+    notegate15: str | None = Field(
+        default=None,
+        serialization_alias="notegate15",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng15"},
+    )
+    notegate16: str | None = Field(
+        default=None,
+        serialization_alias="notegate16",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ng16"},
+    )
+    note1: str | None = Field(
+        default=None,
+        serialization_alias="note1",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n1"},
+    )
+    note2: str | None = Field(
+        default=None,
+        serialization_alias="note2",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n2"},
+    )
+    note3: str | None = Field(
+        default=None,
+        serialization_alias="note3",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n3"},
+    )
+    note4: str | None = Field(
+        default=None,
+        serialization_alias="note4",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n4"},
+    )
+    note5: str | None = Field(
+        default=None,
+        serialization_alias="note5",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n5"},
+    )
+    note6: str | None = Field(
+        default=None,
+        serialization_alias="note6",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n6"},
+    )
+    note7: str | None = Field(
+        default=None,
+        serialization_alias="note7",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n7"},
+    )
+    note8: str | None = Field(
+        default=None,
+        serialization_alias="note8",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n8"},
+    )
+    note9: str | None = Field(
+        default=None,
+        serialization_alias="note9",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n9"},
+    )
+    note10: str | None = Field(
+        default=None,
+        serialization_alias="note10",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n10"},
+    )
+    note11: str | None = Field(
+        default=None,
+        serialization_alias="note11",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n11"},
+    )
+    note12: str | None = Field(
+        default=None,
+        serialization_alias="note12",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n12"},
+    )
+    note13: str | None = Field(
+        default=None,
+        serialization_alias="note13",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n13"},
+    )
+    note14: str | None = Field(
+        default=None,
+        serialization_alias="note14",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n14"},
+    )
+    note15: str | None = Field(
+        default=None,
+        serialization_alias="note15",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n15"},
+    )
+    note16: str | None = Field(
+        default=None,
+        serialization_alias="note16",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "n16"},
+    )
+    notegatevelocity1: str | None = Field(
+        default=None,
+        serialization_alias="notegatevelocity1",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "ngv1"},
+    )
+    notegatevelocity2: str | None = Field(
+        default=None,
+        serialization_alias="notegatevelocity2",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "ngv2"},
+    )
+    notegatevelocity3: str | None = Field(
+        default=None,
+        serialization_alias="notegatevelocity3",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "ngv3"},
+    )
+    notegatevelocity4: str | None = Field(
+        default=None,
+        serialization_alias="notegatevelocity4",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "ngv4"},
+    )
+    notegatevelocity5: str | None = Field(
+        default=None,
+        serialization_alias="notegatevelocity5",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "ngv5"},
+    )
+    notegatevelocity6: str | None = Field(
+        default=None,
+        serialization_alias="notegatevelocity6",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "ngv6"},
+    )
+    notegatevelocity7: str | None = Field(
+        default=None,
+        serialization_alias="notegatevelocity7",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "ngv7"},
+    )
+    notegatevelocity8: str | None = Field(
+        default=None,
+        serialization_alias="notegatevelocity8",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "ngv8"},
+    )
+    notegatevelocity9: str | None = Field(
+        default=None,
+        serialization_alias="notegatevelocity9",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "ngv9"},
+    )
+    notegatevelocity10: str | None = Field(
+        default=None,
+        serialization_alias="notegatevelocity10",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "ngv10"},
+    )
+    notegatevelocity11: str | None = Field(
+        default=None,
+        serialization_alias="notegatevelocity11",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "ngv11"},
+    )
+    notegatevelocity12: str | None = Field(
+        default=None,
+        serialization_alias="notegatevelocity12",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "ngv12"},
+    )
+    notegatevelocity13: str | None = Field(
+        default=None,
+        serialization_alias="notegatevelocity13",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "ngv13"},
+    )
+    notegatevelocity14: str | None = Field(
+        default=None,
+        serialization_alias="notegatevelocity14",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "ngv14"},
+    )
+    notegatevelocity15: str | None = Field(
+        default=None,
+        serialization_alias="notegatevelocity15",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "ngv15"},
+    )
+    notegatevelocity16: str | None = Field(
+        default=None,
+        serialization_alias="notegatevelocity16",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "ngv16"},
+    )
+    modwheel: str | None = Field(
+        default=None,
+        serialization_alias="modwheel",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "w"},
+    )
+    volume: str | None = Field(
+        default=None,
+        serialization_alias="volume",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "vo"},
+    )
+    pitchbend: str | None = Field(
+        default=None,
+        serialization_alias="pitchbend",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "pb"},
+    )
+    pitchtracking: str | None = Field(
+        default=None,
+        serialization_alias="pitchtracking",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "pt"},
+    )
+    pitchbendrange: str | None = Field(
+        default=None,
+        serialization_alias="pitchbendrange",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "pbr"},
+    )
+    ccnumber1: str | None = Field(
+        default=None,
+        serialization_alias="ccnumber1",
+        json_schema_extra={"essential": 1, "type": "integer", "shortname": "cn1"},
+    )
+    ccnumber2: str | None = Field(
+        default=None,
+        serialization_alias="ccnumber2",
+        json_schema_extra={"essential": 1, "type": "integer", "shortname": "cn2"},
+    )
+    ccnumber3: str | None = Field(
+        default=None,
+        serialization_alias="ccnumber3",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "cn3"},
+    )
+    ccnumber4: str | None = Field(
+        default=None,
+        serialization_alias="ccnumber4",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "cn4"},
+    )
+    ccnumber5: str | None = Field(
+        default=None,
+        serialization_alias="ccnumber5",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "cn5"},
+    )
+    ccnumber6: str | None = Field(
+        default=None,
+        serialization_alias="ccnumber6",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "cn6"},
+    )
+    ccnumber7: str | None = Field(
+        default=None,
+        serialization_alias="ccnumber7",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "cn7"},
+    )
+    ccnumber8: str | None = Field(
+        default=None,
+        serialization_alias="ccnumber8",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "cn8"},
+    )
+    cc1: str | None = Field(
+        default=None,
+        serialization_alias="cc1",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "1"},
+    )
+    cc2: str | None = Field(
+        default=None,
+        serialization_alias="cc2",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "2"},
+    )
+    cc3: str | None = Field(
+        default=None,
+        serialization_alias="cc3",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "3"},
+    )
+    cc4: str | None = Field(
+        default=None,
+        serialization_alias="cc4",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "4"},
+    )
+    cc5: str | None = Field(
+        default=None,
+        serialization_alias="cc5",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "5"},
+    )
+    cc6: str | None = Field(
+        default=None,
+        serialization_alias="cc6",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "6"},
+    )
+    cc7: str | None = Field(
+        default=None,
+        serialization_alias="cc7",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "7"},
+    )
+    cc8: str | None = Field(
+        default=None,
+        serialization_alias="cc8",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "8"},
+    )
+    cctrigger1: str | None = Field(
+        default=None,
+        serialization_alias="cctrigger1",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ct1"},
+    )
+    cctrigger2: str | None = Field(
+        default=None,
+        serialization_alias="cctrigger2",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ct2"},
+    )
+    cctrigger3: str | None = Field(
+        default=None,
+        serialization_alias="cctrigger3",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ct3"},
+    )
+    cctrigger4: str | None = Field(
+        default=None,
+        serialization_alias="cctrigger4",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ct4"},
+    )
+    cctrigger5: str | None = Field(
+        default=None,
+        serialization_alias="cctrigger5",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ct5"},
+    )
+    cctrigger6: str | None = Field(
+        default=None,
+        serialization_alias="cctrigger6",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ct6"},
+    )
+    cctrigger7: str | None = Field(
+        default=None,
+        serialization_alias="cctrigger7",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ct7"},
+    )
+    cctrigger8: str | None = Field(
+        default=None,
+        serialization_alias="cctrigger8",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ct8"},
+    )
+    updateccs: str | None = Field(
+        default=None,
+        serialization_alias="updateccs",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "uc"},
+    )
+    delayinitialccs: str | None = Field(
+        default=None,
+        serialization_alias="delayinitialccs",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "dc"},
+    )
+    bank: str | None = Field(
+        default=None,
+        serialization_alias="bank",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "ba"},
+    )
+    program: str | None = Field(
+        default=None,
+        serialization_alias="program",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "pm"},
+    )
+    programchange: str | None = Field(
+        default=None,
+        serialization_alias="programchange",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "pc"},
+    )
+    start: str | None = Field(
+        default=None,
+        serialization_alias="start",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "st"},
+    )
+    stop: str | None = Field(
+        default=None,
+        serialization_alias="stop",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "sp"},
+    )
+    running: str | None = Field(
+        default=None,
+        serialization_alias="running",
+        json_schema_extra={"essential": 1, "type": "gate", "shortname": "ru"},
+    )
+    systemreset: str | None = Field(
+        default=None,
+        serialization_alias="systemreset",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "sr"},
+    )
+    allnotesoff: str | None = Field(
+        default=None,
+        serialization_alias="allnotesoff",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ao"},
+    )
+    allsoundoff: str | None = Field(
+        default=None,
+        serialization_alias="allsoundoff",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "aso"},
+    )
+    damper: str | None = Field(
+        default=None,
+        serialization_alias="damper",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "dp"},
+    )
+    portamento: str | None = Field(
+        default=None,
+        serialization_alias="portamento",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "po"},
+    )
+    sostenuto: str | None = Field(
+        default=None,
+        serialization_alias="sostenuto",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "su"},
+    )
+    soft: str | None = Field(
+        default=None,
+        serialization_alias="soft",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "so"},
+    )
+    legato: str | None = Field(
+        default=None,
+        serialization_alias="legato",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "lg"},
+    )
+    clock: str | None = Field(
+        default=None,
+        serialization_alias="clock",
+        json_schema_extra={"essential": 1, "type": "trigger", "shortname": "c"},
+    )
+    midiclock: str | None = Field(
+        default=None,
+        serialization_alias="midiclock",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "mc"},
+    )
+    activesensing: str | None = Field(
+        default=None,
+        serialization_alias="activesensing",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "as"},
+    )
+    updaterate: str | None = Field(
+        default=None,
+        serialization_alias="updaterate",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "ur"},
+    )
+    select: str | None = Field(
+        default=None,
+        serialization_alias="select",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "s"},
+    )
+    selectat: str | None = Field(
+        default=None,
+        serialization_alias="selectat",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "sa"},
     )
 
 
-
-@dataclass
 class Midithrough(DroidCircuit):
-    """Forward MIDI events from input to one or more outputs.
+    """ Forward MIDI events from input to one or more outputs
 
     Args:
         fromtrs (integer):
@@ -5580,26 +6276,28 @@ class Midithrough(DroidCircuit):
           Selects which USB MIDI port to output to. See the manual of midiout for
           details on port selection.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 240
-    fromtrs: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    fromusb: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    totrs: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    tousb: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
+    _ramsize: int = 240
 
-
+    fromtrs: str | None = Field(
+        default=None,
+        serialization_alias="fromtrs",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "ft"},
+    )
+    fromusb: str | None = Field(
+        default=None,
+        serialization_alias="fromusb",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "fu"},
+    )
+    totrs: str | None = Field(
+        default=None,
+        serialization_alias="totrs",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "tt"},
+    )
+    tousb: str | None = Field(
+        default=None,
+        serialization_alias="tousb",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "tu"},
+    )
 

@@ -3,14 +3,14 @@
 import re
 
 from dataclasses import dataclass, field
-from typing import Iterator, Dict, List, Optional
+from collections.abc import Iterator
 
 
-TCircuitParams = Dict[str, str]
-TCircuit = Dict[str, TCircuitParams]
-TSectionGroupedCircuits = Dict[str, List[TCircuit]]
+TCircuitParams = dict[str, str]
+TCircuit = dict[str, TCircuitParams]
+TSectionGroupedCircuits = dict[str, list[TCircuit]]
 
-TModDefinition = List[str]
+TModDefinition = list[str]
 
 
 @dataclass
@@ -27,9 +27,9 @@ class Token:
 class ParsedPatch:
     """Parsed patch container class."""
 
-    sections: Dict[str, str] = field(default_factory=dict)
-    circuits: List[Dict[str, Dict[str, str]]] = field(default_factory=list)
-    controllers: List[str] = field(default_factory=list)
+    sections: dict[str, str] = field(default_factory=dict)
+    circuits: list[dict[str, dict[str, str]]] = field(default_factory=list)
+    controllers: list[str] = field(default_factory=list)
 
     @property
     def section_grouped(self) -> TSectionGroupedCircuits:
@@ -51,8 +51,8 @@ def tokenize(patch: str) -> Iterator[Token]:
     spec = [
         ("CONTROLLER", r"(?<=\[)([a-z][0-9]+[a-z0-9]*)(?=\])"),
         ("CIRCUIT", r"(?<=\[)([a-z]+)(?=\])"),
-        ("PARAM", r"([a-z0-9]+)\s*(?= =)"),
-        ("VALUE", r"(?<= =\s)([^\s].*)(?=\n)"),
+        ("PARAM", r"([a-z0-9]+)\s*(?=\s?=)"),
+        ("VALUE", r"(?<==)\s?([^\s].*)(?=\n)"),
         ("NEWLINE", r"\n"),
         ("COMMENT", r"(?<=#\s)(.*)(?=\n)"),
     ]
@@ -78,6 +78,8 @@ def tokenize(patch: str) -> Iterator[Token]:
             if in_section:
                 section_title_derived = False
             continue
+        if kind == "VALUE":
+            value = value.lstrip()
         if in_section:
             if kind == "COMMENT":
                 if section_title_derived:
@@ -97,10 +99,10 @@ def parse_patch(patch: str) -> ParsedPatch:
     circuits = []
     controllers = []
     curr_params = {}
-    curr_param: Optional[str] = None
-    curr_section: Optional[str] = None
-    curr_circuit: Optional[str] = None
-    curr_circuit_comments: List[str] = []
+    curr_param: str | None = None
+    curr_section: str | None = None
+    curr_circuit: str | None = None
+    curr_circuit_comments: list[str] = []
     in_header = True
     for token in tokenize(patch):
         if token.type == "SECTION":

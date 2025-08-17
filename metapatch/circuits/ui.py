@@ -1,18 +1,14 @@
 """DROID circuits. These circuits are auto-generated from circuits.json."""
 
-from dataclasses import dataclass, field
-from typing import Optional
-
+from pydantic import AliasChoices, Field
 from metapatch.circuits.base import DroidCircuit
-from metapatch.circuits import circuit_types as ctype
 
 
 __droid_version__ = "blue-6"
 
 
-@dataclass
 class Button(DroidCircuit):
-    """Does all sorts of useful things with buttons.
+    """ Does all sorts of useful things with buttons
 
     Args:
         button (gate):
@@ -131,116 +127,139 @@ class Button(DroidCircuit):
           this output), the trigger is delayed until the button is released and only
           sent, if it was not a long press.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 96
-    button: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    _ramsize: int = 96
+
+    button: str | None = Field(
+        default=None,
+        serialization_alias="button",
+        json_schema_extra={"essential": 2, "type": "gate", "shortname": "b"},
     )
-    onvalue: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    onvalue: str | None = Field(
+        default=None,
+        serialization_alias="onvalue",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "ov"},
     )
-    offvalue: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    offvalue: str | None = Field(
+        default=None,
+        serialization_alias="offvalue",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "fv"},
     )
-    value1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    value1: str | None = Field(
+        default=None,
+        serialization_alias="value1",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "v1"},
     )
-    value2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    value2: str | None = Field(
+        default=None,
+        serialization_alias="value2",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "v2"},
     )
-    value3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    value3: str | None = Field(
+        default=None,
+        serialization_alias="value3",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "v3"},
     )
-    value4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    value4: str | None = Field(
+        default=None,
+        serialization_alias="value4",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "v4"},
     )
-    doubleclickmode: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    doubleclickmode: str | None = Field(
+        default=None,
+        serialization_alias="doubleclickmode",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "dm"},
     )
-    longpresstime: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    longpresstime: str | None = Field(
+        default=None,
+        serialization_alias="longpresstime",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "lt"},
     )
-    states: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    states: str | None = Field(
+        default=None,
+        serialization_alias="states",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "st"},
     )
-    startvalue: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    startvalue: str | None = Field(
+        default=None,
+        serialization_alias="startvalue",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "sv"},
     )
-    select: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    select: str | None = Field(
+        default=None,
+        serialization_alias="select",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "s"},
     )
-    selectat: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    selectat: str | None = Field(
+        default=None,
+        serialization_alias="selectat",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "sa"},
     )
-    preset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    preset: str | None = Field(
+        default=None,
+        serialization_alias="preset",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "pr"},
     )
-    loadpreset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    loadpreset: str | None = Field(
+        default=None,
+        serialization_alias="loadpreset",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "lp"},
     )
-    savepreset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    savepreset: str | None = Field(
+        default=None,
+        serialization_alias="savepreset",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "sp"},
     )
-    clear: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    clear: str | None = Field(
+        default=None,
+        serialization_alias="clear",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "cl"},
     )
-    clearall: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    clearall: str | None = Field(
+        default=None,
+        serialization_alias="clearall",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ca"},
     )
-    dontsave: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    dontsave: str | None = Field(
+        default=None,
+        serialization_alias="dontsave",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "dos"},
     )
-    led: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    led: str | None = Field(
+        default=None,
+        serialization_alias="led",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "l"},
     )
-    output: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output: str | None = Field(
+        default=None,
+        serialization_alias="output",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "o"},
     )
-    inverted: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    inverted: str | None = Field(
+        default=None,
+        serialization_alias="inverted",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "iv"},
     )
-    negated: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    negated: str | None = Field(
+        default=None,
+        serialization_alias="negated",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "n"},
     )
-    longpress: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    longpress: str | None = Field(
+        default=None,
+        serialization_alias="longpress",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "lop"},
     )
-    shortpress: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    shortpress: str | None = Field(
+        default=None,
+        serialization_alias="shortpress",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "shp"},
     )
 
 
-
-@dataclass
 class Buttongroup(DroidCircuit):
-    """Connected buttons.
+    """ Connected buttons
 
     Args:
         minactive (integer):
@@ -956,596 +975,739 @@ class Buttongroup(DroidCircuit):
           Performance Sequencer, where a press on the already selected track toggles the
           current page.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 440
-    minactive: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    maxactive: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    longpresstime: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    button1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    button2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    button3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    button4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    button5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    button6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    button7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    button8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    button9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    button10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    button11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    button12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    button13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    button14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    button15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    button16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    button17: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    button18: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    button19: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    button20: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    button21: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    button22: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    button23: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    button24: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    button25: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    button26: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    button27: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    button28: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    button29: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    button30: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    button31: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    button32: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    value1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    value2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    value3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    value4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    value5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    value6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    value7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    value8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    value9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    value10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    value11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    value12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    value13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    value14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    value15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    value16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    value17: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    value18: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    value19: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    value20: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    value21: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    value22: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    value23: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    value24: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    value25: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    value26: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    value27: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    value28: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    value29: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    value30: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    value31: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    value32: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    startbutton: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    select: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    selectat: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    preset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    loadpreset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    savepreset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    clear: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    clearall: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    dontsave: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    led1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    led2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    led3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    led4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    led5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    led6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    led7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    led8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    led9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    led10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    led11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    led12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    led13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    led14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    led15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    led16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    led17: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    led18: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    led19: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    led20: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    led21: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    led22: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    led23: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    led24: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    led25: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    led26: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    led27: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    led28: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    led29: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    led30: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    led31: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    led32: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    buttonoutput1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    buttonoutput2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    buttonoutput3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    buttonoutput4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    buttonoutput5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    buttonoutput6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    buttonoutput7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    buttonoutput8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    buttonoutput9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    buttonoutput10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    buttonoutput11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    buttonoutput12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    buttonoutput13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    buttonoutput14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    buttonoutput15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    buttonoutput16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    buttonoutput17: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    buttonoutput18: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    buttonoutput19: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    buttonoutput20: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    buttonoutput21: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    buttonoutput22: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    buttonoutput23: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    buttonoutput24: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    buttonoutput25: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    buttonoutput26: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    buttonoutput27: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    buttonoutput28: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    buttonoutput29: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    buttonoutput30: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    buttonoutput31: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    buttonoutput32: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    output: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    buttonpress: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    longpress: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    selectionchanged: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    extrapress: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    _ramsize: int = 440
+
+    minactive: str | None = Field(
+        default=None,
+        serialization_alias="minactive",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "ma"},
+    )
+    maxactive: str | None = Field(
+        default=None,
+        serialization_alias="maxactive",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "xa"},
+    )
+    longpresstime: str | None = Field(
+        default=None,
+        serialization_alias="longpresstime",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "lt"},
+    )
+    button1: str | None = Field(
+        default=None,
+        serialization_alias="button1",
+        json_schema_extra={"essential": 2, "type": "trigger", "shortname": "b1"},
+    )
+    button2: str | None = Field(
+        default=None,
+        serialization_alias="button2",
+        json_schema_extra={"essential": 2, "type": "trigger", "shortname": "b2"},
+    )
+    button3: str | None = Field(
+        default=None,
+        serialization_alias="button3",
+        json_schema_extra={"essential": 2, "type": "trigger", "shortname": "b3"},
+    )
+    button4: str | None = Field(
+        default=None,
+        serialization_alias="button4",
+        json_schema_extra={"essential": 2, "type": "trigger", "shortname": "b4"},
+    )
+    button5: str | None = Field(
+        default=None,
+        serialization_alias="button5",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "b5"},
+    )
+    button6: str | None = Field(
+        default=None,
+        serialization_alias="button6",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "b6"},
+    )
+    button7: str | None = Field(
+        default=None,
+        serialization_alias="button7",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "b7"},
+    )
+    button8: str | None = Field(
+        default=None,
+        serialization_alias="button8",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "b8"},
+    )
+    button9: str | None = Field(
+        default=None,
+        serialization_alias="button9",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "b9"},
+    )
+    button10: str | None = Field(
+        default=None,
+        serialization_alias="button10",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "b10"},
+    )
+    button11: str | None = Field(
+        default=None,
+        serialization_alias="button11",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "b11"},
+    )
+    button12: str | None = Field(
+        default=None,
+        serialization_alias="button12",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "b12"},
+    )
+    button13: str | None = Field(
+        default=None,
+        serialization_alias="button13",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "b13"},
+    )
+    button14: str | None = Field(
+        default=None,
+        serialization_alias="button14",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "b14"},
+    )
+    button15: str | None = Field(
+        default=None,
+        serialization_alias="button15",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "b15"},
+    )
+    button16: str | None = Field(
+        default=None,
+        serialization_alias="button16",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "b16"},
+    )
+    button17: str | None = Field(
+        default=None,
+        serialization_alias="button17",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "b17"},
+    )
+    button18: str | None = Field(
+        default=None,
+        serialization_alias="button18",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "b18"},
+    )
+    button19: str | None = Field(
+        default=None,
+        serialization_alias="button19",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "b19"},
+    )
+    button20: str | None = Field(
+        default=None,
+        serialization_alias="button20",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "b20"},
+    )
+    button21: str | None = Field(
+        default=None,
+        serialization_alias="button21",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "b21"},
+    )
+    button22: str | None = Field(
+        default=None,
+        serialization_alias="button22",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "b22"},
+    )
+    button23: str | None = Field(
+        default=None,
+        serialization_alias="button23",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "b23"},
+    )
+    button24: str | None = Field(
+        default=None,
+        serialization_alias="button24",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "b24"},
+    )
+    button25: str | None = Field(
+        default=None,
+        serialization_alias="button25",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "b25"},
+    )
+    button26: str | None = Field(
+        default=None,
+        serialization_alias="button26",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "b26"},
+    )
+    button27: str | None = Field(
+        default=None,
+        serialization_alias="button27",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "b27"},
+    )
+    button28: str | None = Field(
+        default=None,
+        serialization_alias="button28",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "b28"},
+    )
+    button29: str | None = Field(
+        default=None,
+        serialization_alias="button29",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "b29"},
+    )
+    button30: str | None = Field(
+        default=None,
+        serialization_alias="button30",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "b30"},
+    )
+    button31: str | None = Field(
+        default=None,
+        serialization_alias="button31",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "b31"},
+    )
+    button32: str | None = Field(
+        default=None,
+        serialization_alias="button32",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "b32"},
+    )
+    value1: str | None = Field(
+        default=None,
+        serialization_alias="value1",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "v1"},
+    )
+    value2: str | None = Field(
+        default=None,
+        serialization_alias="value2",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "v2"},
+    )
+    value3: str | None = Field(
+        default=None,
+        serialization_alias="value3",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "v3"},
+    )
+    value4: str | None = Field(
+        default=None,
+        serialization_alias="value4",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "v4"},
+    )
+    value5: str | None = Field(
+        default=None,
+        serialization_alias="value5",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "v5"},
+    )
+    value6: str | None = Field(
+        default=None,
+        serialization_alias="value6",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "v6"},
+    )
+    value7: str | None = Field(
+        default=None,
+        serialization_alias="value7",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "v7"},
+    )
+    value8: str | None = Field(
+        default=None,
+        serialization_alias="value8",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "v8"},
+    )
+    value9: str | None = Field(
+        default=None,
+        serialization_alias="value9",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "v9"},
+    )
+    value10: str | None = Field(
+        default=None,
+        serialization_alias="value10",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "v10"},
+    )
+    value11: str | None = Field(
+        default=None,
+        serialization_alias="value11",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "v11"},
+    )
+    value12: str | None = Field(
+        default=None,
+        serialization_alias="value12",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "v12"},
+    )
+    value13: str | None = Field(
+        default=None,
+        serialization_alias="value13",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "v13"},
+    )
+    value14: str | None = Field(
+        default=None,
+        serialization_alias="value14",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "v14"},
+    )
+    value15: str | None = Field(
+        default=None,
+        serialization_alias="value15",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "v15"},
+    )
+    value16: str | None = Field(
+        default=None,
+        serialization_alias="value16",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "v16"},
+    )
+    value17: str | None = Field(
+        default=None,
+        serialization_alias="value17",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "v17"},
+    )
+    value18: str | None = Field(
+        default=None,
+        serialization_alias="value18",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "v18"},
+    )
+    value19: str | None = Field(
+        default=None,
+        serialization_alias="value19",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "v19"},
+    )
+    value20: str | None = Field(
+        default=None,
+        serialization_alias="value20",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "v20"},
+    )
+    value21: str | None = Field(
+        default=None,
+        serialization_alias="value21",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "v21"},
+    )
+    value22: str | None = Field(
+        default=None,
+        serialization_alias="value22",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "v22"},
+    )
+    value23: str | None = Field(
+        default=None,
+        serialization_alias="value23",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "v23"},
+    )
+    value24: str | None = Field(
+        default=None,
+        serialization_alias="value24",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "v24"},
+    )
+    value25: str | None = Field(
+        default=None,
+        serialization_alias="value25",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "v25"},
+    )
+    value26: str | None = Field(
+        default=None,
+        serialization_alias="value26",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "v26"},
+    )
+    value27: str | None = Field(
+        default=None,
+        serialization_alias="value27",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "v27"},
+    )
+    value28: str | None = Field(
+        default=None,
+        serialization_alias="value28",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "v28"},
+    )
+    value29: str | None = Field(
+        default=None,
+        serialization_alias="value29",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "v29"},
+    )
+    value30: str | None = Field(
+        default=None,
+        serialization_alias="value30",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "v30"},
+    )
+    value31: str | None = Field(
+        default=None,
+        serialization_alias="value31",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "v31"},
+    )
+    value32: str | None = Field(
+        default=None,
+        serialization_alias="value32",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "v32"},
+    )
+    startbutton: str | None = Field(
+        default=None,
+        serialization_alias="startbutton",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "sb"},
+    )
+    select: str | None = Field(
+        default=None,
+        serialization_alias="select",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "s"},
+    )
+    selectat: str | None = Field(
+        default=None,
+        serialization_alias="selectat",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "sa"},
+    )
+    preset: str | None = Field(
+        default=None,
+        serialization_alias="preset",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "pr"},
+    )
+    loadpreset: str | None = Field(
+        default=None,
+        serialization_alias="loadpreset",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "lp"},
+    )
+    savepreset: str | None = Field(
+        default=None,
+        serialization_alias="savepreset",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "sp"},
+    )
+    clear: str | None = Field(
+        default=None,
+        serialization_alias="clear",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "cl"},
+    )
+    clearall: str | None = Field(
+        default=None,
+        serialization_alias="clearall",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ca"},
+    )
+    dontsave: str | None = Field(
+        default=None,
+        serialization_alias="dontsave",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "dos"},
+    )
+    led1: str | None = Field(
+        default=None,
+        serialization_alias="led1",
+        json_schema_extra={"essential": 2, "type": "gate", "shortname": "l1"},
+    )
+    led2: str | None = Field(
+        default=None,
+        serialization_alias="led2",
+        json_schema_extra={"essential": 2, "type": "gate", "shortname": "l2"},
+    )
+    led3: str | None = Field(
+        default=None,
+        serialization_alias="led3",
+        json_schema_extra={"essential": 2, "type": "gate", "shortname": "l3"},
+    )
+    led4: str | None = Field(
+        default=None,
+        serialization_alias="led4",
+        json_schema_extra={"essential": 2, "type": "gate", "shortname": "l4"},
+    )
+    led5: str | None = Field(
+        default=None,
+        serialization_alias="led5",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l5"},
+    )
+    led6: str | None = Field(
+        default=None,
+        serialization_alias="led6",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l6"},
+    )
+    led7: str | None = Field(
+        default=None,
+        serialization_alias="led7",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l7"},
+    )
+    led8: str | None = Field(
+        default=None,
+        serialization_alias="led8",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l8"},
+    )
+    led9: str | None = Field(
+        default=None,
+        serialization_alias="led9",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l9"},
+    )
+    led10: str | None = Field(
+        default=None,
+        serialization_alias="led10",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l10"},
+    )
+    led11: str | None = Field(
+        default=None,
+        serialization_alias="led11",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l11"},
+    )
+    led12: str | None = Field(
+        default=None,
+        serialization_alias="led12",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l12"},
+    )
+    led13: str | None = Field(
+        default=None,
+        serialization_alias="led13",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l13"},
+    )
+    led14: str | None = Field(
+        default=None,
+        serialization_alias="led14",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l14"},
+    )
+    led15: str | None = Field(
+        default=None,
+        serialization_alias="led15",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l15"},
+    )
+    led16: str | None = Field(
+        default=None,
+        serialization_alias="led16",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l16"},
+    )
+    led17: str | None = Field(
+        default=None,
+        serialization_alias="led17",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l17"},
+    )
+    led18: str | None = Field(
+        default=None,
+        serialization_alias="led18",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l18"},
+    )
+    led19: str | None = Field(
+        default=None,
+        serialization_alias="led19",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l19"},
+    )
+    led20: str | None = Field(
+        default=None,
+        serialization_alias="led20",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l20"},
+    )
+    led21: str | None = Field(
+        default=None,
+        serialization_alias="led21",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l21"},
+    )
+    led22: str | None = Field(
+        default=None,
+        serialization_alias="led22",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l22"},
+    )
+    led23: str | None = Field(
+        default=None,
+        serialization_alias="led23",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l23"},
+    )
+    led24: str | None = Field(
+        default=None,
+        serialization_alias="led24",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l24"},
+    )
+    led25: str | None = Field(
+        default=None,
+        serialization_alias="led25",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l25"},
+    )
+    led26: str | None = Field(
+        default=None,
+        serialization_alias="led26",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l26"},
+    )
+    led27: str | None = Field(
+        default=None,
+        serialization_alias="led27",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l27"},
+    )
+    led28: str | None = Field(
+        default=None,
+        serialization_alias="led28",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l28"},
+    )
+    led29: str | None = Field(
+        default=None,
+        serialization_alias="led29",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l29"},
+    )
+    led30: str | None = Field(
+        default=None,
+        serialization_alias="led30",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l30"},
+    )
+    led31: str | None = Field(
+        default=None,
+        serialization_alias="led31",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l31"},
+    )
+    led32: str | None = Field(
+        default=None,
+        serialization_alias="led32",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l32"},
+    )
+    buttonoutput1: str | None = Field(
+        default=None,
+        serialization_alias="buttonoutput1",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "bo1"},
+    )
+    buttonoutput2: str | None = Field(
+        default=None,
+        serialization_alias="buttonoutput2",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "bo2"},
+    )
+    buttonoutput3: str | None = Field(
+        default=None,
+        serialization_alias="buttonoutput3",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "bo3"},
+    )
+    buttonoutput4: str | None = Field(
+        default=None,
+        serialization_alias="buttonoutput4",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "bo4"},
+    )
+    buttonoutput5: str | None = Field(
+        default=None,
+        serialization_alias="buttonoutput5",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "bo5"},
+    )
+    buttonoutput6: str | None = Field(
+        default=None,
+        serialization_alias="buttonoutput6",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "bo6"},
+    )
+    buttonoutput7: str | None = Field(
+        default=None,
+        serialization_alias="buttonoutput7",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "bo7"},
+    )
+    buttonoutput8: str | None = Field(
+        default=None,
+        serialization_alias="buttonoutput8",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "bo8"},
+    )
+    buttonoutput9: str | None = Field(
+        default=None,
+        serialization_alias="buttonoutput9",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "bo9"},
+    )
+    buttonoutput10: str | None = Field(
+        default=None,
+        serialization_alias="buttonoutput10",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "bo10"},
+    )
+    buttonoutput11: str | None = Field(
+        default=None,
+        serialization_alias="buttonoutput11",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "bo11"},
+    )
+    buttonoutput12: str | None = Field(
+        default=None,
+        serialization_alias="buttonoutput12",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "bo12"},
+    )
+    buttonoutput13: str | None = Field(
+        default=None,
+        serialization_alias="buttonoutput13",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "bo13"},
+    )
+    buttonoutput14: str | None = Field(
+        default=None,
+        serialization_alias="buttonoutput14",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "bo14"},
+    )
+    buttonoutput15: str | None = Field(
+        default=None,
+        serialization_alias="buttonoutput15",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "bo15"},
+    )
+    buttonoutput16: str | None = Field(
+        default=None,
+        serialization_alias="buttonoutput16",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "bo16"},
+    )
+    buttonoutput17: str | None = Field(
+        default=None,
+        serialization_alias="buttonoutput17",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "bo17"},
+    )
+    buttonoutput18: str | None = Field(
+        default=None,
+        serialization_alias="buttonoutput18",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "bo18"},
+    )
+    buttonoutput19: str | None = Field(
+        default=None,
+        serialization_alias="buttonoutput19",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "bo19"},
+    )
+    buttonoutput20: str | None = Field(
+        default=None,
+        serialization_alias="buttonoutput20",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "bo20"},
+    )
+    buttonoutput21: str | None = Field(
+        default=None,
+        serialization_alias="buttonoutput21",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "bo21"},
+    )
+    buttonoutput22: str | None = Field(
+        default=None,
+        serialization_alias="buttonoutput22",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "bo22"},
+    )
+    buttonoutput23: str | None = Field(
+        default=None,
+        serialization_alias="buttonoutput23",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "bo23"},
+    )
+    buttonoutput24: str | None = Field(
+        default=None,
+        serialization_alias="buttonoutput24",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "bo24"},
+    )
+    buttonoutput25: str | None = Field(
+        default=None,
+        serialization_alias="buttonoutput25",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "bo25"},
+    )
+    buttonoutput26: str | None = Field(
+        default=None,
+        serialization_alias="buttonoutput26",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "bo26"},
+    )
+    buttonoutput27: str | None = Field(
+        default=None,
+        serialization_alias="buttonoutput27",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "bo27"},
+    )
+    buttonoutput28: str | None = Field(
+        default=None,
+        serialization_alias="buttonoutput28",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "bo28"},
+    )
+    buttonoutput29: str | None = Field(
+        default=None,
+        serialization_alias="buttonoutput29",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "bo29"},
+    )
+    buttonoutput30: str | None = Field(
+        default=None,
+        serialization_alias="buttonoutput30",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "bo30"},
+    )
+    buttonoutput31: str | None = Field(
+        default=None,
+        serialization_alias="buttonoutput31",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "bo31"},
+    )
+    buttonoutput32: str | None = Field(
+        default=None,
+        serialization_alias="buttonoutput32",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "bo32"},
+    )
+    output: str | None = Field(
+        default=None,
+        serialization_alias="output",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "o"},
+    )
+    buttonpress: str | None = Field(
+        default=None,
+        serialization_alias="buttonpress",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "bp"},
+    )
+    longpress: str | None = Field(
+        default=None,
+        serialization_alias="longpress",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "lop"},
+    )
+    selectionchanged: str | None = Field(
+        default=None,
+        serialization_alias="selectionchanged",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "sc"},
+    )
+    extrapress: str | None = Field(
+        default=None,
+        serialization_alias="extrapress",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ep"},
     )
 
 
-
-@dataclass
 class Encoderbank(DroidCircuit):
-    """Create bank of up to 8 virtual input knobs from E4 encoders.
+    """ Create bank of up to 8 virtual input knobs from E4 encoders
 
     Args:
         firstencoder (integer):
@@ -1764,204 +1926,249 @@ class Encoderbank(DroidCircuit):
           extra button circuits, using this output is more convenient in some
           situations.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 736
-    firstencoder: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    _ramsize: int = 736
+
+    firstencoder: str | None = Field(
+        default=None,
+        serialization_alias="firstencoder",
+        json_schema_extra={"essential": 1, "type": "integer", "shortname": "e"},
     )
-    led1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    led1: str | None = Field(
+        default=None,
+        serialization_alias="led1",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "l1"},
     )
-    led2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    led2: str | None = Field(
+        default=None,
+        serialization_alias="led2",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "l2"},
     )
-    led3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    led3: str | None = Field(
+        default=None,
+        serialization_alias="led3",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "l3"},
     )
-    led4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    led4: str | None = Field(
+        default=None,
+        serialization_alias="led4",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "l4"},
     )
-    led5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    led5: str | None = Field(
+        default=None,
+        serialization_alias="led5",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "l5"},
     )
-    led6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    led6: str | None = Field(
+        default=None,
+        serialization_alias="led6",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "l6"},
     )
-    led7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    led7: str | None = Field(
+        default=None,
+        serialization_alias="led7",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "l7"},
     )
-    led8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    led8: str | None = Field(
+        default=None,
+        serialization_alias="led8",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "l8"},
     )
-    startvalue: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    startvalue: str | None = Field(
+        default=None,
+        serialization_alias="startvalue",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "sv"},
     )
-    notch: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    notch: str | None = Field(
+        default=None,
+        serialization_alias="notch",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "no"},
     )
-    outputscale: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    outputscale: str | None = Field(
+        default=None,
+        serialization_alias="outputscale",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "os"},
     )
-    outputoffset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    outputoffset: str | None = Field(
+        default=None,
+        serialization_alias="outputoffset",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "oo"},
     )
-    mode: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    mode: str | None = Field(
+        default=None,
+        serialization_alias="mode",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "m"},
     )
-    smooth: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    smooth: str | None = Field(
+        default=None,
+        serialization_alias="smooth",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "sm"},
     )
-    discrete: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    discrete: str | None = Field(
+        default=None,
+        serialization_alias="discrete",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "d"},
     )
-    snapto: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    snapto: str | None = Field(
+        default=None,
+        serialization_alias="snapto",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "sn"},
     )
-    snapforce: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    snapforce: str | None = Field(
+        default=None,
+        serialization_alias="snapforce",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "sf"},
     )
-    sensivity: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    sensivity: str | None = Field(
+        default=None,
+        serialization_alias="sensivity",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "se"},
     )
-    autozoom: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    autozoom: str | None = Field(
+        default=None,
+        serialization_alias="autozoom",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "a"},
     )
-    color: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    color: str | None = Field(
+        default=None,
+        serialization_alias="color",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "co"},
     )
-    negativecolor: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    negativecolor: str | None = Field(
+        default=None,
+        serialization_alias="negativecolor",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "nc"},
     )
-    ledfill: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    ledfill: str | None = Field(
+        default=None,
+        serialization_alias="ledfill",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "lf"},
     )
-    select: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    select: str | None = Field(
+        default=None,
+        serialization_alias="select",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "s"},
     )
-    selectat: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    selectat: str | None = Field(
+        default=None,
+        serialization_alias="selectat",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "sa"},
     )
-    preset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    preset: str | None = Field(
+        default=None,
+        serialization_alias="preset",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "pr"},
     )
-    loadpreset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    loadpreset: str | None = Field(
+        default=None,
+        serialization_alias="loadpreset",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "lp"},
     )
-    savepreset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    savepreset: str | None = Field(
+        default=None,
+        serialization_alias="savepreset",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "sp"},
     )
-    clear: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    clear: str | None = Field(
+        default=None,
+        serialization_alias="clear",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "cl"},
     )
-    clearall: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    clearall: str | None = Field(
+        default=None,
+        serialization_alias="clearall",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ca"},
     )
-    dontsave: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    dontsave: str | None = Field(
+        default=None,
+        serialization_alias="dontsave",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "dos"},
     )
-    output1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output1: str | None = Field(
+        default=None,
+        serialization_alias="output1",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o1"},
     )
-    output2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output2: str | None = Field(
+        default=None,
+        serialization_alias="output2",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o2"},
     )
-    output3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output3: str | None = Field(
+        default=None,
+        serialization_alias="output3",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o3"},
     )
-    output4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output4: str | None = Field(
+        default=None,
+        serialization_alias="output4",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o4"},
     )
-    output5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output5: str | None = Field(
+        default=None,
+        serialization_alias="output5",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "o5"},
     )
-    output6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output6: str | None = Field(
+        default=None,
+        serialization_alias="output6",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "o6"},
     )
-    output7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output7: str | None = Field(
+        default=None,
+        serialization_alias="output7",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "o7"},
     )
-    output8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output8: str | None = Field(
+        default=None,
+        serialization_alias="output8",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "o8"},
     )
-    button1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    button1: str | None = Field(
+        default=None,
+        serialization_alias="button1",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b1"},
     )
-    button2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    button2: str | None = Field(
+        default=None,
+        serialization_alias="button2",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b2"},
     )
-    button3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    button3: str | None = Field(
+        default=None,
+        serialization_alias="button3",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b3"},
     )
-    button4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    button4: str | None = Field(
+        default=None,
+        serialization_alias="button4",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b4"},
     )
-    button5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    button5: str | None = Field(
+        default=None,
+        serialization_alias="button5",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b5"},
     )
-    button6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    button6: str | None = Field(
+        default=None,
+        serialization_alias="button6",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b6"},
     )
-    button7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    button7: str | None = Field(
+        default=None,
+        serialization_alias="button7",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b7"},
     )
-    button8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    button8: str | None = Field(
+        default=None,
+        serialization_alias="button8",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b8"},
     )
 
 
-
-@dataclass
 class Encoder(DroidCircuit):
-    """Provide access to a knob on the E4 controller.
+    """ Provide access to a knob on the E4 controller
 
     Args:
         encoder (integer):
@@ -2126,144 +2333,174 @@ class Encoder(DroidCircuit):
         valuechanged (trigger):
           Outputs a trigger whenever the virtual value has changed.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 184
-    encoder: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    _ramsize: int = 184
+
+    encoder: str | None = Field(
+        default=None,
+        serialization_alias="encoder",
+        json_schema_extra={"essential": 2, "type": "integer", "shortname": "e"},
     )
-    override: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    override: str | None = Field(
+        default=None,
+        serialization_alias="override",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "or"},
     )
-    sharewithnext: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    sharewithnext: str | None = Field(
+        default=None,
+        serialization_alias="sharewithnext",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "sw"},
     )
-    movementticks: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    movementticks: str | None = Field(
+        default=None,
+        serialization_alias="movementticks",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "mv"},
     )
-    led: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    led: str | None = Field(
+        default=None,
+        serialization_alias="led",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "l"},
     )
-    startvalue: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    startvalue: str | None = Field(
+        default=None,
+        serialization_alias="startvalue",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "sv"},
     )
-    notch: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    notch: str | None = Field(
+        default=None,
+        serialization_alias="notch",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "no"},
     )
-    outputscale: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    outputscale: str | None = Field(
+        default=None,
+        serialization_alias="outputscale",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "os"},
     )
-    outputoffset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    outputoffset: str | None = Field(
+        default=None,
+        serialization_alias="outputoffset",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "oo"},
     )
-    mode: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    mode: str | None = Field(
+        default=None,
+        serialization_alias="mode",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "m"},
     )
-    smooth: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    smooth: str | None = Field(
+        default=None,
+        serialization_alias="smooth",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "sm"},
     )
-    discrete: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    discrete: str | None = Field(
+        default=None,
+        serialization_alias="discrete",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "d"},
     )
-    snapto: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    snapto: str | None = Field(
+        default=None,
+        serialization_alias="snapto",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "sn"},
     )
-    snapforce: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    snapforce: str | None = Field(
+        default=None,
+        serialization_alias="snapforce",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "sf"},
     )
-    sensivity: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    sensivity: str | None = Field(
+        default=None,
+        serialization_alias="sensivity",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "se"},
     )
-    autozoom: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    autozoom: str | None = Field(
+        default=None,
+        serialization_alias="autozoom",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "a"},
     )
-    color: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    color: str | None = Field(
+        default=None,
+        serialization_alias="color",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "co"},
     )
-    negativecolor: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    negativecolor: str | None = Field(
+        default=None,
+        serialization_alias="negativecolor",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "nc"},
     )
-    ledfill: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    ledfill: str | None = Field(
+        default=None,
+        serialization_alias="ledfill",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "lf"},
     )
-    select: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    select: str | None = Field(
+        default=None,
+        serialization_alias="select",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "s"},
     )
-    selectat: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    selectat: str | None = Field(
+        default=None,
+        serialization_alias="selectat",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "sa"},
     )
-    preset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    preset: str | None = Field(
+        default=None,
+        serialization_alias="preset",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "pr"},
     )
-    loadpreset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    loadpreset: str | None = Field(
+        default=None,
+        serialization_alias="loadpreset",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "lp"},
     )
-    savepreset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    savepreset: str | None = Field(
+        default=None,
+        serialization_alias="savepreset",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "sp"},
     )
-    clear: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    clear: str | None = Field(
+        default=None,
+        serialization_alias="clear",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "cl"},
     )
-    clearall: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    clearall: str | None = Field(
+        default=None,
+        serialization_alias="clearall",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ca"},
     )
-    dontsave: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    dontsave: str | None = Field(
+        default=None,
+        serialization_alias="dontsave",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "dos"},
     )
-    output: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output: str | None = Field(
+        default=None,
+        serialization_alias="output",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o"},
     )
-    button: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    button: str | None = Field(
+        default=None,
+        serialization_alias="button",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b"},
     )
-    moveddown: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    moveddown: str | None = Field(
+        default=None,
+        serialization_alias="moveddown",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "md"},
     )
-    movedup: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    movedup: str | None = Field(
+        default=None,
+        serialization_alias="movedup",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "mu"},
     )
-    valuechanged: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    valuechanged: str | None = Field(
+        default=None,
+        serialization_alias="valuechanged",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "vc"},
     )
 
 
-
-@dataclass
 class Faderbank(DroidCircuit):
-    """Create multiple virtual faders in M4 controller.
+    """ Create multiple virtual faders in M4 controller
 
     Args:
         firstfader (integer):
@@ -2441,256 +2678,314 @@ class Faderbank(DroidCircuit):
           Outputs the current value of the touch buttons of the faders to these output,
           when this circuit is selected. When the circuit is not selected, 0 is output.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 616
-    firstfader: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    _ramsize: int = 616
+
+    firstfader: str | None = Field(
+        default=None,
+        serialization_alias="firstfader",
+        json_schema_extra={"essential": 1, "type": "integer", "shortname": "f"},
     )
-    notches: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    notches: str | None = Field(
+        default=None,
+        serialization_alias="notches",
+        json_schema_extra={"essential": 1, "type": "integer", "shortname": "n"},
     )
-    startvalue: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    startvalue: str | None = Field(
+        default=None,
+        serialization_alias="startvalue",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "sv"},
     )
-    ledcolor: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ledcolor: str | None = Field(
+        default=None,
+        serialization_alias="ledcolor",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "lc"},
     )
-    ledvalue1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ledvalue1: str | None = Field(
+        default=None,
+        serialization_alias="ledvalue1",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "lv1"},
     )
-    ledvalue2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ledvalue2: str | None = Field(
+        default=None,
+        serialization_alias="ledvalue2",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "lv2"},
     )
-    ledvalue3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ledvalue3: str | None = Field(
+        default=None,
+        serialization_alias="ledvalue3",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "lv3"},
     )
-    ledvalue4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ledvalue4: str | None = Field(
+        default=None,
+        serialization_alias="ledvalue4",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "lv4"},
     )
-    ledvalue5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ledvalue5: str | None = Field(
+        default=None,
+        serialization_alias="ledvalue5",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "lv5"},
     )
-    ledvalue6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ledvalue6: str | None = Field(
+        default=None,
+        serialization_alias="ledvalue6",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "lv6"},
     )
-    ledvalue7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ledvalue7: str | None = Field(
+        default=None,
+        serialization_alias="ledvalue7",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "lv7"},
     )
-    ledvalue8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ledvalue8: str | None = Field(
+        default=None,
+        serialization_alias="ledvalue8",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "lv8"},
     )
-    ledvalue9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ledvalue9: str | None = Field(
+        default=None,
+        serialization_alias="ledvalue9",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "lv9"},
     )
-    ledvalue10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ledvalue10: str | None = Field(
+        default=None,
+        serialization_alias="ledvalue10",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "lv10"},
     )
-    ledvalue11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ledvalue11: str | None = Field(
+        default=None,
+        serialization_alias="ledvalue11",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "lv11"},
     )
-    ledvalue12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ledvalue12: str | None = Field(
+        default=None,
+        serialization_alias="ledvalue12",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "lv12"},
     )
-    ledvalue13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ledvalue13: str | None = Field(
+        default=None,
+        serialization_alias="ledvalue13",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "lv13"},
     )
-    ledvalue14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ledvalue14: str | None = Field(
+        default=None,
+        serialization_alias="ledvalue14",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "lv14"},
     )
-    ledvalue15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ledvalue15: str | None = Field(
+        default=None,
+        serialization_alias="ledvalue15",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "lv15"},
     )
-    ledvalue16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ledvalue16: str | None = Field(
+        default=None,
+        serialization_alias="ledvalue16",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "lv16"},
     )
-    select: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    select: str | None = Field(
+        default=None,
+        serialization_alias="select",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "s"},
     )
-    selectat: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    selectat: str | None = Field(
+        default=None,
+        serialization_alias="selectat",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "sa"},
     )
-    preset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    preset: str | None = Field(
+        default=None,
+        serialization_alias="preset",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "pr"},
     )
-    loadpreset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    loadpreset: str | None = Field(
+        default=None,
+        serialization_alias="loadpreset",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "lp"},
     )
-    savepreset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    savepreset: str | None = Field(
+        default=None,
+        serialization_alias="savepreset",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "sp"},
     )
-    clear: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    clear: str | None = Field(
+        default=None,
+        serialization_alias="clear",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "cl"},
     )
-    clearall: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    clearall: str | None = Field(
+        default=None,
+        serialization_alias="clearall",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ca"},
     )
-    dontsave: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    dontsave: str | None = Field(
+        default=None,
+        serialization_alias="dontsave",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "dos"},
     )
-    output1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output1: str | None = Field(
+        default=None,
+        serialization_alias="output1",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o1"},
     )
-    output2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output2: str | None = Field(
+        default=None,
+        serialization_alias="output2",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o2"},
     )
-    output3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output3: str | None = Field(
+        default=None,
+        serialization_alias="output3",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o3"},
     )
-    output4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output4: str | None = Field(
+        default=None,
+        serialization_alias="output4",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o4"},
     )
-    output5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output5: str | None = Field(
+        default=None,
+        serialization_alias="output5",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "o5"},
     )
-    output6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output6: str | None = Field(
+        default=None,
+        serialization_alias="output6",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "o6"},
     )
-    output7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output7: str | None = Field(
+        default=None,
+        serialization_alias="output7",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "o7"},
     )
-    output8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output8: str | None = Field(
+        default=None,
+        serialization_alias="output8",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "o8"},
     )
-    output9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output9: str | None = Field(
+        default=None,
+        serialization_alias="output9",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "o9"},
     )
-    output10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output10: str | None = Field(
+        default=None,
+        serialization_alias="output10",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "o10"},
     )
-    output11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output11: str | None = Field(
+        default=None,
+        serialization_alias="output11",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "o11"},
     )
-    output12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output12: str | None = Field(
+        default=None,
+        serialization_alias="output12",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "o12"},
     )
-    output13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output13: str | None = Field(
+        default=None,
+        serialization_alias="output13",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "o13"},
     )
-    output14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output14: str | None = Field(
+        default=None,
+        serialization_alias="output14",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "o14"},
     )
-    output15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output15: str | None = Field(
+        default=None,
+        serialization_alias="output15",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "o15"},
     )
-    output16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output16: str | None = Field(
+        default=None,
+        serialization_alias="output16",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "o16"},
     )
-    button1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    button1: str | None = Field(
+        default=None,
+        serialization_alias="button1",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b1"},
     )
-    button2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    button2: str | None = Field(
+        default=None,
+        serialization_alias="button2",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b2"},
     )
-    button3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    button3: str | None = Field(
+        default=None,
+        serialization_alias="button3",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b3"},
     )
-    button4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    button4: str | None = Field(
+        default=None,
+        serialization_alias="button4",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b4"},
     )
-    button5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    button5: str | None = Field(
+        default=None,
+        serialization_alias="button5",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b5"},
     )
-    button6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    button6: str | None = Field(
+        default=None,
+        serialization_alias="button6",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b6"},
     )
-    button7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    button7: str | None = Field(
+        default=None,
+        serialization_alias="button7",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b7"},
     )
-    button8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    button8: str | None = Field(
+        default=None,
+        serialization_alias="button8",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b8"},
     )
-    button9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    button9: str | None = Field(
+        default=None,
+        serialization_alias="button9",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b9"},
     )
-    button10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    button10: str | None = Field(
+        default=None,
+        serialization_alias="button10",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b10"},
     )
-    button11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    button11: str | None = Field(
+        default=None,
+        serialization_alias="button11",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b11"},
     )
-    button12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    button12: str | None = Field(
+        default=None,
+        serialization_alias="button12",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b12"},
     )
-    button13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    button13: str | None = Field(
+        default=None,
+        serialization_alias="button13",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b13"},
     )
-    button14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    button14: str | None = Field(
+        default=None,
+        serialization_alias="button14",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b14"},
     )
-    button15: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    button15: str | None = Field(
+        default=None,
+        serialization_alias="button15",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b15"},
     )
-    button16: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    button16: str | None = Field(
+        default=None,
+        serialization_alias="button16",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b16"},
     )
 
 
-
-@dataclass
 class Fadermatrix(DroidCircuit):
-    """Matrix of up to 4x4 virtual motor faders.
+    """ Matrix of up to 4x4 virtual motor faders
 
     Args:
         firstfader (integer):
@@ -2963,296 +3258,364 @@ class Fadermatrix(DroidCircuit):
           Give access to the state of the touch button below the faders when the
           respective output in the fourth row is selected.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 640
-    firstfader: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    rowcolumn: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    notches1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    notches2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    notches3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    notches4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    startvalue1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    startvalue2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    startvalue3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    startvalue4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    ledvalue11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    ledvalue12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    ledvalue13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    ledvalue14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    ledvalue21: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    ledvalue22: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    ledvalue23: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    ledvalue24: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    ledvalue31: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    ledvalue32: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    ledvalue33: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    ledvalue34: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    ledvalue41: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    ledvalue42: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    ledvalue43: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    ledvalue44: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    ledcolor1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    ledcolor2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    ledcolor3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    ledcolor4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    select: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    selectat: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    preset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    loadpreset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    savepreset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    clear: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    clearall: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    dontsave: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    output11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    output12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    output13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    output14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    output21: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    output22: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    output23: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    output24: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    output31: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    output32: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    output33: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    output34: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    output41: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    output42: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    output43: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    output44: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    button11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    button12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    button13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    button14: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    button21: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    button22: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    button23: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    button24: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    button31: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    button32: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    button33: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    button34: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    button41: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    button42: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    button43: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    button44: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    _ramsize: int = 640
+
+    firstfader: str | None = Field(
+        default=None,
+        serialization_alias="firstfader",
+        json_schema_extra={"essential": 1, "type": "integer", "shortname": "f"},
+    )
+    rowcolumn: str | None = Field(
+        default=None,
+        serialization_alias="rowcolumn",
+        json_schema_extra={"essential": 2, "type": "integer", "shortname": "rc"},
+    )
+    notches1: str | None = Field(
+        default=None,
+        serialization_alias="notches1",
+        json_schema_extra={"essential": 1, "type": "integer", "shortname": "n1"},
+    )
+    notches2: str | None = Field(
+        default=None,
+        serialization_alias="notches2",
+        json_schema_extra={"essential": 1, "type": "integer", "shortname": "n2"},
+    )
+    notches3: str | None = Field(
+        default=None,
+        serialization_alias="notches3",
+        json_schema_extra={"essential": 1, "type": "integer", "shortname": "n3"},
+    )
+    notches4: str | None = Field(
+        default=None,
+        serialization_alias="notches4",
+        json_schema_extra={"essential": 1, "type": "integer", "shortname": "n4"},
+    )
+    startvalue1: str | None = Field(
+        default=None,
+        serialization_alias="startvalue1",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "sv1"},
+    )
+    startvalue2: str | None = Field(
+        default=None,
+        serialization_alias="startvalue2",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "sv2"},
+    )
+    startvalue3: str | None = Field(
+        default=None,
+        serialization_alias="startvalue3",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "sv3"},
+    )
+    startvalue4: str | None = Field(
+        default=None,
+        serialization_alias="startvalue4",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "sv4"},
+    )
+    ledvalue11: str | None = Field(
+        default=None,
+        serialization_alias="ledvalue11",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "l11"},
+    )
+    ledvalue12: str | None = Field(
+        default=None,
+        serialization_alias="ledvalue12",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "l12"},
+    )
+    ledvalue13: str | None = Field(
+        default=None,
+        serialization_alias="ledvalue13",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "l13"},
+    )
+    ledvalue14: str | None = Field(
+        default=None,
+        serialization_alias="ledvalue14",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "l14"},
+    )
+    ledvalue21: str | None = Field(
+        default=None,
+        serialization_alias="ledvalue21",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "l21"},
+    )
+    ledvalue22: str | None = Field(
+        default=None,
+        serialization_alias="ledvalue22",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "l22"},
+    )
+    ledvalue23: str | None = Field(
+        default=None,
+        serialization_alias="ledvalue23",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "l23"},
+    )
+    ledvalue24: str | None = Field(
+        default=None,
+        serialization_alias="ledvalue24",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "l24"},
+    )
+    ledvalue31: str | None = Field(
+        default=None,
+        serialization_alias="ledvalue31",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "l31"},
+    )
+    ledvalue32: str | None = Field(
+        default=None,
+        serialization_alias="ledvalue32",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "l32"},
+    )
+    ledvalue33: str | None = Field(
+        default=None,
+        serialization_alias="ledvalue33",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "l33"},
+    )
+    ledvalue34: str | None = Field(
+        default=None,
+        serialization_alias="ledvalue34",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "l34"},
+    )
+    ledvalue41: str | None = Field(
+        default=None,
+        serialization_alias="ledvalue41",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "l41"},
+    )
+    ledvalue42: str | None = Field(
+        default=None,
+        serialization_alias="ledvalue42",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "l42"},
+    )
+    ledvalue43: str | None = Field(
+        default=None,
+        serialization_alias="ledvalue43",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "l43"},
+    )
+    ledvalue44: str | None = Field(
+        default=None,
+        serialization_alias="ledvalue44",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "l44"},
+    )
+    ledcolor1: str | None = Field(
+        default=None,
+        serialization_alias="ledcolor1",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "lc1"},
+    )
+    ledcolor2: str | None = Field(
+        default=None,
+        serialization_alias="ledcolor2",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "lc2"},
+    )
+    ledcolor3: str | None = Field(
+        default=None,
+        serialization_alias="ledcolor3",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "lc3"},
+    )
+    ledcolor4: str | None = Field(
+        default=None,
+        serialization_alias="ledcolor4",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "lc4"},
+    )
+    select: str | None = Field(
+        default=None,
+        serialization_alias="select",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "s"},
+    )
+    selectat: str | None = Field(
+        default=None,
+        serialization_alias="selectat",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "sa"},
+    )
+    preset: str | None = Field(
+        default=None,
+        serialization_alias="preset",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "pr"},
+    )
+    loadpreset: str | None = Field(
+        default=None,
+        serialization_alias="loadpreset",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "lp"},
+    )
+    savepreset: str | None = Field(
+        default=None,
+        serialization_alias="savepreset",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "sp"},
+    )
+    clear: str | None = Field(
+        default=None,
+        serialization_alias="clear",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "cl"},
+    )
+    clearall: str | None = Field(
+        default=None,
+        serialization_alias="clearall",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ca"},
+    )
+    dontsave: str | None = Field(
+        default=None,
+        serialization_alias="dontsave",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "dos"},
+    )
+    output11: str | None = Field(
+        default=None,
+        serialization_alias="output11",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o11"},
+    )
+    output12: str | None = Field(
+        default=None,
+        serialization_alias="output12",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o12"},
+    )
+    output13: str | None = Field(
+        default=None,
+        serialization_alias="output13",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o13"},
+    )
+    output14: str | None = Field(
+        default=None,
+        serialization_alias="output14",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o14"},
+    )
+    output21: str | None = Field(
+        default=None,
+        serialization_alias="output21",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o21"},
+    )
+    output22: str | None = Field(
+        default=None,
+        serialization_alias="output22",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o22"},
+    )
+    output23: str | None = Field(
+        default=None,
+        serialization_alias="output23",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o23"},
+    )
+    output24: str | None = Field(
+        default=None,
+        serialization_alias="output24",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o24"},
+    )
+    output31: str | None = Field(
+        default=None,
+        serialization_alias="output31",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o31"},
+    )
+    output32: str | None = Field(
+        default=None,
+        serialization_alias="output32",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o32"},
+    )
+    output33: str | None = Field(
+        default=None,
+        serialization_alias="output33",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o33"},
+    )
+    output34: str | None = Field(
+        default=None,
+        serialization_alias="output34",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o34"},
+    )
+    output41: str | None = Field(
+        default=None,
+        serialization_alias="output41",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o41"},
+    )
+    output42: str | None = Field(
+        default=None,
+        serialization_alias="output42",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o42"},
+    )
+    output43: str | None = Field(
+        default=None,
+        serialization_alias="output43",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o43"},
+    )
+    output44: str | None = Field(
+        default=None,
+        serialization_alias="output44",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o44"},
+    )
+    button11: str | None = Field(
+        default=None,
+        serialization_alias="button11",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b11"},
+    )
+    button12: str | None = Field(
+        default=None,
+        serialization_alias="button12",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b12"},
+    )
+    button13: str | None = Field(
+        default=None,
+        serialization_alias="button13",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b13"},
+    )
+    button14: str | None = Field(
+        default=None,
+        serialization_alias="button14",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b14"},
+    )
+    button21: str | None = Field(
+        default=None,
+        serialization_alias="button21",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b21"},
+    )
+    button22: str | None = Field(
+        default=None,
+        serialization_alias="button22",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b22"},
+    )
+    button23: str | None = Field(
+        default=None,
+        serialization_alias="button23",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b23"},
+    )
+    button24: str | None = Field(
+        default=None,
+        serialization_alias="button24",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b24"},
+    )
+    button31: str | None = Field(
+        default=None,
+        serialization_alias="button31",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b31"},
+    )
+    button32: str | None = Field(
+        default=None,
+        serialization_alias="button32",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b32"},
+    )
+    button33: str | None = Field(
+        default=None,
+        serialization_alias="button33",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b33"},
+    )
+    button34: str | None = Field(
+        default=None,
+        serialization_alias="button34",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b34"},
+    )
+    button41: str | None = Field(
+        default=None,
+        serialization_alias="button41",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b41"},
+    )
+    button42: str | None = Field(
+        default=None,
+        serialization_alias="button42",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b42"},
+    )
+    button43: str | None = Field(
+        default=None,
+        serialization_alias="button43",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b43"},
+    )
+    button44: str | None = Field(
+        default=None,
+        serialization_alias="button44",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b44"},
     )
 
 
-
-@dataclass
 class Motorfader(DroidCircuit):
-    """Create virtual fader in M4 controller.
+    """ Create virtual fader in M4 controller
 
     Args:
         fader (integer):
@@ -3319,80 +3682,94 @@ class Motorfader(DroidCircuit):
           extra button circuit, using this output is more convenient in some situations.
           While the circuit is not selected, the output is set to 0.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 112
-    fader: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    _ramsize: int = 112
+
+    fader: str | None = Field(
+        default=None,
+        serialization_alias="fader",
+        json_schema_extra={"essential": 1, "type": "integer", "shortname": "f"},
     )
-    startvalue: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    startvalue: str | None = Field(
+        default=None,
+        serialization_alias="startvalue",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "sv"},
     )
-    notches: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    notches: str | None = Field(
+        default=None,
+        serialization_alias="notches",
+        json_schema_extra={"essential": 1, "type": "integer", "shortname": "n"},
     )
-    ledvalue: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ledvalue: str | None = Field(
+        default=None,
+        serialization_alias="ledvalue",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "lv"},
     )
-    ledcolor: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ledcolor: str | None = Field(
+        default=None,
+        serialization_alias="ledcolor",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "lc"},
     )
-    sharewithnext: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    sharewithnext: str | None = Field(
+        default=None,
+        serialization_alias="sharewithnext",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "sw"},
     )
-    select: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    select: str | None = Field(
+        default=None,
+        serialization_alias="select",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "s"},
     )
-    selectat: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    selectat: str | None = Field(
+        default=None,
+        serialization_alias="selectat",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "sa"},
     )
-    preset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    preset: str | None = Field(
+        default=None,
+        serialization_alias="preset",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "pr"},
     )
-    loadpreset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    loadpreset: str | None = Field(
+        default=None,
+        serialization_alias="loadpreset",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "lp"},
     )
-    savepreset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    savepreset: str | None = Field(
+        default=None,
+        serialization_alias="savepreset",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "sp"},
     )
-    clear: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    clear: str | None = Field(
+        default=None,
+        serialization_alias="clear",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "cl"},
     )
-    clearall: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    clearall: str | None = Field(
+        default=None,
+        serialization_alias="clearall",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ca"},
     )
-    dontsave: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    dontsave: str | None = Field(
+        default=None,
+        serialization_alias="dontsave",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "dos"},
     )
-    output: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output: str | None = Field(
+        default=None,
+        serialization_alias="output",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o"},
     )
-    button: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    button: str | None = Field(
+        default=None,
+        serialization_alias="button",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b"},
     )
 
 
-
-@dataclass
 class Notebuttons(DroidCircuit):
-    """Note Selection Buttons.
+    """ Note Selection Buttons
 
     Args:
         button1 (trigger):
@@ -3494,164 +3871,199 @@ class Notebuttons(DroidCircuit):
           together with the semitone output to use the notebuttons as a CV/gate keyboard
           with 12 keys.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 128
-    button1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    _ramsize: int = 128
+
+    button1: str | None = Field(
+        default=None,
+        serialization_alias="button1",
+        json_schema_extra={"essential": 2, "type": "trigger", "shortname": "b1"},
     )
-    button2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    button2: str | None = Field(
+        default=None,
+        serialization_alias="button2",
+        json_schema_extra={"essential": 2, "type": "trigger", "shortname": "b2"},
     )
-    button3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    button3: str | None = Field(
+        default=None,
+        serialization_alias="button3",
+        json_schema_extra={"essential": 2, "type": "trigger", "shortname": "b3"},
     )
-    button4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    button4: str | None = Field(
+        default=None,
+        serialization_alias="button4",
+        json_schema_extra={"essential": 2, "type": "trigger", "shortname": "b4"},
     )
-    button5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    button5: str | None = Field(
+        default=None,
+        serialization_alias="button5",
+        json_schema_extra={"essential": 2, "type": "trigger", "shortname": "b5"},
     )
-    button6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    button6: str | None = Field(
+        default=None,
+        serialization_alias="button6",
+        json_schema_extra={"essential": 2, "type": "trigger", "shortname": "b6"},
     )
-    button7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    button7: str | None = Field(
+        default=None,
+        serialization_alias="button7",
+        json_schema_extra={"essential": 2, "type": "trigger", "shortname": "b7"},
     )
-    button8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    button8: str | None = Field(
+        default=None,
+        serialization_alias="button8",
+        json_schema_extra={"essential": 2, "type": "trigger", "shortname": "b8"},
     )
-    button9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    button9: str | None = Field(
+        default=None,
+        serialization_alias="button9",
+        json_schema_extra={"essential": 2, "type": "trigger", "shortname": "b9"},
     )
-    button10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    button10: str | None = Field(
+        default=None,
+        serialization_alias="button10",
+        json_schema_extra={"essential": 2, "type": "trigger", "shortname": "b10"},
     )
-    button11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    button11: str | None = Field(
+        default=None,
+        serialization_alias="button11",
+        json_schema_extra={"essential": 2, "type": "trigger", "shortname": "b11"},
     )
-    button12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    button12: str | None = Field(
+        default=None,
+        serialization_alias="button12",
+        json_schema_extra={"essential": 2, "type": "trigger", "shortname": "b12"},
     )
-    clock: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    clock: str | None = Field(
+        default=None,
+        serialization_alias="clock",
+        json_schema_extra={"essential": 1, "type": "trigger", "shortname": "c"},
     )
-    startnote: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    startnote: str | None = Field(
+        default=None,
+        serialization_alias="startnote",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "sn"},
     )
-    select: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    select: str | None = Field(
+        default=None,
+        serialization_alias="select",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "s"},
     )
-    selectat: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    selectat: str | None = Field(
+        default=None,
+        serialization_alias="selectat",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "sa"},
     )
-    preset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    preset: str | None = Field(
+        default=None,
+        serialization_alias="preset",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "pr"},
     )
-    loadpreset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    loadpreset: str | None = Field(
+        default=None,
+        serialization_alias="loadpreset",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "lp"},
     )
-    savepreset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    savepreset: str | None = Field(
+        default=None,
+        serialization_alias="savepreset",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "sp"},
     )
-    clear: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    clear: str | None = Field(
+        default=None,
+        serialization_alias="clear",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "cl"},
     )
-    clearall: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    clearall: str | None = Field(
+        default=None,
+        serialization_alias="clearall",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ca"},
     )
-    dontsave: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    dontsave: str | None = Field(
+        default=None,
+        serialization_alias="dontsave",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "dos"},
     )
-    led1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    led1: str | None = Field(
+        default=None,
+        serialization_alias="led1",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l1"},
     )
-    led2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    led2: str | None = Field(
+        default=None,
+        serialization_alias="led2",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l2"},
     )
-    led3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    led3: str | None = Field(
+        default=None,
+        serialization_alias="led3",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l3"},
     )
-    led4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    led4: str | None = Field(
+        default=None,
+        serialization_alias="led4",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l4"},
     )
-    led5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    led5: str | None = Field(
+        default=None,
+        serialization_alias="led5",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l5"},
     )
-    led6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    led6: str | None = Field(
+        default=None,
+        serialization_alias="led6",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l6"},
     )
-    led7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    led7: str | None = Field(
+        default=None,
+        serialization_alias="led7",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l7"},
     )
-    led8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    led8: str | None = Field(
+        default=None,
+        serialization_alias="led8",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l8"},
     )
-    led9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    led9: str | None = Field(
+        default=None,
+        serialization_alias="led9",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l9"},
     )
-    led10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    led10: str | None = Field(
+        default=None,
+        serialization_alias="led10",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l10"},
     )
-    led11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    led11: str | None = Field(
+        default=None,
+        serialization_alias="led11",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l11"},
     )
-    led12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    led12: str | None = Field(
+        default=None,
+        serialization_alias="led12",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "l12"},
     )
-    output: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    output: str | None = Field(
+        default=None,
+        serialization_alias="output",
+        json_schema_extra={"essential": 2, "type": "integer", "shortname": "o"},
     )
-    semitone: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    semitone: str | None = Field(
+        default=None,
+        serialization_alias="semitone",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "st"},
     )
-    gate: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    gate: str | None = Field(
+        default=None,
+        serialization_alias="gate",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "g"},
     )
 
 
-
-@dataclass
 class Nudge(DroidCircuit):
-    """Modify a value in steps using two buttons.
+    """ Modify a value in steps using two buttons
 
     Args:
         buttonup (trigger):
@@ -3715,92 +4127,109 @@ class Nudge(DroidCircuit):
         output (cv):
           The output of the current value plus value if offset.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 144
-    buttonup: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    _ramsize: int = 144
+
+    buttonup: str | None = Field(
+        default=None,
+        serialization_alias="buttonup",
+        json_schema_extra={"essential": 2, "type": "trigger", "shortname": "u"},
     )
-    buttondown: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    buttondown: str | None = Field(
+        default=None,
+        serialization_alias="buttondown",
+        json_schema_extra={"essential": 2, "type": "trigger", "shortname": "d"},
     )
-    amount: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    amount: str | None = Field(
+        default=None,
+        serialization_alias="amount",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "am"},
     )
-    startvalue: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    startvalue: str | None = Field(
+        default=None,
+        serialization_alias="startvalue",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "sv"},
     )
-    minimum: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    minimum: str | None = Field(
+        default=None,
+        serialization_alias="minimum",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "m"},
     )
-    maximum: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    maximum: str | None = Field(
+        default=None,
+        serialization_alias="maximum",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "x"},
     )
-    wrap: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    wrap: str | None = Field(
+        default=None,
+        serialization_alias="wrap",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "w"},
     )
-    offset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    offset: str | None = Field(
+        default=None,
+        serialization_alias="offset",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "of"},
     )
-    select: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    select: str | None = Field(
+        default=None,
+        serialization_alias="select",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "s"},
     )
-    selectat: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    selectat: str | None = Field(
+        default=None,
+        serialization_alias="selectat",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "sa"},
     )
-    preset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    preset: str | None = Field(
+        default=None,
+        serialization_alias="preset",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "pr"},
     )
-    loadpreset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    loadpreset: str | None = Field(
+        default=None,
+        serialization_alias="loadpreset",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "lp"},
     )
-    savepreset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    savepreset: str | None = Field(
+        default=None,
+        serialization_alias="savepreset",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "sp"},
     )
-    clear: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    clear: str | None = Field(
+        default=None,
+        serialization_alias="clear",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "cl"},
     )
-    clearall: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    clearall: str | None = Field(
+        default=None,
+        serialization_alias="clearall",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ca"},
     )
-    dontsave: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    dontsave: str | None = Field(
+        default=None,
+        serialization_alias="dontsave",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "dos"},
     )
-    ledup: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_stepped(ramsize=0)
+    ledup: str | None = Field(
+        default=None,
+        serialization_alias="ledup",
+        json_schema_extra={"essential": 0, "type": "stepped", "shortname": "lu"},
     )
-    leddown: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_stepped(ramsize=0)
+    leddown: str | None = Field(
+        default=None,
+        serialization_alias="leddown",
+        json_schema_extra={"essential": 0, "type": "stepped", "shortname": "ld"},
     )
-    output: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output: str | None = Field(
+        default=None,
+        serialization_alias="output",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o"},
     )
 
 
-
-@dataclass
 class Pot(DroidCircuit):
-    """Helper circuit for pots.
+    """ Helper circuit for pots
 
     Args:
         pot (fraction):
@@ -3910,108 +4339,129 @@ class Pot(DroidCircuit):
         onchange (trigger):
           This output emits a trigger whenever the pot is turned in either direction.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 120
-    pot: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    _ramsize: int = 120
+
+    pot: str | None = Field(
+        default=None,
+        serialization_alias="pot",
+        json_schema_extra={"essential": 2, "type": "fraction", "shortname": "p"},
     )
-    outputscale: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    outputscale: str | None = Field(
+        default=None,
+        serialization_alias="outputscale",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "os"},
     )
-    notch: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    notch: str | None = Field(
+        default=None,
+        serialization_alias="notch",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "no"},
     )
-    discrete: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    discrete: str | None = Field(
+        default=None,
+        serialization_alias="discrete",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "d"},
     )
-    slope: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    slope: str | None = Field(
+        default=None,
+        serialization_alias="slope",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "sl"},
     )
-    ledgauge: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ledgauge: str | None = Field(
+        default=None,
+        serialization_alias="ledgauge",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "g"},
     )
-    startvalue: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    startvalue: str | None = Field(
+        default=None,
+        serialization_alias="startvalue",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "sv"},
     )
-    select: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    select: str | None = Field(
+        default=None,
+        serialization_alias="select",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "s"},
     )
-    selectat: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    selectat: str | None = Field(
+        default=None,
+        serialization_alias="selectat",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "sa"},
     )
-    preset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    preset: str | None = Field(
+        default=None,
+        serialization_alias="preset",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "pr"},
     )
-    loadpreset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    loadpreset: str | None = Field(
+        default=None,
+        serialization_alias="loadpreset",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "lp"},
     )
-    savepreset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    savepreset: str | None = Field(
+        default=None,
+        serialization_alias="savepreset",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "sp"},
     )
-    clear: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    clear: str | None = Field(
+        default=None,
+        serialization_alias="clear",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "cl"},
     )
-    clearall: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    clearall: str | None = Field(
+        default=None,
+        serialization_alias="clearall",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ca"},
     )
-    dontsave: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    dontsave: str | None = Field(
+        default=None,
+        serialization_alias="dontsave",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "dos"},
     )
-    output: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    output: str | None = Field(
+        default=None,
+        serialization_alias="output",
+        json_schema_extra={"essential": 2, "type": "fraction", "shortname": "o"},
     )
-    bipolar: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    bipolar: str | None = Field(
+        default=None,
+        serialization_alias="bipolar",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "b"},
     )
-    absbipolar: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    absbipolar: str | None = Field(
+        default=None,
+        serialization_alias="absbipolar",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "ab"},
     )
-    lefthalf: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    lefthalf: str | None = Field(
+        default=None,
+        serialization_alias="lefthalf",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "l"},
     )
-    righthalf: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    righthalf: str | None = Field(
+        default=None,
+        serialization_alias="righthalf",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "r"},
     )
-    lefthalfinv: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    lefthalfinv: str | None = Field(
+        default=None,
+        serialization_alias="lefthalfinv",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "li"},
     )
-    righthalfinv: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    righthalfinv: str | None = Field(
+        default=None,
+        serialization_alias="righthalfinv",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "ri"},
     )
-    onchange: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    onchange: str | None = Field(
+        default=None,
+        serialization_alias="onchange",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "c"},
     )
 
 
-
-@dataclass
 class Unusedfaders(DroidCircuit):
-    """Declare unused motor faders.
+    """ Declare unused motor faders
 
     Args:
         firstfader (integer):
@@ -4032,26 +4482,28 @@ class Unusedfaders(DroidCircuit):
           will be active if select is exactly 0 instead of a positive gate signal. In
           some cases this is more conventient.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 32
-    firstfader: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    numfaders: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    select: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    selectat: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
+    _ramsize: int = 32
 
-
+    firstfader: str | None = Field(
+        default=None,
+        serialization_alias="firstfader",
+        json_schema_extra={"essential": 2, "type": "integer", "shortname": "f"},
+    )
+    numfaders: str | None = Field(
+        default=None,
+        serialization_alias="numfaders",
+        json_schema_extra={"essential": 1, "type": "integer", "shortname": "n"},
+    )
+    select: str | None = Field(
+        default=None,
+        serialization_alias="select",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "s"},
+    )
+    selectat: str | None = Field(
+        default=None,
+        serialization_alias="selectat",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "sa"},
+    )
 
