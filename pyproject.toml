@@ -1,12 +1,15 @@
 [project]
 name = "droid-metapatch"
-version = "2.3.0"
+version = "3.0.0"
 description = "DROID patch generator"
 authors = [{ name = "Allan Eising", email = "allan@eising.dk" }]
 requires-python = ">=3.12"
 readme = "README.md"
 license = "GPL-3.0-only"
-dependencies = ["jinja2>=3.1.4,<4"]
+dependencies = [
+    "jinja2>=3.1.4,<4",
+    "pydantic>=2.11.7",
+]
 
 [project.urls]
 Repository = "https://github.com/Eising/droid-metapatch"
@@ -19,6 +22,7 @@ droid-metapatch = "metapatch.cli_util:main"
 dev = [
     "pytest>=8.1.1,<9",
     "mypy>=1.9.0,<2",
+    "ipython>=9.4.0",
 ]
 generation = ["pylatexenc~=2.10"]
 docs = ["pdoc>=14.4.0,<15"]

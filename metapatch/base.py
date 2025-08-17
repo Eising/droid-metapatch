@@ -1,18 +1,17 @@
 """Base classes."""
 
 import re
-from dataclasses import dataclass, field
+from pydantic import BaseModel, Field
 from collections.abc import Mapping
 
 from .utils import format_comment, write_patch_section
 
 
-@dataclass
-class Circuit:
+class Circuit(BaseModel):
     """Circuit container class."""
 
     name: str
-    parameters: Mapping[str, str] = field(default_factory=dict)
+    parameters: Mapping[str, str] = Field(default_factory=dict)
     comment: str | None = None
     section: str | None = None
 
@@ -29,8 +28,7 @@ class Circuit:
         return patch
 
 
-@dataclass
-class Controller:
+class Controller(BaseModel):
     """Droid controller container class."""
 
     type: str
@@ -41,9 +39,11 @@ class Controller:
         return f"[{self.type}]"
 
 
-@dataclass
-class Section:
-    """Section class."""
+class Section(BaseModel):
+    """Section class.
+
+    TODO: I don't seem to call this... Is it needed?
+    """
 
     name: str
     comment: str | None = None
@@ -58,8 +58,7 @@ class Section:
         return output
 
 
-@dataclass
-class Label:
+class Label(BaseModel):
     """Label class."""
 
     heading: str
@@ -103,4 +102,4 @@ class Label:
 
         if not section:
             raise RuntimeError("Unable to resolve section.")
-        return cls(section, item, short_label, long_label)
+        return cls(heading=section, item=item, short_label=short_label, long_label=long_label)

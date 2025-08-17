@@ -1,18 +1,14 @@
 """DROID circuits. These circuits are auto-generated from circuits.json."""
 
-from dataclasses import dataclass, field
-from typing import Optional
-
+from pydantic import AliasChoices, Field
 from metapatch.circuits.base import DroidCircuit
-from metapatch.circuits import circuit_types as ctype
 
 
 __droid_version__ = "blue-6"
 
 
-@dataclass
 class Bernoulli(DroidCircuit):
-    """Random gate distributor.
+    """ Random gate distributor
 
     Args:
         input (gate):
@@ -27,32 +23,34 @@ class Bernoulli(DroidCircuit):
           Gates from input are forwarded here if the random decision was in favour of
           output 2.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 32
-    input: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    _ramsize: int = 32
+
+    input: str | None = Field(
+        default=None,
+        serialization_alias="input",
+        json_schema_extra={"essential": 2, "type": "gate", "shortname": "i"},
     )
-    distribution: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_bipolar(ramsize=0)
+    distribution: str | None = Field(
+        default=None,
+        serialization_alias="distribution",
+        json_schema_extra={"essential": 1, "type": "bipolar", "shortname": "di"},
     )
-    output1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    output1: str | None = Field(
+        default=None,
+        serialization_alias="output1",
+        json_schema_extra={"essential": 2, "type": "gate", "shortname": "o1"},
     )
-    output2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    output2: str | None = Field(
+        default=None,
+        serialization_alias="output2",
+        json_schema_extra={"essential": 1, "type": "gate", "shortname": "o2"},
     )
 
 
-
-@dataclass
 class Burst(DroidCircuit):
-    """Generate burst of pulses.
+    """ Generate burst of pulses
 
     Args:
         rate (cv):
@@ -80,48 +78,54 @@ class Burst(DroidCircuit):
         output (trigger):
           The triggers are output here.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 40
-    rate: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    _ramsize: int = 40
+
+    rate: str | None = Field(
+        default=None,
+        serialization_alias="rate",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "ra"},
     )
-    taptempo: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    taptempo: str | None = Field(
+        default=None,
+        serialization_alias="taptempo",
+        json_schema_extra={"essential": 1, "type": "trigger", "shortname": "tt"},
     )
-    hz: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    hz: str | None = Field(
+        default=None,
+        serialization_alias="hz",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": ""},
     )
-    trigger: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    trigger: str | None = Field(
+        default=None,
+        serialization_alias="trigger",
+        json_schema_extra={"essential": 2, "type": "trigger", "shortname": "t"},
     )
-    reset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    reset: str | None = Field(
+        default=None,
+        serialization_alias="reset",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "r"},
     )
-    count: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    count: str | None = Field(
+        default=None,
+        serialization_alias="count",
+        json_schema_extra={"essential": 2, "type": "integer", "shortname": "c"},
     )
-    skip: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    skip: str | None = Field(
+        default=None,
+        serialization_alias="skip",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "s"},
     )
-    output: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    output: str | None = Field(
+        default=None,
+        serialization_alias="output",
+        json_schema_extra={"essential": 2, "type": "trigger", "shortname": "o"},
     )
 
 
-
-@dataclass
 class Clocktool(DroidCircuit):
-    """Clock divider / multiplier / shifter.
+    """ Clock divider / multiplier / shifter
 
     Args:
         clock (trigger):
@@ -168,56 +172,64 @@ class Clocktool(DroidCircuit):
         outputpitch (cv):
           Same for the modified output clock
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 96
-    clock: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    _ramsize: int = 96
+
+    clock: str | None = Field(
+        default=None,
+        serialization_alias="clock",
+        json_schema_extra={"essential": 2, "type": "trigger", "shortname": "c"},
     )
-    reset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    reset: str | None = Field(
+        default=None,
+        serialization_alias="reset",
+        json_schema_extra={"essential": 1, "type": "trigger", "shortname": "r"},
     )
-    divide: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    divide: str | None = Field(
+        default=None,
+        serialization_alias="divide",
+        json_schema_extra={"essential": 1, "type": "integer", "shortname": "d"},
     )
-    multiply: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    multiply: str | None = Field(
+        default=None,
+        serialization_alias="multiply",
+        json_schema_extra={"essential": 1, "type": "integer", "shortname": "m"},
     )
-    dutycycle: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_bipolar(ramsize=0)
+    dutycycle: str | None = Field(
+        default=None,
+        serialization_alias="dutycycle",
+        json_schema_extra={"essential": 0, "type": "bipolar", "shortname": "dc"},
     )
-    gatelength: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    gatelength: str | None = Field(
+        default=None,
+        serialization_alias="gatelength",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "gl"},
     )
-    delay: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    delay: str | None = Field(
+        default=None,
+        serialization_alias="delay",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "dl"},
     )
-    output: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    output: str | None = Field(
+        default=None,
+        serialization_alias="output",
+        json_schema_extra={"essential": 2, "type": "gate", "shortname": "o"},
     )
-    inputpitch: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    inputpitch: str | None = Field(
+        default=None,
+        serialization_alias="inputpitch",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "ip"},
     )
-    outputpitch: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    outputpitch: str | None = Field(
+        default=None,
+        serialization_alias="outputpitch",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "op"},
     )
 
 
-
-@dataclass
 class Flipflop(DroidCircuit):
-    """Simple flip flop.
+    """ Simple flip flop
 
     Args:
         toggle (trigger):
@@ -239,48 +251,54 @@ class Flipflop(DroidCircuit):
         output (gate):
           Outputs the current value of the flip flop: either 0 or 1.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 40
-    toggle: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    _ramsize: int = 40
+
+    toggle: str | None = Field(
+        default=None,
+        serialization_alias="toggle",
+        json_schema_extra={"essential": 2, "type": "trigger", "shortname": "t"},
     )
-    set: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    set: str | None = Field(
+        default=None,
+        serialization_alias="set",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "s"},
     )
-    reset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    reset: str | None = Field(
+        default=None,
+        serialization_alias="reset",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "r"},
     )
-    clear: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    clear: str | None = Field(
+        default=None,
+        serialization_alias="clear",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "cl"},
     )
-    startvalue: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    startvalue: str | None = Field(
+        default=None,
+        serialization_alias="startvalue",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "sv"},
     )
-    load: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    load: str | None = Field(
+        default=None,
+        serialization_alias="load",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ld"},
     )
-    loadvalue: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    loadvalue: str | None = Field(
+        default=None,
+        serialization_alias="loadvalue",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "lv"},
     )
-    output: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    output: str | None = Field(
+        default=None,
+        serialization_alias="output",
+        json_schema_extra={"essential": 2, "type": "gate", "shortname": "o"},
     )
 
 
-
-@dataclass
 class Gatetool(DroidCircuit):
-    """Operate on triggers and gates, modify gatelength.
+    """ Operate on triggers and gates, modify gatelength
 
     Args:
         inputgate (gate):
@@ -311,60 +329,69 @@ class Gatetool(DroidCircuit):
         outputedge (gate):
           Toggle between 0 and 1 at every gate, trigger or edge event.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 56
-    inputgate: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    _ramsize: int = 56
+
+    inputgate: str | None = Field(
+        default=None,
+        serialization_alias="inputgate",
+        json_schema_extra={"essential": 2, "type": "gate", "shortname": "ig"},
     )
-    inputtrigger: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    inputtrigger: str | None = Field(
+        default=None,
+        serialization_alias="inputtrigger",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "it"},
     )
-    inputedge: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    inputedge: str | None = Field(
+        default=None,
+        serialization_alias="inputedge",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ie"},
     )
-    gatelength: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    gatelength: str | None = Field(
+        default=None,
+        serialization_alias="gatelength",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "gl"},
     )
-    gatestretch: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    gatestretch: str | None = Field(
+        default=None,
+        serialization_alias="gatestretch",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "s"},
     )
-    mingatelength: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    mingatelength: str | None = Field(
+        default=None,
+        serialization_alias="mingatelength",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "m"},
     )
-    maxgatelength: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    maxgatelength: str | None = Field(
+        default=None,
+        serialization_alias="maxgatelength",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "x"},
     )
-    taptempo: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    taptempo: str | None = Field(
+        default=None,
+        serialization_alias="taptempo",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "tt"},
     )
-    outputgate: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    outputgate: str | None = Field(
+        default=None,
+        serialization_alias="outputgate",
+        json_schema_extra={"essential": 2, "type": "gate", "shortname": "og"},
     )
-    outputtrigger: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    outputtrigger: str | None = Field(
+        default=None,
+        serialization_alias="outputtrigger",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ot"},
     )
-    outputedge: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    outputedge: str | None = Field(
+        default=None,
+        serialization_alias="outputedge",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "oe"},
     )
 
 
-
-@dataclass
 class Once(DroidCircuit):
-    """Output one trigger after the Droid has started.
+    """ Output one trigger after the Droid has started
 
     Args:
         delay (cv):
@@ -379,28 +406,29 @@ class Once(DroidCircuit):
         trigger (trigger):
           The trigger is output here.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 24
-    delay: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    _ramsize: int = 24
+
+    delay: str | None = Field(
+        default=None,
+        serialization_alias="delay",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "dl"},
     )
-    onlycoldstart: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    onlycoldstart: str | None = Field(
+        default=None,
+        serialization_alias="onlycoldstart",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "c"},
     )
-    trigger: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    trigger: str | None = Field(
+        default=None,
+        serialization_alias="trigger",
+        json_schema_extra={"essential": 2, "type": "trigger", "shortname": "t"},
     )
 
 
-
-@dataclass
 class Timing(DroidCircuit):
-    """Shuffle/swing and complex timing generator.
+    """ Shuffle/swing and complex timing generator
 
     Args:
         clock (trigger):
@@ -409,101 +437,94 @@ class Timing(DroidCircuit):
           A trigger here resets the internal step counter and restart at step 1.
         timing1 (cv):
           Specifies a relative timing for each step in relation to the input clock. A
-          timing of 0.3 will shift the respective beat 30% of a clock cycle behind,
-          while -0.3 will make it 30% early.  The timing values are clipped into the
-          range -0.9999 …0.9999.
+          timing of 0.3 will shift the respective beat 30
         timing2 (cv):
           Specifies a relative timing for each step in relation to the input clock. A
-          timing of 0.3 will shift the respective beat 30% of a clock cycle behind,
-          while -0.3 will make it 30% early.  The timing values are clipped into the
-          range -0.9999 …0.9999.
+          timing of 0.3 will shift the respective beat 30
         timing3 (cv):
           Specifies a relative timing for each step in relation to the input clock. A
-          timing of 0.3 will shift the respective beat 30% of a clock cycle behind,
-          while -0.3 will make it 30% early.  The timing values are clipped into the
-          range -0.9999 …0.9999.
+          timing of 0.3 will shift the respective beat 30
         timing4 (cv):
           Specifies a relative timing for each step in relation to the input clock. A
-          timing of 0.3 will shift the respective beat 30% of a clock cycle behind,
-          while -0.3 will make it 30% early.  The timing values are clipped into the
-          range -0.9999 …0.9999.
+          timing of 0.3 will shift the respective beat 30
         timing5 (cv):
           Specifies a relative timing for each step in relation to the input clock. A
-          timing of 0.3 will shift the respective beat 30% of a clock cycle behind,
-          while -0.3 will make it 30% early.  The timing values are clipped into the
-          range -0.9999 …0.9999.
+          timing of 0.3 will shift the respective beat 30
         timing6 (cv):
           Specifies a relative timing for each step in relation to the input clock. A
-          timing of 0.3 will shift the respective beat 30% of a clock cycle behind,
-          while -0.3 will make it 30% early.  The timing values are clipped into the
-          range -0.9999 …0.9999.
+          timing of 0.3 will shift the respective beat 30
         timing7 (cv):
           Specifies a relative timing for each step in relation to the input clock. A
-          timing of 0.3 will shift the respective beat 30% of a clock cycle behind,
-          while -0.3 will make it 30% early.  The timing values are clipped into the
-          range -0.9999 …0.9999.
+          timing of 0.3 will shift the respective beat 30
         timing8 (cv):
           Specifies a relative timing for each step in relation to the input clock. A
-          timing of 0.3 will shift the respective beat 30% of a clock cycle behind,
-          while -0.3 will make it 30% early.  The timing values are clipped into the
-          range -0.9999 …0.9999.
+          timing of 0.3 will shift the respective beat 30
         output (trigger):
           Here comes the modified output clock
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 56
-    clock: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    _ramsize: int = 56
+
+    clock: str | None = Field(
+        default=None,
+        serialization_alias="clock",
+        json_schema_extra={"essential": 2, "type": "trigger", "shortname": "c"},
     )
-    reset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    reset: str | None = Field(
+        default=None,
+        serialization_alias="reset",
+        json_schema_extra={"essential": 1, "type": "trigger", "shortname": "r"},
     )
-    timing1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    timing1: str | None = Field(
+        default=None,
+        serialization_alias="timing1",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "t1"},
     )
-    timing2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    timing2: str | None = Field(
+        default=None,
+        serialization_alias="timing2",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "t2"},
     )
-    timing3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    timing3: str | None = Field(
+        default=None,
+        serialization_alias="timing3",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "t3"},
     )
-    timing4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    timing4: str | None = Field(
+        default=None,
+        serialization_alias="timing4",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "t4"},
     )
-    timing5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    timing5: str | None = Field(
+        default=None,
+        serialization_alias="timing5",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "t5"},
     )
-    timing6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    timing6: str | None = Field(
+        default=None,
+        serialization_alias="timing6",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "t6"},
     )
-    timing7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    timing7: str | None = Field(
+        default=None,
+        serialization_alias="timing7",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "t7"},
     )
-    timing8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    timing8: str | None = Field(
+        default=None,
+        serialization_alias="timing8",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "t8"},
     )
-    output: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    output: str | None = Field(
+        default=None,
+        serialization_alias="output",
+        json_schema_extra={"essential": 2, "type": "trigger", "shortname": "o"},
     )
 
 
-
-@dataclass
 class Triggerdelay(DroidCircuit):
-    """Trigger Delay with multi tap and optional clocking.
+    """ Trigger Delay with multi tap and optional clocking
 
     Args:
         input (gate):
@@ -538,42 +559,48 @@ class Triggerdelay(DroidCircuit):
           this output outputs a gate of 0.5 sec length. You can wire this to an LED in
           order to know when this happens.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 248
-    input: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    delay: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    gatelength: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    repeats: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    mute: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    clock: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
-    )
-    output: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    overflow: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
+    _ramsize: int = 248
 
-
+    input: str | None = Field(
+        default=None,
+        serialization_alias="input",
+        json_schema_extra={"essential": 2, "type": "gate", "shortname": "i"},
+    )
+    delay: str | None = Field(
+        default=None,
+        serialization_alias="delay",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "dl"},
+    )
+    gatelength: str | None = Field(
+        default=None,
+        serialization_alias="gatelength",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "gl"},
+    )
+    repeats: str | None = Field(
+        default=None,
+        serialization_alias="repeats",
+        json_schema_extra={"essential": 1, "type": "integer", "shortname": "rp"},
+    )
+    mute: str | None = Field(
+        default=None,
+        serialization_alias="mute",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "m"},
+    )
+    clock: str | None = Field(
+        default=None,
+        serialization_alias="clock",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "c"},
+    )
+    output: str | None = Field(
+        default=None,
+        serialization_alias="output",
+        json_schema_extra={"essential": 2, "type": "gate", "shortname": "o"},
+    )
+    overflow: str | None = Field(
+        default=None,
+        serialization_alias="overflow",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ov"},
+    )
 

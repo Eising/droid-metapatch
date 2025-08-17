@@ -13,7 +13,7 @@ from typing import Any, ClassVar, TypeGuard, cast
 from .base import Circuit, Controller, Label
 from .options import Option, BoolOption, NumberOption, EnumOption, Preset
 from .utils import write_patch_section
-from .circuits.base import dataclass_to_circuit, transform, DroidCircuit
+from .circuits.base import transform, DroidCircuit
 
 
 # Some things to aid pdoc.
@@ -35,10 +35,6 @@ def _split_params(params: list[str]) -> dict[str, str]:
         patch_params[key] = str(value)
 
     return patch_params
-
-def is_droid_circuit(circuit: object) -> TypeGuard[DroidCircuit]:
-    """Confirm that an object is a circuit."""
-    return is_dataclass(circuit)
 
 
 
@@ -265,7 +261,7 @@ class PatchGenerator:
         patch = cls(**parameters)
         print(str(patch))
 
-    def add(self, circuit: Any, comment: str | None = None) -> None:
+    def add(self, circuit: DroidCircuit, comment: str | None = None) -> None:
         """Add a defined circuit.
 
         This is used when adding one of the circuit classes.
@@ -273,10 +269,10 @@ class PatchGenerator:
             circuit: The circuit class instance
             comment: Optional comment.
         """
-        if not is_droid_circuit(circuit):
-            raise ValueError("Unknown circuit type.")
+        if comment:
+            circuit.comment = comment
         self._circuits.append(
-            dataclass_to_circuit(circuit, self.section, comment=comment)
+            circuit.to_circuit(section=self.section)
         )
 
     def add_circuit(
@@ -350,7 +346,7 @@ class PatchGenerator:
             type: Type of controller, e.g. B32
             position: controller position, e.g. 1
         """
-        self._controllers.append(Controller(type, position))
+        self._controllers.append(Controller(type=type, position=position))
 
     @property
     def section(self) -> str | None:
@@ -480,7 +476,6 @@ class PatchGenerator:
         ```
 
         """
-        assert all([is_dataclass(circuit) for circuit in circuits]) is True
         if not ignore:
             ignore = []
 
@@ -501,7 +496,7 @@ class PatchGenerator:
         if not section:
             section = self.section
         for circuit in circuits:
-            self._circuits.append(dataclass_to_circuit(circuit, section))
+            self._circuits.append(circuit.to_circuit(section=section))
 
     @property
     def _has_sections(self) -> bool:

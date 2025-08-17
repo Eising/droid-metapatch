@@ -1,18 +1,14 @@
 """DROID circuits. These circuits are auto-generated from circuits.json."""
 
-from dataclasses import dataclass, field
-from typing import Optional
-
+from pydantic import AliasChoices, Field
 from metapatch.circuits.base import DroidCircuit
-from metapatch.circuits import circuit_types as ctype
 
 
 __droid_version__ = "blue-6"
 
 
-@dataclass
 class Calibrator(DroidCircuit):
-    """VCO Calibrator.
+    """ VCO Calibrator
 
     Args:
         input (voltperoctave):
@@ -126,128 +122,154 @@ class Calibrator(DroidCircuit):
           in semitones, so a value of 0.2 means a 20% of a semitone, which is the same
           is 20 cents.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 224
-    input: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    _ramsize: int = 224
+
+    input: str | None = Field(
+        default=None,
+        serialization_alias="input",
+        json_schema_extra={"essential": 2, "type": "voltperoctave", "shortname": "i"},
     )
-    nudgeup: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    nudgeup: str | None = Field(
+        default=None,
+        serialization_alias="nudgeup",
+        json_schema_extra={"essential": 2, "type": "trigger", "shortname": "nu"},
     )
-    nudgedown: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    nudgedown: str | None = Field(
+        default=None,
+        serialization_alias="nudgedown",
+        json_schema_extra={"essential": 2, "type": "trigger", "shortname": "nd"},
     )
-    clearhere: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    clearhere: str | None = Field(
+        default=None,
+        serialization_alias="clearhere",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ch"},
     )
-    nudgeamount: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    nudgeamount: str | None = Field(
+        default=None,
+        serialization_alias="nudgeamount",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "na"},
     )
-    tune0: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    tune0: str | None = Field(
+        default=None,
+        serialization_alias="tune0",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "t0"},
     )
-    tune1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    tune1: str | None = Field(
+        default=None,
+        serialization_alias="tune1",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "t1"},
     )
-    tune2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    tune2: str | None = Field(
+        default=None,
+        serialization_alias="tune2",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "t2"},
     )
-    tune3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    tune3: str | None = Field(
+        default=None,
+        serialization_alias="tune3",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "t3"},
     )
-    tune4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    tune4: str | None = Field(
+        default=None,
+        serialization_alias="tune4",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "t4"},
     )
-    tune5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    tune5: str | None = Field(
+        default=None,
+        serialization_alias="tune5",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "t5"},
     )
-    tune6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    tune6: str | None = Field(
+        default=None,
+        serialization_alias="tune6",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "t6"},
     )
-    tune7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    tune7: str | None = Field(
+        default=None,
+        serialization_alias="tune7",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "t7"},
     )
-    tune8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    tune8: str | None = Field(
+        default=None,
+        serialization_alias="tune8",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "t8"},
     )
-    tunelowtail: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    tunelowtail: str | None = Field(
+        default=None,
+        serialization_alias="tunelowtail",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "tl"},
     )
-    tunehightail: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    tunehightail: str | None = Field(
+        default=None,
+        serialization_alias="tunehightail",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "th"},
     )
-    select: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    select: str | None = Field(
+        default=None,
+        serialization_alias="select",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "s"},
     )
-    selectat: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    selectat: str | None = Field(
+        default=None,
+        serialization_alias="selectat",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "sa"},
     )
-    preset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    preset: str | None = Field(
+        default=None,
+        serialization_alias="preset",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "pr"},
     )
-    loadpreset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    loadpreset: str | None = Field(
+        default=None,
+        serialization_alias="loadpreset",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "lp"},
     )
-    savepreset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    savepreset: str | None = Field(
+        default=None,
+        serialization_alias="savepreset",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "sp"},
     )
-    clear: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    clear: str | None = Field(
+        default=None,
+        serialization_alias="clear",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "cl"},
     )
-    clearall: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    clearall: str | None = Field(
+        default=None,
+        serialization_alias="clearall",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "ca"},
     )
-    dontsave: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    dontsave: str | None = Field(
+        default=None,
+        serialization_alias="dontsave",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "dos"},
     )
-    output: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    output: str | None = Field(
+        default=None,
+        serialization_alias="output",
+        json_schema_extra={"essential": 2, "type": "voltperoctave", "shortname": "o"},
     )
-    ledup: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    ledup: str | None = Field(
+        default=None,
+        serialization_alias="ledup",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "lu"},
     )
-    leddown: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    leddown: str | None = Field(
+        default=None,
+        serialization_alias="leddown",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "ld"},
     )
-    correction: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    correction: str | None = Field(
+        default=None,
+        serialization_alias="correction",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "c"},
     )
 
 
-
-@dataclass
 class Chord(DroidCircuit):
-    """Chord generator.
+    """ Chord generator
 
     Args:
         pitch (voltperoctave):
@@ -354,128 +376,154 @@ class Chord(DroidCircuit):
         output4 (voltperoctave):
           1 ... 4 pitch output
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 136
-    pitch: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    _ramsize: int = 136
+
+    pitch: str | None = Field(
+        default=None,
+        serialization_alias="pitch",
+        json_schema_extra={"essential": 1, "type": "voltperoctave", "shortname": "p"},
     )
-    spread: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    spread: str | None = Field(
+        default=None,
+        serialization_alias="spread",
+        json_schema_extra={"essential": 1, "type": "voltperoctave", "shortname": "s"},
     )
-    inversion: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    inversion: str | None = Field(
+        default=None,
+        serialization_alias="inversion",
+        json_schema_extra={"essential": 1, "type": "integer", "shortname": "iv"},
     )
-    trigger: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    trigger: str | None = Field(
+        default=None,
+        serialization_alias="trigger",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "t"},
     )
-    root: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    root: str | None = Field(
+        default=None,
+        serialization_alias="root",
+        json_schema_extra={"essential": 1, "type": "integer", "shortname": "ro"},
     )
-    degree: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    degree: str | None = Field(
+        default=None,
+        serialization_alias="degree",
+        json_schema_extra={"essential": 1, "type": "integer", "shortname": "dg"},
     )
-    select1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    select1: str | None = Field(
+        default=None,
+        serialization_alias="select1",
+        json_schema_extra={"essential": 1, "type": "gate", "shortname": "s1"},
     )
-    select3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    select3: str | None = Field(
+        default=None,
+        serialization_alias="select3",
+        json_schema_extra={"essential": 1, "type": "gate", "shortname": "s3"},
     )
-    select5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    select5: str | None = Field(
+        default=None,
+        serialization_alias="select5",
+        json_schema_extra={"essential": 1, "type": "gate", "shortname": "s5"},
     )
-    select7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    select7: str | None = Field(
+        default=None,
+        serialization_alias="select7",
+        json_schema_extra={"essential": 1, "type": "gate", "shortname": "s7"},
     )
-    select9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    select9: str | None = Field(
+        default=None,
+        serialization_alias="select9",
+        json_schema_extra={"essential": 1, "type": "gate", "shortname": "s9"},
     )
-    select11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    select11: str | None = Field(
+        default=None,
+        serialization_alias="select11",
+        json_schema_extra={"essential": 1, "type": "gate", "shortname": "s11"},
     )
-    select13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    select13: str | None = Field(
+        default=None,
+        serialization_alias="select13",
+        json_schema_extra={"essential": 1, "type": "gate", "shortname": "s13"},
     )
-    selectfill1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    selectfill1: str | None = Field(
+        default=None,
+        serialization_alias="selectfill1",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "sf1"},
     )
-    selectfill2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    selectfill2: str | None = Field(
+        default=None,
+        serialization_alias="selectfill2",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "sf2"},
     )
-    selectfill3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    selectfill3: str | None = Field(
+        default=None,
+        serialization_alias="selectfill3",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "sf3"},
     )
-    selectfill4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    selectfill4: str | None = Field(
+        default=None,
+        serialization_alias="selectfill4",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "sf4"},
     )
-    selectfill5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    selectfill5: str | None = Field(
+        default=None,
+        serialization_alias="selectfill5",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "sf5"},
     )
-    harmonicshift: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    harmonicshift: str | None = Field(
+        default=None,
+        serialization_alias="harmonicshift",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "has"},
     )
-    noteshift: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    noteshift: str | None = Field(
+        default=None,
+        serialization_alias="noteshift",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "nos"},
     )
-    selectnoteshift: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    selectnoteshift: str | None = Field(
+        default=None,
+        serialization_alias="selectnoteshift",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "sns"},
     )
-    tuningmode: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    tuningmode: str | None = Field(
+        default=None,
+        serialization_alias="tuningmode",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "tm"},
     )
-    tuningpitch: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    tuningpitch: str | None = Field(
+        default=None,
+        serialization_alias="tuningpitch",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "tp"},
     )
-    transpose: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    transpose: str | None = Field(
+        default=None,
+        serialization_alias="transpose",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "tr"},
     )
-    output1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    output1: str | None = Field(
+        default=None,
+        serialization_alias="output1",
+        json_schema_extra={"essential": 2, "type": "voltperoctave", "shortname": "o1"},
     )
-    output2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    output2: str | None = Field(
+        default=None,
+        serialization_alias="output2",
+        json_schema_extra={"essential": 2, "type": "voltperoctave", "shortname": "o2"},
     )
-    output3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    output3: str | None = Field(
+        default=None,
+        serialization_alias="output3",
+        json_schema_extra={"essential": 2, "type": "voltperoctave", "shortname": "o3"},
     )
-    output4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    output4: str | None = Field(
+        default=None,
+        serialization_alias="output4",
+        json_schema_extra={"essential": 2, "type": "voltperoctave", "shortname": "o4"},
     )
 
 
-
-@dataclass
 class Detune(DroidCircuit):
-    """Detune multiple voices in a most disharmonic way.
+    """ Detune multiple voices in a most disharmonic way
 
     Args:
         input1 (cv):
@@ -518,92 +566,109 @@ class Detune(DroidCircuit):
         output8 (cv):
 
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 56
-    input1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    _ramsize: int = 56
+
+    input1: str | None = Field(
+        default=None,
+        serialization_alias="input1",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "i1"},
     )
-    input2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    input2: str | None = Field(
+        default=None,
+        serialization_alias="input2",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "i2"},
     )
-    input3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    input3: str | None = Field(
+        default=None,
+        serialization_alias="input3",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "i3"},
     )
-    input4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    input4: str | None = Field(
+        default=None,
+        serialization_alias="input4",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "i4"},
     )
-    input5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    input5: str | None = Field(
+        default=None,
+        serialization_alias="input5",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "i5"},
     )
-    input6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    input6: str | None = Field(
+        default=None,
+        serialization_alias="input6",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "i6"},
     )
-    input7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    input7: str | None = Field(
+        default=None,
+        serialization_alias="input7",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "i7"},
     )
-    input8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    input8: str | None = Field(
+        default=None,
+        serialization_alias="input8",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "i8"},
     )
-    detune: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    detune: str | None = Field(
+        default=None,
+        serialization_alias="detune",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "d"},
     )
-    tuningmode: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    tuningmode: str | None = Field(
+        default=None,
+        serialization_alias="tuningmode",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "tm"},
     )
-    tuningpitch: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    tuningpitch: str | None = Field(
+        default=None,
+        serialization_alias="tuningpitch",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "tp"},
     )
-    output1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output1: str | None = Field(
+        default=None,
+        serialization_alias="output1",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o1"},
     )
-    output2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output2: str | None = Field(
+        default=None,
+        serialization_alias="output2",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o2"},
     )
-    output3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output3: str | None = Field(
+        default=None,
+        serialization_alias="output3",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o3"},
     )
-    output4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output4: str | None = Field(
+        default=None,
+        serialization_alias="output4",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o4"},
     )
-    output5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output5: str | None = Field(
+        default=None,
+        serialization_alias="output5",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "o5"},
     )
-    output6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output6: str | None = Field(
+        default=None,
+        serialization_alias="output6",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "o6"},
     )
-    output7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output7: str | None = Field(
+        default=None,
+        serialization_alias="output7",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "o7"},
     )
-    output8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output8: str | None = Field(
+        default=None,
+        serialization_alias="output8",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "o8"},
     )
 
 
-
-@dataclass
 class Fold(DroidCircuit):
-    """CV folder – keep (pitch) CV within certain bounds.
+    """ CV folder – keep (pitch) CV within certain bounds
 
     Args:
         input (cv):
@@ -621,36 +686,39 @@ class Fold(DroidCircuit):
         output (cv):
           Folded output voltage
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 32
-    input: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    _ramsize: int = 32
+
+    input: str | None = Field(
+        default=None,
+        serialization_alias="input",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "i"},
     )
-    foldby: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    foldby: str | None = Field(
+        default=None,
+        serialization_alias="foldby",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "f"},
     )
-    minimum: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    minimum: str | None = Field(
+        default=None,
+        serialization_alias="minimum",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "m"},
     )
-    maximum: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    maximum: str | None = Field(
+        default=None,
+        serialization_alias="maximum",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "x"},
     )
-    output: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output: str | None = Field(
+        default=None,
+        serialization_alias="output",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o"},
     )
 
 
-
-@dataclass
 class Minifonion(DroidCircuit):
-    """Musical quantizer.
+    """ Musical quantizer
 
     Args:
         input (voltperoctave):
@@ -747,116 +815,139 @@ class Minifonion(DroidCircuit):
           Whenever the quantization changes to a new note a trigger with the duration
           10 ms is output here. No trigger is output in bypass mode.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 112
-    input: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    _ramsize: int = 112
+
+    input: str | None = Field(
+        default=None,
+        serialization_alias="input",
+        json_schema_extra={"essential": 2, "type": "voltperoctave", "shortname": "i"},
     )
-    trigger: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    trigger: str | None = Field(
+        default=None,
+        serialization_alias="trigger",
+        json_schema_extra={"essential": 1, "type": "trigger", "shortname": "t"},
     )
-    bypass: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    bypass: str | None = Field(
+        default=None,
+        serialization_alias="bypass",
+        json_schema_extra={"essential": 1, "type": "gate", "shortname": "b"},
     )
-    root: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    root: str | None = Field(
+        default=None,
+        serialization_alias="root",
+        json_schema_extra={"essential": 1, "type": "integer", "shortname": "ro"},
     )
-    degree: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    degree: str | None = Field(
+        default=None,
+        serialization_alias="degree",
+        json_schema_extra={"essential": 1, "type": "integer", "shortname": "dg"},
     )
-    select1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    select1: str | None = Field(
+        default=None,
+        serialization_alias="select1",
+        json_schema_extra={"essential": 1, "type": "gate", "shortname": "s1"},
     )
-    select3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    select3: str | None = Field(
+        default=None,
+        serialization_alias="select3",
+        json_schema_extra={"essential": 1, "type": "gate", "shortname": "s3"},
     )
-    select5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    select5: str | None = Field(
+        default=None,
+        serialization_alias="select5",
+        json_schema_extra={"essential": 1, "type": "gate", "shortname": "s5"},
     )
-    select7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    select7: str | None = Field(
+        default=None,
+        serialization_alias="select7",
+        json_schema_extra={"essential": 1, "type": "gate", "shortname": "s7"},
     )
-    select9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    select9: str | None = Field(
+        default=None,
+        serialization_alias="select9",
+        json_schema_extra={"essential": 1, "type": "gate", "shortname": "s9"},
     )
-    select11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    select11: str | None = Field(
+        default=None,
+        serialization_alias="select11",
+        json_schema_extra={"essential": 1, "type": "gate", "shortname": "s11"},
     )
-    select13: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    select13: str | None = Field(
+        default=None,
+        serialization_alias="select13",
+        json_schema_extra={"essential": 1, "type": "gate", "shortname": "s13"},
     )
-    selectfill1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    selectfill1: str | None = Field(
+        default=None,
+        serialization_alias="selectfill1",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "sf1"},
     )
-    selectfill2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    selectfill2: str | None = Field(
+        default=None,
+        serialization_alias="selectfill2",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "sf2"},
     )
-    selectfill3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    selectfill3: str | None = Field(
+        default=None,
+        serialization_alias="selectfill3",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "sf3"},
     )
-    selectfill4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    selectfill4: str | None = Field(
+        default=None,
+        serialization_alias="selectfill4",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "sf4"},
     )
-    selectfill5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    selectfill5: str | None = Field(
+        default=None,
+        serialization_alias="selectfill5",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "sf5"},
     )
-    harmonicshift: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    harmonicshift: str | None = Field(
+        default=None,
+        serialization_alias="harmonicshift",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "has"},
     )
-    noteshift: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    noteshift: str | None = Field(
+        default=None,
+        serialization_alias="noteshift",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "nos"},
     )
-    selectnoteshift: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    selectnoteshift: str | None = Field(
+        default=None,
+        serialization_alias="selectnoteshift",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "sns"},
     )
-    tuningmode: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    tuningmode: str | None = Field(
+        default=None,
+        serialization_alias="tuningmode",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "tm"},
     )
-    tuningpitch: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    tuningpitch: str | None = Field(
+        default=None,
+        serialization_alias="tuningpitch",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "tp"},
     )
-    transpose: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    transpose: str | None = Field(
+        default=None,
+        serialization_alias="transpose",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "tr"},
     )
-    output: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    output: str | None = Field(
+        default=None,
+        serialization_alias="output",
+        json_schema_extra={"essential": 2, "type": "voltperoctave", "shortname": "o"},
     )
-    notechange: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    notechange: str | None = Field(
+        default=None,
+        serialization_alias="notechange",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "n"},
     )
 
 
-
-@dataclass
 class Octave(DroidCircuit):
-    """Multi-VCO octave animator.
+    """ Multi-VCO octave animator
 
     Args:
         input (voltperoctave):
@@ -887,44 +978,49 @@ class Octave(DroidCircuit):
           Outputs for the 1 V / octave of the three VCOs. output1 is an exact copy of
           input so you could omit that and rather patch VCO 1 to the original pitch CV.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 32
-    input: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    _ramsize: int = 32
+
+    input: str | None = Field(
+        default=None,
+        serialization_alias="input",
+        json_schema_extra={"essential": 2, "type": "voltperoctave", "shortname": "i"},
     )
-    spread: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_stepped(ramsize=0)
+    spread: str | None = Field(
+        default=None,
+        serialization_alias="spread",
+        json_schema_extra={"essential": 2, "type": "stepped", "shortname": "s"},
     )
-    detune: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    detune: str | None = Field(
+        default=None,
+        serialization_alias="detune",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "d"},
     )
-    fifths: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    fifths: str | None = Field(
+        default=None,
+        serialization_alias="fifths",
+        json_schema_extra={"essential": 1, "type": "gate", "shortname": "f"},
     )
-    output1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    output1: str | None = Field(
+        default=None,
+        serialization_alias="output1",
+        json_schema_extra={"essential": 2, "type": "voltperoctave", "shortname": "o1"},
     )
-    output2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    output2: str | None = Field(
+        default=None,
+        serialization_alias="output2",
+        json_schema_extra={"essential": 2, "type": "voltperoctave", "shortname": "o2"},
     )
-    output3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    output3: str | None = Field(
+        default=None,
+        serialization_alias="output3",
+        json_schema_extra={"essential": 2, "type": "voltperoctave", "shortname": "o3"},
     )
 
 
-
-@dataclass
 class Sinfonionlink(DroidCircuit):
-    """Sync harmonic state from Sinfonion.
+    """ Sync harmonic state from Sinfonion
 
     Args:
         root (integer):
@@ -959,56 +1055,64 @@ class Sinfonionlink(DroidCircuit):
         beat (trigger):
           Outputs a trigger for every beat (subdivision of a step).
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 56
-    root: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    _ramsize: int = 56
+
+    root: str | None = Field(
+        default=None,
+        serialization_alias="root",
+        json_schema_extra={"essential": 1, "type": "integer", "shortname": "ro"},
     )
-    degree: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    degree: str | None = Field(
+        default=None,
+        serialization_alias="degree",
+        json_schema_extra={"essential": 1, "type": "integer", "shortname": "dg"},
     )
-    transpose: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    transpose: str | None = Field(
+        default=None,
+        serialization_alias="transpose",
+        json_schema_extra={"essential": 1, "type": "voltperoctave", "shortname": "tr"},
     )
-    chaoticdetune: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    chaoticdetune: str | None = Field(
+        default=None,
+        serialization_alias="chaoticdetune",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "ch"},
     )
-    harmonicshift: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    harmonicshift: str | None = Field(
+        default=None,
+        serialization_alias="harmonicshift",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "has"},
     )
-    linkstate: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    linkstate: str | None = Field(
+        default=None,
+        serialization_alias="linkstate",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "ls"},
     )
-    clock: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    clock: str | None = Field(
+        default=None,
+        serialization_alias="clock",
+        json_schema_extra={"essential": 1, "type": "trigger", "shortname": "c"},
     )
-    reset: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    reset: str | None = Field(
+        default=None,
+        serialization_alias="reset",
+        json_schema_extra={"essential": 1, "type": "trigger", "shortname": "r"},
     )
-    step: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    step: str | None = Field(
+        default=None,
+        serialization_alias="step",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "s"},
     )
-    beat: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_trigger(ramsize=0)
+    beat: str | None = Field(
+        default=None,
+        serialization_alias="beat",
+        json_schema_extra={"essential": 0, "type": "trigger", "shortname": "b"},
     )
 
 
-
-@dataclass
 class Superjust(DroidCircuit):
-    """Perfect intonation of up to eight voices.
+    """ Perfect intonation of up to eight voices
 
     Args:
         input1 (voltperoctave):
@@ -1055,96 +1159,114 @@ class Superjust(DroidCircuit):
         output8 (voltperoctave):
           1 ... 8 pitch output
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 64
-    input1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    _ramsize: int = 64
+
+    input1: str | None = Field(
+        default=None,
+        serialization_alias="input1",
+        json_schema_extra={"essential": 2, "type": "voltperoctave", "shortname": "i1"},
     )
-    input2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    input2: str | None = Field(
+        default=None,
+        serialization_alias="input2",
+        json_schema_extra={"essential": 2, "type": "voltperoctave", "shortname": "i2"},
     )
-    input3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    input3: str | None = Field(
+        default=None,
+        serialization_alias="input3",
+        json_schema_extra={"essential": 2, "type": "voltperoctave", "shortname": "i3"},
     )
-    input4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    input4: str | None = Field(
+        default=None,
+        serialization_alias="input4",
+        json_schema_extra={"essential": 2, "type": "voltperoctave", "shortname": "i4"},
     )
-    input5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    input5: str | None = Field(
+        default=None,
+        serialization_alias="input5",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "i5"},
     )
-    input6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    input6: str | None = Field(
+        default=None,
+        serialization_alias="input6",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "i6"},
     )
-    input7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    input7: str | None = Field(
+        default=None,
+        serialization_alias="input7",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "i7"},
     )
-    input8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    input8: str | None = Field(
+        default=None,
+        serialization_alias="input8",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "i8"},
     )
-    tuningmode: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    tuningmode: str | None = Field(
+        default=None,
+        serialization_alias="tuningmode",
+        json_schema_extra={"essential": 1, "type": "gate", "shortname": "tm"},
     )
-    tuningpitch: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    tuningpitch: str | None = Field(
+        default=None,
+        serialization_alias="tuningpitch",
+        json_schema_extra={"essential": 1, "type": "voltperoctave", "shortname": "tp"},
     )
-    bypass: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    bypass: str | None = Field(
+        default=None,
+        serialization_alias="bypass",
+        json_schema_extra={"essential": 1, "type": "gate", "shortname": "b"},
     )
-    transpose: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    transpose: str | None = Field(
+        default=None,
+        serialization_alias="transpose",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "tr"},
     )
-    output1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    output1: str | None = Field(
+        default=None,
+        serialization_alias="output1",
+        json_schema_extra={"essential": 2, "type": "voltperoctave", "shortname": "o1"},
     )
-    output2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    output2: str | None = Field(
+        default=None,
+        serialization_alias="output2",
+        json_schema_extra={"essential": 2, "type": "voltperoctave", "shortname": "o2"},
     )
-    output3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    output3: str | None = Field(
+        default=None,
+        serialization_alias="output3",
+        json_schema_extra={"essential": 2, "type": "voltperoctave", "shortname": "o3"},
     )
-    output4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    output4: str | None = Field(
+        default=None,
+        serialization_alias="output4",
+        json_schema_extra={"essential": 2, "type": "voltperoctave", "shortname": "o4"},
     )
-    output5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    output5: str | None = Field(
+        default=None,
+        serialization_alias="output5",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "o5"},
     )
-    output6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    output6: str | None = Field(
+        default=None,
+        serialization_alias="output6",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "o6"},
     )
-    output7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    output7: str | None = Field(
+        default=None,
+        serialization_alias="output7",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "o7"},
     )
-    output8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
+    output8: str | None = Field(
+        default=None,
+        serialization_alias="output8",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "o8"},
     )
 
 
-
-@dataclass
 class Vcotuner(DroidCircuit):
-    """measure frequency and tuning of a VCO.
+    """ measure frequency and tuning of a VCO
 
     Args:
         tuningnote (integer):
@@ -1222,78 +1344,93 @@ class Vcotuner(DroidCircuit):
           This output is 1 whenever a valid input signal is found on the tuning input
           I1.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 0
-    tuningnote: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    concertpitch: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    basepitch: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    smooth: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    precision: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    select: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    selectat: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    hz: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    ledflat: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    ledsharp: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
-    )
-    ledintune: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    intune: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
-    tuning: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_bipolar(ramsize=0)
-    )
-    cents: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_bipolar(ramsize=0)
-    )
-    pitch: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    referencepitch: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_voltperoctave(ramsize=0)
-    )
-    vcofound: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
-    )
+    _ramsize: int = None
 
-
+    tuningnote: str | None = Field(
+        default=None,
+        serialization_alias="tuningnote",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "tn"},
+    )
+    concertpitch: str | None = Field(
+        default=None,
+        serialization_alias="concertpitch",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "cp"},
+    )
+    basepitch: str | None = Field(
+        default=None,
+        serialization_alias="basepitch",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "b"},
+    )
+    smooth: str | None = Field(
+        default=None,
+        serialization_alias="smooth",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "sm"},
+    )
+    precision: str | None = Field(
+        default=None,
+        serialization_alias="precision",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "pc"},
+    )
+    select: str | None = Field(
+        default=None,
+        serialization_alias="select",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "s"},
+    )
+    selectat: str | None = Field(
+        default=None,
+        serialization_alias="selectat",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "sa"},
+    )
+    hz: str | None = Field(
+        default=None,
+        serialization_alias="hz",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": ""},
+    )
+    ledflat: str | None = Field(
+        default=None,
+        serialization_alias="ledflat",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "lf"},
+    )
+    ledsharp: str | None = Field(
+        default=None,
+        serialization_alias="ledsharp",
+        json_schema_extra={"essential": 1, "type": "fraction", "shortname": "ls"},
+    )
+    ledintune: str | None = Field(
+        default=None,
+        serialization_alias="ledintune",
+        json_schema_extra={"essential": 1, "type": "gate", "shortname": "lt"},
+    )
+    intune: str | None = Field(
+        default=None,
+        serialization_alias="intune",
+        json_schema_extra={"essential": 1, "type": "gate", "shortname": "it"},
+    )
+    tuning: str | None = Field(
+        default=None,
+        serialization_alias="tuning",
+        json_schema_extra={"essential": 0, "type": "bipolar", "shortname": "t"},
+    )
+    cents: str | None = Field(
+        default=None,
+        serialization_alias="cents",
+        json_schema_extra={"essential": 0, "type": "bipolar", "shortname": "c"},
+    )
+    pitch: str | None = Field(
+        default=None,
+        serialization_alias="pitch",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "p"},
+    )
+    referencepitch: str | None = Field(
+        default=None,
+        serialization_alias="referencepitch",
+        json_schema_extra={"essential": 0, "type": "voltperoctave", "shortname": "rp"},
+    )
+    vcofound: str | None = Field(
+        default=None,
+        serialization_alias="vcofound",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "vf"},
+    )
 

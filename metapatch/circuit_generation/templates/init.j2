@@ -10,19 +10,19 @@ These circuits are auto-generated from circuits.json for droid firmware version
 __docformat__ = "google"
 
 
-{% for category, collection in categories.items() %}
+{% for category, circuits in categories.items() %}
 from .{{ category }} import (
-    {% for circuit in collection.circuits %}
-    {{ circuit.name|capitalize }},
+    {% for circuit_name in circuits.keys() %}
+    {{ circuit_name|capitalize }},
     {% endfor %}
 )
 {% endfor %}
 
 
 __all__ = (
-{% for category, collection in categories.items() %}
-    {% for circuit in collection.circuits %}
-    "{{ circuit.name|capitalize }}",
+{% for category, circuits in categories.items() %}
+    {% for circuit_name in circuits.keys() %}
+    "{{ circuit_name|capitalize }}",
     {% endfor %}
 {% endfor %}
 )

@@ -1,18 +1,14 @@
 """DROID circuits. These circuits are auto-generated from circuits.json."""
 
-from dataclasses import dataclass, field
-from typing import Optional
-
+from pydantic import AliasChoices, Field
 from metapatch.circuits.base import DroidCircuit
-from metapatch.circuits import circuit_types as ctype
 
 
 __droid_version__ = "blue-6"
 
 
-@dataclass
 class Adc(DroidCircuit):
-    """AD Converter with 12 bits.
+    """ AD Converter with 12 bits
 
     Args:
         input (cv):
@@ -84,76 +80,89 @@ class Adc(DroidCircuit):
           need the full resolution of 12 bits, simply just use the first couple of
           outputs.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 56
-    input: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    _ramsize: int = 56
+
+    input: str | None = Field(
+        default=None,
+        serialization_alias="input",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "i"},
     )
-    minimum: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    minimum: str | None = Field(
+        default=None,
+        serialization_alias="minimum",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "m"},
     )
-    maximum: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    maximum: str | None = Field(
+        default=None,
+        serialization_alias="maximum",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "x"},
     )
-    bit1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    bit1: str | None = Field(
+        default=None,
+        serialization_alias="bit1",
+        json_schema_extra={"essential": 2, "type": "gate", "shortname": "b1"},
     )
-    bit2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    bit2: str | None = Field(
+        default=None,
+        serialization_alias="bit2",
+        json_schema_extra={"essential": 2, "type": "gate", "shortname": "b2"},
     )
-    bit3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    bit3: str | None = Field(
+        default=None,
+        serialization_alias="bit3",
+        json_schema_extra={"essential": 2, "type": "gate", "shortname": "b3"},
     )
-    bit4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    bit4: str | None = Field(
+        default=None,
+        serialization_alias="bit4",
+        json_schema_extra={"essential": 2, "type": "gate", "shortname": "b4"},
     )
-    bit5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    bit5: str | None = Field(
+        default=None,
+        serialization_alias="bit5",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b5"},
     )
-    bit6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    bit6: str | None = Field(
+        default=None,
+        serialization_alias="bit6",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b6"},
     )
-    bit7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    bit7: str | None = Field(
+        default=None,
+        serialization_alias="bit7",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b7"},
     )
-    bit8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    bit8: str | None = Field(
+        default=None,
+        serialization_alias="bit8",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b8"},
     )
-    bit9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    bit9: str | None = Field(
+        default=None,
+        serialization_alias="bit9",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b9"},
     )
-    bit10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    bit10: str | None = Field(
+        default=None,
+        serialization_alias="bit10",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b10"},
     )
-    bit11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    bit11: str | None = Field(
+        default=None,
+        serialization_alias="bit11",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b11"},
     )
-    bit12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    bit12: str | None = Field(
+        default=None,
+        serialization_alias="bit12",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b12"},
     )
 
 
-
-@dataclass
 class Compare(DroidCircuit):
-    """Compare two values.
+    """ Compare two values
 
     Args:
         input (cv):
@@ -170,55 +179,61 @@ class Compare(DroidCircuit):
           Value to be output if input is equal to compare within the precision defined
           by precision. If you patch nothing here, the value of the input else will be
           used.
-        else_ (cv):
+        else (cv):
           Specifies the output value in case non of the stated conditions are met.
         precision (cv):
           An optional precision to be used by ifequal
         output (cv):
           Here one of ifgreater, ifless or ifequal is output.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 32
-    input: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    _ramsize: int = 32
+
+    input: str | None = Field(
+        default=None,
+        serialization_alias="input",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "i"},
     )
-    compare: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    compare: str | None = Field(
+        default=None,
+        serialization_alias="compare",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "c"},
     )
-    ifgreater: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ifgreater: str | None = Field(
+        default=None,
+        serialization_alias="ifgreater",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "g"},
     )
-    ifless: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ifless: str | None = Field(
+        default=None,
+        serialization_alias="ifless",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "l"},
     )
-    ifequal: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ifequal: str | None = Field(
+        default=None,
+        serialization_alias="ifequal",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "q"},
     )
-    else_: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    else_: str | None = Field(
+        default=None,
+        serialization_alias="else",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "e"},
     )
-    precision: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    precision: str | None = Field(
+        default=None,
+        serialization_alias="precision",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "pc"},
     )
-    output: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output: str | None = Field(
+        default=None,
+        serialization_alias="output",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o"},
     )
 
 
-
-@dataclass
 class Copy(DroidCircuit):
-    """Copy a signal, while applying attenuation and offset.
+    """ Copy a signal, while applying attenuation and offset
 
     Args:
         input (cv):
@@ -226,24 +241,24 @@ class Copy(DroidCircuit):
         output (cv):
           The resulting signal will be sent here.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 24
-    input: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    _ramsize: int = 24
+
+    input: str | None = Field(
+        default=None,
+        serialization_alias="input",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "i"},
     )
-    output: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output: str | None = Field(
+        default=None,
+        serialization_alias="output",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o"},
     )
 
 
-
-@dataclass
 class Dac(DroidCircuit):
-    """DA Converter with 12 bits.
+    """ DA Converter with 12 bits
 
     Args:
         bit1 (gate):
@@ -291,76 +306,89 @@ class Dac(DroidCircuit):
         output (cv):
           Output signal.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 56
-    bit1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    _ramsize: int = 56
+
+    bit1: str | None = Field(
+        default=None,
+        serialization_alias="bit1",
+        json_schema_extra={"essential": 2, "type": "gate", "shortname": "b1"},
     )
-    bit2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    bit2: str | None = Field(
+        default=None,
+        serialization_alias="bit2",
+        json_schema_extra={"essential": 2, "type": "gate", "shortname": "b2"},
     )
-    bit3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    bit3: str | None = Field(
+        default=None,
+        serialization_alias="bit3",
+        json_schema_extra={"essential": 2, "type": "gate", "shortname": "b3"},
     )
-    bit4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    bit4: str | None = Field(
+        default=None,
+        serialization_alias="bit4",
+        json_schema_extra={"essential": 2, "type": "gate", "shortname": "b4"},
     )
-    bit5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    bit5: str | None = Field(
+        default=None,
+        serialization_alias="bit5",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b5"},
     )
-    bit6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    bit6: str | None = Field(
+        default=None,
+        serialization_alias="bit6",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b6"},
     )
-    bit7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    bit7: str | None = Field(
+        default=None,
+        serialization_alias="bit7",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b7"},
     )
-    bit8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    bit8: str | None = Field(
+        default=None,
+        serialization_alias="bit8",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b8"},
     )
-    bit9: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    bit9: str | None = Field(
+        default=None,
+        serialization_alias="bit9",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b9"},
     )
-    bit10: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    bit10: str | None = Field(
+        default=None,
+        serialization_alias="bit10",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b10"},
     )
-    bit11: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    bit11: str | None = Field(
+        default=None,
+        serialization_alias="bit11",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b11"},
     )
-    bit12: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    bit12: str | None = Field(
+        default=None,
+        serialization_alias="bit12",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "b12"},
     )
-    minimum: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    minimum: str | None = Field(
+        default=None,
+        serialization_alias="minimum",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "m"},
     )
-    maximum: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    maximum: str | None = Field(
+        default=None,
+        serialization_alias="maximum",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "x"},
     )
-    output: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output: str | None = Field(
+        default=None,
+        serialization_alias="output",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o"},
     )
 
 
-
-@dataclass
 class Explin(DroidCircuit):
-    """Exponential to linear converter.
+    """ Exponential to linear converter
 
     Args:
         input (cv):
@@ -381,36 +409,39 @@ class Explin(DroidCircuit):
         output (cv):
           Here comes the resulting linear output
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 32
-    input: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    _ramsize: int = 32
+
+    input: str | None = Field(
+        default=None,
+        serialization_alias="input",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "i"},
     )
-    startvalue: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    startvalue: str | None = Field(
+        default=None,
+        serialization_alias="startvalue",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "sv"},
     )
-    endvalue: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    endvalue: str | None = Field(
+        default=None,
+        serialization_alias="endvalue",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "ev"},
     )
-    mix: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_fraction(ramsize=0)
+    mix: str | None = Field(
+        default=None,
+        serialization_alias="mix",
+        json_schema_extra={"essential": 0, "type": "fraction", "shortname": "m"},
     )
-    output: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output: str | None = Field(
+        default=None,
+        serialization_alias="output",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o"},
     )
 
 
-
-@dataclass
 class Ifequal(DroidCircuit):
-    """Check if two values are equal.
+    """ Check if two values are equal
 
     Args:
         input1 (cv):
@@ -419,41 +450,44 @@ class Ifequal(DroidCircuit):
           Another value
         ifequal (cv):
           Value to be output if input1 is exactly equal to input2.
-        else_ (cv):
+        else (cv):
           Value to output otherwise.
         output (cv):
           Here comes the result.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 32
-    input1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    _ramsize: int = 32
+
+    input1: str | None = Field(
+        default=None,
+        serialization_alias="input1",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "i1"},
     )
-    input2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    input2: str | None = Field(
+        default=None,
+        serialization_alias="input2",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "i2"},
     )
-    ifequal: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ifequal: str | None = Field(
+        default=None,
+        serialization_alias="ifequal",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "q"},
     )
-    else_: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    else_: str | None = Field(
+        default=None,
+        serialization_alias="else",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "e"},
     )
-    output: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output: str | None = Field(
+        default=None,
+        serialization_alias="output",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o"},
     )
 
 
-
-@dataclass
 class Logic(DroidCircuit):
-    """Logic operations utility.
+    """ Logic operations utility
 
     Args:
         input1 (gate):
@@ -499,10 +533,10 @@ class Logic(DroidCircuit):
           Output value that is output for a logic high, true or on.
         countvalue (cv):
           Value added to the count output for each input with a high level
-        and_ (cv):
+        and (cv):
           A logic AND operation on all patched inputs: This output is set to highvalue
           if all inputs are high (i.e. at least threshold), else lowvalue
-        or_ (cv):
+        or (cv):
           A logic OR operation on all patched inputs: This output is set to highvalue if
           at least one of the inputs is high
         xor (cv):
@@ -523,96 +557,114 @@ class Logic(DroidCircuit):
         countlow (cv):
           Adds countvalue to this output for each input that is low.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 56
-    input1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    _ramsize: int = 56
+
+    input1: str | None = Field(
+        default=None,
+        serialization_alias="input1",
+        json_schema_extra={"essential": 2, "type": "gate", "shortname": "i1"},
     )
-    input2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    input2: str | None = Field(
+        default=None,
+        serialization_alias="input2",
+        json_schema_extra={"essential": 2, "type": "gate", "shortname": "i2"},
     )
-    input3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    input3: str | None = Field(
+        default=None,
+        serialization_alias="input3",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "i3"},
     )
-    input4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    input4: str | None = Field(
+        default=None,
+        serialization_alias="input4",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "i4"},
     )
-    input5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    input5: str | None = Field(
+        default=None,
+        serialization_alias="input5",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "i5"},
     )
-    input6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    input6: str | None = Field(
+        default=None,
+        serialization_alias="input6",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "i6"},
     )
-    input7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    input7: str | None = Field(
+        default=None,
+        serialization_alias="input7",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "i7"},
     )
-    input8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_gate(ramsize=0)
+    input8: str | None = Field(
+        default=None,
+        serialization_alias="input8",
+        json_schema_extra={"essential": 0, "type": "gate", "shortname": "i8"},
     )
-    threshold: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    threshold: str | None = Field(
+        default=None,
+        serialization_alias="threshold",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "t"},
     )
-    lowvalue: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    lowvalue: str | None = Field(
+        default=None,
+        serialization_alias="lowvalue",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "l"},
     )
-    highvalue: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    highvalue: str | None = Field(
+        default=None,
+        serialization_alias="highvalue",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "h"},
     )
-    countvalue: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    countvalue: str | None = Field(
+        default=None,
+        serialization_alias="countvalue",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "cv"},
     )
-    and_: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    and_: str | None = Field(
+        default=None,
+        serialization_alias="and",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "a"},
     )
-    or_: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    or_: str | None = Field(
+        default=None,
+        serialization_alias="or",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "o"},
     )
-    xor: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    xor: str | None = Field(
+        default=None,
+        serialization_alias="xor",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "x"},
     )
-    nand: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    nand: str | None = Field(
+        default=None,
+        serialization_alias="nand",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "na"},
     )
-    nor: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    nor: str | None = Field(
+        default=None,
+        serialization_alias="nor",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "no"},
     )
-    negated: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    negated: str | None = Field(
+        default=None,
+        serialization_alias="negated",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "n"},
     )
-    count: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
+    count: str | None = Field(
+        default=None,
+        serialization_alias="count",
+        json_schema_extra={"essential": 1, "type": "integer", "shortname": "c"},
     )
-    countlow: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    countlow: str | None = Field(
+        default=None,
+        serialization_alias="countlow",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "cl"},
     )
 
 
-
-@dataclass
 class Math(DroidCircuit):
-    """Math utility circuit.
+    """ Math utility circuit
 
     Args:
         input1 (cv):
@@ -681,104 +733,124 @@ class Math(DroidCircuit):
         ceil (cv):
           The smallest integer number that is not less than input1
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 64
-    input1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    _ramsize: int = 64
+
+    input1: str | None = Field(
+        default=None,
+        serialization_alias="input1",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "i1"},
     )
-    input2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    input2: str | None = Field(
+        default=None,
+        serialization_alias="input2",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "i2"},
     )
-    sum: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    sum: str | None = Field(
+        default=None,
+        serialization_alias="sum",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "s"},
     )
-    difference: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    difference: str | None = Field(
+        default=None,
+        serialization_alias="difference",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "d"},
     )
-    product: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    product: str | None = Field(
+        default=None,
+        serialization_alias="product",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "p"},
     )
-    quotient: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    quotient: str | None = Field(
+        default=None,
+        serialization_alias="quotient",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "qu"},
     )
-    modulo: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    modulo: str | None = Field(
+        default=None,
+        serialization_alias="modulo",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "md"},
     )
-    power: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    power: str | None = Field(
+        default=None,
+        serialization_alias="power",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "pw"},
     )
-    average: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    average: str | None = Field(
+        default=None,
+        serialization_alias="average",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "a"},
     )
-    maximum: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    maximum: str | None = Field(
+        default=None,
+        serialization_alias="maximum",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "x"},
     )
-    minimum: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    minimum: str | None = Field(
+        default=None,
+        serialization_alias="minimum",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "m"},
     )
-    negation: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    negation: str | None = Field(
+        default=None,
+        serialization_alias="negation",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "n"},
     )
-    reciprocal: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    reciprocal: str | None = Field(
+        default=None,
+        serialization_alias="reciprocal",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "rc"},
     )
-    amount: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    amount: str | None = Field(
+        default=None,
+        serialization_alias="amount",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "am"},
     )
-    sine: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    sine: str | None = Field(
+        default=None,
+        serialization_alias="sine",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "si"},
     )
-    cosine: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    cosine: str | None = Field(
+        default=None,
+        serialization_alias="cosine",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "cs"},
     )
-    square: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    square: str | None = Field(
+        default=None,
+        serialization_alias="square",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "q"},
     )
-    root: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    root: str | None = Field(
+        default=None,
+        serialization_alias="root",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "ro"},
     )
-    logarithm: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    logarithm: str | None = Field(
+        default=None,
+        serialization_alias="logarithm",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "l"},
     )
-    round: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    round: str | None = Field(
+        default=None,
+        serialization_alias="round",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "rd"},
     )
-    floor: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    floor: str | None = Field(
+        default=None,
+        serialization_alias="floor",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "f"},
     )
-    ceil: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ceil: str | None = Field(
+        default=None,
+        serialization_alias="ceil",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "c"},
     )
 
 
-
-@dataclass
 class Multicompare(DroidCircuit):
-    """Compare in input with up to eight possible values.
+    """ Compare in input with up to eight possible values
 
     Args:
         input (cv):
@@ -815,98 +887,115 @@ class Multicompare(DroidCircuit):
           The output values if the according comparison value is found at the input.
         ifequal8 (cv):
           The output values if the according comparison value is found at the input.
-        else_ (cv):
+        else (cv):
           Specifies the output value in case non of comparison values is found at the
           input.
         output (cv):
           The vaue of the matching ifequal or else input.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 56
-    input: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    _ramsize: int = 56
+
+    input: str | None = Field(
+        default=None,
+        serialization_alias="input",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "i"},
     )
-    compare1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    compare1: str | None = Field(
+        default=None,
+        serialization_alias="compare1",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "c1"},
     )
-    compare2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    compare2: str | None = Field(
+        default=None,
+        serialization_alias="compare2",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "c2"},
     )
-    compare3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    compare3: str | None = Field(
+        default=None,
+        serialization_alias="compare3",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "c3"},
     )
-    compare4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    compare4: str | None = Field(
+        default=None,
+        serialization_alias="compare4",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "c4"},
     )
-    compare5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    compare5: str | None = Field(
+        default=None,
+        serialization_alias="compare5",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "c5"},
     )
-    compare6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    compare6: str | None = Field(
+        default=None,
+        serialization_alias="compare6",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "c6"},
     )
-    compare7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    compare7: str | None = Field(
+        default=None,
+        serialization_alias="compare7",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "c7"},
     )
-    compare8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    compare8: str | None = Field(
+        default=None,
+        serialization_alias="compare8",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "c8"},
     )
-    ifequal1: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ifequal1: str | None = Field(
+        default=None,
+        serialization_alias="ifequal1",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "if1"},
     )
-    ifequal2: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ifequal2: str | None = Field(
+        default=None,
+        serialization_alias="ifequal2",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "if2"},
     )
-    ifequal3: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ifequal3: str | None = Field(
+        default=None,
+        serialization_alias="ifequal3",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "if3"},
     )
-    ifequal4: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ifequal4: str | None = Field(
+        default=None,
+        serialization_alias="ifequal4",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "if4"},
     )
-    ifequal5: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ifequal5: str | None = Field(
+        default=None,
+        serialization_alias="ifequal5",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "if5"},
     )
-    ifequal6: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ifequal6: str | None = Field(
+        default=None,
+        serialization_alias="ifequal6",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "if6"},
     )
-    ifequal7: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ifequal7: str | None = Field(
+        default=None,
+        serialization_alias="ifequal7",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "if7"},
     )
-    ifequal8: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    ifequal8: str | None = Field(
+        default=None,
+        serialization_alias="ifequal8",
+        json_schema_extra={"essential": 0, "type": "cv", "shortname": "if8"},
     )
-    else_: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    else_: str | None = Field(
+        default=None,
+        serialization_alias="else",
+        json_schema_extra={"essential": 1, "type": "cv", "shortname": "e"},
     )
-    output: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
+    output: str | None = Field(
+        default=None,
+        serialization_alias="output",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o"},
     )
 
 
-
-@dataclass
 class Select(DroidCircuit):
-    """Copy a signal if selected.
+    """ Copy a signal if selected
 
     Args:
         input (cv):
@@ -928,26 +1017,28 @@ class Select(DroidCircuit):
           The input will be copied here, but just when the circuit is selected via
           select.
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = 24
-    input: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
-    select: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    selectat: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_integer(ramsize=0)
-    )
-    output: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_cv(ramsize=0)
-    )
+    _ramsize: int = 24
 
-
+    input: str | None = Field(
+        default=None,
+        serialization_alias="input",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "i"},
+    )
+    select: str | None = Field(
+        default=None,
+        serialization_alias="select",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "s"},
+    )
+    selectat: str | None = Field(
+        default=None,
+        serialization_alias="selectat",
+        json_schema_extra={"essential": 0, "type": "integer", "shortname": "sa"},
+    )
+    output: str | None = Field(
+        default=None,
+        serialization_alias="output",
+        json_schema_extra={"essential": 2, "type": "cv", "shortname": "o"},
+    )
 

@@ -1,16 +1,16 @@
 """Generate boilerplate from templates."""
 
 from textwrap import dedent
-from typing import Dict, List, Optional
 import keyword
 from .context import TemplateContext
 from .formatting import format_line
+from metapatch.circuits.aliases import CIRCUIT_ALIASES
 
 
-TCircuitParams = Dict[str, str]
-TCircuit = Dict[str, TCircuitParams]
+TCircuitParams = dict[str, str]
+TCircuit = dict[str, TCircuitParams]
 
-TModDefinition = List[str]
+TModDefinition = list[str]
 
 
 def header(with_list: bool = False) -> str:
@@ -68,7 +68,7 @@ def pg_class(
 
 
 def generate_section_function(
-    circuits: List[TCircuit], functionname: str, section_name: str
+    circuits: list[TCircuit], functionname: str, section_name: str
 ) -> str:
     """Generate a section function."""
     # Start a local context one level in.
@@ -77,7 +77,7 @@ def generate_section_function(
         "function_definition",
         function=functionname,
         args="self",
-        retval="List[metapatch.DroidCircuit]",
+        retval="list[metapatch.DroidCircuit]",
     )
 
     with context.next_level() as in_function:
@@ -102,18 +102,18 @@ def generate_section_function(
     return str(context)
 
 
-def _generate_circuit_params(circuit: TCircuitParams, level: int = 2) -> str:
+def _generate_circuit_params(circuitname: str, circuit: TCircuitParams, level: int = 2) -> str:
     """Generate the parameters for a circuit."""
     context = TemplateContext(level)
+    circuit_params = CIRCUIT_ALIASES[circuitname]
     for key, value in circuit.items():
-        if not key:
+        if key not in circuit_params:
             continue
-        if key.startswith("__"):
-            continue
-        if key in keyword.kwlist:
+        realkey = circuit_params[key]
+        if realkey in keyword.kwlist:
             key += "_"
         statement = context.eval_template(
-            "fun_quoted_assignment", key=key, val=value, comma=True
+            "fun_quoted_assignment", key=realkey, val=value, comma=True
         )
         statement = format_line(statement) + "\n"
         context.buffer.append(statement)
@@ -127,10 +127,11 @@ def generate_circuit(
     """Generate a circuit."""
     context = TemplateContext(level)
 
+
     function_name = f"metapatch.circuits.{circuitname.capitalize()}("
     context.add(function_name)
     with context.next_level() as arg_context:
-        arg_context.buffer.append(_generate_circuit_params(circuit, arg_context.level))
+        arg_context.buffer.append(_generate_circuit_params(circuitname, circuit, arg_context.level))
     if comma:
         context.add("),")
     else:
@@ -163,9 +164,9 @@ def generate_pg_function(modules: TModDefinition) -> str:
 def generate_transformation(
     funcname: str,
     sectionname: str,
-    transforms: Dict[str, str],
-    ignore: List[str],
-    replace: Optional[Dict[str, str]] = None,
+    transforms: dict[str, str],
+    ignore: list[str],
+    replace: dict[str, str] | None = None,
 ) -> str:
     """Generate a transformation.
 
@@ -219,7 +220,7 @@ def generate_add_circuit(
         in_fun.add(f"metapatch.circuits.{circuitname.capitalize()}(")
         with in_fun.next_level() as in_args:
             in_args.buffer.append(
-                _generate_circuit_params(circuit, level=in_args.level)
+                _generate_circuit_params(circuitname, circuit, level=in_args.level)
             )
         in_fun.add(")")
     context.add(")")

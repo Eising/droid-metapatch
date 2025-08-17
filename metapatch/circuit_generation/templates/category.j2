@@ -1,37 +1,32 @@
 """DROID circuits. These circuits are auto-generated from circuits.json."""
 
-from dataclasses import dataclass, field
-from typing import Optional
-
+from pydantic import AliasChoices, Field
 from metapatch.circuits.base import DroidCircuit
-from metapatch.circuits import circuit_types as ctype
 
 
 __droid_version__ = "{{ droid_version }}"
 
+{% for circuit_name, params in circuits.items() %}
 
-{% for circuit in circuits %}
-@dataclass
-class {{ circuit.name|capitalize }}(DroidCircuit):
-    """{{circuit.title}}.
+class {{ circuit_name|capitalize }}(DroidCircuit):
+    """{{params.title}}
 
     Args:
-    {% for param in circuit.parameters|sort(attribute="direction") %}
-        {{ param.name}} ({{ param.type }}):
+    {% for param in params.get_io() %}
+        {{ param.name }} ({{ param.type }}):
 {{ param.synopsis }}
-    {% endfor %}
+{% endfor %}
         comment: Add a comment in the droid ini file.
-
     """
 
-    __ramsize__ = {{ circuit.ramsize }}
-    {% for param in circuit.parameters %}
-    {{ param.name }}: Optional[str] = field(
-            default=None,
-            metadata=ctype.type_{{ param.type }}(ramsize={{param.ramsize}})
+    _ramsize: int = {{params.ramsize}}
+
+    {% for param in params.get_io() %}
+    {{ param.parameter }}: str | None = Field(
+        default=None,
+        serialization_alias="{{ param.name }}",
+        json_schema_extra={"essential": {{ param.essential }}, "type": "{{ param.type }}", "shortname": "{{ param.short }}"},
     )
     {% endfor %}
-
-
 
 {% endfor %}
