@@ -111,7 +111,7 @@ def _generate_circuit_params(circuitname: str, circuit: TCircuitParams, level: i
             continue
         realkey = circuit_params[key]
         if realkey in keyword.kwlist:
-            key += "_"
+            realkey += "_"
         statement = context.eval_template(
             "fun_quoted_assignment", key=realkey, val=value, comma=True
         )

@@ -1,6 +1,7 @@
 """Test factory functions."""
 
 from metapatch.factory.patch_parser import tokenize
+from metapatch.factory.boilerplate import generate_snippet
 
 def test_minified_tokenizer() -> None:
     """Test the tokenizer's ability to test a minified patch."""
@@ -40,3 +41,15 @@ sc=_T1_FADERMODE_UPDATED"""
         expected += f"{param}={value}\n"
 
     assert expected == testpatch
+
+def test_reserved_keywords() -> None:
+    """Test reserved keywords."""
+    rawpatch = """
+[compare]
+input="_INPUT"
+compare="1"
+ifequal="1"
+else="0"
+    """
+    snippet = generate_snippet(rawpatch)
+    assert "else_" in snippet
