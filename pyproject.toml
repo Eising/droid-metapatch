@@ -1,6 +1,6 @@
 [project]
 name = "droid-metapatch"
-version = "3.0.0"
+version = "3.0.1"
 description = "DROID patch generator"
 authors = [{ name = "Allan Eising", email = "allan@eising.dk" }]
 requires-python = ">=3.12"
