@@ -3,10 +3,9 @@
 import textwrap
 
 from string import Template
-from typing import Iterator, List
+from collections.abc import Iterator
 from contextlib import contextmanager
 
-from .formatting import format_line
 
 class_definition = Template("class ${classname}(${parent}):")
 
@@ -56,12 +55,12 @@ class TemplateContext:
 
     def __init__(self, level: int = 0) -> None:
         """Initialize context."""
-        self.level = level
-        self.buffer: List[str] = []
+        self.level: int = level
+        self.buffer: list[str] = []
         num_spaces = level * 4
         # for debug
         # self.indent = f"{level}" * num_spaces
-        self.indent = " " * num_spaces
+        self.indent: str = " " * num_spaces
 
     def apply_template(
         self,
