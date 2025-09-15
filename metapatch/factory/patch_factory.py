@@ -101,15 +101,22 @@ def generate_section_function(
 
     return str(context)
 
+def _get_param_name(circuitname: str, key: str) -> str:
+    """Lookup parameter name.
+
+    In case of a minified name, the long name will be returned.
+    """
+    shortmap = CIRCUIT_ALIASES[circuitname]
+    if longname := shortmap.get(key):
+        return longname.rstrip()
+    return key.rstrip()
+
 
 def _generate_circuit_params(circuitname: str, circuit: TCircuitParams, level: int = 2) -> str:
     """Generate the parameters for a circuit."""
     context = TemplateContext(level)
-    circuit_params = CIRCUIT_ALIASES[circuitname]
     for key, value in circuit.items():
-        if key not in circuit_params:
-            continue
-        realkey = circuit_params[key]
+        realkey = _get_param_name(circuitname, key)
         if realkey in keyword.kwlist:
             realkey += "_"
         statement = context.eval_template(
